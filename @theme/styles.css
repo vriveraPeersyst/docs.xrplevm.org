@@ -20,3 +20,20 @@
 [data-component-name="Navbar/NavbarMenu"] {
   justify-content: center;
 }
+
+img[alt="Users"] {
+  height: 25px;
+}
+img[alt="Developers"] {
+  height: 25px;
+}
+img[alt="Operators"] {
+  height: 25px;
+}
+img[alt="Bridge"] {
+  height: 25px;
+}
+
+.card-variant-filled {
+  height: 213px;
+}

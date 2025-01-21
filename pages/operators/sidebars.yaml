@@ -18,7 +18,7 @@
   items:
     - page: ./advanced/node-configuration-options.md
     - page: ./advanced/sync-options.md
-    # - page: ./advanced/monitoring-the-node.md
+    - page: ./advanced/monitoring-the-node.md
     - page: ./advanced/adding-horocrux.md
 - group: Resources
   page: ./resources/index.md

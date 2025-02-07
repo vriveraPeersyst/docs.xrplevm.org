@@ -53,7 +53,7 @@ A containerized approach that ensures the node runs in a consistent environment.
 
 #### Pre-requisites
 
-- Docker 19+ installed.
+- [Docker 19+ installed](https://docs.docker.com/engine/install/).
 
 #### Steps
 

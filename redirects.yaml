@@ -1,24 +1,24 @@
-https://docs.xrplevm.org:
-  to: docs/cross-chain-dapps/cross-chain-dapps/
+https://docs.xrplevm.org/docs/evm-sidechain/intro-to-evm-sidechain:
+  to: docs.xrplevm.org
   type: 301
 https://docs.xrplevm.org/docs/evm-sidechain/bridges-intro:
-  to: docs/evm-sidechain/axelar-overview/
+  to: pages/bridge
   type: 301
 https://docs.xrplevm.org/docs/evm-sidechain/create-a-bridge:
-  to: docs/evm-sidechain/axelar-overview/
+  to: pages/bridge
   type: 301
 https://docs.xrplevm.org/docs/evm-sidechain/execute-bridge-operations:
-  to: docs/evm-sidechain/axelar-overview/
+  to: pages/bridge
   type: 301
 https://docs.xrplevm.org/docs/evm-sidechain/stress-test-the-bridge:
-  to: docs/evm-sidechain/axelar-overview/
+  to: pages/bridge
   type: 301
 https://docs.xrplevm.org/docs/axelar/intro-to-axelar:
-  to: docs/evm-sidechain/axelar-overview/
+  to: pages/bridge
   type: 301
 https://docs.xrplevm.org/docs/axelar/bridge-tokens-axelar:
-  to: docs/evm-sidechain/axelar-interchain-transfer/
+  to: pages/bridge/interchain-transfer
   type: 301
 https://docs.xrplevm.org/docs/axelar/call-a-smart-contract-function:
-  to: docs.xrplevm.org/docs/evm-sidechain/axelar-manually-relay-messages/
+  to: pages/bridge/manually-relay-messages
   type: 301

@@ -1,24 +1,24 @@
-'/docs/evm-sidechain/intro-to-evm-sidechain':
-  to: 'https://docs.xrplevm.org/'
+/docs/evm-sidechain/intro-to-evm-sidechain:
+  to: https://docs.xrplevm.org/
   type: 301
-'/docs/evm-sidechain/bridges-intro':
-  to: '/pages/bridge/'
+/docs/evm-sidechain/bridges-intro:
+  to: /pages/bridge/
   type: 301
-'/docs/evm-sidechain/create-a-bridge':
-  to: '/pages/bridge'
+/docs/evm-sidechain/create-a-bridge:
+  to: /pages/bridge
   type: 301
-'/docs/evm-sidechain/execute-bridge-operations':
-  to: '/pages/bridge'
+/docs/evm-sidechain/execute-bridge-operations:
+  to: /pages/bridge
   type: 301
-'/docs/evm-sidechain/stress-test-the-bridge':
-  to: '/pages/bridge'
+/docs/evm-sidechain/stress-test-the-bridge:
+  to: /pages/bridge
   type: 301
-'/docs/axelar/intro-to-axelar':
-  to: '/pages/bridge'
+/docs/axelar/intro-to-axelar:
+  to: /pages/bridge
   type: 301
-'/docs/axelar/bridge-tokens-axelar':
-  to: '/pages/bridge/interchain-transfer'
+/docs/axelar/bridge-tokens-axelar:
+  to: /pages/bridge/interchain-transfer
   type: 301
-'/docs/axelar/call-a-smart-contract-function':
-  to: '/pages/bridge/manually-relay-messages'
+/docs/axelar/call-a-smart-contract-function:
+  to: /pages/bridge/manually-relay-messages
   type: 301

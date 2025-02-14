@@ -4,6 +4,8 @@ reunite:
 apis: {}
 ignore:
   - _*
+redirects:
+  $ref: redirects.yaml
 links:
   - rel: stylesheet
     href: ./@theme/fonts.css

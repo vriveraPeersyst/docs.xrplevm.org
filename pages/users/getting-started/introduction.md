@@ -29,8 +29,8 @@ Every action on the XRPL EVM, such as deploying smart contracts or transferring 
 2. **Bridge XRP from the XRP Ledger**:  
     Transfer XRP from the XRP Ledger to the XRPL EVM using the **Bridge**.  
     _(Read more: [Using the Bridge](../using-the-bridge.md))_
-   {% /tab %}
-   {% tab label="Devnet" %}
+{% /tab %}
+{% tab label="Devnet" %}
 
 ### Obtain XRP for Transaction Fees
 
@@ -43,8 +43,8 @@ Every action on the XRPL EVM, such as deploying smart contracts or transferring 
 2. **Bridge XRP from the XRP Ledger**:  
     Transfer XRP from the XRP Ledger to the XRPL EVM using the **Bridge**.  
     _(Read more: [Using the Bridge](../using-the-bridge.md))_
-   {% /tab %}
-   {% /tabs %}
+{% /tab %}
+{% /tabs %}
 
 ---
 

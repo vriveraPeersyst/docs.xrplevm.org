@@ -9,22 +9,19 @@ Congratulations on reaching this point in your journey with the **XRPL Ethereum 
 Through the previous pages, you’ve learned to:
 
 1. **Develop a Smart Contract**:
-
    - Understand the fundamentals of Solidity programming and write Ethereum-compatible smart contracts optimized for the XRPL EVM.  
      _(Read more: [Develop a Smart Contract](./develop-a-smart-contract.md))_
 
 2. **Deploy a Smart Contract**:
-
-   - Use tools like Remix IDE and Hardhat to deploy your contracts on the XRPL EVM Sidechain.
+   - Use tools like Remix IDE and Hardhat to deploy your contracts on the XRPL EVM Sidechain.  
      _(Read more: [Deploy a Smart Contract](./deploy-the-smart-contract.md))_
 
 3. **Verify a Smart Contract**:
-
-   - Ensure transparency and build user trust by verifying your contract’s source code on the XRPL EVM Explorer.
+   - Ensure transparency and build user trust by verifying your contract’s source code on the XRPL EVM Explorer.  
      _(Read more: [Verify a Smart Contract](./verify-the-smart-contract.md))_
 
 4. **Interact with a Smart Contract**:
-   - Execute smart contract functions, query data, and integrate contract calls into your applications using libraries like `ethers.js` or `web3.js`.
+   - Execute smart contract functions, query data, and integrate contract calls into your applications using libraries like `ethers.js` or `web3.js`.  
      _(Read more: [Interact with a Smart Contract](./interact-with-the-smart-contract.md))_
 
 ---
@@ -34,15 +31,12 @@ Through the previous pages, you’ve learned to:
 Take your skills to the next level by exploring advanced use cases and emerging technologies:
 
 1. **Cross-Chain Applications**:
-
    - Learn how to utilize [Axelar General Message Passing (GMP)](../../bridge/general-message-passing.md) and [Cosmos IBC](../interacting-with-cosmos/using-ibc.md) to create interoperable dApps that interact across multiple blockchains.
 
 2. **Token Standards**:
-
    - Dive into token standards like [ERC-20](https://docs.openzeppelin.com/contracts/4.x/erc20) (fungible tokens) and [ERC-721](https://docs.openzeppelin.com/contracts/4.x/erc721) (non-fungible tokens) to design and implement custom tokens on the XRPL EVM.
 
 3. **DeFi Protocols**:
-
    - Explore decentralized finance (DeFi) concepts such as lending, staking, and automated market makers (AMMs) to [build](https://soliditylang.org/) innovative financial solutions.
 
 4. **AI-Driven Smart Contracts**:
@@ -57,8 +51,6 @@ To complete your understanding of dApp development, create a frontend applicatio
 ### Setup Instructions
 
 #### 1. Clone the Starter Kit
-
-Start with a pre-configured template for building blockchain frontends:
 
 ```bash
 git clone https://github.com/kenyiu/web3_starter_kit.git
@@ -77,39 +69,64 @@ Replace `<YOUR_WALLETCONNECT_PROJECT_ID>` with your actual WalletConnect project
 
 #### 3. Install Dependencies
 
-Run the following command to install all required packages:
-
 ```bash
 npm install
 ```
 
 #### 4. Add XRPL EVM Network Configuration
 
-Update the `src/chains/xrplEvmChain.ts` file with XRPL EVM-specific details:
+Below, we show two tabs for **Devnet** and **Testnet**. Select the appropriate tab for the network you plan to support. In each code block, update the chain ID, RPC URL, and block explorer for your environment.
 
+{% tabs %}
+{% tab label="Devnet" %}
 ```typescript
 import { defineChain, type Chain } from "viem";
 
-export const xrplEvmChain = defineChain({
+export const xrplEvmChainDevnet = defineChain({
   id: 1440002,
-  name: "XRPL EVM",
+  name: "XRPL EVM Devnet",
   nativeCurrency: {
     name: "XRP",
     symbol: "XRP",
     decimals: 18,
   },
   rpcUrls: {
-    default: { http: ["https://rpc.xrplevm.org"] },
+    default: { http: ["https://rpc.devnet.xrplevm.org"] },
   },
   blockExplorers: {
-    default: { name: "Blockscout", url: "https://explorer.xrplevm.org" },
+    default: { name: "Blockscout", url: "https://explorer.devnet.xrplevm.org" },
   },
 } as const satisfies Chain);
 ```
+{% /tab %}
+
+{% tab label="Testnet" %}
+```typescript
+import { defineChain, type Chain } from "viem";
+
+export const xrplEvmChainTestnet = defineChain({
+  id: 1449000,
+  name: "XRPL EVM Testnet",
+  nativeCurrency: {
+    name: "XRP",
+    symbol: "XRP",
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: { http: ["https://rpc.testnet.xrplevm.org"] },
+  },
+  blockExplorers: {
+    default: {
+      name: "Blockscout",
+      url: "https://explorer.testnet.xrplevm.org",
+    },
+  },
+} as const satisfies Chain);
+```
+{% /tab %}
+{% /tabs %}
 
 #### 5. Run the Development Server
-
-Launch the app with the following command:
 
 ```bash
 npm run dev

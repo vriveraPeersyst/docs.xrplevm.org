@@ -22,8 +22,10 @@ To send a message from the XRP Ledger (XRPL) to the XRPL EVM, a payment transact
 
 **Important**: All fields within [`Memos`](https://js.xrpl.org/interfaces/Payment.html#Memos) must be encoded in hexadecimal format before submission.
 
-The following example demonstrates how to call a smart contract function on the XRPL EVM from the XRP Ledger. The example uses the [ethers](https://docs.ethers.org/v6/) library to encode the payload and the [xrpl.js](https://js.xrpl.org/index.html) library to interact with the XRP Ledger.
+Below are **two examples** (Devnet and Testnet) showing how to call a smart contract function on the XRPL EVM from the XRP Ledger. Both examples use the [ethers](https://docs.ethers.org/v6/) library to encode the payload and the [xrpl.js](https://js.xrpl.org/index.html) library to interact with the XRP Ledger.
 
+{% tabs %}
+{% tab label="Devnet" %}
 ```ts
 import { AbiCoder } from "ethers";
 import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
@@ -34,33 +36,35 @@ const payload = AbiCoder.defaultAbiCoder().encode(["string"], ["Hello World"]);
 // wallet variable corresponds to xrpl.js Wallet instance
 // client variable corresponds to xrpl.js Client instance
 
-// Create the payment transaction object
+// Create the payment transaction object for DEVNET
 const payment: Payment = {
   TransactionType: "Payment",
   Account: wallet.address, // Sender's address
-  Amount: "1", // 1 drop
-  Destination: "rfEf91bLxrTVC76vw1W3Ur8Jk4Lwujskmb", // Gateway address in the XRP Ledger
+  Amount: "10000000", // 10 Million drops = 10 XRP
+  // Devnet Gateway address on the XRP Ledger
+  Destination: "rGAbJZEzU6WaYv5y1LfyN7LBBcQJ3TxsKC",
   Memos: [
     {
       Memo: {
         // hex(destination_address)
-        MemoType: "64657374696E6174696F6E5F61646472657373",
+        MemoType: Buffer.from("destination_address").toString("hex").toUpperCase(),
         // Destination contract address (hexadecimal, without 0x prefix)
-        MemoData: "189C2572063f25FEf5Cdd3516DDDd9fA6e9CB187",
+        MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
       },
     },
     {
       Memo: {
         // hex(destination_chain)
-        MemoType: "64657374696E6174696F6E5F636861696E",
+        MemoType: Buffer.from("destination_chain").toString("hex").toUpperCase(),
         // The destination chain ID on the Axelar network (hexadecimal)
-        MemoData: convertStringToHex("xrpl-evm-sidechain"),
+        // for Devnet
+        MemoData: Buffer.from("xrpl-evm-devnet").toString("hex").toUpperCase(),
       },
     },
     {
       Memo: {
         // hex(payload_hash)
-        MemoType: "7061796C6F61645F68617368",
+        MemoType: "7061796C6F61645F68617368", // "payload_hash" in hex
         // ABI-encoded payload (hexadecimal, without 0x prefix)
         MemoData: payload.slice(2),
       },
@@ -76,4 +80,66 @@ const signedTransaction = wallet.sign(transaction).tx_blob;
 
 // Submit transaction
 const result = await client.submit(signedTransaction);
+console.log(result);
 ```
+{% /tab %}
+
+{% tab label="Testnet" %}
+```ts
+import { AbiCoder } from "ethers";
+import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
+
+// Create the ABI-encoded payload
+const payload = AbiCoder.defaultAbiCoder().encode(["string"], ["Hello World"]);
+
+// wallet variable corresponds to xrpl.js Wallet instance
+// client variable corresponds to xrpl.js Client instance
+
+// Create the payment transaction object for TESTNET
+const payment: Payment = {
+  TransactionType: "Payment",
+  Account: wallet.address, // Sender's address
+  Amount: "10000000", // 10 Million drops = 10 XRP
+  // Testnet Gateway address on the XRP Ledger
+  Destination: "rTESTNETGatewayADDRESS123456789ABC",
+  Memos: [
+    {
+      Memo: {
+        // hex(destination_address)
+        MemoType: Buffer.from("destination_address").toString("hex").toUpperCase(),
+        // Destination contract address (hexadecimal, without 0x prefix)
+        MemoData: "F16A31764C91805B6C8E1D488941E41A86531880",
+      },
+    },
+    {
+      Memo: {
+        // hex(destination_chain)
+        MemoType: Buffer.from("destination_chain").toString("hex").toUpperCase(),
+        // The destination chain ID on the Axelar network (hexadecimal)
+        // for Testnet
+        MemoData: Buffer.from("xrpl-evm-testnet").toString("hex").toUpperCase(),
+      },
+    },
+    {
+      Memo: {
+        // hex(payload_hash)
+        MemoType: "7061796C6F61645F68617368", // "payload_hash" in hex
+        // ABI-encoded payload (hexadecimal, without 0x prefix)
+        MemoData: payload.slice(2),
+      },
+    },
+  ],
+};
+
+// Autofill transaction
+const transaction = await client.autofill(payment);
+
+// Sign transaction
+const signedTransaction = wallet.sign(transaction).tx_blob;
+
+// Submit transaction
+const result = await client.submit(signedTransaction);
+console.log(result);
+```
+{% /tab %}
+{% /tabs %}

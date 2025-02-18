@@ -16,7 +16,8 @@ To interact with the XRPL EVM, you need a compatible Ethereum wallet such as **M
 ---
 
 {% tabs %}
-  {% tab label="Testnet" %}
+{% tab label="Testnet" %}
+
 ### Obtain XRP for Transaction Fees
 
 Every action on the XRPL EVM, such as deploying smart contracts or transferring tokens, requires a small amount of **XRP** to cover transaction fees. There are two ways to get XRP for the **XRPL EVM Testnet**:
@@ -26,10 +27,11 @@ Every action on the XRPL EVM, such as deploying smart contracts or transferring 
    _(Read more: [Faucet](../faucet.md))_
 
 2. **Bridge XRP from the XRP Ledger**:  
-   Transfer XRP from the XRP Ledger to the XRPL EVM using the **Bridge**.  
-   _(Read more: [Using the Bridge](../using-the-bridge.md))_
-  {% /tab %}
-  {% tab label="Devnet" %}
+    Transfer XRP from the XRP Ledger to the XRPL EVM using the **Bridge**.  
+    _(Read more: [Using the Bridge](../using-the-bridge.md))_
+   {% /tab %}
+   {% tab label="Devnet" %}
+
 ### Obtain XRP for Transaction Fees
 
 Every action on the XRPL EVM, such as deploying smart contracts or transferring tokens, requires a small amount of **XRP** to cover transaction fees. There are two ways to get XRP for the **XRPL EVM Devnet**:
@@ -39,11 +41,10 @@ Every action on the XRPL EVM, such as deploying smart contracts or transferring 
    _(Read more: [Faucet](../faucet.md))_
 
 2. **Bridge XRP from the XRP Ledger**:  
-   Transfer XRP from the XRP Ledger to the XRPL EVM using the **Bridge**.  
-   _(Read more: [Using the Bridge](../using-the-bridge.md))_
-  {% /tab %}
-{% /tabs %}
-
+    Transfer XRP from the XRP Ledger to the XRPL EVM using the **Bridge**.  
+    _(Read more: [Using the Bridge](../using-the-bridge.md))_
+   {% /tab %}
+   {% /tabs %}
 
 ---
 

@@ -29,6 +29,7 @@ Addresses can be translated using the [`exrpd` CLI](../../operators/guides/inter
 
 {% tabs %}
 {% tab label="Devnet" %}
+
 ```bash
 exrpd debug addr ethm1akwntffy4us9nhgcmgjxdg78v5w3xtwletyjmv
 ```
@@ -40,12 +41,14 @@ exrpd debug addr 0xed9D35A524AF2059dd18Da2466A3C7651D132Ddf
 ```
 
 Example output:
+
 ```raw
 Address: [237, 157,  53, 165,  36, 175, 32,  89, 221,  24, 218,  36, 102, 163, 199, 101,  29,  19, 45, 223]
 Address (hex): ED9D35A524AF2059DD18DA2466A3C7651D132DDF
 Bech32 Acc: ethm1akwntffy4us9nhgcmgjxdg78v5w3xtwletyjmv
 Bech32 Val: ethmvaloper1akwntffy4us9nhgcmgjxdg78v5w3xtwlkmw7r3
 ```
+
 {% /tab %}
 {% tab label="Testnet" %}
 **Testnet details coming soon.**
@@ -95,3 +98,4 @@ function toChecksumAddress(address: string): string {
 
   return checksumAddress;
 }
+```

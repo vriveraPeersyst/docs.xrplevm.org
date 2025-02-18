@@ -3,7 +3,7 @@
   items:
     - page: ./getting-started/system-requirements.md
     - page: ./getting-started/installing-the-node.md
-    - page: ./getting-started/join-the-devnet.md
+    - page: ./getting-started/join-the-xrplevm.md
 - group: Guides
   items:
     - page: ./guides/interacting-with-the-node-cli.md

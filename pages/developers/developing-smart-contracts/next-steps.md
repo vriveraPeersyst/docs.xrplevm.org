@@ -9,14 +9,17 @@ Congratulations on reaching this point in your journey with the **XRPL Ethereum 
 Through the previous pages, you’ve learned to:
 
 1. **Develop a Smart Contract**:
+
    - Understand the fundamentals of Solidity programming and write Ethereum-compatible smart contracts optimized for the XRPL EVM.  
      _(Read more: [Develop a Smart Contract](./develop-a-smart-contract.md))_
 
 2. **Deploy a Smart Contract**:
+
    - Use tools like Remix IDE and Hardhat to deploy your contracts on the XRPL EVM Sidechain.  
      _(Read more: [Deploy a Smart Contract](./deploy-the-smart-contract.md))_
 
 3. **Verify a Smart Contract**:
+
    - Ensure transparency and build user trust by verifying your contract’s source code on the XRPL EVM Explorer.  
      _(Read more: [Verify a Smart Contract](./verify-the-smart-contract.md))_
 
@@ -31,12 +34,15 @@ Through the previous pages, you’ve learned to:
 Take your skills to the next level by exploring advanced use cases and emerging technologies:
 
 1. **Cross-Chain Applications**:
+
    - Learn how to utilize [Axelar General Message Passing (GMP)](../../bridge/general-message-passing.md) and [Cosmos IBC](../interacting-with-cosmos/using-ibc.md) to create interoperable dApps that interact across multiple blockchains.
 
 2. **Token Standards**:
+
    - Dive into token standards like [ERC-20](https://docs.openzeppelin.com/contracts/4.x/erc20) (fungible tokens) and [ERC-721](https://docs.openzeppelin.com/contracts/4.x/erc721) (non-fungible tokens) to design and implement custom tokens on the XRPL EVM.
 
 3. **DeFi Protocols**:
+
    - Explore decentralized finance (DeFi) concepts such as lending, staking, and automated market makers (AMMs) to [build](https://soliditylang.org/) innovative financial solutions.
 
 4. **AI-Driven Smart Contracts**:
@@ -79,6 +85,7 @@ Below, we show two tabs for **Devnet** and **Testnet**. Select the appropriate t
 
 {% tabs %}
 {% tab label="Devnet" %}
+
 ```typescript
 import { defineChain, type Chain } from "viem";
 
@@ -98,9 +105,11 @@ export const xrplEvmChainDevnet = defineChain({
   },
 } as const satisfies Chain);
 ```
+
 {% /tab %}
 
 {% tab label="Testnet" %}
+
 ```typescript
 import { defineChain, type Chain } from "viem";
 
@@ -123,6 +132,7 @@ export const xrplEvmChainTestnet = defineChain({
   },
 } as const satisfies Chain);
 ```
+
 {% /tab %}
 {% /tabs %}
 

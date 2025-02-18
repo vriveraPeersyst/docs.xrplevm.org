@@ -10,6 +10,7 @@ Nodes also expose other endpoints, such as the CometBFT P2P endpoint, or the [Pr
 
 {% tabs %}
 {% tab label="Devnet" %}
+
 ## gRPC (Devnet)
 
 The Cosmos SDK uses [Protobuf](https://protobuf.dev/) as its primary encoding library. This allows seamless integration with [gRPC](https://grpc.io/). Below is an example of querying the list of governance proposals using [grpcurl](https://github.com/fullstorydev/grpcurl):
@@ -41,6 +42,7 @@ grpcurl -plaintext cosmos.devnet.xrplevm.org:9090 cosmos.gov.v1.Query/Proposals
   }
 }
 ```
+
 </details>
 
 For more details on the Cosmos SDK gRPC server, refer to the [Cosmos SDK gRPC Server documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#grpc-server).  
@@ -80,6 +82,7 @@ curl -X GET "http://cosmos.devnet.xrplevm.org:1317/cosmos/gov/v1/proposals" -H "
   }
 }
 ```
+
 </details>
 
 Learn more about the Cosmos REST server in the [Cosmos SDK REST Server documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#rest-server).  
@@ -117,6 +120,7 @@ curl -X GET 'http://cosmos.devnet.xrplevm.org:26657/abci_query?path="/cosmos.gov
   }
 }
 ```
+
 </details>
 
 Explore the [Cosmos CometBFT RPC documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#cometbft-rpc) for more details.  
@@ -124,6 +128,7 @@ Access the CometBFT RPC interface at [cosmos.devnet.xrplevm.org:26657](http://co
 
 {% /tab %}
 {% tab label="Testnet" %}
+
 ## gRPC (Testnet)
 
 Below is an example of querying the gRPC server for governance proposals on **Testnet**:
@@ -155,6 +160,7 @@ grpcurl -plaintext cosmos.testnet.xrplevm.org:9090 cosmos.gov.v1.Query/Proposals
   }
 }
 ```
+
 </details>
 
 For more details on the Cosmos SDK gRPC server, refer to the [Cosmos SDK gRPC Server documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#grpc-server).  
@@ -194,6 +200,7 @@ curl -X GET "http://cosmos.testnet.xrplevm.org:1317/cosmos/gov/v1/proposals" -H 
   }
 }
 ```
+
 </details>
 
 Learn more about the Cosmos REST server in the [Cosmos SDK REST Server documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#rest-server).  
@@ -231,6 +238,7 @@ curl -X GET 'http://cosmos.testnet.xrplevm.org:26657/abci_query?path="/cosmos.go
   }
 }
 ```
+
 </details>
 
 Explore the [Cosmos CometBFT RPC documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#cometbft-rpc) for more details.  

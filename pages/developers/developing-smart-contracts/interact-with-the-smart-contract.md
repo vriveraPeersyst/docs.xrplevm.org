@@ -8,38 +8,42 @@ Interacting with smart contracts on the **XRPL Ethereum Virtual Machine (EVM) Si
 
 Before interacting with a smart contract, ensure you have the following set up:
 
-1. **Deployed Smart Contract**  
+1. **Deployed Smart Contract**
+
    - Deploy your smart contract using the guide: [Deploy a Smart Contract](./deploy-the-smart-contract.md).
    - Obtain the contract's address after deployment.
 
-2. **XRPL EVM Network**  
-   - Connect your wallet to the XRPL EVM using MetaMask or other compatible tools.  
+2. **XRPL EVM Network**
+   - Connect your wallet to the XRPL EVM using MetaMask or other compatible tools.
    - Choose **Devnet** or **Testnet** details below.
 
 {% tabs %}
 {% tab label="Devnet" %}
-**XRPL EVM Devnet Network Details**  
-- **Network Name**: XRPL EVM Devnet  
-- **RPC URL**: `https://rpc.devnet.xrplevm.org`  
-- **Chain ID**: `1440002`  
-- **Currency Symbol**: `XRP`  
+**XRPL EVM Devnet Network Details**
+
+- **Network Name**: XRPL EVM Devnet
+- **RPC URL**: `https://rpc.devnet.xrplevm.org`
+- **Chain ID**: `1440002`
+- **Currency Symbol**: `XRP`
 - **Block Explorer URL**: [https://explorer.devnet.xrplevm.org](https://explorer.devnet.xrplevm.org)
-{% /tab %}
+  {% /tab %}
 
 {% tab label="Testnet" %}
-**XRPL EVM Testnet Network Details**  
-- **Network Name**: XRPL EVM Testnet  
-- **RPC URL**: `https://rpc.testnet.xrplevm.org`  
-- **Chain ID**: `1449000`  
-- **Currency Symbol**: `XRP`  
-- **Block Explorer URL**: [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)
-{% /tab %}
-{% /tabs %}
+**XRPL EVM Testnet Network Details**
 
-3. **Smart Contract ABI**  
+- **Network Name**: XRPL EVM Testnet
+- **RPC URL**: `https://rpc.testnet.xrplevm.org`
+- **Chain ID**: `1449000`
+- **Currency Symbol**: `XRP`
+- **Block Explorer URL**: [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)
+  {% /tab %}
+  {% /tabs %}
+
+3. **Smart Contract ABI**
+
    - The Application Binary Interface (ABI) is required to interact with the contract. You can find the ABI in your contract’s build files or in Remix IDE.
 
-4. **Wallet Setup**  
+4. **Wallet Setup**
    - Ensure you have test XRP (`XRP`) for transaction fees. Use the [XRPL EVM Faucet](../../users/faucet.md) to request `XRP` on the appropriate network.
 
 ---
@@ -52,20 +56,23 @@ Remix provides a simple way to interact with deployed contracts.
 
 #### Steps:
 
-1. **Connect to XRPL EVM**  
-   - Open [Remix IDE](https://remix.ethereum.org/).  
-   - Under the environment settings, select **Injected Web3** to connect MetaMask.  
+1. **Connect to XRPL EVM**
+
+   - Open [Remix IDE](https://remix.ethereum.org/).
+   - Under the environment settings, select **Injected Web3** to connect MetaMask.
    - Make sure MetaMask is configured for either **XRPL EVM Devnet** or **Testnet**, depending on which network you’re using.
 
-2. **Load the Contract**  
-   - Paste the deployed contract’s address in the **Deployed Contracts** section.  
+2. **Load the Contract**
+
+   - Paste the deployed contract’s address in the **Deployed Contracts** section.
    - Import the contract’s ABI if required.
 
-3. **Call Functions**  
-   - Use the Remix interface to call public or payable functions on your contract.  
+3. **Call Functions**
+
+   - Use the Remix interface to call public or payable functions on your contract.
    - MetaMask will prompt you to sign and confirm transactions.
 
-4. **View Results**  
+4. **View Results**
    - The response from the contract is displayed in the Remix console.
 
 ---
@@ -76,7 +83,8 @@ The **web3.js** library provides a programmatic way to interact with smart contr
 
 #### Steps:
 
-1. **Install web3.js**  
+1. **Install web3.js**
+
    ```bash
    npm install web3
    ```
@@ -85,6 +93,7 @@ The **web3.js** library provides a programmatic way to interact with smart contr
 
 {% tabs %}
 {% tab label="Devnet" %}
+
 ```javascript
 const Web3 = require("web3");
 
@@ -93,8 +102,10 @@ const web3 = new Web3("https://rpc.devnet.xrplevm.org");
 
 // Chain ID = 1440002 (if needed in transaction config)
 ```
+
 {% /tab %}
 {% tab label="Testnet" %}
+
 ```javascript
 const Web3 = require("web3");
 
@@ -103,10 +114,12 @@ const web3 = new Web3("https://rpc.testnet.xrplevm.org");
 
 // Chain ID = 1449000 (if needed in transaction config)
 ```
+
 {% /tab %}
 {% /tabs %}
 
-3. **Load the Contract**  
+3. **Load the Contract**
+
    ```javascript
    const contractABI = [
      /* Your Contract ABI */
@@ -115,7 +128,8 @@ const web3 = new Web3("https://rpc.testnet.xrplevm.org");
    const contract = new web3.eth.Contract(contractABI, contractAddress);
    ```
 
-4. **Call Functions**  
+4. **Call Functions**
+
    ```javascript
    // Example: Reading a public variable
    const result = await contract.methods.publicVariable().call();
@@ -136,7 +150,8 @@ The **ethers.js** library is another popular option for interacting with smart c
 
 #### Steps:
 
-1. **Install ethers.js**  
+1. **Install ethers.js**
+
    ```bash
    npm install ethers
    ```
@@ -144,31 +159,40 @@ The **ethers.js** library is another popular option for interacting with smart c
 2. **Connect to XRPL EVM**
 
 {% tabs %}
-  {% tab label="Devnet" %}
+{% tab label="Devnet" %}
+
 ```javascript
 const { ethers } = require("ethers");
 
 // XRPL EVM Devnet RPC
-const provider = new ethers.providers.JsonRpcProvider("https://rpc.devnet.xrplevm.org");
+const provider = new ethers.providers.JsonRpcProvider(
+  "https://rpc.devnet.xrplevm.org"
+);
 const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
 // Chain ID = 1440002 (if needed in transaction config)
 ```
-  {% /tab %}
-  {% tab label="Testnet" %}
+
+{% /tab %}
+{% tab label="Testnet" %}
+
 ```javascript
 const { ethers } = require("ethers");
 
 // XRPL EVM Testnet RPC
-const provider = new ethers.providers.JsonRpcProvider("https://rpc.testnet.xrplevm.org");
+const provider = new ethers.providers.JsonRpcProvider(
+  "https://rpc.testnet.xrplevm.org"
+);
 const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
 // Chain ID = 1449000 (if needed in transaction config)
 ```
-  {% /tab %}
+
+{% /tab %}
 {% /tabs %}
 
-3. **Load the Contract**  
+3. **Load the Contract**
+
    ```javascript
    const contractABI = [
      /* Your Contract ABI */
@@ -177,7 +201,8 @@ const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
    const contract = new ethers.Contract(contractAddress, contractABI, wallet);
    ```
 
-4. **Call Functions**  
+4. **Call Functions**
+
    ```javascript
    // Example: Reading a public variable
    const result = await contract.publicVariable();
@@ -199,15 +224,17 @@ You can also create a frontend to interact with smart contracts using frameworks
 
 ## Debugging and Testing
 
-1. **Use the XRPL EVM Explorer**  
+1. **Use the XRPL EVM Explorer**
+
    - Access the appropriate explorer (Devnet or Testnet) to view transaction details, logs, and contract interactions:
-     - [Devnet Explorer](https://explorer.devnet.xrplevm.org)  
+     - [Devnet Explorer](https://explorer.devnet.xrplevm.org)
      - [Testnet Explorer](https://explorer.testnet.xrplevm.org)
 
-2. **Check Gas Fees**  
+2. **Check Gas Fees**
+
    - Ensure sufficient `XRP` balance in your wallet to cover gas fees for transactions.
 
-3. **Debug Contract Functions**  
+3. **Debug Contract Functions**
    - Use the Remix IDE debugger to trace contract execution and identify issues.
 
 ---
@@ -229,8 +256,8 @@ A decentralized voting dApp deployed on the XRPL EVM can fetch real-time voter s
 
 Now that you’ve learned how to interact with smart contracts, explore the following guides to enhance your development journey:
 
-- **Faucet**: [Obtain test XRP](../../users/faucet.md)  
-- **Deploy**: [Deploy a Smart Contract](./deploy-the-smart-contract.md)  
+- **Faucet**: [Obtain test XRP](../../users/faucet.md)
+- **Deploy**: [Deploy a Smart Contract](./deploy-the-smart-contract.md)
 - **Bridge**: [Using the XRPL EVM Bridge](../../users/using-the-bridge.md)
 
 Leverage the XRPL EVM’s low fees, fast transactions, and cross-chain capabilities to build innovative decentralized applications.

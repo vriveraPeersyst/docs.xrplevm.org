@@ -4,20 +4,23 @@ Block explorers are web-based tools that allow you to search, analyze, and view 
 
 {% tabs %}
 {% tab label="Devnet" %}
+
 ## Devnet Explorers
 
-| Name                | URL                                                               | Type   |
-| ------------------- | ----------------------------------------------------------------- | ------ |
-| EVM Explorer        | [https://explorer.xrplevm.org](https://explorer.xrplevm.org)      | EVM    |
-| Governance Explorer | [https://governance.xrplevm.org](https://governance.xrplevm.org)  | Cosmos |
+| Name                | URL                                                              | Type   |
+| ------------------- | ---------------------------------------------------------------- | ------ |
+| EVM Explorer        | [https://explorer.xrplevm.org](https://explorer.xrplevm.org)     | EVM    |
+| Governance Explorer | [https://governance.xrplevm.org](https://governance.xrplevm.org) | Cosmos |
+
 {% /tab %}
 
 {% tab label="Testnet" %}
+
 ## Testnet Explorers
 
-| Name                | URL                                                                  | Type   |
-| ------------------- | -------------------------------------------------------------------- | ------ |
-| EVM Explorer        | [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org) | EVM    |
+| Name                | URL                                                                              | Type   |
+| ------------------- | -------------------------------------------------------------------------------- | ------ |
+| EVM Explorer        | [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)     | EVM    |
 | Governance Explorer | [https://governance.testnet.xrplevm.org](https://governance.testnet.xrplevm.org) | Cosmos |
 
 {% /tab %}

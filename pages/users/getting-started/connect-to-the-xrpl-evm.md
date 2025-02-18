@@ -3,7 +3,8 @@
 This guide will walk you through configuring MetaMask to connect to the XRPL EVM.
 
 {% tabs %}
-  {% tab label="Testnet" %}
+{% tab label="Testnet" %}
+
 ## Adding XRPL EVM to MetaMask (Testnet)
 
 To interact with the XRPL EVM on Testnet, you need to manually add it as a custom network in MetaMask.
@@ -23,7 +24,7 @@ To interact with the XRPL EVM on Testnet, you need to manually add it as a custo
 
    - Fill in the following information:
      - **Network Name:** XRPL EVM Testnet
-     - **New RPC URL:** [https://rpc.testnet.xrplevm.org/](https://rpc.testnet.xrplevm.org/)  
+     - **New RPC URL:** [https://rpc.testnet.xrplevm.org/](https://rpc.testnet.xrplevm.org/)
      - **Chain ID:** 1449000
      - **Currency Symbol:** XRP
      - **Block Explorer URL:** [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)
@@ -39,8 +40,9 @@ To interact with the XRPL EVM on Testnet, you need to manually add it as a custo
    - Select **"XRPL EVM Testnet"** from the network dropdown to start interacting with the network.
 
    ![Select XRPL EVM Network](../images/selectXRPLEVM.png)
-  {% /tab %}
-  {% tab label="Devnet" %}
+   {% /tab %}
+   {% tab label="Devnet" %}
+
 ## Adding XRPL EVM to MetaMask (Devnet)
 
 To interact with the XRPL EVM on Devnet, you need to manually add it as a custom network in MetaMask.
@@ -76,8 +78,8 @@ To interact with the XRPL EVM on Devnet, you need to manually add it as a custom
    - Select **"XRPL EVM Devnet"** from the network dropdown to start interacting with the network.
 
    ![Select XRPL EVM Network](../images/selectXRPLEVM.png)
-  {% /tab %}
-{% /tabs %}
+   {% /tab %}
+   {% /tabs %}
 
 ## Verify the Connection
 

@@ -26,6 +26,7 @@ Below are **two examples** (Devnet and Testnet) showing how to call a smart cont
 
 {% tabs %}
 {% tab label="Devnet" %}
+
 ```ts
 import { AbiCoder } from "ethers";
 import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
@@ -47,7 +48,9 @@ const payment: Payment = {
     {
       Memo: {
         // hex(destination_address)
-        MemoType: Buffer.from("destination_address").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_address")
+          .toString("hex")
+          .toUpperCase(),
         // Destination contract address (hexadecimal, without 0x prefix)
         MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
       },
@@ -55,7 +58,9 @@ const payment: Payment = {
     {
       Memo: {
         // hex(destination_chain)
-        MemoType: Buffer.from("destination_chain").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_chain")
+          .toString("hex")
+          .toUpperCase(),
         // The destination chain ID on the Axelar network (hexadecimal)
         // for Devnet
         MemoData: Buffer.from("xrpl-evm-devnet").toString("hex").toUpperCase(),
@@ -82,9 +87,11 @@ const signedTransaction = wallet.sign(transaction).tx_blob;
 const result = await client.submit(signedTransaction);
 console.log(result);
 ```
+
 {% /tab %}
 
 {% tab label="Testnet" %}
+
 ```ts
 import { AbiCoder } from "ethers";
 import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
@@ -106,7 +113,9 @@ const payment: Payment = {
     {
       Memo: {
         // hex(destination_address)
-        MemoType: Buffer.from("destination_address").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_address")
+          .toString("hex")
+          .toUpperCase(),
         // Destination contract address (hexadecimal, without 0x prefix)
         MemoData: "F16A31764C91805B6C8E1D488941E41A86531880",
       },
@@ -114,7 +123,9 @@ const payment: Payment = {
     {
       Memo: {
         // hex(destination_chain)
-        MemoType: Buffer.from("destination_chain").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_chain")
+          .toString("hex")
+          .toUpperCase(),
         // The destination chain ID on the Axelar network (hexadecimal)
         // for Testnet
         MemoData: Buffer.from("xrpl-evm-testnet").toString("hex").toUpperCase(),
@@ -141,5 +152,6 @@ const signedTransaction = wallet.sign(transaction).tx_blob;
 const result = await client.submit(signedTransaction);
 console.log(result);
 ```
+
 {% /tab %}
 {% /tabs %}

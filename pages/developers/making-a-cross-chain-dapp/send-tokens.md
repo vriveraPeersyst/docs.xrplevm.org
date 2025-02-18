@@ -15,7 +15,7 @@ For practical guidance on using ITS to send and receive tokens, refer to the gui
 Sending assets from the XRP Ledger to the XRPL EVM or other chains is straightforward. The process involves executing a standard payment transaction, specifying the following key parameters:
 
 - [`Amount`](https://js.xrpl.org/interfaces/Payment.html#Amount): Specifies the quantity of the asset to be transferred. The format and value depend on the type of asset being sent (e.g., XRP or IOUs).
-- [`Destination`](https://js.xrpl.org/interfaces/Payment.html#Destination): Refers to the **Interchain Token Service** address on the XRP Ledger.  
+- [`Destination`](https://js.xrpl.org/interfaces/Payment.html#Destination): Refers to the **Interchain Token Service** address on the XRP Ledger.
 - [`Memos`](https://js.xrpl.org/interfaces/Payment.html#Memos): Contains additional data required for the transfer, including:
   - The **destination chain ID** on the Axelar network.
   - The **recipient's address** on the destination chain.
@@ -29,6 +29,7 @@ To send **XRP** (the native token) from the XRPL to the XRPL EVM, you simply spe
 
 {% tabs %}
 {% tab label="Devnet" %}
+
 ```ts
 import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
 
@@ -46,7 +47,9 @@ const payment: Payment = {
     {
       Memo: {
         // hex(destination_address)
-        MemoType: Buffer.from("destination_address").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_address")
+          .toString("hex")
+          .toUpperCase(),
         // Destination contract address (hexadecimal, without 0x prefix)
         MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
       },
@@ -54,7 +57,9 @@ const payment: Payment = {
     {
       Memo: {
         // hex(destination_chain)
-        MemoType: Buffer.from("destination_chain").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_chain")
+          .toString("hex")
+          .toUpperCase(),
         // The destination chain ID on the Axelar network (hexadecimal)
         // for Devnet
         MemoData: Buffer.from("xrpl-evm-devnet").toString("hex").toUpperCase(),
@@ -72,10 +77,13 @@ const signedTransaction = wallet.sign(transaction).tx_blob;
 // Submit transaction
 const result = await client.submit(signedTransaction);
 ```
+
 {% /tab %}
 
 {% tab label="Testnet" %}
+
 <!-- Placeholder for Testnet configuration; coming soon -->
+
 **Testnet details coming soon.**
 {% /tab %}
 {% /tabs %}
@@ -86,6 +94,7 @@ Sending IOU tokens (fungible tokens on XRPL) is similar, except the `Amount` fie
 
 {% tabs %}
 {% tab label="Devnet" %}
+
 ```ts
 import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
 
@@ -107,7 +116,9 @@ const payment: Payment = {
     {
       Memo: {
         // hex(destination_address)
-        MemoType: Buffer.from("destination_address").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_address")
+          .toString("hex")
+          .toUpperCase(),
         // Destination contract address (hexadecimal, without 0x prefix)
         MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
       },
@@ -115,7 +126,9 @@ const payment: Payment = {
     {
       Memo: {
         // hex(destination_chain)
-        MemoType: Buffer.from("destination_chain").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_chain")
+          .toString("hex")
+          .toUpperCase(),
         // The destination chain ID on the Axelar network (hexadecimal)
         // for Devnet
         MemoData: Buffer.from("xrpl-evm-devnet").toString("hex").toUpperCase(),
@@ -133,10 +146,13 @@ const signedTransaction = wallet.sign(transaction).tx_blob;
 // Submit transaction
 const result = await client.submit(signedTransaction);
 ```
+
 {% /tab %}
 
 {% tab label="Testnet" %}
+
 <!-- Placeholder for Testnet configuration; coming soon -->
+
 **Testnet details coming soon.**
 {% /tab %}
 {% /tabs %}
@@ -158,6 +174,7 @@ Below is an example of instantiating the ITS contract in the **XRPL EVM Devnet**
 
 {% tabs %}
 {% tab label="Devnet" %}
+
 ```ts
 import { Contract } from "ethers";
 
@@ -170,10 +187,13 @@ const its = new Contract(
   signer
 );
 ```
+
 {% /tab %}
 
 {% tab label="Testnet" %}
+
 <!-- Placeholder for Testnet configuration; coming soon -->
+
 **Testnet details coming soon.**
 {% /tab %}
 {% /tabs %}
@@ -184,6 +204,7 @@ To transfer **XRP** back to the XRPL, call `interchainTransfer` on the ITS contr
 
 {% tabs %}
 {% tab label="Devnet" %}
+
 ```ts
 import { ethers } from "ethers";
 
@@ -196,10 +217,13 @@ await its.interchainTransfer(
   ethers.BigNumber.from("0") // Gas (unused)
 );
 ```
+
 {% /tab %}
 
 {% tab label="Testnet" %}
+
 <!-- Placeholder for Testnet configuration; coming soon -->
+
 **Testnet details coming soon.**
 {% /tab %}
 {% /tabs %}
@@ -265,6 +289,7 @@ await erc20.approve(
 
 {% tabs %}
 {% tab label="Devnet" %}
+
 ```ts
 import { ethers } from "ethers";
 
@@ -278,10 +303,13 @@ await its.interchainTransfer(
   ethers.BigNumber.from("0") // Gas (unused)
 );
 ```
+
 {% /tab %}
 
 {% tab label="Testnet" %}
+
 <!-- Placeholder for Testnet configuration; coming soon -->
+
 **Testnet details coming soon.**
 {% /tab %}
 {% /tabs %}

@@ -19,27 +19,29 @@ Remix is a web-based development environment for smart contracts, perfect for qu
   Below are the **Testnet** and **Devnet** RPC details. Choose the appropriate tab for the network you want to use.
 
 {% tabs %}
-  {% tab label="Testnet" %}
-**XRPL EVM Testnet MetaMask Settings**  
-- **Network Name**: XRPL EVM Testnet  
+{% tab label="Testnet" %}
+**XRPL EVM Testnet MetaMask Settings**
+
+- **Network Name**: XRPL EVM Testnet
 - **RPC URL**: `https://rpc.testnet.xrplevm.org`
-- **Chain ID**: `1449000`  
-- **Currency Symbol**: `XRP`  
+- **Chain ID**: `1449000`
+- **Currency Symbol**: `XRP`
 - **Block Explorer URL**: `https://explorer.testnet.xrplevtest.org`
 
 Make sure MetaMask is switched to **XRPL EVM Testnet** before proceeding.
-  {% /tab %}
+{% /tab %}
 
-  {% tab label="Devnet" %}
-**XRPL EVM Devnet MetaMask Settings**  
-- **Network Name**: XRPL EVM Devnet  
-- **RPC URL**: `https://rpc.devnet.xrplevm.org`  
-- **Chain ID**: `1440002`  
-- **Currency Symbol**: `XRP`  
+{% tab label="Devnet" %}
+**XRPL EVM Devnet MetaMask Settings**
+
+- **Network Name**: XRPL EVM Devnet
+- **RPC URL**: `https://rpc.devnet.xrplevm.org`
+- **Chain ID**: `1440002`
+- **Currency Symbol**: `XRP`
 - **Block Explorer URL**: `https://explorer.devnet.xrplevm.org`
 
 Make sure MetaMask is switched to **XRPL EVM Devnet** before proceeding.
-  {% /tab %}
+{% /tab %}
 {% /tabs %}
 
 ### 2. Open Remix IDE
@@ -98,6 +100,7 @@ Hardhat is a development framework for Ethereum-compatible smart contracts, idea
 
 - **Install Hardhat**  
   Create a new project folder and install Hardhat:
+
   ```bash
   mkdir my-hardhat-project
   cd my-hardhat-project
@@ -105,7 +108,7 @@ Hardhat is a development framework for Ethereum-compatible smart contracts, idea
   npm install --save-dev hardhat
   ```
 
-- **Create a Hardhat Project**  
+- **Create a Hardhat Project**
   ```bash
   npx hardhat
   ```
@@ -125,7 +128,7 @@ npm install dotenv
 #### 2.2 Create a `.env` File
 
 {% tabs %}
-  {% tab label="Testnet" %}
+{% tab label="Testnet" %}
 Create a file named `.env` with the **XRPL EVM Testnet** details:
 
 ```env
@@ -151,9 +154,9 @@ module.exports = {
 ```
 
 Ensure your chain ID is set to `1449000` (if you use scripts that explicitly reference it).  
-  {% /tab %}
+ {% /tab %}
 
-  {% tab label="Devnet" %}
+{% tab label="Devnet" %}
 Create a file named `.env` with the **XRPL EVM Devnet** details:
 
 ```env
@@ -179,7 +182,7 @@ module.exports = {
 ```
 
 Ensure your chain ID is set to `1440002` (if you use scripts that explicitly reference it).  
-  {% /tab %}
+ {% /tab %}
 {% /tabs %}
 
 > **Warning**: Never share your private key publicly. Use environment variables to manage sensitive information.

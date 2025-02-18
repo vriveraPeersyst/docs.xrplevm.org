@@ -1,113 +1,103 @@
 # Using the Bridge
 
-The [**XRPL EVM Bridge**](https://bridge.xrplevm.org/) plays a critical role in facilitating asset and data transfers between the XRP Ledger (XRPL) and the XRPL Ethereum Virtual Machine (EVM) sidechains.
+The **XRPL EVM Bridge** is a user-friendly solution for moving tokens—such as **XRP**, IOUs, and ERC20 assets-between the **XRP Ledger (XRPL)** and the **XRPL EVM** sidechain. This bridge operates **bidirectionally**:  
+
+With the Axelar Bridge, developers and users can:
+
+- **Obtain test XRP** on XRPL without a dedicated XRPL wallet.  
+  \- You can see the XRPL account’s seed in the browser’s Local Storage (Right-click → Inspect → Application → Local Storage).  
+- **Bridge tokens** between XRPL and XRPL EVM (Testnet or Devnet) for dApp development and experimentation.  
+- **Seamlessly move assets** across chains, enabling advanced cross-chain functionality and interoperable applications.
 
 {% tabs %}
 {% tab label="Testnet" %}
-
 ## Axelar Bridge (Testnet)
 
-The Axelar-powered bridge enables secure and decentralized asset transfers between the **XRPL Testnet** and the **XRPL EVM Testnet**. With its advanced interoperability capabilities, Axelar provides a smooth user experience while supporting cross-chain functionality for developers and users alike.
+The Axelar-powered bridge enables secure, **bidirectional** transfers of **XRP**, IOUs, and ERC20 tokens between the **XRPL Testnet** and the **XRPL EVM Testnet**. By leveraging XRPL’s self-funded test accounts, you don’t need a separate XRPL wallet to initiate transactions from XRPL to XRPL EVM. However, when sending tokens **from** XRPL EVM **to** XRPL, you’ll sign the transaction in MetaMask.
 
 ### Steps to Use the Axelar Bridge (Testnet)
 
 1. **Open the Axelar Bridge**  
-   Go to [https://bridge.testnet.xrplevm.org/](https://bridge.testnet.xrplevm.org/) (or the designated Testnet URL, if different).
+   Go to [https://bridge.testnet.xrplevm.org/](https://bridge.testnet.xrplevm.org/) (or the designated Testnet URL).
 
-2. **Set XRPL Testnet as the Source Chain**
-
-   - In the bridge UI, select **"XRPL Testnet"** as the source chain.
+2. **Set XRPL Testnet as the Source Chain**  
+   - Select **"XRPL Testnet"** as the source chain.
    - Select **"XRPL EVM Testnet"** as the destination chain.  
-     ![Set XRPL as source chain](./images/usingTheBridgeAxelar1.png)
+   ![Set XRPL as source chain](./images/usingTheBridgeAxelar1.png)
 
-3. **Select a Testnet Account (Faucet)**
+3. **Select the Testnet Account (Faucet)**  
+   - If you need test XRP on the XRPL Testnet this acts as a faucet by generating new funded accounts with 100 XRP.
+   ![Select the faucet](./images/usingTheBridgeAxelar2.png)
 
-   - If you need test XRP on the XRPL Testnet, use the [faucet](../faucet.md) to fund your account.
-   - Make sure you have enough test XRP for transaction fees.  
-     ![Select the faucet](./images/usingTheBridgeAxelar2.png)
+4. **Connect Your Wallets**  
+   - **XRPL Testnet**: No additional signature is required here; the test account is self-funded.
+   - **XRPL EVM Wallet**: Connect MetaMask with network set to **XRPL EVM Testnet**.  
+   ![Connect Wallets](./images/usingTheBridgeAxelar3.png)
 
-4. **Connect Your Wallets**
-
-   - **XRPL Testnet Wallet**: Connect your XRPL Testnet wallet in the bridge UI.
-   - **EVM Wallet**: Connect your MetaMask or another EVM-compatible wallet, set to **XRPL EVM Testnet**.  
-     ![Connect Wallets](./images/usingTheBridgeAxelar3.png)
-
-5. **Choose a Token and Amount**
-
-   - Select the token you want to bridge (e.g., **XRP**).
+5. **Choose a Token and Amount**  
+   - Select **XRP**, IOUs, or an ERC20 token you wish to bridge.
    - Enter the amount to transfer.  
-     ![Choose token and amount](./images/usingTheBridgeAxelar4.png)
+   ![Choose token and amount](./images/usingTheBridgeAxelar4.png)
 
-6. **Transfer and Confirm**
+6. **Transfer and Confirm**  
+   - If transferring **from** XRPL **to** XRPL EVM, no XRPL signature is required. If **from** XRPL EVM **to** XRPL, you’ll sign the transaction in MetaMask.
+   - Track progress in the [Axelar Testnet Explorer](https://testnet.axelarscan.io/).  
+   ![Process bridge transaction](./images/usingTheBridgeAxelar5.png)
 
-   - Click **Transfer** and confirm the transaction in your wallet.
-   - Track progress in the [Axelar Portal](https://axelarscan.io/) (selecting the appropriate Testnet network, if needed).  
-     ![Process bridge transaction](./images/usingTheBridgeAxelar5.png)
+7. **Verify the Transaction**  
+   - Once complete, you’ll see a confirmation message.
+   - Use the [XRPL EVM Testnet Explorer](https://explorer.testnet.xrplevm.org) to verify the transaction.  
+   ![Transaction executed successfully](./images/usingTheBridgeAxelar6.png)
 
-7. **Verify the Transaction**
-   - Once complete, you’ll see a confirmation.
-   - Use the [XRPL EVM Testnet Explorer](`https://explorer.xrplevtest.net` or similar) to verify the transaction.  
-     ![Transaction executed successfully](./images/usingTheBridgeAxelar6.png)
-
-By using the Axelar bridge on Testnet, you can safely experiment with cross-chain transfers and develop/test dApps without using real XRP.
+By using the Axelar Bridge on Testnet, you can safely experiment with cross-chain transfers and test your dApps without risking real XRP.
 
 {% /tab %}
 
 {% tab label="Devnet" %}
-
 ## Axelar Bridge (Devnet)
 
-The Axelar-powered bridge also supports transfers between the **XRPL Devnet** and the **XRPL EVM Devnet**, enabling developers to build and test cutting-edge functionality in a sandbox environment.
+The Axelar-powered bridge also supports **bidirectional** transfers between the **XRPL Devnet** and the **XRPL EVM Devnet**. Similar to Testnet, XRPL Devnet accounts are self-funded for outgoing transactions, while transfers **from** XRPL EVM **to** XRPL require signing via MetaMask.
 
 ### Steps to Use the Axelar Bridge (Devnet)
 
 1. **Open the Axelar Bridge**  
-   Visit [https://bridge.devnet.xrplevm.org/](https://bridge.devnet.xrplevm.org/) (the same or a dedicated Devnet URL).
+   Visit [https://bridge.devnet.xrplevm.org/](https://bridge.devnet.xrplevm.org/) or another Devnet URL.
 
-2. **Set XRPL Devnet as the Source Chain**
+2. **Set XRPL Devnet as the Source Chain**  
+   - Select **"XRPL Devnet"** as the source chain.
+   - Select **"XRPL EVM Devnet"** as the destination chain.  
+   ![Set XRPL as source chain](./images/usingTheBridgeAxelar1.png)
 
-   - Choose **"XRPL Devnet"** as the source chain.
-   - Choose **"XRPL EVM Devnet"** as the destination chain.  
-     ![Set XRPL as source chain](./images/usingTheBridgeAxelar1.png)
+3. **Select or Fund a Devnet Account**  
+   - If you need test XRP on the XRPL Devnet this acts as a faucet by generating new funded accounts with 100 XRP.
+   ![Select the faucet](./images/usingTheBridgeAxelar2.png)
 
-3. **Select or Fund a Devnet Account**
+4. **Connect Your Wallets**  
+   - **XRPL Devnet**: No separate XRPL signature is required for outgoing transactions.
+   - **XRPL EVM Wallet**: Connect MetaMask with network set to **XRPL EVM Devnet**.  
+   ![Connect Wallets](./images/usingTheBridgeAxelar3.png)
 
-   - If you need XRP on the XRPL Devnet, use the [faucet](../faucet.md) to fund your account.
-   - Ensure you have enough XRP to cover Devnet transaction fees.  
-     ![Select the faucet](./images/usingTheBridgeAxelar2.png)
-
-4. **Connect Your Wallets**
-
-   - **XRPL Devnet Wallet**: Connect your XRPL Devnet wallet in the bridge UI.
-   - **EVM Wallet**: Connect your MetaMask (or another EVM-compatible wallet) that is set to **XRPL EVM Devnet**.  
-     ![Connect Wallets](./images/usingTheBridgeAxelar3.png)
-
-5. **Choose a Token and Amount**
-
-   - Select **XRP** or another token supported on the Devnet.
+5. **Choose a Token and Amount**  
+   - Select **XRP**, IOUs, or an ERC20 token supported on Devnet.
    - Enter the desired amount to bridge.  
-     ![Choose token and amount](./images/usingTheBridgeAxelar4.png)
+   ![Choose token and amount](./images/usingTheBridgeAxelar4.png)
 
-6. **Transfer and Confirm**
+6. **Transfer and Confirm**  
+   - Outgoing from XRPL? No XRPL signature needed. Outgoing from EVM to XRPL? Sign with MetaMask.
+   - Monitor status in the [Axelar Devnet Amplifier Explorer](https://devnet-amplifier.axelarscan.io/).  
+   ![Process bridge transaction](./images/usingTheBridgeAxelar5.png)
 
-   - Click **Transfer** and confirm the transaction in your wallet.
-   - Monitor the transfer status via the [Axelar Portal](https://axelarscan.io/) if Devnet is supported there.  
-     ![Process bridge transaction](./images/usingTheBridgeAxelar5.png)
-
-7. **Verify the Transaction**
-   - After the bridge transaction completes, you’ll see a success message.
-   - Check the [XRPL EVM Devnet Explorer](https://explorer.xrplevm.org) to confirm the transaction details.  
-     ![Transaction executed successfully](./images/usingTheBridgeAxelar6.png)
-
-Using the Devnet bridge is ideal for early-stage testing of interoperability features and cutting-edge dApps.
+7. **Verify the Transaction**  
+   - After completion, a success message appears.
+   - Check the [XRPL EVM Devnet Explorer](https://explorer.devnet.xrplevm.org) for transaction details.  
+   ![Transaction executed successfully](./images/usingTheBridgeAxelar6.png)
 
 {% /tab %}
 {% /tabs %}
 
 ## Why Use the Axelar Bridge?
 
-- **Seamless Asset Transfers**: Move XRP or other tokens between XRPL and XRPL EVM with minimal friction.
-- **Cross-Chain dApps**: Build decentralized applications that can interact with both XRPL and EVM-compatible contracts.
+- **Bidirectional Transfers**: Easily move assets **from** XRPL **to** XRPL EVM (no XRPL signature required) or **from** XRPL EVM **to** XRPL (sign with MetaMask).
+- **Self-Funded XRPL Accounts**: Automatically obtain test XRP on XRPL without a dedicated wallet plugin.
+- **Cross-Chain dApps**: Build decentralized apps that interact with both XRPL and EVM-compatible smart contracts.
 - **Security and Decentralization**: Axelar’s cross-chain infrastructure ensures trustless interoperability.
-
-By leveraging the Axelar bridge, you can take full advantage of XRPL EVM’s capabilities—whether you’re on **Testnet** for preliminary development or **Devnet** for deeper experimentation.

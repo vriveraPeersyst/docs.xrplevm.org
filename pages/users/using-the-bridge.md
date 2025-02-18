@@ -18,7 +18,7 @@ The Axelar-powered bridge enables secure, **bidirectional** transfers of **XRP**
 ### Steps to Use the Axelar Bridge (Testnet)
 
 1. **Open the Axelar Bridge**  
-   Go to [https://bridge.testnet.xrplevm.org/](https://bridge.testnet.xrplevm.org/) (or the designated Testnet URL).
+   Go to [https://bridge.testnet.xrplevm.org/](https://bridge.testnet.xrplevm.org/)
 
 2. **Set XRPL Testnet as the Source Chain**  
    - Select **"XRPL Testnet"** as the source chain.
@@ -61,7 +61,7 @@ The Axelar-powered bridge also supports **bidirectional** transfers between the 
 ### Steps to Use the Axelar Bridge (Devnet)
 
 1. **Open the Axelar Bridge**  
-   Visit [https://bridge.devnet.xrplevm.org/](https://bridge.devnet.xrplevm.org/) or another Devnet URL.
+   Visit [https://bridge.devnet.xrplevm.org/](https://bridge.devnet.xrplevm.org/)
 
 2. **Set XRPL Devnet as the Source Chain**  
    - Select **"XRPL Devnet"** as the source chain.

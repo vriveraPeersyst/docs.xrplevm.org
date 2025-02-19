@@ -29,6 +29,5 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 | Cosmos gRPC       | [http://cosmos.testnet.xrplevm.org:9090](http://cosmos.testnet.xrplevm.org:9090)   |
 | Cosmos API        | [http://cosmos.testnet.xrplevm.org:1317](http://cosmos.testnet.xrplevm.org:1317)   |
 
-_(Update these Testnet URLs if they differ from your actual configuration.)_
 {% /tab %}
 {% /tabs %}

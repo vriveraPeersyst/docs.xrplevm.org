@@ -6,10 +6,6 @@ The `exrpd` binary is the primary software component for running XRPL EVM nodes.
 
 There are multiple ways to install the `exrpd` binary on your system. Choose the method that best suits your requirements and expertise.
 
-Below is a complete documentation for installing the node by downloading raw binaries:
-
-Below is the updated installation documentation with the requested changes. It now specifies that you should download the binary from the repository's latest release and includes guidance (using Readocly-style tags) so you can choose the appropriate binary for your machine.
-
 ---
 
 ## Method 1: Downloading Raw Binaries

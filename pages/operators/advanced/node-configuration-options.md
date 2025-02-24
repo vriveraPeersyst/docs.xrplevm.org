@@ -18,7 +18,7 @@ Configuration in `app.toml`:
 pruning = "nothing"
 ```
 
-### Pruned
+### Pruned 
 
 Stores only the most recent state and minimal historical data to save disk space.
 

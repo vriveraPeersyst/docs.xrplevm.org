@@ -25,7 +25,7 @@ After running this, the necessary configuration and key files will be generated 
 
 ### 2. Download the Genesis File
 
-Obtain the Devnet `genesis.json` file and place it in your node’s config directory:
+Obtain the Devnet `genesis.json` file and place it in your node’s config directory. If you are trying to validate genesis with the latest version (v6.0.0) as genesis was created using v1.0.0. You can skip the validate genesis `exrpd validate-genesis`:
 
 ```bash
 wget https://raw.githubusercontent.com/Peersyst/xrp-evm-archive/main/poa-devnet/genesis.json -O ~/.exrpd/config/genesis.json
@@ -53,7 +53,7 @@ If you need to adjust pruning, logging, or other advanced settings, see the [Adv
 If you plan to run a validator or sign transactions, generate a new key or import an existing one:
 
 ```bash
-exrpd keys add <key_name> --key-type eth_secp256k1
+exrpd keys add <key_name> --keyring-backend <os|file|test>
 ```
 
 Effective [key management](../validators/managing-keys.md) is critical for the security and operation of validators in the XRPL EVM sidechain.

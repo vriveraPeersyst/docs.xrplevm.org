@@ -100,7 +100,7 @@ This method involves downloading precompiled binaries from the repository's late
    Once the binary is installed, follow the [node configuration instructions](./join-the-xrplevm.md)
 
 
-Using this method, you can quickly set up your node by downloading the latest release from the repository, and the Machine Selector tags will help you choose the correct binary for your operating system and architecture.
+Using this method, you can quickly set up your node by downloading the latest release from the [repository](https://github.com/xrplevm/node/releases).
 
 ---
 
@@ -179,6 +179,8 @@ go version
 
 A containerized approach ensures that the node runs in a consistent environment, avoiding dependency issues. This method is highly recommended if you prefer a ready-to-run environment.
 
+**Important:** If the Docker image you’re using does not match the genesis file, which will not unless you are using the first docker image: [peersyst/xrp-evm-blockchain:latest](https://hub.docker.com/layers/peersyst/xrp-evm-blockchain/latest/images/sha256-de9941203bb9f199e6125e3518d9c56a8106c93211cd2840cb9b0fc7652f5416?context=explore), you must start the container in interactive mode first to complete the setup steps. This interactive session lets you run the [join-the-xrplevm](join-the-xrplevm.md) instructions (such as `exrpd init`, downloading the correct genesis file, configuring persistent peers, adding keys and syncing) within the container. Once setup is complete, you can restart the node in detached mode.
+
 ### Pre-requisites
 
 - [Docker 19+ installed](https://docs.docker.com/engine/install/).
@@ -187,70 +189,120 @@ A containerized approach ensures that the node runs in a consistent environment,
 
 {% tabs %}
 {% tab label="Linux" %}
-1. **Pull the Docker image:**
+
+1. **Pull the Docker Image:**
+
    ```bash
    docker pull peersyst/exrp:latest
    ```
-2. **Run the Docker container:**  
-   This command mounts your configuration directory and maps the necessary ports. You can optionally expose additional ports for API and RPC endpoints (see [Node Configuration Options](../resources/configuration-reference.md)):
+
+2. **Interactive Setup (if using an image that doesn’t match the genesis):**  
+   If the image you pulled isn’t the one that was used to generate the genesis (for example, if you’re using an image with a newer version), you need to set up the node configuration interactively. This allows you to run the necessary join-the-xrplevm steps inside the container. For example:
+   ```bash
+   docker run -it --name xrplevm-setup \
+     -v /home/xrplevmuser/.exrpd:/root/.exrpd \
+     -e DAEMON_NAME=exrpd \
+     -e DAEMON_HOME=/root/.exrpd \
+     peersyst/exrp:latest /bin/sh
+   ```
+   Complete the [join-the-xrplevm](join-the-xrplevm.md) steps (initialization, genesis file download, peer configuration, add keys and sync) inside the shell and then exit.
+
+3. **Run the Docker Container in Detached Mode:**  
+   Once the configuration is complete, you can start the container as a background service:
    ```bash
    docker run -d --name xrplevm-node \
      -v /home/xrplevmuser/.exrpd:/root/.exrpd \
-     -p 26656:26656 -p 26657:26657 \
-     -p 8545:8545 -p 8546:8546 \
      -e DAEMON_NAME=exrpd \
      -e DAEMON_HOME=/root/.exrpd \
-     peersyst/exrp-cosmovisor:latest
+     peersyst/exrp:latest
    ```
+
+4. **Verify the Container:**  
+   Run:
+   ```bash
+   docker ps -a
+   ```
+   to ensure your container is running.
+
 {% /tab %}
 {% tab label="macOS" %}
-1. **Pull the Docker image:**
+
+1. **Pull the Docker Image:**
+
    ```bash
    docker pull peersyst/exrp:latest
    ```
-2. **Run the Docker container:**  
-   Replace `<your-username>` with your macOS username. This command mounts your configuration directory and maps the necessary ports. Optionally, expose additional ports as needed:
+
+2. **Interactive Setup (if required):**  
+   Replace `<your-username>` with your macOS username:
+   ```bash
+   docker run -it --name xrplevm-setup \
+     -v /Users/<your-username>/.exrpd:/root/.exrpd \
+     -e DAEMON_NAME=exrpd \
+     -e DAEMON_HOME=/root/.exrpd \
+     peersyst/exrp:latest /bin/sh
+   ```
+   Complete the [join-the-xrplevm](join-the-xrplevm.md) steps (initialization, genesis file download, peer configuration, add keys and sync) inside the shell and then exit.
+
+3. **Run the Docker Container in Detached Mode:**
    ```bash
    docker run -d --name xrplevm-node \
      -v /Users/<your-username>/.exrpd:/root/.exrpd \
-     -p 26656:26656 -p 26657:26657 \
-     -p 8545:8545 -p 8546:8546 \
      -e DAEMON_NAME=exrpd \
      -e DAEMON_HOME=/root/.exrpd \
-     peersyst/exrp-cosmovisor:latest
+     peersyst/exrp:latest
    ```
+   4. **Verify the Container:**  
+   Run:
+   ```bash
+   docker ps -a
+   ```
+   to ensure your container is running.
+
 {% /tab %}
 {% tab label="Windows" %}
-1. **Pull the Docker image** (using Docker Desktop):
+
+1. **Pull the Docker Image (via Docker Desktop):**
+
    ```powershell
    docker pull peersyst/exrp:latest
    ```
-2. **Run the Docker container:**  
-   Replace `<your-username>` with your Windows username. This command mounts your configuration directory and maps the necessary ports. Optionally, expose additional ports for API and RPC endpoints:
+
+2. **Interactive Setup (if required):**  
+   Replace `<your-username>` with your Windows username:
+   ```powershell
+   docker run -it --name xrplevm-setup `
+     -v C:\Users\<your-username>\.exrpd:/root/.exrpd `
+     -e DAEMON_NAME=exrpd `
+     -e DAEMON_HOME=/root/.exrpd `
+     peersyst/exrp:latest /bin/sh
+   ```
+   Complete the [join-the-xrplevm](join-the-xrplevm.md) steps (initialization, genesis file download, peer configuration, add keys and sync) inside the shell and then exit.
+
+3. **Run the Docker Container in Detached Mode:**
    ```powershell
    docker run -d --name xrplevm-node `
      -v C:\Users\<your-username>\.exrpd:/root/.exrpd `
-     -p 26656:26656 -p 26657:26657 `
-     -p 8545:8545 -p 8546:8546 `
      -e DAEMON_NAME=exrpd `
      -e DAEMON_HOME=/root/.exrpd `
-     peersyst/exrp-cosmovisor:latest
+     peersyst/exrp:latest
    ```
+   4. **Verify the Container:**  
+   Run:
+   ```bash
+   docker ps -a
+   ```
+   to ensure your container is running.
+
 {% /tab %}
 {% /tabs %}
 
-> **Note:** On Docker, you can optionally expose additional ports for API and RPC endpoints (e.g., Cosmos gRPC, Cosmos RPC, Tendermint RPC, Ethereum JSON-RPC/WS). For further details on configuring these endpoints, see the [Node Configuration Options](../resources/configuration-reference.md) documentation.
+> **Note:**  
+> If you’re using a Docker image that isn’t the first one matching the genesis state (for example, an image that differs from the one used to generate the genesis file), you must run the container in interactive mode to complete the initial setup. Follow the join-the-xrplevm steps inside that session, then restart the node container in detached mode.
 
-Finally, to verify that your container is running, execute:
-
+Finally, verify that your container is running using:
 ```bash
 docker ps -a
-```
-You should see something like this:
-```bash
-CONTAINER ID   IMAGE                             COMMAND        CREATED         STATUS                     PORTS     NAMES
-931778c24bdc   peersyst/exrp-cosmovisor:latest   "cosmovisor"   2 minutes ago   Exited (0) 2 minutes ago             xrplevm-node
-
 ```
 
 ---

@@ -17,3 +17,4 @@
   expanded: false
   items:
     - page: deployed-contracts-devnet.md
+    - page: deployed-contracts-testnet.md

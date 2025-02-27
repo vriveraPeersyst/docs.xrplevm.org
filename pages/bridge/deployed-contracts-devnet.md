@@ -10,8 +10,6 @@ status: not_enabled
 
 {% partial file="/snippets/_axelar-contracts-disclaimer.md" /%}
 
-<!-- Add devnet list contract disclaimer here -->
-
 ## Contracts
 
 Here's the list of deployed and verified contracts on the XRPL EVM Sidechain Devnet.

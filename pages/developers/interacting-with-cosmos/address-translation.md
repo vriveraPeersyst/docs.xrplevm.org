@@ -27,9 +27,6 @@ Transforming an EIP55 Hex address to a Bech32 address involves the following ste
 
 Addresses can be translated using the [`exrpd` CLI](../../operators/guides/interacting-with-the-node-cli.md).
 
-{% tabs %}
-{% tab label="Devnet" %}
-
 ```bash
 exrpd debug addr ethm1akwntffy4us9nhgcmgjxdg78v5w3xtwletyjmv
 ```
@@ -48,12 +45,6 @@ Address (hex): ED9D35A524AF2059DD18DA2466A3C7651D132DDF
 Bech32 Acc: ethm1akwntffy4us9nhgcmgjxdg78v5w3xtwletyjmv
 Bech32 Val: ethmvaloper1akwntffy4us9nhgcmgjxdg78v5w3xtwlkmw7r3
 ```
-
-{% /tab %}
-{% tab label="Testnet" %}
-**Testnet details coming soon.**
-{% /tab %}
-{% /tabs %}
 
 ## Translate addresses programmatically
 

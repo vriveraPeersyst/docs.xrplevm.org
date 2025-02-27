@@ -61,7 +61,7 @@ The Axelar-powered bridge also supports **bidirectional** transfers between the 
 ### Steps to Use the Axelar Bridge (Devnet)
 
 1. **Open the Axelar Bridge**  
-   Visit [https://bridge.devnet.xrplevm.org/](https://bridge.devnet.xrplevm.org/)
+   Visit [https://bridge.xrplevm.org/](https://bridge.xrplevm.org/)
 
 2. **Set XRPL Devnet as the Source Chain**  
    - Select **"XRPL Devnet"** as the source chain.
@@ -89,7 +89,7 @@ The Axelar-powered bridge also supports **bidirectional** transfers between the 
 
 7. **Verify the Transaction**  
    - After completion, a success message appears.
-   - Check the [XRPL EVM Devnet Explorer](https://explorer.devnet.xrplevm.org) for transaction details.  
+   - Check the [XRPL EVM Devnet Explorer](https://explorer.xrplevm.org) for transaction details.  
    ![Transaction executed successfully](./images/usingTheBridgeAxelar6.png)
 
 {% /tab %}

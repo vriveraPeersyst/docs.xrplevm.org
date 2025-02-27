@@ -50,7 +50,7 @@ const payment: Payment = {
         MemoType: Buffer.from("destination_address")
           .toString("hex")
           .toUpperCase(),
-        // Destination contract address (hexadecimal, without 0x prefix)
+        // Destination contract address (hexadecimal, without 0x prefix, and toUpperCase)
         MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
       },
     },
@@ -80,11 +80,59 @@ const result = await client.submit(signedTransaction);
 
 {% /tab %}
 
+
+
 {% tab label="Testnet" %}
 
-<!-- Placeholder for Testnet configuration; coming soon -->
+```ts
+import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
 
-**Testnet details coming soon.**
+// wallet variable corresponds to xrpl.js Wallet instance
+// client variable corresponds to xrpl.js Client instance
+
+// Create the payment transaction object
+const payment: Payment = {
+  TransactionType: "Payment",
+  Account: wallet.address, // Sender's address
+  Amount: "100000000", // 100 XRP in drops
+  // Gateway address on the XRPL Testnet
+  Destination: "rsCPY4vwEiGogSraV9FeRZXca6gUBWZkhg",
+  Memos: [
+    {
+      Memo: {
+        // hex(destination_address)
+        MemoType: Buffer.from("destination_address")
+          .toString("hex")
+          .toUpperCase(),
+        // Destination contract address (hexadecimal, without 0x prefix, and toUpperCase)
+        MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
+      },
+    },
+    {
+      Memo: {
+        // hex(destination_chain)
+        MemoType: Buffer.from("destination_chain")
+          .toString("hex")
+          .toUpperCase(),
+        // The destination chain ID on the Axelar network (hexadecimal)
+        // for Devnet
+        MemoData: Buffer.from("xrpl-evm-test-1").toString("hex").toUpperCase(),
+      },
+    },
+  ],
+};
+
+// Autofill transaction
+const transaction = await client.autofill(payment);
+
+// Sign transaction
+const signedTransaction = wallet.sign(transaction).tx_blob;
+
+// Submit transaction
+const result = await client.submit(signedTransaction);
+```
+
+
 {% /tab %}
 {% /tabs %}
 
@@ -105,7 +153,7 @@ import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
 const payment: Payment = {
   TransactionType: "Payment",
   Account: wallet.address, // Sender's address
-  Amount: {
+  Amount: { // XRPL Devnet IOU whitelisted by Axelar (This is an example, not a real devnet IOU.)
     currency: "524C555344000000000000000000000000000000", // RLUSD (non-standard code)
     issuer: "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De", // RLUSD issuer address
     value: "100", // Amount to transfer
@@ -151,9 +199,59 @@ const result = await client.submit(signedTransaction);
 
 {% tab label="Testnet" %}
 
-<!-- Placeholder for Testnet configuration; coming soon -->
 
-**Testnet details coming soon.**
+```ts
+import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
+
+// wallet variable corresponds to xrpl.js Wallet instance
+// client variable corresponds to xrpl.js Client instance
+
+// Create the payment transaction object
+const payment: Payment = {
+  TransactionType: "Payment",
+  Account: wallet.address, // Sender's address
+  Amount: { // XRPL Testnet IOU whitelisted by Axelar (This is an example, not a real testnet IOU.)
+    currency: "524C555344000000000000000000000000000000", // RLUSD (non-standard code)
+    issuer: "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De", // RLUSD issuer address
+    value: "100", // Amount to transfer
+  },
+  // ITS address on the XRPL Testnet
+  Destination: "rsCPY4vwEiGogSraV9FeRZXca6gUBWZkhg",
+  Memos: [
+    {
+      Memo: {
+        // hex(destination_address)
+        MemoType: Buffer.from("destination_address")
+          .toString("hex")
+          .toUpperCase(),
+        // Destination contract address (hexadecimal, without 0x prefix)
+        MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
+      },
+    },
+    {
+      Memo: {
+        // hex(destination_chain)
+        MemoType: Buffer.from("destination_chain")
+          .toString("hex")
+          .toUpperCase(),
+        // The destination chain ID on the Axelar network (hexadecimal)
+        // for Devnet
+        MemoData: Buffer.from("xrpl-evm-test-1").toString("hex").toUpperCase(),
+      },
+    },
+  ],
+};
+
+// Autofill transaction
+const transaction = await client.autofill(payment);
+
+// Sign transaction
+const signedTransaction = wallet.sign(transaction).tx_blob;
+
+// Submit transaction
+const result = await client.submit(signedTransaction);
+```
+
 {% /tab %}
 {% /tabs %}
 
@@ -189,21 +287,31 @@ const its = new Contract(
 ```
 
 {% /tab %}
-
 {% tab label="Testnet" %}
 
-<!-- Placeholder for Testnet configuration; coming soon -->
 
-**Testnet details coming soon.**
+```ts
+import { Contract } from "ethers";
+
+// The signer initialization is omitted for brevity
+
+// Instantiate the ITS contract
+const its = new Contract(
+  "0x3b1ca8B18698409fF95e29c506ad7014980F0193", // ITS address in XRPL EVM Testnet
+  ITS_ABI, // ABI for the ITS contract
+  signer
+);
+```
+
 {% /tab %}
 {% /tabs %}
 
 ### Sending XRP from XRPL EVM to XRP Ledger
 
-To transfer **XRP** back to the XRPL, call `interchainTransfer` on the ITS contract. Use the **XRP token ID** for Devnet:
-
 {% tabs %}
 {% tab label="Devnet" %}
+
+To transfer **XRP** back to the XRPL, call `interchainTransfer` on the ITS contract. Use the **XRP token ID** for Devnet:
 
 ```ts
 import { ethers } from "ethers";
@@ -211,10 +319,13 @@ import { ethers } from "ethers";
 await its.interchainTransfer(
   "0xbfb47d376947093b7858c1c59a4154dd291d5b2251cb56a6f7159a070f0bd518", // XRP token ID (Devnet)
   "xrpl-dev", // Destination chain ID
-  "rAddressFromRecipientInXRPL", // Recipient address on XRP Ledger
+  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
   "100000000000000000000", // 100 XRP in wei
   "0x", // Metadata (unused)
-  ethers.BigNumber.from("0") // Gas (unused)
+  {
+    gasLimit: 8000000,
+    value: ethers.utils.parseEther("6"),
+  } // Gas
 );
 ```
 
@@ -222,9 +333,24 @@ await its.interchainTransfer(
 
 {% tab label="Testnet" %}
 
-<!-- Placeholder for Testnet configuration; coming soon -->
+To transfer **XRP** back to the XRPL, call `interchainTransfer` on the ITS contract. Use the **XRP token ID** for Testnet:
 
-**Testnet details coming soon.**
+```ts
+import { ethers } from "ethers";
+
+await its.interchainTransfer(
+  "0xa2946b60f1e20ff37404075fc85ea63d42e2b1fc9ce5ef3fff5223e06e7ff4c9", // XRP token ID (Testnet)
+  "xrpl-test-1", // Destination chain ID
+  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
+  "100000000000000000000", // 100 XRP in wei
+  "0x", // Metadata (unused)
+  {
+    gasLimit: 8000000,
+    value: ethers.utils.parseEther("6"),
+  } // Gas
+);
+```
+
 {% /tab %}
 {% /tabs %}
 
@@ -266,6 +392,9 @@ const result = await client.submit(signedTransaction);
 
 #### 2. Approve the ITS Contract on the XRPL EVM
 
+{% tabs %}
+{% tab label="Devnet" %}
+
 ```ts
 import { Contract } from "ethers";
 
@@ -285,6 +414,31 @@ await erc20.approve(
 );
 ```
 
+{% /tab %}
+{% tab label="Testnet" %}
+
+```ts
+import { Contract } from "ethers";
+
+// The signer initialization is omitted for brevity
+
+// Instantiate the ERC20 contract
+const erc20 = new Contract(
+  "0x20937978F265DC0C947AA8e136472CFA994FE1eD", // RLUSD ERC20 token address (example)
+  ERC20_ABI,
+  signer
+);
+
+// Call the approve method
+await erc20.approve(
+  "0x3b1ca8B18698409fF95e29c506ad7014980F0193", // ITS address in XRPL EVM Testnet
+  "100000000000000000000" // >= the amount to be transferred
+);
+```
+
+{% /tab %}
+{% /tabs %}
+
 #### 3. Call `interchainTransfer` on the ITS Contract
 
 {% tabs %}
@@ -297,10 +451,13 @@ import { ethers } from "ethers";
 await its.interchainTransfer(
   "0x85f75bb7fd0753565c1d2cb59bd881970b52c6f06f3472769ba7b48621cd9d23", // RLUSD token ID (example)
   "xrpl-dev", // Destination chain ID
-  "rAddressFromRecipientInXRPL", // Recipient address on XRP Ledger
+  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
   "100000000000000000000", // 100 RLUSD in integer form
   "0x", // Metadata (unused)
-  ethers.BigNumber.from("0") // Gas (unused)
+  {
+    gasLimit: 8000000,
+    value: ethers.utils.parseEther("6"),
+  } // Gas
 );
 ```
 
@@ -308,12 +465,119 @@ await its.interchainTransfer(
 
 {% tab label="Testnet" %}
 
-<!-- Placeholder for Testnet configuration; coming soon -->
+```ts
+import { ethers } from "ethers";
 
-**Testnet details coming soon.**
+// Call the interchainTransfer method
+await its.interchainTransfer(
+  "0x85f75bb7fd0753565c1d2cb59bd881970b52c6f06f3472769ba7b48621cd9d23", // RLUSD token ID (example)
+  "xrpl-test-1", // Destination chain ID
+  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
+  "100000000000000000000", // 100 RLUSD in integer form
+  "0x", // Metadata (unused)
+  {
+    gasLimit: 8000000,
+    value: ethers.utils.parseEther("6"),
+  }// Gas
+);
+```
+
 {% /tab %}
 {% /tabs %}
 
 ---
 
-With these examples, you can send and receive both **XRP** and **IOU/ERC20** tokens across the XRPL and the XRPL EVM using Axelar’s **Interchain Token Service (ITS)**. As Testnet details become available, you can place the correct addresses, chain IDs, and token IDs in the **Testnet** tabs to support that environment as well.
+Below is a high-level overview of how to convert an **XRPL classic address** (e.g., `r...`) to an **EVM‐style hex address** (`0x...`) and vice versa.
+
+---
+
+### Converting **rAddress → EVM (20-byte) Hex** (Needed for XRPLEVM to XRPL transfers)
+
+1. **Base58 Decode**  
+   The classic XRP Ledger address (an "rAddress") is a Base58Check‐style encoding. To decode:
+   - Remove and check the **type prefix** (typically `0x00` for a normal address).  
+   - Remove and verify the **4‐byte checksum** (from the end).  
+   - The remaining 20 bytes are the **AccountID**.  
+
+2. **Hex Encode**  
+   Once you have the 20‐byte `AccountID`, convert those bytes to a 40‐character hexadecimal string.  
+
+3. **Prepend `0x`** (optional)  
+   In EVM contexts, an address typically includes a `0x` prefix to indicate it’s a hex string.  
+
+**Example using `xrpl.js`:**  
+```js
+import { decodeAccountID } from 'xrpl';
+
+// Suppose rAddress = "rLZ1...your address..."
+const accountIDBytes = decodeAccountID(rAddress);  // returns a 20-byte Buffer
+// Convert to hex, e.g. "cdaa5ba0215e9359fa62cb5a5650a17b362817ac"
+const evmAddress = `0x${accountIDBytes.toString('hex')}`;
+```
+
+At this point, `evmAddress` is the EVM‐style address derived from the original XRPL classic address.
+
+---
+
+### Converting **EVM (20-byte) Hex → rAddress** 
+
+1. **Strip `0x`** (if present)  
+   If the address starts with `0x`, remove it, leaving just the hex string.
+
+2. **Convert Hex → 20‐Byte Buffer**  
+   This is your **AccountID** on XRPL.
+
+3. **Add XRPL Address **Prefix** (`0x00`)**  
+   Classic XRP Ledger addresses use a **1‐byte** prefix `0x00`.
+
+4. **Compute a 4‐Byte Checksum**  
+   - Perform SHA‐256 on the **prefix + 20-byte AccountID**.  
+   - Perform SHA‐256 again on the result.  
+   - Take the first 4 bytes of that second SHA‐256 as the checksum.
+
+5. **Concatenate**  
+   `(Prefix + 20 bytes of AccountID + 4‐byte checksum)`
+
+6. **Base58‐Encode** using the XRPL alphabet  
+   The specific alphabet is:  
+   ```
+   "rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz"
+   ```
+
+7. **Result**  
+   The result is a valid **`rAddress`** that starts with `r` and is typically 25–35 characters long (including its internal checksum).
+
+**Example using `xrpl.js`:**  
+```js
+import { encodeAccountID } from 'xrpl';
+
+// Suppose evmAddress = "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac"
+const noPrefix = evmAddress.startsWith('0x') ? evmAddress.slice(2) : evmAddress;
+const accountIDBytes = Buffer.from(noPrefix, 'hex');
+
+// Encode as an XRP classic address
+const rAddress = encodeAccountID(accountIDBytes);  // e.g. "rLZ1..."
+```
+
+---
+
+### Summary
+
+- **rAddress → EVM**  
+  1. Base58 decode the XRPL address → get 20 bytes  
+  2. Convert those 20 bytes to hex  
+  3. Optionally add `0x` prefix to get a standard EVM‐style address  
+
+- **EVM → rAddress**  
+  1. Strip `0x` prefix  
+  2. Parse hex → 20 bytes  
+  3. Prepend the **type prefix** (`0x00`)  
+  4. Double‐SHA‐256 → first 4 bytes is checksum  
+  5. Concatenate  
+  6. Base58‐encode → yield the rAddress  
+
+These transformations are **mathematically reversible**, so you can go back and forth safely as long as you do not lose or alter the 20‐byte hash.
+
+---
+
+With these examples, you can send and receive both **XRP** and **IOU/ERC20** tokens across the XRPL and the XRPL EVM using Axelar’s **Interchain Token Service (ITS)**.

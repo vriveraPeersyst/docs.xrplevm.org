@@ -9,11 +9,11 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 
 | Type              | URL                                                                              |
 | ----------------- | -------------------------------------------------------------------------------- |
-| Ethereum JSON RPC | [https://rpc.devnet.xrplevm.org](https://rpc.devnet.xrplevm.org)                 |
-| Ethereum JSON WS  | [https://ws.devnet.xrplevm.org](https://ws.devnet.xrplevm.org)                   |
-| Tendermint RPC    | [http://cosmos.devnet.xrplevm.org:26657](http://cosmos.devnet.xrplevm.org:26657) |
-| Cosmos gRPC       | [http://cosmos.devnet.xrplevm.org:9090](http://cosmos.devnet.xrplevm.org:9090)   |
-| Cosmos API        | [http://cosmos.devnet.xrplevm.org:1317](http://cosmos.devnet.xrplevm.org:1317)   |
+| Ethereum JSON RPC | [https://rpc.xrplevm.org](https://rpc.devnet.xrplevm.org)                        |
+| Ethereum JSON WS  | [https://ws.xrplevm.org](https://ws.devnet.xrplevm.org)                          |
+| Tendermint RPC    | [http://cosmos.xrplevm.org:26657](http://cosmos.devnet.xrplevm.org:26657)        |
+| Cosmos gRPC       | [http://cosmos.xrplevm.org:9090](http://cosmos.devnet.xrplevm.org:9090)          |
+| Cosmos API        | [http://cosmos.xrplevm.org:1317](http://cosmos.devnet.xrplevm.org:1317)          |
 
 {% /tab %}
 

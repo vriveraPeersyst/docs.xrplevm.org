@@ -3,7 +3,7 @@
 To explore and interact with the **XRPL EVM Sidechain**, you need test XRP (`XRP`) to cover transaction fees and execute smart contracts. There are two primary ways to obtain test `XRP`:
 
 - **Faucet** [Chains.tools](https://chains.tools/faucet/xrplevm) — **for Devnet**  
-- **[XRPL EVM Bridge](../users/using-the-bridge.md)** — for transferring XRP from XRPL Devnet or Testnet
+- **[XRPL EVM Bridge](../users/using-the-bridge.md)** — for transferring XRP from XRPL Devnet
 
 ## Using the Faucet (Devnet)
 

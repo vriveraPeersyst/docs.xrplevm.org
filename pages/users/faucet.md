@@ -5,9 +5,6 @@ To explore and interact with the **XRPL EVM Sidechain**, you need test XRP (`XRP
 - **Faucet** [Chains.tools](https://chains.tools/faucet/xrplevm) — **for Devnet**  
 - **[XRPL EVM Bridge](../users/using-the-bridge.md)** — for transferring XRP from XRPL Devnet or Testnet
 
-{% tabs %}
-{% tab label="Devnet" %}
-
 ## Using the Faucet (Devnet)
 
 To acquire test `XRP` on the **XRPL EVM Devnet**, you can use the [Chains.tools Faucet](https://chains.tools/faucet/xrplevm) or transfer from the XRPL Devnet via the [XRPL EVM Bridge](../users/using-the-bridge.md).
@@ -37,32 +34,6 @@ To acquire test `XRP` on the **XRPL EVM Devnet**, you can use the [Chains.tools 
    - Confirm your new test `XRP` balance.
 
 If you run out of faucet requests or need additional test tokens, consider bridging from the **XRPL Devnet** using the [XRPL EVM Bridge](../users/using-the-bridge.md).
-
-{% /tab %}
-
-{% tab label="Testnet" %}
-
-## No Dedicated Faucet (Testnet)
-
-Currently, there is **no dedicated faucet** available on the **XRPL EVM Testnet**.  
-Instead, you can obtain XRP for the Testnet via the **XRPL EVM Bridge** once it’s ready at [bridge.testnet.xrplevm.org](https://bridge.testnet.xrplevm.org).
-
-### Steps
-
-1. **Wait for the Bridge Availability**  
-   - A dedicated Testnet bridge at [bridge.testnet.xrplevm.org](https://bridge.testnet.xrplevm.org) is planned.  
-   - Once operational, you can transfer XRP from the XRPL Testnet to the XRPL EVM Testnet.
-
-2. **Configure Your Wallet**  
-   - Make sure your EVM-compatible wallet (e.g., MetaMask) is configured for the **XRPL EVM Testnet**.
-
-3. **Use the Bridge**  
-   - Follow the instructions provided on the bridge site to lock or transfer test XRP from the XRPL Testnet to your XRPL EVM Testnet address.
-
-Check the [XRPL EVM Bridge guide](../users/using-the-bridge.md) for general bridge usage details. 
-
-{% /tab %}
-{% /tabs %}
 
 ## Next Steps
 

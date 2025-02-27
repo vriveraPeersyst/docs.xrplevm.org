@@ -6,48 +6,6 @@ This guide will walk you through configuring MetaMask to connect to the XRPL EVM
 
 To interact with the XRPL EVM, you need to manually add it as a custom network in MetaMask.
 
-<!-- Insert this where you want the button to appear -->
-<button id="addXRPLNetworkBtn" style="padding: 0.5rem 1rem; font-size: 1rem; cursor: pointer;">
-  Add XRPL EVM to MetaMask
-</button>
-
-<script>
-  // Wait until the DOM is fully loaded
-  document.addEventListener("DOMContentLoaded", function() {
-    const btn = document.getElementById('addXRPLNetworkBtn');
-    btn.addEventListener('click', async () => {
-      if (typeof window.ethereum !== 'undefined') {
-        try {
-          await window.ethereum.request({
-            method: 'wallet_addEthereumChain',
-            params: [{
-              chainId: "0x161C28", // Hexadecimal for 1449000 (Testnet)
-              chainName: "XRPL EVM Testnet",
-              rpcUrls: ["https://rpc.testnet.xrplevm.org/"],
-              // Optional: Provide icon URLs if available
-              iconUrls: [
-                "https://xrplevm.org/images/icon.svg"  // update with your valid icon URL
-              ],
-              nativeCurrency: {
-                name: "XRP",
-                symbol: "XRP",
-                decimals: 18
-              },
-              blockExplorerUrls: ["https://explorer.testnet.xrplevm.org"]
-            }]
-          });
-        } catch (error) {
-          console.error('Error adding XRPL EVM network:', error);
-          alert('Failed to add network. Check your console for details.');
-        }
-      } else {
-        alert('MetaMask is not installed. Please install MetaMask and try again.');
-      }
-    });
-  });
-</script>
-
-
 1. **Open MetaMask:**
 
    - Click the MetaMask icon in your browser to open the wallet.
@@ -89,10 +47,10 @@ To interact with the XRPL EVM, you need to manually add it as a custom network i
 
    - Fill in the following information:
      - **Network Name:** XRPL EVM Devnet
-     - **New RPC URL:** [https://rpc.devnet.xrplevm.org/](https://rpc.devnet.xrplevm.org/)
+     - **New RPC URL:** [https://rpc.xrplevm.org/](https://rpc.xrplevm.org/)
      - **Chain ID:** 1440002
      - **Currency Symbol:** XRP
-     - **Block Explorer URL:** [https://explorer.devnet.xrplevm.org](https://explorer.devnet.xrplevm.org)
+     - **Block Explorer URL:** [https://explorer.xrplevm.org](https://explorer.xrplevm.org)
 
    ![Add Network MetaMask Form](../images/addXRPLEVMDevnetToMetaMask.png)
 

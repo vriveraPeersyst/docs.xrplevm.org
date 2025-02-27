@@ -108,7 +108,7 @@ const payment: Payment = {
   Account: wallet.address, // Sender's address
   Amount: "10000000", // 10 Million drops = 10 XRP
   // Testnet Gateway address on the XRP Ledger
-  Destination: "rTESTNETGatewayADDRESS123456789ABC",
+  Destination: "rsCPY4vwEiGogSraV9FeRZXca6gUBWZkhg",
   Memos: [
     {
       Memo: {
@@ -128,7 +128,7 @@ const payment: Payment = {
           .toUpperCase(),
         // The destination chain ID on the Axelar network (hexadecimal)
         // for Testnet
-        MemoData: Buffer.from("xrpl-evm-testnet").toString("hex").toUpperCase(),
+        MemoData: Buffer.from("xrpl-evm-test-1").toString("hex").toUpperCase(),
       },
     },
     {

@@ -49,7 +49,7 @@ The following example demonstrates how to complete a general message passing tra
         {
             // Destination address on XRPL EVM
             Memo: {
-                MemoData: "7859556BF9E1E3F47E6AA195C4F85FFF230C0A50", // Your ETH recipient address (0x7859556BF9E1e3F47e6Aa195C4F85FFf230c0a50, hexadecimal, without 0x prefix, and toUpperCase) 
+                MemoData: "7859556BF9E1E3F47E6AA195C4F85FFF230C0A50", // Your ETH recipient address (0x7859556BF9E1e3F47e6Aa195C4F85FFf230c0a50, hexadecimal, without 0x prefix, and toUpperCase)
                 MemoType: "64657374696E6174696F6E5F61646472657373", // hex("destination_address")
             },
         },
@@ -69,6 +69,7 @@ The following example demonstrates how to complete a general message passing tra
     ...
 }
 ```
+
 {% /tab %}
 {% tab label="Testnet" %}
 
@@ -82,7 +83,7 @@ The following example demonstrates how to complete a general message passing tra
         {
             // Destination address on XRPL EVM
             Memo: {
-                MemoData: "7859556BF9E1E3F47E6AA195C4F85FFF230C0A50", // Your ETH recipient address (0x7859556BF9E1e3F47e6Aa195C4F85FFf230c0a50, hexadecimal, without 0x prefix, and toUpperCase) 
+                MemoData: "7859556BF9E1E3F47E6AA195C4F85FFF230C0A50", // Your ETH recipient address (0x7859556BF9E1e3F47e6Aa195C4F85FFf230c0a50, hexadecimal, without 0x prefix, and toUpperCase)
                 MemoType: "64657374696E6174696F6E5F61646472657373", // hex("destination_address")
             },
         },

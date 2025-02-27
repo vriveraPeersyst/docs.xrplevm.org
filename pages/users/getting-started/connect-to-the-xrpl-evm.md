@@ -40,10 +40,10 @@ To interact with the XRPL EVM, you need to manually add it as a custom network i
    - Select **"XRPL EVM Testnet"** from the network dropdown to start interacting with the network.
 
    ![Select XRPL EVM Network](../images/addedXRPLEVMTestnetToMetaMask.png)
-{% /tab %}
-{% tab label="Devnet" %}
+   {% /tab %}
+   {% tab label="Devnet" %}
 
-3. **Enter Network Details:**
+6. **Enter Network Details:**
 
    - Fill in the following information:
      - **Network Name:** XRPL EVM Devnet
@@ -54,17 +54,17 @@ To interact with the XRPL EVM, you need to manually add it as a custom network i
 
    ![Add Network MetaMask Form](../images/addXRPLEVMDevnetToMetaMask.png)
 
-4. **Save Network:**
+7. **Save Network:**
 
    - Click **"Save."** The XRPL EVM Devnet will now be available in the network dropdown.
 
-5. **Switch Networks:**
+8. **Switch Networks:**
 
    - Select **"XRPL EVM Devnet"** from the network dropdown to start interacting with the network.
 
    ![Select XRPL EVM Network](../images/addedXRPLEVMDevnetToMetaMask.png)
-{% /tab %}
-{% /tabs %}
+   {% /tab %}
+   {% /tabs %}
 
 ## Verify the Connection
 

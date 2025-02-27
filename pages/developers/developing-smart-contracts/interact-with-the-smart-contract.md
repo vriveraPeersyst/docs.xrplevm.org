@@ -26,17 +26,17 @@ Before interacting with a smart contract, ensure you have the following set up:
 - **Chain ID**: `1440002`
 - **Currency Symbol**: `XRP`
 - **Block Explorer URL**: [https://explorer.xrplevm.org](https://explorer.xrplevm.org)
-{% /tab %}
-{% tab label="Testnet" %}
-**XRPL EVM Testnet Network Details**
+  {% /tab %}
+  {% tab label="Testnet" %}
+  **XRPL EVM Testnet Network Details**
 
 - **Network Name**: XRPL EVM Testnet
 - **RPC URL**: `https://rpc.testnet.xrplevm.org`
 - **Chain ID**: `1449000`
 - **Currency Symbol**: `XRP`
 - **Block Explorer URL**: [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)
-{% /tab %}
-{% /tabs %}
+  {% /tab %}
+  {% /tabs %}
 
 3. **Smart Contract ABI**
 

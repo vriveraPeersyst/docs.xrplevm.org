@@ -80,8 +80,6 @@ const result = await client.submit(signedTransaction);
 
 {% /tab %}
 
-
-
 {% tab label="Testnet" %}
 
 ```ts
@@ -132,7 +130,6 @@ const signedTransaction = wallet.sign(transaction).tx_blob;
 const result = await client.submit(signedTransaction);
 ```
 
-
 {% /tab %}
 {% /tabs %}
 
@@ -153,7 +150,8 @@ import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
 const payment: Payment = {
   TransactionType: "Payment",
   Account: wallet.address, // Sender's address
-  Amount: { // XRPL Devnet IOU whitelisted by Axelar (This is an example, not a real devnet IOU.)
+  Amount: {
+    // XRPL Devnet IOU whitelisted by Axelar (This is an example, not a real devnet IOU.)
     currency: "524C555344000000000000000000000000000000", // RLUSD (non-standard code)
     issuer: "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De", // RLUSD issuer address
     value: "100", // Amount to transfer
@@ -199,7 +197,6 @@ const result = await client.submit(signedTransaction);
 
 {% tab label="Testnet" %}
 
-
 ```ts
 import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
 
@@ -210,7 +207,8 @@ import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
 const payment: Payment = {
   TransactionType: "Payment",
   Account: wallet.address, // Sender's address
-  Amount: { // XRPL Testnet IOU whitelisted by Axelar (This is an example, not a real testnet IOU.)
+  Amount: {
+    // XRPL Testnet IOU whitelisted by Axelar (This is an example, not a real testnet IOU.)
     currency: "524C555344000000000000000000000000000000", // RLUSD (non-standard code)
     issuer: "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De", // RLUSD issuer address
     value: "100", // Amount to transfer
@@ -288,7 +286,6 @@ const its = new Contract(
 
 {% /tab %}
 {% tab label="Testnet" %}
-
 
 ```ts
 import { Contract } from "ethers";
@@ -478,7 +475,7 @@ await its.interchainTransfer(
   {
     gasLimit: 8000000,
     value: ethers.utils.parseEther("6"),
-  }// Gas
+  } // Gas
 );
 ```
 
@@ -495,31 +492,33 @@ Below is a high-level overview of how to convert an **XRPL classic address** (e.
 
 1. **Base58 Decode**  
    The classic XRP Ledger address (an "rAddress") is a Base58Check‐style encoding. To decode:
-   - Remove and check the **type prefix** (typically `0x00` for a normal address).  
-   - Remove and verify the **4‐byte checksum** (from the end).  
-   - The remaining 20 bytes are the **AccountID**.  
+
+   - Remove and check the **type prefix** (typically `0x00` for a normal address).
+   - Remove and verify the **4‐byte checksum** (from the end).
+   - The remaining 20 bytes are the **AccountID**.
 
 2. **Hex Encode**  
-   Once you have the 20‐byte `AccountID`, convert those bytes to a 40‐character hexadecimal string.  
+   Once you have the 20‐byte `AccountID`, convert those bytes to a 40‐character hexadecimal string.
 
 3. **Prepend `0x`** (optional)  
-   In EVM contexts, an address typically includes a `0x` prefix to indicate it’s a hex string.  
+   In EVM contexts, an address typically includes a `0x` prefix to indicate it’s a hex string.
 
-**Example using `xrpl.js`:**  
+**Example using `xrpl.js`:**
+
 ```js
-import { decodeAccountID } from 'xrpl';
+import { decodeAccountID } from "xrpl";
 
 // Suppose rAddress = "rLZ1...your address..."
-const accountIDBytes = decodeAccountID(rAddress);  // returns a 20-byte Buffer
+const accountIDBytes = decodeAccountID(rAddress); // returns a 20-byte Buffer
 // Convert to hex, e.g. "cdaa5ba0215e9359fa62cb5a5650a17b362817ac"
-const evmAddress = `0x${accountIDBytes.toString('hex')}`;
+const evmAddress = `0x${accountIDBytes.toString("hex")}`;
 ```
 
 At this point, `evmAddress` is the EVM‐style address derived from the original XRPL classic address.
 
 ---
 
-### Converting **EVM (20-byte) Hex → rAddress** 
+### Converting **EVM (20-byte) Hex → rAddress**
 
 1. **Strip `0x`** (if present)  
    If the address starts with `0x`, remove it, leaving just the hex string.
@@ -530,16 +529,18 @@ At this point, `evmAddress` is the EVM‐style address derived from the original
 3. **Add XRPL Address **Prefix** (`0x00`)**  
    Classic XRP Ledger addresses use a **1‐byte** prefix `0x00`.
 
-4. **Compute a 4‐Byte Checksum**  
-   - Perform SHA‐256 on the **prefix + 20-byte AccountID**.  
-   - Perform SHA‐256 again on the result.  
+4. **Compute a 4‐Byte Checksum**
+
+   - Perform SHA‐256 on the **prefix + 20-byte AccountID**.
+   - Perform SHA‐256 again on the result.
    - Take the first 4 bytes of that second SHA‐256 as the checksum.
 
 5. **Concatenate**  
    `(Prefix + 20 bytes of AccountID + 4‐byte checksum)`
 
 6. **Base58‐Encode** using the XRPL alphabet  
-   The specific alphabet is:  
+   The specific alphabet is:
+
    ```
    "rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz"
    ```
@@ -547,34 +548,36 @@ At this point, `evmAddress` is the EVM‐style address derived from the original
 7. **Result**  
    The result is a valid **`rAddress`** that starts with `r` and is typically 25–35 characters long (including its internal checksum).
 
-**Example using `xrpl.js`:**  
+**Example using `xrpl.js`:**
+
 ```js
-import { encodeAccountID } from 'xrpl';
+import { encodeAccountID } from "xrpl";
 
 // Suppose evmAddress = "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac"
-const noPrefix = evmAddress.startsWith('0x') ? evmAddress.slice(2) : evmAddress;
-const accountIDBytes = Buffer.from(noPrefix, 'hex');
+const noPrefix = evmAddress.startsWith("0x") ? evmAddress.slice(2) : evmAddress;
+const accountIDBytes = Buffer.from(noPrefix, "hex");
 
 // Encode as an XRP classic address
-const rAddress = encodeAccountID(accountIDBytes);  // e.g. "rLZ1..."
+const rAddress = encodeAccountID(accountIDBytes); // e.g. "rLZ1..."
 ```
 
 ---
 
 ### Summary
 
-- **rAddress → EVM**  
-  1. Base58 decode the XRPL address → get 20 bytes  
-  2. Convert those 20 bytes to hex  
-  3. Optionally add `0x` prefix to get a standard EVM‐style address  
+- **rAddress → EVM**
 
-- **EVM → rAddress**  
-  1. Strip `0x` prefix  
-  2. Parse hex → 20 bytes  
-  3. Prepend the **type prefix** (`0x00`)  
-  4. Double‐SHA‐256 → first 4 bytes is checksum  
-  5. Concatenate  
-  6. Base58‐encode → yield the rAddress  
+  1. Base58 decode the XRPL address → get 20 bytes
+  2. Convert those 20 bytes to hex
+  3. Optionally add `0x` prefix to get a standard EVM‐style address
+
+- **EVM → rAddress**
+  1. Strip `0x` prefix
+  2. Parse hex → 20 bytes
+  3. Prepend the **type prefix** (`0x00`)
+  4. Double‐SHA‐256 → first 4 bytes is checksum
+  5. Concatenate
+  6. Base58‐encode → yield the rAddress
 
 These transformations are **mathematically reversible**, so you can go back and forth safely as long as you do not lose or alter the 20‐byte hash.
 

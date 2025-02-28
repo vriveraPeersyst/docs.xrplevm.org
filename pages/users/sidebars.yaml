@@ -16,12 +16,25 @@
 - group: Tools
   expanded: false
   items:
-    - href: https://explorer.xrplevm.org
-      label: Explorer
-      external: true
-    - href: https://governance.xrplevm.org
-      label: Governance Explorer
-      external: true
-    - href: https://safe.xrplevm.org
-      label: Gnosis Safe
-      external: true
+   - group: Testnet
+     expanded: false
+     items:
+      - href: https://explorer.testnet.xrplevm.org
+        label: Explorer
+        external: true
+      - href: https://governance.testnet.xrplevm.org
+        label: Governance Explorer
+        external: true
+   - group: Devnet
+     expanded: false
+     items:
+      - href: https://explorer.xrplevm.org
+        label: Explorer
+        external: true
+      - href: https://governance.xrplevm.org
+        label: Governance Explorer
+        external: true
+      - href: https://safe.xrplevm.org
+        label: Gnosis Safe
+        external: true
+   

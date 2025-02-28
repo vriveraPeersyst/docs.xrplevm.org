@@ -12,15 +12,37 @@ Remix is a web-based development environment for smart contracts, perfect for qu
 
 ### 1. Set Up Your Wallet
 
-- **Install MetaMask**:
+- **Install MetaMask**  
   If you haven't already, install the [MetaMask wallet](https://metamask.io/) extension in your browser.
-- **Connect to XRPL EVM Sidechain**:
-  Add the XRPL EVM network to MetaMask:
-  - **Network Name**: XRPL EVM Devnet
-  - **RPC URL**: [https://rpc.xrplevm.org](https://rpc.xrplevm.org)
-  - **Chain ID**: 1440002
-  - **Currency Symbol**: XRP
-  - **Block Explorer URL**: [https://explorer.xrplevm.org](https://explorer.xrplevm.org)
+
+- **Connect MetaMask to XRPL EVM**  
+  Below are the **Testnet** and **Devnet** RPC details. Choose the appropriate tab for the network you want to use.
+
+{% tabs %}
+{% tab label="Testnet" %}
+**XRPL EVM Testnet MetaMask Settings**
+
+- **Network Name**: XRPL EVM Testnet
+- **RPC URL**: `https://rpc.testnet.xrplevm.org`
+- **Chain ID**: `1449000`
+- **Currency Symbol**: `XRP`
+- **Block Explorer URL**: `https://explorer.testnet.xrplevtest.org`
+
+Make sure MetaMask is switched to **XRPL EVM Testnet** before proceeding.
+{% /tab %}
+
+{% tab label="Devnet" %}
+**XRPL EVM Devnet MetaMask Settings**
+
+- **Network Name**: XRPL EVM Devnet
+- **RPC URL**: `https://rpc.xrplevm.org`
+- **Chain ID**: `1440002`
+- **Currency Symbol**: `XRP`
+- **Block Explorer URL**: `https://explorer.xrplevm.org`
+
+Make sure MetaMask is switched to **XRPL EVM Devnet** before proceeding.
+{% /tab %}
+{% /tabs %}
 
 ### 2. Open Remix IDE
 
@@ -28,24 +50,24 @@ Remix is a web-based development environment for smart contracts, perfect for qu
 
 ### 3. Write or Import Your Smart Contract
 
-- Write your Solidity smart contract or import an existing one. Example:
+Write your Solidity smart contract or import an existing one. For example:
 
-  ```solidity
-  // SPDX-License-Identifier: MIT
-  pragma solidity ^0.8.0;
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-  contract HelloWorld {
-      string public message;
+contract HelloWorld {
+    string public message;
 
-      constructor(string memory _message) {
-          message = _message;
-      }
+    constructor(string memory _message) {
+        message = _message;
+    }
 
-      function setMessage(string memory _message) public {
-          message = _message;
-      }
-  }
-  ```
+    function setMessage(string memory _message) public {
+        message = _message;
+    }
+}
+```
 
 ### 4. Compile the Contract
 
@@ -56,12 +78,12 @@ Remix is a web-based development environment for smart contracts, perfect for qu
 
 - Go to the **Deploy & Run Transactions** tab.
 - Select **Injected Web3** as the environment (this will connect Remix to MetaMask).
-- Ensure MetaMask is connected to the XRPL EVM network.
+- Ensure MetaMask is connected to **XRPL EVM Testnet** or **XRPL EVM Devnet**, whichever you chose above.
 - Click **Deploy**, approve the transaction in MetaMask, and wait for the contract to be deployed.
 
 ### 6. Verify Deployment
 
-- After deployment, you can interact with the contract directly in Remix or view the deployed contract on the [XRPL EVM Explorer](https://explorer.xrplevm.org) using the contract address.
+- After deployment, you can interact with the contract directly in Remix or view the deployed contract on the **XRPL EVM Explorer** (Testnet or Devnet) using the contract address.
 
 ---
 
@@ -73,17 +95,20 @@ Hardhat is a development framework for Ethereum-compatible smart contracts, idea
 
 ### 1. Set Up Your Development Environment
 
-- **Install Node.js**:
+- **Install Node.js**  
   Download and install [Node.js](https://nodejs.org/).
-- **Install Hardhat**:
+
+- **Install Hardhat**  
   Create a new project folder and install Hardhat:
+
   ```bash
   mkdir my-hardhat-project
   cd my-hardhat-project
   npm init -y
   npm install --save-dev hardhat
   ```
-- **Create a Hardhat Project**:
+
+- **Create a Hardhat Project**
   ```bash
   npx hardhat
   ```
@@ -91,7 +116,8 @@ Hardhat is a development framework for Ethereum-compatible smart contracts, idea
 
 ### 2. Configure the Network
 
-To manage sensitive information like RPC URLs and private keys, use a `.env` file.
+To manage sensitive information like RPC URLs and private keys, use a `.env` file.  
+Below are tabs for **Testnet** and **Devnet** network details.
 
 #### 2.1 Install dotenv
 
@@ -101,36 +127,70 @@ npm install dotenv
 
 #### 2.2 Create a `.env` File
 
-- In the root directory of your project, create a file named `.env` and add the following:
+{% tabs %}
+{% tab label="Testnet" %}
+Create a file named `.env` with the **XRPL EVM Testnet** details:
 
-  ```env
-  XRPL_EVM_URL=https://rpc.xrplevm.org
-  PRIVATE_KEY=your_private_key_here
-  ```
+```env
+XRPL_EVM_URL=https://rpc.testnet.xrplevm.org
+PRIVATE_KEY=your_testnet_private_key_here
+```
 
-- Open the `hardhat.config.js` file and add the XRPL EVM network:
+Then in `hardhat.config.js`:
 
-  ```javascript
-  require("@nomicfoundation/hardhat-toolbox");
-  require("dotenv").config();
+```js
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
-  module.exports = {
-    solidity: "0.8.28",
-    networks: {
-      xrplEVM: {
-        url: process.env.XRPL_EVM_URL,
-        accounts: [process.env.PRIVATE_KEY],
-      },
+module.exports = {
+  solidity: "0.8.24",
+  networks: {
+    xrplEVM: {
+      url: process.env.XRPL_EVM_URL,
+      accounts: [process.env.PRIVATE_KEY],
     },
-  };
-  ```
+  },
+};
+```
+
+Ensure your chain ID is set to `1449000` (if you use scripts that explicitly reference it).  
+ {% /tab %}
+
+{% tab label="Devnet" %}
+Create a file named `.env` with the **XRPL EVM Devnet** details:
+
+```env
+XRPL_EVM_URL=https://rpc.xrplevm.org
+PRIVATE_KEY=your_devnet_private_key_here
+```
+
+Then in `hardhat.config.js`:
+
+```js
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
+
+module.exports = {
+  solidity: "0.8.24",
+  networks: {
+    xrplEVM: {
+      url: process.env.XRPL_EVM_URL,
+      accounts: [process.env.PRIVATE_KEY],
+    },
+  },
+};
+```
+
+Ensure your chain ID is set to `1440002` (if you use scripts that explicitly reference it).  
+ {% /tab %}
+{% /tabs %}
 
 > **Warning**: Never share your private key publicly. Use environment variables to manage sensitive information.
 
 ### 3. Write Your Smart Contract
 
 - Create a new file in the `contracts` folder, e.g., `HelloWorld.sol`.
-- Write or paste your Solidity smart contract (e.g., the `HelloWorld` contract provided earlier).
+- Write or paste your Solidity smart contract (e.g., the `HelloWorld` contract shown above).
 
 ### 4. Compile the Contract
 
@@ -141,7 +201,7 @@ npm install dotenv
 
 ### 5. Create the Ignition Module
 
-To deploy the contract you must first create an Ignition module for your `HelloWorld` contract. This module specifies the contract to deploy and its parameters.
+To deploy the contract, you must first create an Ignition module for your `HelloWorld` contract. This module specifies the contract to deploy and its parameters.
 
 1. **Create the Ignition Directory and Module File:**
 
@@ -151,7 +211,7 @@ To deploy the contract you must first create an Ignition module for your `HelloW
 
 2. **Define the Module in `HelloWorld.js`:**
 
-   ```javascript
+   ```js
    const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
    module.exports = buildModule("HelloWorldModule", (m) => {
@@ -179,7 +239,7 @@ The deployment script handles the asynchronous logic and interacts with the Igni
 
 2. **Write the Deployment Script:**
 
-   ```javascript
+   ```js
    const HelloWorldModule = require("../ignition/modules/HelloWorld");
 
    async function getInitialMessage() {
@@ -221,10 +281,12 @@ The deployment script handles the asynchronous logic and interacts with the Igni
 ### 7. Verify Deployment
 
 - Check the contract address in the terminal output.
-- View the deployed contract on the [XRPL EVM Explorer](https://explorer.xrplevm.org) using the contract address.
+- View the deployed contract on the **XRPL EVM Explorer** ([Testnet](https://explorer.testnet.xrplevm.org) or [Devnet](https://explorer.xrplevm.org)) using the contract address.
 
 ---
 
 ## Conclusion
 
-Both **Remix IDE** and **Hardhat** provide powerful tools for deploying smart contracts on the XRPL EVM. Remix is ideal for quick testing and learning, while Hardhat offers a robust framework for complex projects. Choose the method that best suits your needs and start building innovative decentralized applications (dApps) on the XRPL EVM Sidechain.
+Both **Remix IDE** and **Hardhat** provide powerful tools for deploying smart contracts on the XRPL EVM. Remix is ideal for quick testing and learning, while Hardhat offers a robust framework for complex projects. Use the **Testnet** or **Devnet** RPC and chain details where appropriate, and start building innovative decentralized applications on the XRPL EVM sidechain.
+
+---

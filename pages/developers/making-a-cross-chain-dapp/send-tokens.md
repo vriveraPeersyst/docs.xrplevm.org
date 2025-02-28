@@ -4,16 +4,18 @@ Transferring tokens across chains is a critical aspect of cross-chain dApps. Thi
 
 To facilitate token transfers, XRPL integrates with the Axelar cross-chain communication protocol. Axelar offers two primary solutions for this purpose: [Gateway Tokens](https://docs.axelar.dev/dev/general-message-passing/gmp-tokens-with-messages/) and the [Interchain Token Service (ITS)](https://docs.axelar.dev/dev/send-tokens/interchain-tokens/intro/).
 
-For XRPL and XRPL EVM, the Interchain Token Service is the preferred choice. ITS is a modern solution that preserves native token qualities while providing advanced features for managing token properties and supply across chains. In a few words, each connected chain has its own ITS address that will be used as the entry point for token transfers. This address is a smart contract in the XRPL EVM and an account in the XRPL Ledger. For comprehensive understanding of ITS, check the [official documentation](https://docs.axelar.dev/dev/send-tokens/interchain-tokens/intro/). Additionally, Axelar's [step-by-step guide](https://docs.axelar.dev/dev/send-tokens/interchain-tokens/developer-guides/programmatically-create-a-token/) provides detailed guidance on how to create an interchain token with its corresponding properties.
+For XRPL and XRPL EVM, the Interchain Token Service is the preferred choice. ITS is a modern solution that preserves native token qualities while providing advanced features for managing token properties and supply across chains. In a few words, each connected chain has its own ITS address that will be used as the entry point for token transfers. This address is a smart contract in the XRPL EVM and an account in the XRPL Ledger. For a comprehensive understanding of ITS, check the [official documentation](https://docs.axelar.dev/dev/send-tokens/interchain-tokens/intro/). Additionally, Axelar's [step-by-step guide](https://docs.axelar.dev/dev/send-tokens/interchain-tokens/developer-guides/programmatically-create-a-token/) provides detailed guidance on how to create an interchain token with its corresponding properties.
 
-For practical guidance on using ITS to send and receive tokens, refer to the guides below. These cover how to transfer XRP and [IOU](https://xrpl.org/docs/concepts/tokens/fungible-tokens)/[ERC20](https://docs.openzeppelin.com/contracts/4.x/erc20) tokens between the XRP Ledger and XRPL EVM. The examples are written in Typescript and leverage the [xrpl.js](https://js.xrpl.org/index.html) and [ethers](https://docs.ethers.org/v6/) libraries to interact with the XRP Ledger and XRPL EVM, respectively.
+For practical guidance on using ITS to send and receive tokens, refer to the guides below. These cover how to transfer XRP and [IOU](https://xrpl.org/docs/concepts/tokens/fungible-tokens)/[ERC20](https://docs.openzeppelin.com/contracts/4.x/erc20) tokens between the XRP Ledger and XRPL EVM. The examples are written in TypeScript and leverage the [xrpl.js](https://js.xrpl.org/index.html) and [ethers](https://docs.ethers.org/v6/) libraries to interact with the XRP Ledger and XRPL EVM, respectively.
+
+---
 
 ## Sending assets from XRP Ledger to XRPL EVM
 
 Sending assets from the XRP Ledger to the XRPL EVM or other chains is straightforward. The process involves executing a standard payment transaction, specifying the following key parameters:
 
 - [`Amount`](https://js.xrpl.org/interfaces/Payment.html#Amount): Specifies the quantity of the asset to be transferred. The format and value depend on the type of asset being sent (e.g., XRP or IOUs).
-- [`Destination`](https://js.xrpl.org/interfaces/Payment.html#Destination): Refers to the Interchain Token Service address on the XRP Ledger.
+- [`Destination`](https://js.xrpl.org/interfaces/Payment.html#Destination): Refers to the **Interchain Token Service** address on the XRP Ledger.
 - [`Memos`](https://js.xrpl.org/interfaces/Payment.html#Memos): Contains additional data required for the transfer, including:
   - The **destination chain ID** on the Axelar network.
   - The **recipient's address** on the destination chain.
@@ -23,9 +25,10 @@ Sending assets from the XRP Ledger to the XRPL EVM or other chains is straightfo
 
 ### Sending XRP from XRP Ledger to XRPL EVM
 
-To send XRP - the native token of the XRPL Ledger and XRPL EVM - to the XRPL EVM, the payment must specify the [`Amount`](https://js.xrpl.org/interfaces/Payment.html#Amount) as the number of XRP in drops to be transferred to the other chain. This process is similar to an on-chain payment on the XRPL.
+To send **XRP** (the native token) from the XRPL to the XRPL EVM, you simply specify the number of XRP in drops in the [`Amount`](https://js.xrpl.org/interfaces/Payment.html#Amount).
 
-The example bellow shows how to send 100 XRP from the XRPL to the XRPL EVM.
+{% tabs %}
+{% tab label="Devnet" %}
 
 ```ts
 import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
@@ -38,31 +41,28 @@ const payment: Payment = {
   TransactionType: "Payment",
   Account: wallet.address, // Sender's address
   Amount: "100000000", // 100 XRP in drops
-  Destination: "rP9iHnCmJcVPtzCwYJjU1fryC2pEcVqDHv", // ITS address in the XRP Ledger
+  // ITS address on the XRPL Devnet
+  Destination: "rGAbJZEzU6WaYv5y1LfyN7LBBcQJ3TxsKC",
   Memos: [
     {
       Memo: {
         // hex(destination_address)
-        MemoType: "64657374696E6174696F6E5F61646472657373",
-        // Destination contract address (hexadecimal, without 0x prefix)
-        MemoData: "9159C650E1D7E10A17C450EB3D50778ABA593D61",
+        MemoType: Buffer.from("destination_address")
+          .toString("hex")
+          .toUpperCase(),
+        // Destination contract address (hexadecimal, without 0x prefix, and toUpperCase)
+        MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
       },
     },
     {
       Memo: {
         // hex(destination_chain)
-        MemoType: "64657374696E6174696F6E5F636861696E",
+        MemoType: Buffer.from("destination_chain")
+          .toString("hex")
+          .toUpperCase(),
         // The destination chain ID on the Axelar network (hexadecimal)
-        MemoData: convertStringToHex("xrpl-evm-sidechain"),
-      },
-    },
-    {
-      Memo: {
-        // hex(payload_hash)
-        MemoType: "7061796C6F61645F68617368",
-        // Set to 32-byte zero value since it is not used in token transfers
-        MemoData:
-          "0000000000000000000000000000000000000000000000000000000000000000",
+        // for Devnet
+        MemoData: Buffer.from("xrpl-evm-devnet").toString("hex").toUpperCase(),
       },
     },
   ],
@@ -78,15 +78,11 @@ const signedTransaction = wallet.sign(transaction).tx_blob;
 const result = await client.submit(signedTransaction);
 ```
 
-### Sending IOU tokens from XRP Ledger to XRPL EVM
+{% /tab %}
 
-Sending IOU tokens from the XRP Ledger to the XRPL EVM is similar to sending XRP, with one key difference: the `Amount` field is no longer a `string`. Instead, it is an [`IssuedCurrencyAmount`](https://js.xrpl.org/interfaces/IssuedCurrencyAmount.html) object which contains the following fields:
 
-- `currency`: The currency code of the token.
-- `issuer`: The address of the token's issuer.
-- `value`: The amount of the token to transfer (with decimals).
 
-The example bellow demonstrates how to send 100 RLUSD from the XRPL to the XRPL EVM.
+{% tab label="Testnet" %}
 
 ```ts
 import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
@@ -98,36 +94,29 @@ import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
 const payment: Payment = {
   TransactionType: "Payment",
   Account: wallet.address, // Sender's address
-  Amount: {
-    currency: "524C555344000000000000000000000000000000", // RLUSD (non-standard currency code)
-    Issuer: "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De", // RLUSD issuer address
-    value: "100", // Amount to transfer
-  },
-  Destination: "rP9iHnCmJcVPtzCwYJjU1fryC2pEcVqDHv", // ITS address in the XRP Ledger
+  Amount: "100000000", // 100 XRP in drops
+  // Gateway address on the XRPL Testnet
+  Destination: "rsCPY4vwEiGogSraV9FeRZXca6gUBWZkhg",
   Memos: [
     {
       Memo: {
         // hex(destination_address)
-        MemoType: "64657374696E6174696F6E5F61646472657373",
-        // Destination contract address (hexadecimal, without 0x prefix)
-        MemoData: "9159C650E1D7E10A17C450EB3D50778ABA593D61",
+        MemoType: Buffer.from("destination_address")
+          .toString("hex")
+          .toUpperCase(),
+        // Destination contract address (hexadecimal, without 0x prefix, and toUpperCase)
+        MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
       },
     },
     {
       Memo: {
         // hex(destination_chain)
-        MemoType: "64657374696E6174696F6E5F636861696E",
-        // The destination chain ID on the Axelar network(hexadecimal)
-        MemoData: convertStringToHex("xrpl-evm-sidechain"),
-      },
-    },
-    {
-      Memo: {
-        // hex(payload_hash)
-        MemoType: "7061796C6F61645F68617368",
-        // Set to 32-byte zero value since it is not used in token transfers
-        MemoData:
-          "0000000000000000000000000000000000000000000000000000000000000000",
+        MemoType: Buffer.from("destination_chain")
+          .toString("hex")
+          .toUpperCase(),
+        // The destination chain ID on the Axelar network (hexadecimal)
+        // for Devnet
+        MemoData: Buffer.from("xrpl-evm-test-1").toString("hex").toUpperCase(),
       },
     },
   ],
@@ -143,18 +132,146 @@ const signedTransaction = wallet.sign(transaction).tx_blob;
 const result = await client.submit(signedTransaction);
 ```
 
+
+{% /tab %}
+{% /tabs %}
+
+### Sending IOU tokens from XRP Ledger to XRPL EVM
+
+Sending IOU tokens (fungible tokens on XRPL) is similar, except the `Amount` field is an [`IssuedCurrencyAmount`](https://js.xrpl.org/interfaces/IssuedCurrencyAmount.html). Below is an example for **100 RLUSD**.
+
+{% tabs %}
+{% tab label="Devnet" %}
+
+```ts
+import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
+
+// wallet variable corresponds to xrpl.js Wallet instance
+// client variable corresponds to xrpl.js Client instance
+
+// Create the payment transaction object
+const payment: Payment = {
+  TransactionType: "Payment",
+  Account: wallet.address, // Sender's address
+  Amount: { // XRPL Devnet IOU whitelisted by Axelar (This is an example, not a real devnet IOU.)
+    currency: "524C555344000000000000000000000000000000", // RLUSD (non-standard code)
+    issuer: "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De", // RLUSD issuer address
+    value: "100", // Amount to transfer
+  },
+  // ITS address on the XRPL Devnet
+  Destination: "rGAbJZEzU6WaYv5y1LfyN7LBBcQJ3TxsKC",
+  Memos: [
+    {
+      Memo: {
+        // hex(destination_address)
+        MemoType: Buffer.from("destination_address")
+          .toString("hex")
+          .toUpperCase(),
+        // Destination contract address (hexadecimal, without 0x prefix)
+        MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
+      },
+    },
+    {
+      Memo: {
+        // hex(destination_chain)
+        MemoType: Buffer.from("destination_chain")
+          .toString("hex")
+          .toUpperCase(),
+        // The destination chain ID on the Axelar network (hexadecimal)
+        // for Devnet
+        MemoData: Buffer.from("xrpl-evm-devnet").toString("hex").toUpperCase(),
+      },
+    },
+  ],
+};
+
+// Autofill transaction
+const transaction = await client.autofill(payment);
+
+// Sign transaction
+const signedTransaction = wallet.sign(transaction).tx_blob;
+
+// Submit transaction
+const result = await client.submit(signedTransaction);
+```
+
+{% /tab %}
+
+{% tab label="Testnet" %}
+
+
+```ts
+import { Wallet, Client, Payment, convertStringToHex } from "xrpl";
+
+// wallet variable corresponds to xrpl.js Wallet instance
+// client variable corresponds to xrpl.js Client instance
+
+// Create the payment transaction object
+const payment: Payment = {
+  TransactionType: "Payment",
+  Account: wallet.address, // Sender's address
+  Amount: { // XRPL Testnet IOU whitelisted by Axelar (This is an example, not a real testnet IOU.)
+    currency: "524C555344000000000000000000000000000000", // RLUSD (non-standard code)
+    issuer: "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De", // RLUSD issuer address
+    value: "100", // Amount to transfer
+  },
+  // ITS address on the XRPL Testnet
+  Destination: "rsCPY4vwEiGogSraV9FeRZXca6gUBWZkhg",
+  Memos: [
+    {
+      Memo: {
+        // hex(destination_address)
+        MemoType: Buffer.from("destination_address")
+          .toString("hex")
+          .toUpperCase(),
+        // Destination contract address (hexadecimal, without 0x prefix)
+        MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
+      },
+    },
+    {
+      Memo: {
+        // hex(destination_chain)
+        MemoType: Buffer.from("destination_chain")
+          .toString("hex")
+          .toUpperCase(),
+        // The destination chain ID on the Axelar network (hexadecimal)
+        // for Devnet
+        MemoData: Buffer.from("xrpl-evm-test-1").toString("hex").toUpperCase(),
+      },
+    },
+  ],
+};
+
+// Autofill transaction
+const transaction = await client.autofill(payment);
+
+// Sign transaction
+const signedTransaction = wallet.sign(transaction).tx_blob;
+
+// Submit transaction
+const result = await client.submit(signedTransaction);
+```
+
+{% /tab %}
+{% /tabs %}
+
+---
+
 ## Sending assets from XRPL EVM to XRP Ledger
 
-Sending assets from the XRPL EVM to the XRP Ledger is achieved by calling the [`interchainTransfer`](https://github.com/axelarnetwork/interchain-token-service/blob/9edc4318ac1c17231e65886eea72c0f55469d7e5/contracts/interfaces/IInterchainTokenStandard.sol#L19) method of the [ITS contract](https://docs.axelar.dev/dev/send-tokens/interchain-tokens/intro/) with the following parameters:
+To send assets from the XRPL EVM back to the XRPL, you’ll call the [`interchainTransfer`](https://github.com/axelarnetwork/interchain-token-service/blob/9edc4318ac1c17231e65886eea72c0f55469d7e5/contracts/interfaces/IInterchainTokenStandard.sol#L19) method of the **ITS contract** on the XRPL EVM. You must provide:
 
-- `tokenId`: The token ID of the asset to be transferred. This is the ID assigned to the asset in the Axelar network when the token is created.
-- `destinationChain`: The chain ID in the Axelar network to which the asset will be transferred.
-- `destinationAddress`: The recipient's address on the destination chain.
-- `amount`: The amount of the asset to transfer, represented as an integer without decimals.
+- `tokenId`: The token’s Axelar ID.
+- `destinationChain`: The Axelar chain ID of the target chain (e.g., `"xrpl"` or `"xrpl-dev"`).
+- `destinationAddress`: The address on the XRPL where the assets will be received (an R-address).
+- `amount`: The amount to transfer, as an integer without decimals.
 
 ### ITS Contract Instantiation
 
-Before performing a transfer, you need to instantiate the [ITS contract](https://docs.axelar.dev/dev/send-tokens/interchain-tokens/intro/) using the [ethers library](https://docs.ethers.org/v6/). The example below demonstrates how to create an instance of the ITS contract.
+Below is an example of instantiating the ITS contract in the **XRPL EVM Devnet**:
+
+{% tabs %}
+{% tab label="Devnet" %}
 
 ```ts
 import { Contract } from "ethers";
@@ -163,42 +280,88 @@ import { Contract } from "ethers";
 
 // Instantiate the ITS contract
 const its = new Contract(
-  "0x43F2ccD4E27099b5F580895b44eAcC866e5F7Bb1", // The ITS address in the XRPL EVM
+  "0x1a7580C2ef5D485E069B7cf1DF9f6478603024d3", // ITS address in XRPL EVM Devnet
   ITS_ABI, // ABI for the ITS contract
   signer
 );
 ```
 
-### Sending XRP from XRPL EVM to XRP Ledger
+{% /tab %}
+{% tab label="Testnet" %}
 
-To transfer XRP from the XRPL EVM back to the XRP Ledger, the [`interchainTransfer`](https://github.com/axelarnetwork/interchain-token-service/blob/9edc4318ac1c17231e65886eea72c0f55469d7e5/contracts/interfaces/IInterchainTokenStandard.sol#L19) method of the [ITS contract](https://docs.axelar.dev/dev/send-tokens/interchain-tokens/intro/) has to be called with the parameters specified above.
-
-The example bellow shows how to send 100 XRP from the XRPL EVM to the XRP Ledger.
 
 ```ts
-import ethers from "ethers";
+import { Contract } from "ethers";
 
-// Call the interchainTransfer method
-await its.interchainTransfer(
-  "0xc2bb311dd03a93be4b74d3b4ab8612241c4dd1fd0232467c54a03b064f8583b6", // XRP token ID
-  "xrpl", // Destination chain ID
-  "rP9iHnCmJcVPtzCwYJjU1fryC2pEcVqDHv", // Destination address
-  "100000000000000000000", // 100 XRP in wei
-  "0x", // Metadata (not used)
-  ethers.BigNumber.from("0") // Gas value (not used)
+// The signer initialization is omitted for brevity
+
+// Instantiate the ITS contract
+const its = new Contract(
+  "0x3b1ca8B18698409fF95e29c506ad7014980F0193", // ITS address in XRPL EVM Testnet
+  ITS_ABI, // ABI for the ITS contract
+  signer
 );
 ```
 
+{% /tab %}
+{% /tabs %}
+
+### Sending XRP from XRPL EVM to XRP Ledger
+
+{% tabs %}
+{% tab label="Devnet" %}
+
+To transfer **XRP** back to the XRPL, call `interchainTransfer` on the ITS contract. Use the **XRP token ID** for Devnet:
+
+```ts
+import { ethers } from "ethers";
+
+await its.interchainTransfer(
+  "0xbfb47d376947093b7858c1c59a4154dd291d5b2251cb56a6f7159a070f0bd518", // XRP token ID (Devnet)
+  "xrpl-dev", // Destination chain ID
+  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
+  "100000000000000000000", // 100 XRP in wei
+  "0x", // Metadata (unused)
+  {
+    gasLimit: 8000000,
+    value: ethers.utils.parseEther("6"),
+  } // Gas
+);
+```
+
+{% /tab %}
+
+{% tab label="Testnet" %}
+
+To transfer **XRP** back to the XRPL, call `interchainTransfer` on the ITS contract. Use the **XRP token ID** for Testnet:
+
+```ts
+import { ethers } from "ethers";
+
+await its.interchainTransfer(
+  "0xa2946b60f1e20ff37404075fc85ea63d42e2b1fc9ce5ef3fff5223e06e7ff4c9", // XRP token ID (Testnet)
+  "xrpl-test-1", // Destination chain ID
+  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
+  "100000000000000000000", // 100 XRP in wei
+  "0x", // Metadata (unused)
+  {
+    gasLimit: 8000000,
+    value: ethers.utils.parseEther("6"),
+  } // Gas
+);
+```
+
+{% /tab %}
+{% /tabs %}
+
 ### Sending ERC20 tokens from XRPL EVM to XRP Ledger
 
-Transferring ERC20 tokens from the XRPL EVM to the XRP Ledger involves a slightly more complex process, requiring two additional steps:
+When sending ERC20 tokens:
 
-- **Set a Trust Line**: The recipient address on the XRP Ledger must establish a [trust line](https://xrpl.org/docs/concepts/tokens/fungible-tokens#trust-lines) to be able to receive the token.
-- **Approve Token Transfer**: The sender on the XRPL EVM must call the [`approve`](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4c3ef87cf57b448a0b5fc68b8ce6604a31b60814/contracts/token/ERC20/ERC20.sol#L127) method of the ERC20 token to authorize the ITS contract to transfer tokens on their behalf.
+1. **Trust Line**: The recipient must have a trust line for that token on the XRP Ledger.
+2. **Approve**: The sender must `approve` the ITS contract to transfer tokens on their behalf.
 
-Below is a step-by-step example demonstrating how to send 100 RLUSD from the XRPL EVM to the XRP Ledger.
-
-First, to receive tokens on the XRP Ledger, the recipient must establish a trust line by submitting a [`TrustSet`](https://xrpl.org/trustset.html) transaction:
+#### 1. Establish a Trust Line on the XRPL
 
 ```ts
 import { Wallet, Client, TrustSet } from "xrpl";
@@ -211,9 +374,9 @@ const trustSet: TrustSet = {
   TransactionType: "TrustSet",
   Account: wallet.address,
   LimitAmount: {
-    currency: "524C555344000000000000000000000000000000", // RLUSD (non-standard currency code)
-    issuer: "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De", // RLUSD issuer address
-    value: "100", // Any value >= the amount to be transferred
+    currency: "524C555344000000000000000000000000000000", // RLUSD
+    issuer: "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De", // RLUSD issuer
+    value: "100", // >= the amount to be transferred
   },
 };
 
@@ -227,7 +390,10 @@ const signedTransaction = wallet.sign(transaction).tx_blob;
 const result = await client.submit(signedTransaction);
 ```
 
-Next, the sender must call the [`approve`](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4c3ef87cf57b448a0b5fc68b8ce6604a31b60814/contracts/token/ERC20/ERC20.sol#L127) method on the ERC20 contract to allow the ITS contract to transfer the tokens:
+#### 2. Approve the ITS Contract on the XRPL EVM
+
+{% tabs %}
+{% tab label="Devnet" %}
 
 ```ts
 import { Contract } from "ethers";
@@ -236,30 +402,182 @@ import { Contract } from "ethers";
 
 // Instantiate the ERC20 contract
 const erc20 = new Contract(
-  "0x20937978F265DC0C947AA8e136472CFA994FE1eD", // RLUSD ERC20 token address
-  ERC20_ABI, // ABI for the ERC20 contract
+  "0x20937978F265DC0C947AA8e136472CFA994FE1eD", // RLUSD ERC20 token address (example)
+  ERC20_ABI,
   signer
 );
 
 // Call the approve method
 await erc20.approve(
-  "0x43F2ccD4E27099b5F580895b44eAcC866e5F7Bb1", // ITS address in the XRPL EVM
-  "100000000000000000000" // Any value >= the amount to be transferred as an integer
+  "0x1a7580C2ef5D485E069B7cf1DF9f6478603024d3", // ITS address in XRPL EVM Devnet
+  "100000000000000000000" // >= the amount to be transferred
 );
 ```
 
-Finally, use the [`interchainTransfer`](https://github.com/axelarnetwork/interchain-token-service/blob/9edc4318ac1c17231e65886eea72c0f55469d7e5/contracts/interfaces/IInterchainTokenStandard.sol#L19) method on the ITS contract to send the tokens:
+{% /tab %}
+{% tab label="Testnet" %}
 
 ```ts
-import ethers from "ethers";
+import { Contract } from "ethers";
+
+// The signer initialization is omitted for brevity
+
+// Instantiate the ERC20 contract
+const erc20 = new Contract(
+  "0x20937978F265DC0C947AA8e136472CFA994FE1eD", // RLUSD ERC20 token address (example)
+  ERC20_ABI,
+  signer
+);
+
+// Call the approve method
+await erc20.approve(
+  "0x3b1ca8B18698409fF95e29c506ad7014980F0193", // ITS address in XRPL EVM Testnet
+  "100000000000000000000" // >= the amount to be transferred
+);
+```
+
+{% /tab %}
+{% /tabs %}
+
+#### 3. Call `interchainTransfer` on the ITS Contract
+
+{% tabs %}
+{% tab label="Devnet" %}
+
+```ts
+import { ethers } from "ethers";
 
 // Call the interchainTransfer method
 await its.interchainTransfer(
-  "0x85f75bb7fd0753565c1d2cb59bd881970b52c6f06f3472769ba7b48621cd9d23", // RLUSD token ID
-  "xrpl", // Destination chain ID
-  "rP9iHnCmJcVPtzCwYJjU1fryC2pEcVqDHv", // Recipient address on XRP Ledger
-  "100000000000000000000", // 100 RLUSD as an integer
-  "0x", // Metadata (not used)
-  ethers.BigNumber.from("0") // Gas value (not used)
+  "0x85f75bb7fd0753565c1d2cb59bd881970b52c6f06f3472769ba7b48621cd9d23", // RLUSD token ID (example)
+  "xrpl-dev", // Destination chain ID
+  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
+  "100000000000000000000", // 100 RLUSD in integer form
+  "0x", // Metadata (unused)
+  {
+    gasLimit: 8000000,
+    value: ethers.utils.parseEther("6"),
+  } // Gas
 );
 ```
+
+{% /tab %}
+
+{% tab label="Testnet" %}
+
+```ts
+import { ethers } from "ethers";
+
+// Call the interchainTransfer method
+await its.interchainTransfer(
+  "0x85f75bb7fd0753565c1d2cb59bd881970b52c6f06f3472769ba7b48621cd9d23", // RLUSD token ID (example)
+  "xrpl-test-1", // Destination chain ID
+  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
+  "100000000000000000000", // 100 RLUSD in integer form
+  "0x", // Metadata (unused)
+  {
+    gasLimit: 8000000,
+    value: ethers.utils.parseEther("6"),
+  }// Gas
+);
+```
+
+{% /tab %}
+{% /tabs %}
+
+---
+
+Below is a high-level overview of how to convert an **XRPL classic address** (e.g., `r...`) to an **EVM‐style hex address** (`0x...`) and vice versa.
+
+---
+
+### Converting **rAddress → EVM (20-byte) Hex** (Needed for XRPLEVM to XRPL transfers)
+
+1. **Base58 Decode**  
+   The classic XRP Ledger address (an "rAddress") is a Base58Check‐style encoding. To decode:
+   - Remove and check the **type prefix** (typically `0x00` for a normal address).  
+   - Remove and verify the **4‐byte checksum** (from the end).  
+   - The remaining 20 bytes are the **AccountID**.  
+
+2. **Hex Encode**  
+   Once you have the 20‐byte `AccountID`, convert those bytes to a 40‐character hexadecimal string.  
+
+3. **Prepend `0x`** (optional)  
+   In EVM contexts, an address typically includes a `0x` prefix to indicate it’s a hex string.  
+
+**Example using `xrpl.js`:**  
+```js
+import { decodeAccountID } from 'xrpl';
+
+// Suppose rAddress = "rLZ1...your address..."
+const accountIDBytes = decodeAccountID(rAddress);  // returns a 20-byte Buffer
+// Convert to hex, e.g. "cdaa5ba0215e9359fa62cb5a5650a17b362817ac"
+const evmAddress = `0x${accountIDBytes.toString('hex')}`;
+```
+
+At this point, `evmAddress` is the EVM‐style address derived from the original XRPL classic address.
+
+---
+
+### Converting **EVM (20-byte) Hex → rAddress** 
+
+1. **Strip `0x`** (if present)  
+   If the address starts with `0x`, remove it, leaving just the hex string.
+
+2. **Convert Hex → 20‐Byte Buffer**  
+   This is your **AccountID** on XRPL.
+
+3. **Add XRPL Address **Prefix** (`0x00`)**  
+   Classic XRP Ledger addresses use a **1‐byte** prefix `0x00`.
+
+4. **Compute a 4‐Byte Checksum**  
+   - Perform SHA‐256 on the **prefix + 20-byte AccountID**.  
+   - Perform SHA‐256 again on the result.  
+   - Take the first 4 bytes of that second SHA‐256 as the checksum.
+
+5. **Concatenate**  
+   `(Prefix + 20 bytes of AccountID + 4‐byte checksum)`
+
+6. **Base58‐Encode** using the XRPL alphabet  
+   The specific alphabet is:  
+   ```
+   "rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz"
+   ```
+
+7. **Result**  
+   The result is a valid **`rAddress`** that starts with `r` and is typically 25–35 characters long (including its internal checksum).
+
+**Example using `xrpl.js`:**  
+```js
+import { encodeAccountID } from 'xrpl';
+
+// Suppose evmAddress = "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac"
+const noPrefix = evmAddress.startsWith('0x') ? evmAddress.slice(2) : evmAddress;
+const accountIDBytes = Buffer.from(noPrefix, 'hex');
+
+// Encode as an XRP classic address
+const rAddress = encodeAccountID(accountIDBytes);  // e.g. "rLZ1..."
+```
+
+---
+
+### Summary
+
+- **rAddress → EVM**  
+  1. Base58 decode the XRPL address → get 20 bytes  
+  2. Convert those 20 bytes to hex  
+  3. Optionally add `0x` prefix to get a standard EVM‐style address  
+
+- **EVM → rAddress**  
+  1. Strip `0x` prefix  
+  2. Parse hex → 20 bytes  
+  3. Prepend the **type prefix** (`0x00`)  
+  4. Double‐SHA‐256 → first 4 bytes is checksum  
+  5. Concatenate  
+  6. Base58‐encode → yield the rAddress  
+
+These transformations are **mathematically reversible**, so you can go back and forth safely as long as you do not lose or alter the 20‐byte hash.
+
+---
+
+With these examples, you can send and receive both **XRP** and **IOU/ERC20** tokens across the XRPL and the XRPL EVM using Axelar’s **Interchain Token Service (ITS)**.

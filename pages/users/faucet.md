@@ -1,28 +1,43 @@
 # Faucet
 
-To explore and interact with the **XRPL EVM Sidechain**, you will need test XRP ($XRP) to cover transaction fees and execute smart contracts. The XRPL EVM provides two methods to obtain test $XRP: the [**Chains.tools Faucet**](https://chains.tools/faucet/xrplevm) and the [**XRPL EVM Bridge**](../users/using-the-bridge.md).
+To explore and interact with the **XRPL EVM Sidechain**, you need test XRP (`XRP`) to cover transaction fees and execute smart contracts. There are two primary ways to obtain test `XRP`:
 
-## Using the Faucet
+- **Faucet** [Chains.tools](https://chains.tools/faucet/xrplevm) — **for Devnet**  
+- **[XRPL EVM Bridge](../users/using-the-bridge.md)** — for transferring XRP from XRPL Devnet
 
-The fastest way to acquire $XRP is by using the Chains.tools Faucet. This tool allows you to request small amounts of $XRP to begin testing and building on the XRPL EVM Sidechain.
+## Using the Faucet (Devnet)
 
-### Steps to Use the Faucet
+To acquire test `XRP` on the **XRPL EVM Devnet**, you can use the [Chains.tools Faucet](https://chains.tools/faucet/xrplevm) or transfer from the XRPL Devnet via the [XRPL EVM Bridge](../users/using-the-bridge.md).
 
-1. **Visit the Faucet Website:**
-   Go to the XRPL EVM Devnet Chains.tools [Faucet](https://chains.tools/faucet/xrplevm).
+### Steps to Use the Faucet (Devnet)
 
-2. **Enter Your Wallet Address:**
+1. **Visit the Faucet Website**
 
-   - Copy your wallet address from an EVM-compatible wallet, such as MetaMask.
+   - Go to the **XRPL EVM Devnet** Chains.tools [Faucet](https://chains.tools/faucet/xrplevm).
+
+2. **Enter Your Wallet Address**
+
+   - Copy your wallet address from an EVM-compatible wallet (e.g., MetaMask) configured for the XRPL EVM Devnet.
    - Paste the wallet address into the faucet’s input field.
 
-3. **Complete the CAPTCHA:**
-   Verify you are not a robot by completing the CAPTCHA.
+3. **Complete the CAPTCHA**
 
-4. **Request $XRP:**
+   - Prove you’re not a robot.
 
-   - Click the button to request $XRP.
-   - Each wallet can request up to **10 XRP every 60 minutes**.
+4. **Request Test XRP**
 
-5. **Check Your Wallet:**
-   - Open your wallet (e.g., MetaMask) connected to the XRPL EVM Sidechain.
+   - Click the button to request `XRP`.
+   - Each wallet can request up to **10 XRP every 60 minutes** (subject to change).
+
+5. **Check Your Wallet**
+   - Open your wallet (e.g., MetaMask) on the **XRPL EVM Devnet**.
+   - Confirm your new test `XRP` balance.
+
+If you run out of faucet requests or need additional test tokens, consider bridging from the **XRPL Devnet** using the [XRPL EVM Bridge](../users/using-the-bridge.md).
+
+## Next Steps
+
+- **Bridge Assets**: If you want to move tokens from the XRPL (Testnet or Devnet) to the XRPL EVM sidechain, check out the [XRPL EVM Bridge guide](../users/using-the-bridge.md).
+- **Deploy Smart Contracts**: Learn how to [deploy a contract](../developers/developing-smart-contracts/deploy-the-smart-contract.md) on the XRPL EVM Testnet or Devnet.
+
+By leveraging the bridge (or the Devnet faucet), you can quickly begin developing and experimenting on the XRPL EVM sidechains without spending real XRP.

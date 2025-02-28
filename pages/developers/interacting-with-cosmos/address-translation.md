@@ -48,7 +48,7 @@ Bech32 Val: ethmvaloper1akwntffy4us9nhgcmgjxdg78v5w3xtwlkmw7r3
 
 ## Translate addresses programmatically
 
-The address translation can be implemented in a programming language. Below is an example in Typescript, using the [`bech32`](https://github.com/bitcoinjs/bech32) and [`js-sha3`](https://github.com/emn178/js-sha3) libraries.
+The address translation can be implemented in a programming language. Below is an example in TypeScript, using the [`bech32`](https://github.com/bitcoinjs/bech32) and [`js-sha3`](https://github.com/emn178/js-sha3) libraries.
 
 ```typescript
 import { bech32 } from "bech32";

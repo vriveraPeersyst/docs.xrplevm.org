@@ -1,3 +1,6 @@
+/pages/operators/getting-started/join-the-devnet:
+  to: /pages/operators/getting-started/join-the-xrplevm
+  type: 301
 /docs/evm-sidechain/intro-to-evm-sidechain:
   to: https://docs.xrplevm.org/
   type: 301

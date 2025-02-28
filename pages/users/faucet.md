@@ -38,6 +38,6 @@ If you run out of faucet requests or need additional test tokens, consider bridg
 ## Next Steps
 
 - **Bridge Assets**: If you want to move tokens from the XRPL (Testnet or Devnet) to the XRPL EVM sidechain, check out the [XRPL EVM Bridge guide](../users/using-the-bridge.md).
-- **Deploy Smart Contracts**: Learn how to [deploy a contract](../../developers/developing-smart-contracts/deploy-the-smart-contract.md) on the XRPL EVM Testnet or Devnet.
+- **Deploy Smart Contracts**: Learn how to [deploy a contract](../developers/developing-smart-contracts/deploy-the-smart-contract.md) on the XRPL EVM Testnet or Devnet.
 
 By leveraging the bridge (or the Devnet faucet), you can quickly begin developing and experimenting on the XRPL EVM sidechains without spending real XRP.

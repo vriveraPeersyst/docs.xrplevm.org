@@ -1,211 +1,134 @@
 # Using the Bridge
 
-The Axelar Bridge connects multiple blockchain networks, enabling secure asset transfers across the XRPL ecosystem and beyond. This guide explains how the bridge works and highlights the differences between Testnet and Devnet setups.
+The Axelar Bridge connects multiple blockchain networks, enabling secure asset transfers across the XRPL ecosystem and beyond. This guide explains how the bridge works and highlights the key differences between **Testnet** and **Devnet** setups.
 
-**Understanding the Axelar Bridge**
+## Understanding the Axelar Bridge
 
-The bridge facilitates cross-chain transfers between XRPL, XRPL EVM, and other chains, ensuring smooth interoperability.
+- **Cross-Chain Transfers:** Seamlessly move assets (e.g., XRP, IOUs, ERC20 tokens) between XRPL, XRPL EVM, and other connected chains.  
+- **Interoperability:** Unlock new possibilities for dApps, services, and users by allowing access to assets and functionalities across different blockchains.
 
-**Testnet vs. Devnet**
+## Testnet vs. Devnet
 
-- **Testnet Bridge (SquidRouter):**  
-  The [Testnet bridge](https://testnet.xrpl.squidrouter.com/) connects all Axelar testnet chains. Use XRPL MetaMask Snap or Crossmark.io, and add the [XRPL EVM Testnet network configuration](./getting-started/connect-to-the-xrpl-evm.md#adding-xrpl-evm-to-metamask) to your wallet.
+- **Testnet Bridge (SquidRouter)**  
+  - **URL**: [https://testnet.xrpl.squidrouter.com/](https://testnet.xrpl.squidrouter.com/)  
+  - **Features**: Connects all Axelar testnet chains.  
+  - **Wallet Requirements**:  
+    - **XRPL MetaMask Snap** or **Crossmark.io** for XRPL access.  
+    - [Add the XRPL EVM Testnet network](./getting-started/connect-to-the-xrpl-evm.md#adding-xrpl-evm-to-metamask) to MetaMask.  
 
-- **Devnet Bridge:**  
-  The simpler [Devnet bridge](https://bridge.xrplevm.org) uses the XRPL wallet as a faucet, with connectivity to XRPL EVM achieved via MetaMask.
-
+- **Devnet Bridge**  
+  - **URL**: [https://bridge.xrplevm.org](https://bridge.xrplevm.org)  
+  - **Features**:  
+    - Simpler interface; acts as a faucet for obtaining test XRP.  
+    - Allows bridging between XRPL Devnet and XRPL EVM Devnet.  
+  - **Wallet Requirements**:  
+    - Automatic XRPL Devnet wallet creation with test XRP.  
+    - MetaMask connection set to XRPL EVM Devnet.  
 
 ---
 
 {% tabs %}
    {% tab label="Testnet" %}
 
-      ## 1. Install MetaMask
+   ## Bridging on Testnet
 
-      Download and [Install MetaMask wallet](./getting-started/install-metamask.md) for your browser.
+   ### 1. Install MetaMask
+   Download and [install MetaMask](./getting-started/install-metamask.md) for your browser.
 
-      ## 2. Install an XRPL Wallet
+   ### 2. Install an XRPL Wallet
+   Choose one of the following XRPL wallets:
 
-      Choose one of the XRPL wallet options below:
+   - **XRPL Snap**  
+      - Install the [XRPL Snap](https://snap.xrplevm.org) for seamless integration with MetaMask.  
+      - Follow the [Quick Start Guide](https://snap-docs.xrplevm.org/getting-started/quick-start) for setup instructions.
+   
+   - **Crossmark**  
+      - Use the [Crossmark](https://crossmark.io) wallet for a browser-first, non-custodial XRPL experience.
 
-      - **XRP Ledger Snap:**  
-      Install the [XRPL Snap](https://snap.xrplevm.org) for integration with MetaMask.  
-      [Quick Start Guide](https://snap-docs.xrplevm.org/getting-started/quick-start)
+   ### 3. Use the Testnet Bridge
 
-      - **Crossmark:**  
-      Use the [Crossmark wallet](https://crossmark.io) for a browser-first, non-custodial XRPL experience.
+   1. **Connect Your Source Chain Wallet**  
+      - Click **Connect**.  
+      - Select your XRPL wallet (either the XRPL Snap or Crossmark).  
+      - Approve the connection request to allow **SquidRouter** to interact with your XRPL wallet.  
+      - Once connected, you’ll see your XRPL address (e.g., `rfLm...bYVY`).
 
-      ## 3. Use the Bridge
+      ![UsingTheBridge](./images/ConnectXRPLWallet1.png)
 
+   2. **Select the Amount to Swap**  
+      - Enter the amount of XRP you want to bridge.  
+      - Ensure you have sufficient testnet XRP to cover transaction fees.
 
-      **Which chain do you intend to swap from?**
+      ![UsingTheBridge](./images/AmountXRPLWallet2.png)
 
-      {% tabs %}
-         {% tab label="XRPL"%}
+   3. **Set the Receiver**  
+      - Click **Add recipient** to specify your XRPL EVM Testnet address.  
+      - Connect your XRPL EVM account using any WalletConnect-compatible wallet **or** paste the XRPL EVM receiver address directly.
 
-            ### From XRPL to XRPL EVM:
+      ![UsingTheBridge](./images/SetRecepientXRPLWallet1.png)
 
-            #### 1. Connect your XRPL Wallet
-            
-            Click on **Connect**
+   4. **Initiate the Swap**  
+      - Click **SWAP** to begin the cross-chain transfer.
 
-            ![UsingTheBridge](./images/ConnectXRPLWallet1.png)
+      ![UsingTheBridge](./images/SwapXRPLWallet.png)
+      - Review and **Approve** the transaction in your XRPL wallet.
 
-            Choose your XRPL Wallet
+      ![UsingTheBridge](./images/SwapApproveXRPLWallet.png)
 
-            ![UsingTheBridge](./images/ConnectXRPLWallet2.png)
-
-            Sign the request to connect your XRPL Wallet with squidrouter.
-
-            ![UsingTheBridge](./images/ConnectXRPLWallet3.png)
-            ![UsingTheBridge](./images/ConnectCrossMarks.png)
-
-            Congratulations, first step completed! As you can see in the image the account `rfLm...bYVY` is now connected.
-
-            ![UsingTheBridge](./images/ConnectXRPLWallet4.png)
-
-            #### 2. Select the amount to swap.
-
-            By hovering the mouse on top of your **Balance** and the **Max** button element you can select all your XRPL available drops. 
-
-            ![UsingTheBridge](./images/AmountXRPLWallet1.png)
-
-            **Type** or **paste** your desired swap amount instead.
-
-            ![UsingTheBridge](./images/AmountXRPLWallet2.png)
-
-            #### 3. Set the receiver:
-
-            Click on **Add recipient** to introduce the XRPL EVM destination address.
-
-            ![UsingTheBridge](./images/SetRecepientXRPLWallet1.png)
-
-            Connect your XRPL EVM account with any Wallet Connect compatible wallet or paste the XRPL EVM receiver address.
-
-            ![UsingTheBridge](./images/SetRecepientXRPLWallet2.png)
-            ![UsingTheBridge](./images/SetRecepientXRPLWallet3.png)
-
-            #### 4. Transfer
-
-            Press **SWAP** to start the cross-chain bridge transfer of **XRP**.
-
-            ![UsingTheBridge](./images/SwapXRPLWallet.png)
-
-            **Review** and **Approve** the transaction request sent to your XRPL Wallet.
-
-            ![UsingTheBridge](./images/SwapApproveXRPLWallet.png)
-            ![UsingTheBridge](./images/ApproveCrossmark.png)
-
-            #### 5. View your XRP on the XRPL EVM Testnet
-
-            [**Add XRPL EVM Testnet**](./getting-started/connect-to-the-xrpl-evm.md#adding-xrpl-evm-to-metamask) Network to MetaMask if you havn't yet.
-
-         {% /tab %}
-
-         {% tab label="XRPL EVM"%}
-
-            #### 1. Connect your XRPL EVM Wallet
-            
-            Click on **Connect**
-
-            ![UsingTheBridge](./images/ConnectXRPLEVMWallet.png)
-
-            Choose your XRPL EVM Wallet
-
-            ![UsingTheBridge](./images/ConnectXRPLEVMWallet1.png)
-
-            Sign the request to connect your wallet with squidrouter.
-
-            ![UsingTheBridge](./images/ConnectXRPLEVMWallet2.png)
-            ![UsingTheBridge](./images/ConnectXRPLEVMWallet3.png)
-
-            Congratulations, first step completed! As you can see in the image the account `0x8ccb...d13D` is now connected.
-
-            ![UsingTheBridge](./images/ConnectXRPLEVMWallet4.png)
-
-            #### 2. Select the amount to swap.
-
-            By hovering the mouse on top of your **Balance** and the **Max** button element you can select all your available XRP. 
-
-            ![UsingTheBridge](./images/AmountXRPLEVMWallet1.png)
-
-            **Type** or **paste** your desired swap amount instead.
-
-            ![UsingTheBridge](./images/AmountXRPLEVMWallet2.png)
-
-            #### 3. Set the receiver:
-
-            Click on **Add recipient** to introduce the XRPL destination address.
-
-            ![UsingTheBridge](./images/SetRecepientXRPLEVMWallet1.png)
-
-            **Connect** your XRPL account with any compatible wallet or **paste** the XRPL receiver address.
-
-            ![UsingTheBridge](./images/SetRecepientXRPLEVMWallet2.png)
-            ![UsingTheBridge](./images/SetRecepientXRPLEVMWallet3.png)
-
-            #### 4. Transfer
-
-            Press **SWAP** to start the cross-chain bridge transfer of **XRP**.
-
-            ![UsingTheBridge](./images/SwapXRPLEVMWallet.png)
-
-            **Review** and **Approve** the transaction request sent to your XRPL Wallet.
-
-            ![UsingTheBridge](./images/SwapApproveXRPLEVMWallet.png)
-
-         
-         {% /tab %}
-      {% /tabs %}
-
+   5. **View Your Assets on the XRPL EVM Testnet**  
+      - Add the [XRPL EVM Testnet network](./getting-started/connect-to-the-xrpl-evm.md#adding-xrpl-evm-to-metamask) to MetaMask if you haven’t already.  
+      - Once the transaction completes, your XRP (or other assets) will be visible in your XRPL EVM Testnet wallet.
 
    {% /tab %}
    {% tab label="Devnet" %}
 
-   ## Axelar Bridge (Devnet)
+   ## Bridging on Devnet
 
-   With the Axelar Bridge, developers and users can:
-
-   - **Obtain test XRP** on XRPL without a dedicated XRPL wallet.  
-   \- You can see the XRPL account’s seed in the browser’s Local Storage (Right-click → Inspect → Application → Local Storage).  
-   - **Bridge tokens** between XRPL and XRPL EVM (Testnet or Devnet) for dApp development and experimentation.  
-   - **Seamlessly move assets** across chains, enabling advanced cross-chain functionality and interoperable applications.
-
-   The Axelar-powered bridge also supports **bidirectional** transfers between the **XRPL Devnet** and the **XRPL EVM Devnet**. Similar to Testnet, XRPL Devnet accounts are self-funded for outgoing transactions, while transfers **from** XRPL EVM **to** XRPL require signing via MetaMask.
+   ### Overview
+   - **Devnet Faucet:** Quickly obtain test XRP on XRPL without using a dedicated XRPL wallet.  
+   - **Bidirectional Transfers:** Move assets between XRPL Devnet and XRPL EVM Devnet.  
+   - **No Dedicated Signature for XRPL Devnet Outgoing Transactions:** XRPL Devnet accounts are automatically self-funded and do not require manual signing for outgoing transactions.
 
    ### Steps to Use the Axelar Bridge (Devnet)
 
    1. **Open the Axelar Bridge**  
-      Visit [https://bridge.xrplevm.org/](https://bridge.xrplevm.org/)
+      - Go to [https://bridge.xrplevm.org/](https://bridge.xrplevm.org).
 
    2. **Set XRPL Devnet as the Source Chain**  
-      - Select **"XRPL Devnet"** as the source chain.
-      - Select **"XRPL EVM Devnet"** as the destination chain.  
-      ![Set XRPL as source chain](./images/usingTheBridgeAxelar1.png)
+      - Select **"XRPL Devnet"** as your source chain.  
+      - Select **"XRPL EVM Devnet"** as your destination chain.  
+      ![UsingTheBridge](./images/usingTheBridgeAxelar1.png)
 
    3. **Select or Fund a Devnet Account**  
-      - If you need test XRP on the XRPL Devnet this acts as a faucet by generating new funded accounts with 100 XRP.
-      ![Select the faucet](./images/usingTheBridgeAxelar2.png)
+      - Click the faucet option if you need test XRP. This creates a new XRPL Devnet account funded with 100 XRP.  
+      ![UsingTheBridge](./images/usingTheBridgeAxelar2.png)
 
    4. **Connect Your Wallets**  
-      - **XRPL Devnet**: No separate XRPL signature is required for outgoing transactions.
-      - **XRPL EVM Wallet**: Connect MetaMask with network set to **XRPL EVM Devnet**.  
+      - **XRPL Devnet**: No separate signature is required for outgoing transactions.  
+      - **XRPL EVM**: Connect MetaMask with the **XRPL EVM Devnet** network already added.  
       ![Connect Wallets](./images/usingTheBridgeAxelar3.png)
 
    5. **Choose a Token and Amount**  
-      - Select **XRP**, IOUs, or an ERC20 token supported on Devnet.
-      - Enter the desired amount to bridge.  
-      ![Choose token and amount](./images/usingTheBridgeAxelar4.png)
+      - Pick XRP, an IOU, or any ERC20 token supported on Devnet.  
+      - Enter the amount you want to bridge.  
+      ![Choose Token and Amount](./images/usingTheBridgeAxelar4.png)
 
    6. **Transfer and Confirm**  
-      - Outgoing from XRPL? No XRPL signature needed. Outgoing from EVM to XRPL? Sign with MetaMask.
-      - Monitor status in the [Axelar Devnet Amplifier Explorer](https://devnet-amplifier.axelarscan.io/).  
-      ![Process bridge transaction](./images/usingTheBridgeAxelar5.png)
+      - **From XRPL to EVM**: No XRPL signature is needed; transactions are automatically funded.  
+      - **From EVM to XRPL**: Sign the transaction using MetaMask.  
+      - Track your transaction status in the [Axelar Devnet Amplifier Explorer](https://devnet-amplifier.axelarscan.io/).  
+      ![Process Transaction](./images/usingTheBridgeAxelar5.png)
 
    7. **Verify the Transaction**  
-      - After completion, a success message appears.
-      - Check the [XRPL EVM Devnet Explorer](https://explorer.xrplevm.org) for transaction details.  
-      ![Transaction executed successfully](./images/usingTheBridgeAxelar6.png)
+      - A success message appears once the transaction completes.  
+      - Check the [XRPL EVM Devnet Explorer](https://explorer.xrplevm.org) for additional transaction details.  
+      ![Transaction Success](./images/usingTheBridgeAxelar6.png)
 
    {% /tab %}
 {% /tabs %}
+
+---
+
+## Summary
+
+By following these steps, you can securely swap assets across XRPL, XRPL EVM, and other Axelar-connected chains in both the **Testnet** and **Devnet** environments. Whether you’re a developer testing dApps or a user exploring cross-chain interoperability, the Axelar Bridge streamlines asset transfers and unlocks new possibilities across the XRPL ecosystem.

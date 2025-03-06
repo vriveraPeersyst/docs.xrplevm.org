@@ -34,6 +34,10 @@ img[alt="Bridge"] {
   height: 25px;
 }
 
+img[alt="UsingTheBridge"] {
+  width: 500px;
+}
+
 .card-variant-filled {
   height: 213px;
 }

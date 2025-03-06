@@ -118,6 +118,11 @@ const payment: Payment = {
         // for Devnet
         MemoData: Buffer.from("xrpl-evm-test-1").toString("hex").toUpperCase(),
       },
+    },{
+      Memo: {
+        MemoData: "00", // keccak256(abi.encode(gmpPayload)), in this example, keccak256(abi.encode(['string'], ['Just transferred XRP to Ethereum!']))
+        MemoType: Buffer.from("gas_fee_amount").toString("hex").toUpperCase(),
+      },
     },
   ],
 };

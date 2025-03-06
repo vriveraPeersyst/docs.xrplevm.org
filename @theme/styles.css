@@ -1,15 +1,15 @@
 [data-component-name="Layout/DocumentationLayout"] {
-  background-image: url("../images/bg-top.png");
-  background-position: left top;
+  background-image: url("../images/bg-lines-left.png");
+  background-position: left center;
   background-repeat: no-repeat;
   background-size: 200px;
 }
 
 [data-component-name="layouts/RootLayout"] {
-  background-image: url("../images/bg-bottom.png");
-  background-position: right bottom;
+  background-image: url("../images/bg-lines-right.png");
+  background-position: right center;
   background-repeat: no-repeat;
-  background-size: 150px;
+  background-size: 200px;
 }
 
 [data-component-name="Footer/Footer"] {
@@ -32,10 +32,6 @@ img[alt="Operators"] {
 }
 img[alt="Bridge"] {
   height: 25px;
-}
-
-img[alt="UsingTheBridge"] {
-  height: 400px;
 }
 
 .card-variant-filled {

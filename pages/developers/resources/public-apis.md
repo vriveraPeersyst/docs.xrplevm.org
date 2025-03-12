@@ -24,6 +24,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 | Type              | URL                                                                                |
 | ----------------- | ---------------------------------------------------------------------------------- |
 | Ethereum JSON RPC | [https://rpc.testnet.xrplevm.org](https://rpc.testnet.xrplevm.org)                 |
+| Grove Ethereum JSON RPC | [https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4](https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4)                 |
 | Ethereum JSON WS  | [https://ws.testnet.xrplevm.org](https://ws.testnet.xrplevm.org)                   |
 | Tendermint RPC    | [http://cosmos.testnet.xrplevm.org:26657](http://cosmos.testnet.xrplevm.org:26657) |
 | Cosmos gRPC       | [http://cosmos.testnet.xrplevm.org:9090](http://cosmos.testnet.xrplevm.org:9090)   |

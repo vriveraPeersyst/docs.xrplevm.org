@@ -106,23 +106,23 @@ The Axelar Bridge connects multiple blockchain networks, enabling secure asset t
    4. **Connect Your Wallets**  
       - **XRPL Devnet**: No separate signature is required for outgoing transactions.  
       - **XRPL EVM**: Connect MetaMask with the **XRPL EVM Devnet** network already added.  
-      ![Connect Wallets](./images/usingTheBridgeAxelar3.png)
+      ![UsingTheBridge](./images/usingTheBridgeAxelar3.png)
 
    5. **Choose a Token and Amount**  
       - Pick XRP, an IOU, or any ERC20 token supported on Devnet.  
       - Enter the amount you want to bridge.  
-      ![Choose Token and Amount](./images/usingTheBridgeAxelar4.png)
+      ![UsingTheBridge](./images/usingTheBridgeAxelar4.png)
 
    6. **Transfer and Confirm**  
       - **From XRPL to EVM**: No XRPL signature is needed; transactions are automatically funded.  
       - **From EVM to XRPL**: Sign the transaction using MetaMask.  
       - Track your transaction status in the [Axelar Devnet Amplifier Explorer](https://devnet-amplifier.axelarscan.io/).  
-      ![Process Transaction](./images/usingTheBridgeAxelar5.png)
+      ![UsingTheBridge](./images/usingTheBridgeAxelar5.png)
 
    7. **Verify the Transaction**  
       - A success message appears once the transaction completes.  
       - Check the [XRPL EVM Devnet Explorer](https://explorer.xrplevm.org) for additional transaction details.  
-      ![Transaction Success](./images/usingTheBridgeAxelar6.png)
+      ![UsingTheBridge](./images/usingTheBridgeAxelar6.png)
 
    {% /tab %}
 {% /tabs %}

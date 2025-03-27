@@ -13,19 +13,19 @@ The XRPL EVM Sidechain enables **Ethereum smart contracts** and **ERC-20 tokens*
 ## Choose Your Path
 
 {% cards columns=2  %}
-{% card title="Users" to="./pages/users" variant="filled" imagePosition="end" image="images/card-pink.svg" %}
+{% card title="Users" to="./pages/users" variant="filled" imagePosition="end" image="images/users-card.svg" %}
 If you are an **end-user** looking to interact with the ecosystem, start here.
 {% /card %}
 
-    {% card title="Developers" to="./pages/developers" variant="filled" imagePosition="end" image="images/card-blue.svg" class="lit" %}
+    {% card title="Developers" to="./pages/developers" variant="filled" imagePosition="end" image="images/developers-card.svg"  %}
     If you are a **developer** looking how to BUIDL.
     {% /card %}
 
-    {% card title="Operators" to="./pages/operators" variant="filled" imagePosition="end" image="images/card-orange.svg" %}
+    {% card title="Operators" to="./pages/operators" variant="filled" imagePosition="end" image="images/operators-card.svg" %}
     For **node operators** and validators maintaining the network.
     {% /card %}
 
-    {% card title="Bridge" to="./pages/bridge" variant="filled" imagePosition="end" image="images/card-green.svg" %}
+    {% card title="Bridge" to="./pages/bridge" variant="filled" imagePosition="end" image="images/bridge-card.svg" %}
     Learn the bridge fundamentals in the XRPL EVM Sidechain.
     {% /card %}
 

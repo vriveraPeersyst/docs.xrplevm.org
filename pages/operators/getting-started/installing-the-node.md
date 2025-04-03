@@ -27,11 +27,11 @@ This method involves downloading precompiled binaries from the repository's late
 
    - **AMD64:**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v6.0.0/node_6.0.0_Linux_amd64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_amd64.tar.gz
      ```
    - **ARM64:**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v6.0.0/node_6.0.0_Linux_arm64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_arm64.tar.gz
      ```
    {% /tab %}
 
@@ -40,11 +40,11 @@ This method involves downloading precompiled binaries from the repository's late
 
    - **Intel (x86_64):**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v6.0.0/node_6.0.0_Darwin_amd64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_amd64.tar.gz
      ```
    - **Apple Silicon (ARM64):**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v6.0.0/node_6.0.0_Darwin_arm64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_arm64.tar.gz
      ```
    {% /tab %}
    
@@ -56,7 +56,7 @@ This method involves downloading precompiled binaries from the repository's late
    - **Download using curl:**  
      Open PowerShell and run:
      ```powershell
-     curl -LO https://github.com/xrplevm/node/releases/download/v6.0.0/node_6.0.0_Windows_amd64.zip
+     curl -LO https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Windows_amd64.zip
      ```
    {% /tab %}
    {% /tabs %}

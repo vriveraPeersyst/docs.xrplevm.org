@@ -1,4 +1,4 @@
-# Welcome 💻
+# Developers 💻
 
 Welcome! These pages will guide you through building on the **XRPL EVM**, from writing your first smart contract to creating cross-chain applications that tap into the broader Cosmos and Axelar ecosystems. Whether you’re a newcomer to blockchain development or an experienced Solidity engineer, you’ll find everything you need right here.
 

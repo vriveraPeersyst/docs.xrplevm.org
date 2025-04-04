@@ -1,4 +1,4 @@
-# Welcome 👋
+# Users 👋
 
 [Start now! Get test XRP and add network.](https://faucet.xrplevm.org) 🚀
 

@@ -8,9 +8,9 @@ To explore and interact with the **XRPL EVM sidechain**, you need test XRP (`XRP
 ## Testnet Faucets
 
 1. **[XRPL EVM Faucet](https://faucet.xrplevm.org)**
-   - This website supports both **Testnet** and **Devnet** (choose the correct environment in the faucet’s interface).
+   - [This](https://faucet.xrplevm.org) website supports both **Testnet** and **Devnet** .
    - Paste your **0x** (EVM) address or connect MetaMask.
-   - If you don’t have MetaMask installed or the Testnet network configured, the faucet will guide you.
+   - If you don’t have [MetaMask installed](./getting-started/install-metamask.md) or the Testnet network configured, the faucet will guide you.
    - You can claim up to **90 XRP** per request.
 
 2. **[Enigma Validator’s Faucet](https://enigma-validator.com/)**
@@ -47,7 +47,7 @@ Once your XRPL Testnet account is funded, follow the [bridge instructions](./usi
 ## Bridging on Devnet (Axelar Bridge Overview)
 
 1. **Open the Axelar Bridge**  
-   - [https://bridge.xrplevm.org/](https://bridge.xrplevm.org)
+   - [https://bridge.devnet.xrplevm.org/](https://bridge.devnet.xrplevm.org)
 
 2. **Set Source & Destination**  
    - **Source:** XRPL Devnet  
@@ -66,10 +66,10 @@ Once your XRPL Testnet account is funded, follow the [bridge instructions](./usi
 6. **Confirm & Transfer**  
    - **XRPL → EVM:** No signature required on XRPL side.  
    - **EVM → XRPL:** You’ll sign in MetaMask.  
-   - Track status on the [Axelar Devnet Amplifier Explorer](https://devnet-amplifier.axelarscan.io/).
+   - Track status on the [Axelar Devnet Amplifier Explorer](https://devnet-amplifier.axelarscan.io/gmp/search).
 
 7. **Verify Balance**  
-   - Check the [XRPL EVM Devnet Explorer](https://explorer.xrplevm.org) once the transfer completes.
+   - Check the [XRPL EVM Devnet Explorer](https://explorer.devnet.xrplevm.org) once the transfer completes.
 
 {% /tab %}
 {% /tabs %}

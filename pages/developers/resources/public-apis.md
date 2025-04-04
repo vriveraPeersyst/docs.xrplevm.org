@@ -92,6 +92,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Mekong Labs**           | [http://exrpd-testnet-snapshots.mekonglabs.tech/](http://exrpd-testnet-snapshots.mekonglabs.tech/)              |
         | **MictoNode**             | [https://services.mictonode.com/xrpl-evm/snapshot](https://services.mictonode.com/xrpl-evm/snapshot)            |
         | **UTSA (lesnik)**         | [https://utsa.gitbook.io/services/testnet/xrpl-evm/snapshots](https://utsa.gitbook.io/services/testnet/xrpl-evm/snapshots) |
+        | **Node9x**                | [https://service.node9x.com/testnet/xrpl-evm/service-and-snapshot]                                                         |
         {% /tab %}
 
         {% tab label="Documentation / Guide" %}

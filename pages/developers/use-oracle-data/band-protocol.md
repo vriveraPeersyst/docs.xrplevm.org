@@ -8,7 +8,9 @@
 | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Testnet | [0x8c064bCf7C0DA3B3b090BAbFE8f3323534D84d68](https://explorer.testnet.xrplevm.org/address/0x8c064bCf7C0DA3B3b090BAbFE8f3323534D84d68?tab=contract) |
 
-\*Mainnet address will be listed when available.
+{% admonition type="info" name="Note" %}
+Mainnet address will be listed when available.
+{% /admonition %}
 
 ### How to Use Band Oracle in Your Smart Contracts
 

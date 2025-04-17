@@ -31,6 +31,7 @@ Block explorers are web-based tools that allow you to search, analyze, and view 
 | **XSS**             | [https://explorer.xsslabs.tech/XRPL-EVM](https://explorer.xsslabs.tech/XRPL-EVM)                             | Cosmos |
 | **blockitize**      | [https://explorer.blockitize.com/](https://explorer.blockitize.com/)                                         | Cosmos |
 | **node9x**          | [https://explorer.node9x.com/XRLP](https://explorer.node9x.com/XRPLEVM)                                      | Cosmos |
+| **NodeStake**       | [https://explorer.nodestake.org/xrp-testnet](https://explorer.nodestake.org/xrp-testnet)                     | Cosmos |
 | **Nodes Hub**       | [https://testnet.explorer.nodeshub.online/xrpl](https://testnet.explorer.nodeshub.online/xrpl)               | Cosmos |
 
 {% /tab %}

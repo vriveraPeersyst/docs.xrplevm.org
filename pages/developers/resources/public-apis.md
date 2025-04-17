@@ -64,6 +64,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **LuckyStar**             | [https://xrpl-testnet-grpc.luckystar.asia/](https://xrpl-testnet-grpc.luckystar.asia/)   |
         | **Mekong Labs**           | `exrpd-testnet-grpc.mekonglabs.tech:47090`                                               |
         | **MictoNode**             | `xrpl-testnet-grpc.mictonode.com:22090`                                                  |
+        | **NodeStake**             | [https://grpc-t.xrp.nodestake.org:443](https://grpc-t.xrp.nodestake.org:443)                           |
         | **UTSA (lesnik)**         | `t-xrpl.grpc.utsa.tech:433`                                                              |
         | **blockitize**            | [http://xrplevm-testnet-grpc.blockitize.com/](http://xrplevm-testnet-grpc.blockitize.com/) |
         | **p10node**               | `grpc.testnet.xrplevm.p10node.com`<br>`grpc-web.testnet.xrplevm.p10node.com`              |
@@ -75,6 +76,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | ------------------------- | ---------------------------------------------------------------------------------------------------- |
         | **Peersyst**              | [http://cosmos.testnet.xrplevm.org:26657](http://cosmos.testnet.xrplevm.org:26657)                   |
         | **Grove**                 | [https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4](https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4) |
+        | **NodeStake**             | [https://evmrpc-t.xrp.nodestake.org](https://evmrpc-t.xrp.nodestake.org)                             |
         {% /tab %}
 
         {% tab label="Snapshot / Genesis" %}
@@ -92,7 +94,8 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Mekong Labs**           | [http://exrpd-testnet-snapshots.mekonglabs.tech/](http://exrpd-testnet-snapshots.mekonglabs.tech/)              |
         | **MictoNode**             | [https://services.mictonode.com/xrpl-evm/snapshot](https://services.mictonode.com/xrpl-evm/snapshot)            |
         | **UTSA (lesnik)**         | [https://utsa.gitbook.io/services/testnet/xrpl-evm/snapshots](https://utsa.gitbook.io/services/testnet/xrpl-evm/snapshots) |
-        | **Node9x**                | [https://service.node9x.com/testnet/xrpl-evm/service-and-snapshot]                                                         |
+        | **Node9x**                | [https://service.node9x.com/testnet/xrpl-evm/service-and-snapshot](https://service.node9x.com/testnet/xrpl-evm/service-and-snapshot) |
+        | **NodeStake**             | [https://nodestake.org/xrp](https://nodestake.org/xrp) |
         {% /tab %}
 
         {% tab label="Documentation / Guide" %}
@@ -112,6 +115,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **blockitize**            | [Node documentation](https://services.blockitize.com/?project=xrpl-evm) |
         | **node9x**                | [https://service.node9x.com/testnet/xrpl-evm](https://service.node9x.com/testnet/xrpl-evm) |
         | **Imperator.co**          | [https://www.imperator.co/services/chain-services/testnets/xrp](https://www.imperator.co/services/chain-services/testnets/xrp) |
+        | **NodeStake**             | [https://nodestake.org/xrp](https://nodestake.org/xrp)                           |
         {% /tab %}
 
         {% tab label="Other / Monitoring & Tools" %}

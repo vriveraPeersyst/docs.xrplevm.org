@@ -25,8 +25,6 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **blockitize**              | [https://explorer.blockitize.com/](https://explorer.blockitize.com/)                               |
         | **node9x**                  | [https://explorer.node9x.com/XRLP](https://explorer.node9x.com/XRLP)                               |
         | **Nodes Hub**               | [https://testnet.explorer.nodeshub.online/xrpl](https://testnet.explorer.nodeshub.online/xrpl)                               |
-        | **NodeStake**               | [https://explorer.nodestake.org/xrplevm](https://explorer.nodestake.org/xrp-testnet)               |
-
         
         {% /tab %}
 

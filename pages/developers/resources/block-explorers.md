@@ -22,6 +22,7 @@ Block explorers are web-based tools that allow you to search, analyze, and view 
 | ------------------- | -------------------------------------------------------------------------------- | ------ |
 | EVM Explorer        | [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)     | EVM    |
 | Governance Explorer | [https://governance.testnet.xrplevm.org](https://governance.testnet.xrplevm.org) | Cosmos |
+| NodeStake Explorer  | [https://explorer.nodestake.org/xrp-testnet](https://explorer.nodestake.org/xrp-testnet) | Cosmos |
 
 {% /tab %}
 {% /tabs %}

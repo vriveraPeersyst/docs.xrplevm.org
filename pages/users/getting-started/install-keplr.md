@@ -119,10 +119,6 @@ This process will demonstrate how to leverage IBC for cross-chain transactions, 
 
 - **[Sending XRP Through IBC](../sending-through-ibc.md)**: Learn how to transfer XRP from the XRPL EVM Sidechain to other Cosmos-based testnets using Keplr.
 
----
-
-By following this next guide, you'll gain practical experience with IBC transfers, further enhancing your understanding of cross-chain interoperability within the Cosmos ecosystem.
-
 --- 
 
 

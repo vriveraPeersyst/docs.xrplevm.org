@@ -54,7 +54,8 @@ footer:
           external: true
     - label: © 2013 - 2025 Ripple, All Rights Reserved.
 search:
-  hide: false
+  ai:
+    hide: true
 analytics:
   ga:
     trackingId: G-S1KBMRJYKS

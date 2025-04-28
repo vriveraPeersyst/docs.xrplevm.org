@@ -127,4 +127,4 @@ This process will demonstrate how to leverage IBC for cross-chain transactions, 
 - **Keplr Security Tips**:
   - Always back up your mnemonic phrase in a secure location.
   - Be cautious when interacting with unknown websites or dApps.
-  - Regularly check your connected sites in Keplr and revoke access when not in use.
+  - Regularly check your connected sites in Keplr and revoke access when not in use.

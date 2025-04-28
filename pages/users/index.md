@@ -21,10 +21,12 @@ Dive into detailed guides, tutorials, and tools that will empower you to take fu
 - [Intro to the XRPL EVM](./getting-started/introduction.md)  
 - [Install MetaMask](./getting-started/install-metamask.md)  
 - [Connect MetaMask to the XRPL EVM](./getting-started/connect-to-the-xrpl-evm.md)  
+- [Install Keplr (Cosmos Wallet) & add XRPL EVM](./getting-started/install-keplr.md)  
 
 ## 🚧 Usage
 
 - [Using the Bridge](./using-the-bridge.md)  
+- [Sending XRP through IBC](./sending-through-ibc.md)  
 - [Faucet](./faucet.md)  
 
 ---

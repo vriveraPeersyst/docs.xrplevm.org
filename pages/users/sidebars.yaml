@@ -11,7 +11,9 @@
     - page: ./getting-started/introduction.md
     - page: ./getting-started/install-metamask.md
     - page: ./getting-started/connect-to-the-xrpl-evm.md
+    - page: ./getting-started/install-keplr.md
 - page: ./using-the-bridge.md
+- page: ./sending-through-ibc.md
 - page: ./faucet.md
 - group: Tools
   expanded: false

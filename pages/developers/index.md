@@ -57,6 +57,19 @@ Below is a quick overview of all the available guides and resources in the devel
 
 ---
 
+## Use Oracle Data
+
+1. **[Overview of Oracles](./use-oracle-data/band-protocol.md)**  
+   Learn what blockchain oracles are, why they’re essential for smart contracts, and the role they play in fetching off-chain data securely.
+
+2. **[Integrate Band Protocol Oracle](./use-oracle-data/band-protocol.md)**  
+   Step-by-step guide to deploying and interacting with Band Protocol’s StdReferenceProxy contract on the XRPL EVM sidechain.
+
+3. **[Query Available Price Feeds](./use-oracle-data/band-protocol.md)**  
+   Discover which asset price feeds (XRP, BTC, ETH, and more) are supported and how to fetch real-time data within your Solidity contracts.
+
+---
+
 ## Developer Resources
 
 1. **[Block Explorers](./resources/block-explorers.md)**  
@@ -70,8 +83,9 @@ Below is a quick overview of all the available guides and resources in the devel
 ## Getting Started & Next Steps
 
 - If you’re new to XRPL EVM, you might want to start by writing a simple Solidity contract, deploying it, and then verifying it. You can then expand your skillset by exploring cross-chain features or diving into the Cosmos SDK.
-- For more advanced developers, check out the **Advanced Guides** and **Interacting with Cosmos** sections for extended interoperability and on-chain logic.  
+- For more advanced developers, check out the **Advanced Guides** and **Interacting with Cosmos** sections for extended interoperability and on-chain logic.
 
 The XRPL EVM community is always growing. Join us on [Discord](https://discord.gg/xrplevm) or [GitHub](https://github.com/xrplevm) to share what you build, ask questions, and stay up to date on new features and improvements.
 
 We’re excited to see what you’ll create on the XRPL EVM. Happy building!
+

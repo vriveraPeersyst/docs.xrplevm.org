@@ -8,14 +8,30 @@ To access the full functionality of the **XRPL Ethereum Virtual Machine (EVM)**,
 
 ### Create a Wallet
 
-To interact with the XRPL EVM, you need a compatible Ethereum wallet such as **MetaMask**. This wallet will serve as your gateway to manage accounts, sign transactions, and deploy smart contracts on the XRPL EVM.
+To interact with the XRPL EVM, you need a compatible Ethereum wallet such as **MetaMask** or **Keplr**. This wallet will serve as your gateway to manage accounts, sign transactions, and deploy smart contracts on the XRPL EVM.
 
 - Learn how to [Install MetaMask](./install-metamask.md).
 - Connect your wallet to the XRPL EVM by following the [Connect MetaMask to the XRPL EVM](./connect-to-the-xrpl-evm.md) guide.
 
+- Learn how to [Install Keplr](./install-keplr.md) and add the XRPL EVM Network to your wallet.
+
 ---
 
 {% tabs %}
+{% tab label="Mainnet" %}
+
+### Obtain XRP for Transaction Fees
+
+Every action on the XRPL EVM, such as deploying smart contracts or transferring tokens, requires a small amount of **XRP** to cover transaction fees. Currently there is no OnRamp directly to the XRPL EVM, so you will have to get XRPL Mainnet XRP, from an exchange or an OnRamp and then bridge to the XRPL EVM.
+
+1. **OnRamp XRP from the XRPL MetaMask Snap**:  
+   The XRPL MetaMask Snap has a built in OnRamp with [transak.com](https://transak.com/)
+   _(Visit the snap: [XRPL MetaMask Snap](https://snap.xrplevm.org))_
+
+2. **Bridge XRP from the XRP Ledger**:  
+    Transfer XRP from the XRP Ledger to the XRPL EVM using the **Bridge**.  
+    _(Read more: [Using the Bridge](../using-the-bridge.md))_
+{% /tab %}
 {% tab label="Testnet" %}
 
 ### Obtain XRP for Transaction Fees

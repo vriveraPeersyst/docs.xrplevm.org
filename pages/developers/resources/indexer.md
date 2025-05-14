@@ -1,8 +1,3 @@
----
-title: Indexer
-sidebar_position: 3
----
-
 # Indexing XRPL EVM with Goldsky
 
 Goldsky provides high-performance subgraphs for querying onchain data from XRPL EVM. Subgraphs allow developers to efficiently access indexed blockchain data via GraphQL endpoints, optimized for speed, scale, and ease of use.

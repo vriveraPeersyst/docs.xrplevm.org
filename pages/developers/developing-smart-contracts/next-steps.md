@@ -81,27 +81,31 @@ npm install
 
 #### 4. Add XRPL EVM Network Configuration
 
-Below, we show two tabs for **Devnet** and **Testnet**. Select the appropriate tab for the network you plan to support. In each code block, update the chain ID, RPC URL, and block explorer for your environment.
+Select the appropriate tab for the network you plan to support. In each code block, update the chain ID, RPC URL, and block explorer for your environment.
 
 {% tabs %}
-{% tab label="Devnet" %}
+
+{% tab label="Mainnet" %}
 
 ```typescript
 import { defineChain, type Chain } from "viem";
 
-export const xrplEvmChainDevnet = defineChain({
-  id: 1440002,
-  name: "XRPL EVM Devnet",
+export const xrplEvmChain = defineChain({
+  id: 1440000,
+  name: "XRPL EVM",
   nativeCurrency: {
     name: "XRP",
     symbol: "XRP",
     decimals: 18,
   },
   rpcUrls: {
-    default: { http: ["https://rpc.devnet.xrplevm.org"] },
+    default: { http: ["https://rpc.xrplevm.org"] },
   },
   blockExplorers: {
-    default: { name: "Blockscout", url: "https://explorer.devnet.xrplevm.org" },
+    default: {
+      name: "Blockscout",
+      url: "https://explorer.xrplevm.org",
+    },
   },
 } as const satisfies Chain);
 ```
@@ -134,6 +138,31 @@ export const xrplEvmChainTestnet = defineChain({
 ```
 
 {% /tab %}
+
+{% tab label="Devnet" %}
+
+```typescript
+import { defineChain, type Chain } from "viem";
+
+export const xrplEvmChainDevnet = defineChain({
+  id: 1440002,
+  name: "XRPL EVM Devnet",
+  nativeCurrency: {
+    name: "XRP",
+    symbol: "XRP",
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: { http: ["https://rpc.devnet.xrplevm.org"] },
+  },
+  blockExplorers: {
+    default: { name: "Blockscout", url: "https://explorer.devnet.xrplevm.org" },
+  },
+} as const satisfies Chain);
+```
+
+{% /tab %}
+
 {% /tabs %}
 
 #### 5. Run the Development Server

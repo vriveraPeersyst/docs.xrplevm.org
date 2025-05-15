@@ -4,9 +4,21 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 
 {% tabs %}
 
-{% tab label="Testnet" %}
+{% tab label="Mainnet" %}
 
-    
+## Mainnet Public APIs
+
+| Type              | URL                                                                       |
+| ----------------- | ------------------------------------------------------------------------- |
+| Ethereum JSON RPC | [https://rpc.xrplevm.org](https://rpc.xrplevm.org)                        |
+| Ethereum JSON WS  | [https://ws.xrplevm.org](https://ws.xrplevm.org)                          |
+| Tendermint RPC    | [http://cosmos.xrplevm.org:26657](http://cosmos.xrplevm.org:26657)        |
+| Cosmos gRPC       | [http://cosmos.xrplevm.org:9090](http://cosmos.xrplevm.org:9090)          |
+| Cosmos API        | [http://cosmos.xrplevm.org:1317](http://cosmos.xrplevm.org:1317)          |
+
+{% /tab %}
+
+{% tab label="Testnet" %}
 
     {% tabs %}
 

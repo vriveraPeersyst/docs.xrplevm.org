@@ -174,135 +174,58 @@ go version
    The compiled binaries will be available in the `build` directory.
 
 ---
+Here’s the updated **Method 3: Using Docker** guide—tested on Linux, macOS & Windows—with **v6.0.0** and the correct `--entrypoint` override so that `exrpd start` actually runs:
 
+---
 ## Method 3: Using Docker
 
-A containerized approach ensures that the node runs in a consistent environment, avoiding dependency issues. This method is highly recommended if you prefer a ready-to-run environment.
+A containerized approach ensures a consistent environment and avoids host-dependency issues. With version **v6.0.0**, you only need **two** Docker commands:
 
-**Important:** If the Docker image you’re using does not match the genesis file, which will not unless you are using the first docker image: [peersyst/xrp-evm-blockchain:latest](https://hub.docker.com/layers/peersyst/exrp/latest/images/sha256-dd77f81a2f8e349349fcd1266c465c77e580681764f0abbdd052bd4f4360c24e), you must start the container in interactive mode first to complete the setup steps. This interactive session lets you run the [join-the-xrplevm](join-the-xrplevm.md) instructions (such as `exrpd init`, downloading the correct genesis file, configuring persistent peers, adding keys and syncing) within the container. Once setup is complete, you can restart the node in detached mode.
+---
 
-### Pre-requisites
+### Prerequisites
 
-- [Docker 19+ installed](https://docs.docker.com/engine/install/).
+* Docker 19+ installed on your host.
+* Run as root (or via sudo) so that `/root/.exrpd` is writable.
 
-### Steps to Run the Node via Docker
+---
 
-{% tabs %}
-{% tab label="Linux" %}
+### 1. Interactive setup (one-time)
 
-1. **Pull the Docker Image:**
+Launch a shell in the container, mounting your host’s config directory. Inside, run **all** of the “Join the XRPL EVM” commands (chain-ID, keygen, init, genesis download, seed configuration, etc.) as per the Testnet (or Devnet) guide—then exit when done.
 
-   ```bash
-   docker pull peersyst/exrp:latest
-   ```
-
-2. **Interactive Setup (if using an image that doesn’t match the genesis):**  
-   If the image you pulled isn’t the one that was used to generate the genesis (for example, if you’re using an image with a newer version), you need to set up the node configuration interactively. This allows you to run the necessary join-the-xrplevm steps inside the container. For example:
-   ```bash
-   docker run -it --name xrplevm-setup \
-     -v /home/xrplevmuser/.exrpd:/root/.exrpd \
-     -e DAEMON_NAME=exrpd \
-     -e DAEMON_HOME=/root/.exrpd \
-     peersyst/exrp:latest /bin/sh
-   ```
-   Complete the [join-the-xrplevm](join-the-xrplevm.md) steps (initialization, genesis file download, peer configuration, add keys and sync) inside the shell and then exit.
-
-3. **Run the Docker Container in Detached Mode:**  
-   Once the configuration is complete, you can start the container as a background service:
-   ```bash
-   docker run -d --name xrplevm-node \
-     -v /home/xrplevmuser/.exrpd:/root/.exrpd \
-     -e DAEMON_NAME=exrpd \
-     -e DAEMON_HOME=/root/.exrpd \
-     peersyst/exrp:latest
-   ```
-
-4. **Verify the Container:**  
-   Run:
-   ```bash
-   docker ps -a
-   ```
-   to ensure your container is running.
-
-{% /tab %}
-{% tab label="macOS" %}
-
-1. **Pull the Docker Image:**
-
-   ```bash
-   docker pull peersyst/exrp:latest
-   ```
-
-2. **Interactive Setup (if required):**  
-   Replace `<your-username>` with your macOS username:
-   ```bash
-   docker run -it --name xrplevm-setup \
-     -v /Users/<your-username>/.exrpd:/root/.exrpd \
-     -e DAEMON_NAME=exrpd \
-     -e DAEMON_HOME=/root/.exrpd \
-     peersyst/exrp:latest /bin/sh
-   ```
-   Complete the [join-the-xrplevm](join-the-xrplevm.md) steps (initialization, genesis file download, peer configuration, add keys and sync) inside the shell and then exit.
-
-3. **Run the Docker Container in Detached Mode:**
-   ```bash
-   docker run -d --name xrplevm-node \
-     -v /Users/<your-username>/.exrpd:/root/.exrpd \
-     -e DAEMON_NAME=exrpd \
-     -e DAEMON_HOME=/root/.exrpd \
-     peersyst/exrp:latest
-   ```
-   4. **Verify the Container:**  
-   Run:
-   ```bash
-   docker ps -a
-   ```
-   to ensure your container is running.
-
-{% /tab %}
-{% tab label="Windows" %}
-
-1. **Pull the Docker Image (via Docker Desktop):**
-
-   ```powershell
-   docker pull peersyst/exrp:latest
-   ```
-
-2. **Interactive Setup (if required):**  
-   Replace `<your-username>` with your Windows username:
-   ```powershell
-   docker run -it --name xrplevm-setup `
-     -v C:\Users\<your-username>\.exrpd:/root/.exrpd `
-     -e DAEMON_NAME=exrpd `
-     -e DAEMON_HOME=/root/.exrpd `
-     peersyst/exrp:latest /bin/sh
-   ```
-   Complete the [join-the-xrplevm](join-the-xrplevm.md) steps (initialization, genesis file download, peer configuration, add keys and sync) inside the shell and then exit.
-
-3. **Run the Docker Container in Detached Mode:**
-   ```powershell
-   docker run -d --name xrplevm-node `
-     -v C:\Users\<your-username>\.exrpd:/root/.exrpd `
-     -e DAEMON_NAME=exrpd `
-     -e DAEMON_HOME=/root/.exrpd `
-     peersyst/exrp:latest
-   ```
-   4. **Verify the Container:**  
-   Run:
-   ```bash
-   docker ps -a
-   ```
-   to ensure your container is running.
-
-{% /tab %}
-{% /tabs %}
-
-> **Note:**  
-> If you’re using a Docker image that isn’t the first one matching the genesis state (for example, an image that differs from the one used to generate the genesis file), you must run the container in interactive mode to complete the initial setup. Follow the join-the-xrplevm steps inside that session, then restart the node container in detached mode.
-
-Finally, verify that your container is running using:
 ```bash
-docker ps -a
+docker run -it --name xrplevm-setup \
+  -v /root/.exrpd:/root/.exrpd \
+  peersyst/exrp:v6.0.0 \
+  /bin/sh
+```
+
+*(Inside that shell, complete the join-the-xrplevm steps from the docs, then `exit`.)*
+
+---
+
+### 2. Detached, auto-restarting run
+
+Now start your fully-configured node in the background. The `--entrypoint` override ensures that `exrpd start` actually runs:
+
+```bash
+docker run -d \
+  --restart unless-stopped \
+  --name xrplevm-node \
+  -v /root/.exrpd:/root/.exrpd \
+  --entrypoint exrpd \
+  peersyst/exrp:v6.0.0 \
+  start
 ```
 
 ---
+
+### Verification
+
+```bash
+docker ps | grep xrplevm-node
+docker logs -f xrplevm-node
+```
+
+You should see your node’s Tendermint/exrpd startup logs and syncing progress.

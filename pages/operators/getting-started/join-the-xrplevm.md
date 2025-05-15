@@ -69,12 +69,6 @@ wget https://evm-sidechain-snapshots-devnet.s3.amazonaws.com/exrpd.tar.lz4
 tar -xI lz4 -f exrpd.tar.lz4
 ```
 
-### 7. Start the Node
-
-```bash
-exrpd start
-```
-
 Watch the logs to ensure your node syncs with the Devnet. If everything is correct, you should see blocks being processed.
 
 {% /tab %}
@@ -158,20 +152,31 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"$PEERS\"/" ~/.exrpd/config/config.toml
 cat ~/.exrpd/config/config.toml | grep seeds
 ```
 
-### 8. Initialize the Node with Final Genesis
-
-Initialize the node.
-
-```bash
-exrpd start
-```
-
-### 9. Testnet Start
-
-Monitor the node status to ensure it syncs with the network. Once it connects to the majority of validators, the network starts producing blocks.
-
 {% /tab %}
 {% /tabs %}
+
+### Start the Node
+
+Once your configuration is complete, start the node using your preferred process manager (e.g., systemd, Docker Compose, or another init system) as outlined in the [Installing the Node](./installing-the-node.md) guide. This ensures the node will run continuously and restart on failure:
+
+```sh
+# Example using systemd:
+systemctl enable exrpd
+systemctl start exrpd
+
+# Or, using Docker Compose:
+docker-compose up -d xrplevm-node
+````
+
+Monitor the logs to verify syncing:
+
+```sh
+journalctl -u exrpd -f      # systemd
+# or
+docker logs -f xrplevm-node # Docker
+```
+
+Once it connects to the majority of validators, blocks will start streaming in and your node will produce data.
 
 ### Sync the Node
 

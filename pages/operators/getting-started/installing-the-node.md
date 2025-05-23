@@ -230,7 +230,9 @@ docker logs -f xrplevm-node
 
 You should see your node’s Tendermint/exrpd startup logs and syncing progress.
 
-To upgrade your running XRPL-EVm node from v6.0.0 to v7.0.0 in Docker, you just need to pull the new image, stop & remove the old container, and re-run it with the same volume mount. Here’s a concise step‐by‐step:
+### Upgrade the node
+
+To upgrade your running XRPL EVM node from v6.0.0 to v7.0.0 in Docker, you just need to pull the new image, stop & remove the old container, and re-run it with the same volume mount. Here’s a concise step‐by‐step:
 
 1. **Pull the v7.0.0 image**
 
@@ -293,7 +295,7 @@ docker-compose pull xrplevm-node
 docker-compose up -d xrplevm-node
 ```
 
-That’s it—your node will now run v7.0.0 and continue syncing from height 547100 onward. Let me know if you hit any other errors!
+That’s it—your node will now run v7.0.0 and continue syncing from height 547100 onward.
 
 Do the same with v8.0.0 and future versions.
 

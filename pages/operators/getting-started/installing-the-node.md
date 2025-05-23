@@ -229,3 +229,71 @@ docker logs -f xrplevm-node
 ```
 
 You should see your node’s Tendermint/exrpd startup logs and syncing progress.
+
+To upgrade your running XRPL-EVm node from v6.0.0 to v7.0.0 in Docker, you just need to pull the new image, stop & remove the old container, and re-run it with the same volume mount. Here’s a concise step‐by‐step:
+
+1. **Pull the v7.0.0 image**
+
+   ```bash
+   docker pull peersyst/exrp:v7.0.0
+   ```
+
+2. **Stop and remove your old container**
+
+   ```bash
+   docker stop xrplevm-node
+   docker rm xrplevm-node
+   ```
+
+3. **Run the container with the new tag**
+
+   ```bash
+   docker run -d \
+     --restart unless-stopped \
+     --name xrplevm-node \
+     -v /root/.exrpd:/root/.exrpd \
+     --entrypoint exrpd \
+     peersyst/exrp:v7.0.0 \
+     start
+   ```
+
+   * You’re re-using the same `/root/.exrpd` data directory, so your ledger state stays intact.
+   * The `--entrypoint exrpd … start` invocation is exactly the same as before, just pointing to the new image.
+
+4. **Verify it’s running and has upgraded**
+
+   ```bash
+   docker logs -f --tail 50 xrplevm-node
+   ```
+
+   You should no longer see the `UPGRADE "v7.0.0" NEEDED at height` error and your node will proceed to sync/replay under the new binary.
+
+---
+
+### If you’re using Docker Compose
+
+If you prefer `docker-compose.yml`, just change the image tag and do a `docker-compose up -d`:
+
+```yaml
+version: '3.8'
+services:
+  xrplevm-node:
+    image: peersyst/exrp:v7.0.0
+    container_name: xrplevm-node
+    entrypoint: ["exrpd", "start"]
+    restart: unless-stopped
+    volumes:
+      - /root/.exrpd:/root/.exrpd
+```
+
+Then:
+
+```bash
+docker-compose pull xrplevm-node
+docker-compose up -d xrplevm-node
+```
+
+That’s it—your node will now run v7.0.0 and continue syncing from height 547100 onward. Let me know if you hit any other errors!
+
+Do the same with v8.0.0 and future versions.
+

@@ -12,12 +12,30 @@
     - page: ./getting-started/install-metamask.md
     - page: ./getting-started/connect-to-the-xrpl-evm.md
     - page: ./getting-started/install-keplr.md
+- group: Using the bridge
+  expanded: true
+  items:
+    - page: ./using-the-bridge/transfer-xrp-with-axelar.md
+    - page: ./using-the-bridge/transfer-iou-with-axelar.md
+    - page: ./using-the-bridge/transfer-erc20-with-axelar.md
 - page: ./using-the-bridge.md
 - page: ./sending-through-ibc.md
 - page: ./faucet.md
 - group: Tools
   expanded: false
   items:
+   - group: Mainnet
+     expanded: false
+     items:
+      - href: https://explorer.xrplevm.org
+        label: Explorer
+        external: true
+      - href: https://governance.xrplevm.org
+        label: Governance Explorer
+        external: true
+      - href: https://explorer.xrplevm.org/apps
+        label: dApps Explorer
+        external: true
    - group: Testnet
      expanded: false
      items:
@@ -27,6 +45,9 @@
       - href: https://governance.testnet.xrplevm.org
         label: Governance Explorer
         external: true
+      - href: https://explorer.testnet.xrplevm.org/apps
+        label: dApps Explorer
+        external: true
    - group: Devnet
      expanded: false
      items:
@@ -35,6 +56,9 @@
         external: true
       - href: https://governance.devnet.xrplevm.org
         label: Governance Explorer
+        external: true
+      - href: https://explorer.devnet.xrplevm.org/apps
+        label: dApps Explorer
         external: true
       - href: https://safe.devnet.xrplevm.org
         label: Gnosis Safe

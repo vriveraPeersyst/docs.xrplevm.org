@@ -20,18 +20,6 @@ To interact with the XRPL EVM, you need a compatible Ethereum wallet such as **M
 ### Obtain XRP for Transaction Fees
 
 {% tabs %}
-{% tab label="Mainnet" %}
-
-Every action on the XRPL EVM, such as deploying smart contracts or transferring tokens, requires a small amount of **XRP** to cover transaction fees. Currently there is no OnRamp directly to the XRPL EVM, so you will have to get XRPL Mainnet XRP, from an exchange or an OnRamp and then bridge to the XRPL EVM.
-
-1. **OnRamp XRP from the XRPL MetaMask Snap**:  
-   The XRPL MetaMask Snap has a built in OnRamp with [transak.com](https://transak.com/)
-   _(Visit the snap: [XRPL MetaMask Snap](https://snap.xrplevm.org))_
-
-2. **Bridge XRP from the XRP Ledger**:  
-    Transfer XRP from the XRP Ledger to the XRPL EVM using the **Bridge**.  
-    _(Read more: [Using the Bridge](../using-the-bridge.md))_
-{% /tab %}
 {% tab label="Testnet" %}
 
 Every action on the XRPL EVM, such as deploying smart contracts or transferring tokens, requires a small amount of **XRP** to cover transaction fees. There are two ways to get XRP for the **XRPL EVM Testnet**:

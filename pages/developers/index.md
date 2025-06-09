@@ -70,6 +70,13 @@ Below is a quick overview of all the available guides and resources in the devel
 
 ---
 
+## Indexing On-Chain Data
+
+1. **[Indexing XRPL EVM with Goldsky](./indexing-xrpl-evm-with-goldsky.md)**
+   Learn how to build high-performance subgraphs to index smart contract events, token data, and custom app logic using Goldsky's hosted GraphQL infrastructure. Merge off-chain and on-chain data into the same endpoint using goldsky's Mirror.
+
+---
+
 ## Developer Resources
 
 1. **[Block Explorers](./resources/block-explorers.md)**  

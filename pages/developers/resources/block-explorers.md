@@ -4,17 +4,6 @@ Block explorers are web-based tools that allow you to search, analyze, and view 
 
 {% tabs %}
 
-{% tab label="Mainnet" %}
-
-## Testnet Explorers
-
-| Name                | URL                                                                                                  | Type   |
-| ------------------- | -----------------------------------------------------------------------------------------------------| ------ |
-| **Peersyst**        | [https://explorer.xrplevm.org](https://explorer.xrplevm.org)                                 | EVM    |
-| **Peersyst**        | [https://governance.xrplevm.org](https://governance.xrplevm.org)                             | Cosmos |
-
-{% /tab %}
-
 {% tab label="Testnet" %}
 
 ## Testnet Explorers

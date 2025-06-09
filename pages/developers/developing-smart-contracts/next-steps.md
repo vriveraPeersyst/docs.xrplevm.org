@@ -85,33 +85,6 @@ Select the appropriate tab for the network you plan to support. In each code blo
 
 {% tabs %}
 
-{% tab label="Mainnet" %}
-
-```typescript
-import { defineChain, type Chain } from "viem";
-
-export const xrplEvmChain = defineChain({
-  id: 1440000,
-  name: "XRPL EVM",
-  nativeCurrency: {
-    name: "XRP",
-    symbol: "XRP",
-    decimals: 18,
-  },
-  rpcUrls: {
-    default: { http: ["https://rpc.xrplevm.org"] },
-  },
-  blockExplorers: {
-    default: {
-      name: "Blockscout",
-      url: "https://explorer.xrplevm.org",
-    },
-  },
-} as const satisfies Chain);
-```
-
-{% /tab %}
-
 {% tab label="Testnet" %}
 
 ```typescript

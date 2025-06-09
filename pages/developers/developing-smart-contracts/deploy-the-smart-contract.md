@@ -18,20 +18,9 @@ Remix is a web-based development environment for smart contracts, perfect for qu
   If you haven't already, install the [MetaMask wallet](https://metamask.io/) extension in your browser.
 
 - **Connect MetaMask to XRPL EVM**  
-  Below are the **Mainnet**, **Testnet** and **Devnet** RPC details. Choose the appropriate tab for the network you want to use.
+  Below are the **Testnet** and **Devnet** RPC details. Choose the appropriate tab for the network you want to use.
 
 {% tabs %}
-{% tab label="Mainnet" %}
-**XRPL EVM MetaMask Settings**
-
-- **Network Name**: XRPL EVM
-- **RPC URL**: `https://rpc.testnet.xrplevm.org`
-- **Chain ID**: `1440000`
-- **Currency Symbol**: `XRP`
-- **Block Explorer URL**: `https://explorer.xrplevm.org`
-
-Make sure MetaMask is switched to **XRPL EVM** before proceeding.
-{% /tab %}
 {% tab label="Testnet" %}
 **XRPL EVM Testnet MetaMask Settings**
 
@@ -130,7 +119,7 @@ Hardhat is a development framework for Ethereum-compatible smart contracts, idea
 ### 2. Configure the Network
 
 To manage sensitive information like RPC URLs and private keys, use a `.env` file.  
-Below are tabs for **Mainnet**, **Testnet** and **Devnet** network details.
+Below are tabs for **Testnet** and **Devnet** network details.
 
 #### 2.1 Install dotenv
 
@@ -141,33 +130,6 @@ npm install dotenv
 #### 2.2 Create a `.env` File
 
 {% tabs %}
-{% tab label="Mainnet" %}
-Create a file named `.env` with the **XRPL EVM** details:
-
-```env
-XRPL_EVM_URL=https://rpc.xrplevm.org
-PRIVATE_KEY=your_testnet_private_key_here
-```
-
-Then in `hardhat.config.js`:
-
-```js
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
-
-module.exports = {
-  solidity: "0.8.24",
-  networks: {
-    xrplEVM: {
-      url: process.env.XRPL_EVM_URL,
-      accounts: [process.env.PRIVATE_KEY],
-    },
-  },
-};
-```
-
-Ensure your chain ID is set to `1440000` (if you use scripts that explicitly reference it).  
- {% /tab %}
 {% tab label="Testnet" %}
 Create a file named `.env` with the **XRPL EVM Testnet** details:
 
@@ -321,7 +283,7 @@ The deployment script handles the asynchronous logic and interacts with the Igni
 ### 7. Verify Deployment
 
 - Check the contract address in the terminal output.
-- View the deployed contract on the **XRPL EVM Explorer** ([Mainnet](https://explorer.xrplevm.org), [Testnet](https://explorer.testnet.xrplevm.org) or [Devnet](https://explorer.devnet.xrplevm.org)) using the contract address.
+- View the deployed contract on the **XRPL EVM Explorer** ([Testnet](https://explorer.testnet.xrplevm.org) or [Devnet](https://explorer.devnet.xrplevm.org)) using the contract address.
 
 ---
 
@@ -364,7 +326,7 @@ Define your RPC endpoints in `foundry.toml` and use a `.env` for secrets.
 solc_version = "0.8.24"
 
 [rpc_endpoints]
-xrplevm      = "https://rpc.xrplevm.org"
+xrplevm      = "https://rpc.testnet.xrplevm.org"
 ```
 
 Create a `.env` in your project root:
@@ -372,8 +334,8 @@ Create a `.env` in your project root:
 ```dotenv
 # .env
 PRIVATE_KEY=your_private_key_here
-RPC_URL=https://rpc.xrplevm.org   # switch to testnet/devnet as needed
-CHAIN_ID=1440000                          
+RPC_URL=https://rpc.testnet.xrplevm.org
+CHAIN_ID=1449000                          
 ```
 
 > **Tip**: Add `.env` to your `.gitignore` to avoid leaking keys.

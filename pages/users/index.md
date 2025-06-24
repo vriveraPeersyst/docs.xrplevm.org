@@ -25,7 +25,9 @@ Dive into detailed guides, tutorials, and tools that will empower you to take fu
 
 ## 🚧 Usage
 
-- [Using the Bridge](./using-the-bridge.md)  
+- [Transfer XRP with Axelar](./using-the-bridge/transfer-xrp-with-axelar.md)
+- [Transfer IOU with Axelar](./using-the-bridge/transfer-iou-with-axelar.md)  
+- [Transfer ERC20 with Axelar](./using-the-bridge/transfer-erc20-with-axelar.md)
 - [Sending XRP through IBC](./sending-through-ibc.md)  
 - [Faucet](./faucet.md)  
 

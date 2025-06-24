@@ -30,7 +30,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **ITRocket**                    | [https://xrplevm-testnet-evm.itrocket.net](https://xrplevm-testnet-evm.itrocket.net)          |
         | **Mekong Labs**                 | [https://exrpd-testnet-json-rpc.mekonglabs.tech](https://exrpd-testnet-json-rpc.mekonglabs.tech)|
         | **MictoNode**                   | [https://xrpl-testnet-evmrpc.mictonode.com](https://xrpl-testnet-evmrpc.mictonode.com)        |
-        | **lesnik UTSA**                | [https://t-xrpl.evm.utsa.tech](https://t-xrpl.evm.utsa.tech)                                  |
+        | **lesnik UTSA**                 | [https://t-xrpl.evm.utsa.tech](https://t-xrpl.evm.utsa.tech)                                  |
         | **STAVR**                       | [https://xrpl.evm.t.stavr.tech](https://xrpl.evm.t.stavr.tech)                                |
         | **Cosmonaut Stakes**            | [https://xrpl-testnet-evm.cosmonautstakes.com](https://xrpl-testnet-evm.cosmonautstakes.com)  |
         | **Brightlystake**               | [https://xrpl-t-evm.brightlystake.com/evm](https://xrpl-t-evm.brightlystake.com/evm)          |

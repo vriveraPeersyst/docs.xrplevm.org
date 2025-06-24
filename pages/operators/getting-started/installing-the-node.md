@@ -35,11 +35,11 @@ This method involves downloading precompiled binaries from the repository's late
 
    - **AMD64:**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_amd64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Linux_amd64.tar.gz
      ```
    - **ARM64:**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_arm64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Linux_arm64.tar.gz
      ```
    {% /tab %}
 
@@ -48,11 +48,11 @@ This method involves downloading precompiled binaries from the repository's late
 
    - **Intel (x86_64):**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_amd64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Darwin_amd64.tar.gz
      ```
    - **Apple Silicon (ARM64):**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_arm64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Darwin_arm64.tar.gz
      ```
    {% /tab %}
    
@@ -64,7 +64,7 @@ This method involves downloading precompiled binaries from the repository's late
    - **Download using curl:**  
      Open PowerShell and run:
      ```powershell
-     curl -LO https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Windows_amd64.zip
+     curl -LO https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Windows_amd64.zip
      ```
    {% /tab %}
    {% /tabs %}
@@ -72,7 +72,7 @@ This method involves downloading precompiled binaries from the repository's late
 2. **Extract the Binaries:**  
    Once downloaded, extract the file using the appropriate command for your platform. For example, on Linux:
    ```bash
-   tar -xzf node_7.0.0_Linux_amd64.tar.gz
+   tar -xzf node_8.0.0_Linux_amd64.tar.gz
    ```
    This will extract the files into a directory.
 
@@ -102,7 +102,7 @@ This method involves downloading precompiled binaries from the repository's late
    ```bash
    exrpd version
    ```
-   You should see version information (e.g., `v7.0.0`).
+   You should see version information (e.g., `v8.0.0`).
 
 6. **Configure and Run Your Node (Optional):**  
    Once the binary is installed, follow the [node configuration instructions](./join-the-xrplevm.md)

@@ -1,6 +1,6 @@
 # Users 👋
 
-[Start now! Get test XRP and add network.](https://faucet.xrplevm.org) 🚀
+Start now! [Bridge XRP](https://app.squidrouter.com/?chains=xrpl-mainnet%2C1440000&tokens=xrp%2C0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee) 🚀
 
 Welcome to the official **XRPL EVM documentation** – your portal into the future of blockchain development on the XRP Ledger. With the **XRPL Ethereum Virtual Machine (EVM) Sidechain** now live on **Mainnet**, there’s never been a better time to build, experiment, and innovate.
 

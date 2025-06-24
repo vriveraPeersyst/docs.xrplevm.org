@@ -8,27 +8,30 @@ status: not_enabled
 
 # Transfer ERC20 with Axelar
 
-You can transfer tokens from XRPL EVM sidechain to Avalanche Fuji using Axelar Portal. In this example, we will transfer 10 XRP to Avalanche Fuji as axlXRP.
+You can transfer tokens from other EVMs to the XRPL and XRPL EVM using [Squidrouter](https://app.squidrouter.com/) as well as the other way round.
 
-1. Set XRPL EVM sidechain as the source chain and Avalanche Fuji as the destination chain.
-   ![portal set chains](../images/axelar-set-chains.png)
+In this example, we will transfer WBTC from Ethereum to XRPL EVM!
 
-2. Connect your wallet using Metamask for both chains.
+1. **Set** Ethereum as the **source chain**, XRPL EVM as the **destination chain** and WBTC as the **asset** to transfer.
+   ![portal set chains](../images/transfererc20-1.png)
 
-![portal connect metamask](./img/axelar-connect-metamask.png)
+2. **Connect** your **wallet**.
 
-3. Choose the token you want to transfer and set the desired amount.
+   ![portal connect metamask](../images/transfererc20-2.png)
 
-![portal transfer](./img/axelar-set-amount.png)
+3. **Set** the desired **amount**.
 
-4. Click on `Transfer` and confirm the transaction in your wallet.
+   ![portal transfer](../images/transfererc20-3.png)
 
-![portal transfer](./img/axelar-sign-transaction.png)
+4. **Give permission** to use the tokens, sign the approve function.
+
+   ![portal transfer](../images/transfererc20-4.png)
+
+5. Finally **SWAP** to execute the crosschain transfer.
+
+   ![portal transfer](../images/transfererc20-5.png)
 
 Once the transaction is executed, you can see the transaction details in the following modal.
 
-![portal transaction list](./img/axelar-tx-success.png)
-
-To confirm the transfer, you can go to the Avalanche Fuji explorer and search for the transaction hash.
-
-![portal transaction list](./img/axelar-verify-destination-transfer.png)
+   ![portal transaction list](../images/transfererc20-6.png)
+   ![portal transaction list](../images/transfererc20-7.png)

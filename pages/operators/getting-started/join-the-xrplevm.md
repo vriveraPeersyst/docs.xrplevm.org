@@ -25,7 +25,7 @@ Download and install the XRPL EVM node binary using the official instructions:
 
 ### 3. Configure the Node
 
-Set up the node configuration with the **Testnet** chain ID:
+Set up the node configuration with the **Mainnet** chain ID:
 
 ```bash
 exrpd config set client chain-id xrplevm_1440000-1
@@ -57,7 +57,7 @@ exrpd keys add <key_name> --key-type eth_secp256k1
 
 ### 5. Initialize the Node
 
-Initialize your node with a moniker (a unique name for your node/validator) and the **Testnet** chain ID:
+Initialize your node with a moniker (a unique name for your node/validator) and the **Mainnet** chain ID:
 
 ```bash
 exrpd init <moniker> --chain-id xrplevm_1440000-1

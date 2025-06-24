@@ -2,12 +2,16 @@
 
 The `exrpd` binary is the cornerstone of running an XRPL EVM node. It enables your machine to communicate with the XRPL EVM network, synchronize with the blockchain, and—if configured as a validator—actively participate in consensus. This guide walks you through the process of installing and configuring `exrpd` so you can join the network effectively.
 
-Before proceeding, it’s crucial to understand that node versioning plays a vital role in how you synchronize with the blockchain—especially if you're starting from genesis. The XRPL EVM Testnet initially launched using `exrpd` version 6. At block **547,100**, it upgraded to version 7, and later to version 8 at block **1,485,600**. If you intend to sync your node from the very beginning of the chain (i.e., from genesis), you **must** install the same node version used at the network’s genesis—**v6**. Your node will sync until it reaches the block where a version upgrade occurred. At that point, you must manually upgrade your node to the corresponding version (e.g., from v6 to v7 at block 547,100, and then from v7 to v8 at block 1,485,600) to continue syncing without interruption.
+Before proceeding, it’s crucial to understand that node versioning plays a vital role in how you synchronize with the blockchain—especially if you're starting from genesis.
+
+ The XRPL EVM (Mainnet) initially launched using `exrpd` version 7. At block **497,000**, it upgraded to version 8. If you intend to sync your node from the very beginning of the chain (i.e., from genesis), you **must** install the same node version used at the network’s genesis—**v7**. Your node will sync until it reaches the block where a version upgrade occurred. At that point, you must manually upgrade your node to the corresponding version (e.g., from v7 to v8 at block 497,000 to continue syncing without interruption.)
+
+ The XRPL EVM Testnet initially launched using `exrpd` version 6. At block **547,100**, it upgraded to version 7, and later to version 8 at block **1,485,600**. If you intend to sync your node from the very beginning of the chain (i.e., from genesis), you **must** install the same node version used at the network’s genesis—**v6**. Your node will sync until it reaches the block where a version upgrade occurred. At that point, you must manually upgrade your node to the corresponding version (e.g., from v6 to v7 at block 547,100, and then from v7 to v8 at block 1,485,600) to continue syncing without interruption.
 
 Alternatively, if syncing from genesis is not required, you can take a more efficient approach by starting from a **snapshot** or using **state sync**, which allows you to join the network at a later state. In this case, you can install the **latest version** of `exrpd` and bypass the need for version hopping altogether.
 
 {% admonition type="info" name="List of upgrades" %}
-For a detailed list of XRPL EVM network versions—including timestamps, upgrade blocks, and version changes across all supported chains—refer to the official network documentation: [XRPL EVM Networks Overview](https://docs.xrplevm.org/pages/operators/resources/networks).
+For a detailed list of XRPL EVM network versions—including timestamps, upgrade blocks, and version changes across all supported chains—refer to the official network documentation: [XRPL EVM Networks Overview](../resources/networks.md).
 {% /admonition %}
 
 ## Installation Methods

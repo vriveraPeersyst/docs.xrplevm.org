@@ -18,7 +18,6 @@
     - page: ./using-the-bridge/transfer-xrp-with-axelar.md
     - page: ./using-the-bridge/transfer-iou-with-axelar.md
     - page: ./using-the-bridge/transfer-erc20-with-axelar.md
-- page: ./using-the-bridge.md
 - page: ./sending-through-ibc.md
 - page: ./faucet.md
 - group: Tools

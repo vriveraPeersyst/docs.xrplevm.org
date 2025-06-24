@@ -5,16 +5,16 @@ Snapshots provide a quick way to bootstrap your node’s state by downloading a 
 ## Snapshots
 
 {% tabs %}
-{% tab label="Devnet" %}
 
-| Provider     | URL                                                                                         | Type    |
-| --------     | ------------------------------------------------------------------------------------------- | ------- |
-| **Peersyst** | [Download](https://evm-sidechain-snapshots-devnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4) | Default |
-| **Enigma**   | [Download](https://enigma-validator.com/stake-with-us/xrp-testnet#services)                 | Pruned  |
-| **Polkachu** | [Download](https://polkachu.com/testnets/xrp/snapshots)                                     | Default |
+{% tab label="Mainnet" %}
+
+| Provider | URL                                                                                                                             |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Peersyst**              | [Download](https://evm-sidechain-snapshots-mainnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4)                   |
 
 ---
 {% /tab %}
+
 {% tab label="Testnet" %}
 
 | Provider | URL                                                                                                                             |
@@ -30,6 +30,17 @@ Snapshots provide a quick way to bootstrap your node’s state by downloading a 
 | **MictoNode**             | [Download](https://services.mictonode.com/xrpl-evm/snapshot)                                                   |
 | **UTSA (lesnik)**         | [Download](https://utsa.gitbook.io/services/testnet/xrpl-evm/snapshots)                                        |
 | **Node9x**                | [Download](https://service.node9x.com/testnet/xrpl-evm/service-and-snapshot)                                   |
+
+---
+{% /tab %}
+
+{% tab label="Devnet" %}
+
+| Provider     | URL                                                                                         | Type    |
+| --------     | ------------------------------------------------------------------------------------------- | ------- |
+| **Peersyst** | [Download](https://evm-sidechain-snapshots-devnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4) | Default |
+| **Enigma**   | [Download](https://enigma-validator.com/stake-with-us/xrp-testnet#services)                 | Pruned  |
+| **Polkachu** | [Download](https://polkachu.com/testnets/xrp/snapshots)                                     | Default |
 
 ---
 {% /tab %}

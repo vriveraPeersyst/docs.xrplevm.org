@@ -53,7 +53,7 @@ The Axelar Bridge connects multiple blockchain networks, enabling secure asset t
    4. **Initiate the Swap**  
       - Click **SWAP** to begin the cross-chain transfer.
 
-      ![UsingTheBridge](./images/SwapXRPLWallet.png)
+      ![UsingTheBridge](../images/SwapXRPLWallet.png)
       - Review and **Approve** the transaction in your XRPL wallet.
 
       ![UsingTheBridge](../images/SwapApproveXRPLWallet.png)

@@ -30,7 +30,7 @@ Every action on the XRPL EVM, such as deploying smart contracts or transferring 
 
 2. **Bridge XRP from the XRP Ledger**:  
     Transfer XRP from the XRP Ledger to the XRPL EVM using the **Bridge**.  
-    _(Read more: [Using the Bridge](../using-the-bridge.md))_
+    _(Read more: [Transfer XRP with Axelar](../using-the-bridge/transfer-xrp-with-axelar.md))_
 {% /tab %}
 {% tab label="Testnet" %}
 
@@ -42,7 +42,7 @@ Every action on the XRPL EVM, such as deploying smart contracts or transferring 
 
 2. **Bridge XRP from the XRP Ledger**:  
     Transfer XRP from the XRP Ledger to the XRPL EVM using the **Bridge**.  
-    _(Read more: [Using the Bridge](../using-the-bridge.md))_
+    _(Read more: [Transfer XRP with Axelar](../using-the-bridge/transfer-xrp-with-axelar.md))_
 
 {% /tab %}
 {% tab label="Devnet" %}
@@ -55,7 +55,7 @@ Every action on the XRPL EVM, such as deploying smart contracts or transferring 
 
 2. **Bridge XRP from the XRP Ledger**:  
     Transfer XRP from the XRP Ledger to the XRPL EVM using the **Bridge**.  
-    _(Read more: [Using the Bridge](../using-the-bridge.md))_
+    _(Read more: [Transfer XRP with Axelar](../using-the-bridge/transfer-xrp-with-axelar.md))_
 {% /tab %}
 {% /tabs %}
 

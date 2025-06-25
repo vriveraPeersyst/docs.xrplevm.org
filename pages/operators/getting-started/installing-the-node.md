@@ -204,7 +204,7 @@ A containerized approach ensures a consistent environment and avoids host-depend
 
 ### 1. Interactive setup (one-time)
 
-Launch a shell in the container, mounting your host’s config directory. Inside, run **all** of the “Join the XRPL EVM” commands (chain-ID, keygen, init, genesis download, seed configuration, etc.) as per the Testnet (or Devnet) guide—then exit when done.
+Launch a shell in the container, mounting your host’s config directory. Inside, run **all** of the “Join the XRPL EVM” commands (chain-ID, keygen, init, genesis download, seed configuration, etc.) as per the Mainnet or Testnet guide—then exit when done.
 
 ```bash
 docker run -it --name xrplevm-setup \

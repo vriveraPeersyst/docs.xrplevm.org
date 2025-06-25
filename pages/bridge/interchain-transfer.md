@@ -21,7 +21,7 @@ The following diagram shows the process of transferring a token from the XRPL to
 ![xrpl-evm-sidechain-axelar-its-transfer](./img/evm-sidechain-axelar-its-transfer.png)
 
 1. **Payment transaction**: A payment transaction is submitted on XRPL Ledger. It contains the amount to be transferred, the destination address on the XRPL EVM Sidechain. The payment transaction is submitted to the Axelar Multisig account.
-2. **Send Interchain Message through devnet-amplifier**: Once the payment transaction is submitted to the Axelar Multisig account, the devnet-amplifier will send a message to the XRPL EVM Sidechain Axelar Amplifier Gateway.
+2. **Send Interchain Message through amplifier**: Once the payment transaction is submitted to the Axelar Multisig account, the amplifier will send a message to the XRPL EVM Sidechain Axelar Amplifier Gateway.
 3. **Execute ITS contract on XRPL EVM Sidechain**: In the meantime, the relayer will call the ITS contract on the XRPL EVM Sidechain to start the token transfer process on the XRPL EVM Sidechain.
 4. **Confirm token transfer message**: Once the relayer calls the ITS contract on the XRPL EVM Sidechain, the ITS contract will ask to the AxelarAmplifierGateway on the XRPL EVM Sidechain to confirm the token transfer message.
 5. **Confirm response**: The AxelarAmplifierGateway on the XRPL EVM Sidechain will confirm the token transfer message.
@@ -41,8 +41,10 @@ Sending assets from the XRP Ledger to the XRPL EVM or other chains is straightfo
 
 - `Amount`: Specifies the quantity of the asset to be transferred. The format and value depend on the type of asset being sent (e.g., XRP or IOUs).
 - `Destination`: The address of the Gateway on the XRP Ledger.
-  - [**Devnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/devnet-amplifier.json#L985)
+  - [**Mainnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json)
   - [**Testnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json#L2603)
+  - [**Devnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/devnet-amplifier.json#L985)
+
 - `Memos`: Hex-encoded data required for the transfer, including:
   - The _type_ of call to initiate.
   - The _destination chain_ on the Axelar network.

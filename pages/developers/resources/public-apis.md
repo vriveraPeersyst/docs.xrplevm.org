@@ -127,7 +127,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         {% tab label="Snapshot / Genesis" %}
         | Provider/Validator        | Snapshot / Genesis URL                                                                                         |
         | ------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-        | **Peersyst**              | [Snapshot](https://evm-sidechain-snapshots-devnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4)                      |
+        | **Peersyst**              | [Snapshot](https://evm-sidechain-snapshots-testnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4)                      |
         | **Kintsugi Nodes**        | [http://kintsugi-nodes.com/ripple/snapshot](http://kintsugi-nodes.com/ripple/snapshot)                          |
         | **Polkachu**              | [https://polkachu.com/testnets/xrp/snapshots](https://polkachu.com/testnets/xrp/snapshots)                       |
         | **blockitize**            | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) |
@@ -174,19 +174,5 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
     {% /tabs %}
 
     ---
-{% /tab %}
-
-{% tab label="Devnet" %}
-
-## Devnet Public APIs
-
-| Type              | URL                                                                                     |
-| ----------------- | --------------------------------------------------------------------------------------- |
-| Ethereum JSON RPC | [https://rpc.devnet.xrplevm.org](https://rpc.devnet.xrplevm.org)                        |
-| Ethereum JSON WS  | [https://ws.devnet.xrplevm.org](https://ws.devnet.xrplevm.org)                          |
-| Tendermint RPC    | [http://cosmos.devnet.xrplevm.org:26657](http://cosmos.devnet.xrplevm.org:26657)        |
-| Cosmos gRPC       | [http://cosmos.devnet.xrplevm.org:9090](http://cosmos.devnet.xrplevm.org:9090)          |
-| Cosmos API        | [http://cosmos.devnet.xrplevm.org:1317](http://cosmos.devnet.xrplevm.org:1317)          |
-
 {% /tab %}
 {% /tabs %}

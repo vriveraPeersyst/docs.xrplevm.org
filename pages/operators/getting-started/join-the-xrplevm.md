@@ -1,6 +1,6 @@
 # Join the XRPL EVM
 
-Now that you have successfully installed the `exrpd` binary, it’s time to take the next steps and fully connect to the XRPL EVM. This page provides separate instructions for **Devnet** and **Testnet**. Pick the environment you want to join and follow the steps in that tab.
+Now that you have successfully installed the `exrpd` binary, it’s time to take the next steps and fully connect to the XRPL EVM. This page provides separate instructions for **Mainnet** and **Testnet**. Pick the environment you want to join and follow the steps in that tab.
 
 ## Prerequisites
 
@@ -171,73 +171,6 @@ cat ~/.exrpd/config/config.toml | grep seeds
 ```
 
 {% /tab %}
-
-{% tab label="Devnet" %}
-
-## Configure the Node
-
-Once you have the `exrpd` binary installed, you need to initialize and configure the node. This involves generating initial configuration files, downloading the appropriate genesis file, and establishing connections to network peers.
-
-### 1. Initialize the node
-
-Initializing your node creates the required configuration files, including validator keys and a default configuration structure. The `<moniker>` is a human-readable name you assign to your node (often the name of your organization or a recognizable identifier), and `<chain-id>` specifies the target network.
-
-```bash
-exrpd init YOUR_MONIKER --chain-id exrp_1440002-1
-```
-
-After running this, the necessary configuration and key files will be generated in `~/.exrpd`.
-
-### 2. Download the Genesis File
-
-Obtain the Devnet `genesis.json` file and place it in your node’s config directory. If you are trying to validate genesis with the latest version (v6.0.0) as genesis was created using v1.0.0. You can skip the validate genesis `exrpd validate-genesis`:
-
-```bash
-wget https://raw.githubusercontent.com/Peersyst/xrp-evm-archive/main/poa-devnet/genesis.json -O ~/.exrpd/config/genesis.json
-exrpd validate-genesis
-```
-
-If validation succeeds, the genesis file is correct.
-
-### 3. Add Peers
-
-Your node needs to connect to other nodes to synchronize. Fetch a list of Devnet peers and update `persistent_peers` in `~/.exrpd/config/config.toml`:
-
-```bash
-PEERS=`curl -sL https://raw.githubusercontent.com/Peersyst/xrp-evm-archive/main/poa-devnet/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -`
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.exrpd/config/config.toml
-cat ~/.exrpd/config/config.toml | grep persistent_peers
-```
-
-### 4. Advanced Configuration (Optional)
-
-If you need to adjust pruning, logging, or other advanced settings, see the [Advanced Configuration Options](../advanced/node-configuration-options.md).
-
-### 5. Create or Import a Key (Optional)
-
-If you plan to run a validator or sign transactions, generate a new key or import an existing one:
-
-```bash
-exrpd keys add <key_name> --keyring-backend <os|file|test>
-```
-
-Effective [key management](../validators/managing-keys.md) is critical for the security and operation of validators in the XRPL EVM sidechain.
-
-### 6. (Optional) Download a Snapshot
-
-If you want to speed up synchronization, you can use a snapshot. See the [Snapshots page](../resources/snapshots.md) for details. For example:
-
-```bash
-sudo apt-get install wget lz4 -y
-cd $HOME/.exrpd
-wget https://evm-sidechain-snapshots-devnet.s3.amazonaws.com/exrpd.tar.lz4
-tar -xI lz4 -f exrpd.tar.lz4
-```
-
-Watch the logs to ensure your node syncs with the Devnet. If everything is correct, you should see blocks being processed.
-
-{% /tab %}
-
 {% /tabs %}
 
 ### Start the Node

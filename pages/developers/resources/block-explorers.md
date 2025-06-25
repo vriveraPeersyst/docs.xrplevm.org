@@ -36,15 +36,4 @@ Block explorers are web-based tools that allow you to search, analyze, and view 
 | **Nodes Hub**       | [https://testnet.explorer.nodeshub.online/xrpl](https://testnet.explorer.nodeshub.online/xrpl)               | Cosmos |
 
 {% /tab %}
-
-{% tab label="Devnet" %}
-
-## Devnet Explorers
-
-| Name                    | URL                                                                            | Type   |
-| -------------------     | ------------------------------------------------------------------------------ | ------ |
-| **EVM Explorer**        | [https://explorer.devnet.xrplevm.org](https://explorer.devnet.xrplevm.org)     | EVM    |
-| **Governance Explorer** | [https://governance.devnet.xrplevm.org](https://governance.devnet.xrplevm.org) | Cosmos |
-
-{% /tab %}
 {% /tabs %}

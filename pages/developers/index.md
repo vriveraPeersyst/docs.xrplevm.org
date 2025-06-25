@@ -73,10 +73,10 @@ Below is a quick overview of all the available guides and resources in the devel
 ## Developer Resources
 
 1. **[Block Explorers](./resources/block-explorers.md)**  
-   Locate and analyze on-chain data. Compare Devnet and Testnet explorers, and discover how to inspect blocks, transactions, and contracts in real time.
+   Locate and analyze on-chain data. Compare explorers, and discover how to inspect blocks, transactions, and contracts in real time.
 
 2. **[Public APIs](./resources/public-apis.md)**  
-   Access the XRPL EVM networks (Devnet or Testnet) through various RPC endpoints, REST APIs, and gRPC interfaces—no need to run your own node.
+   Access the XRPL EVM network through various RPC endpoints, REST APIs, and gRPC interfaces—no need to run your own node.
 
 ---
 

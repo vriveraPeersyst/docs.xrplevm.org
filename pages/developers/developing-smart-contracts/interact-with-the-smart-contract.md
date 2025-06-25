@@ -16,7 +16,7 @@ Before interacting with a smart contract, ensure you have the following set up:
 
 2. **XRPL EVM Network**
    - Connect your wallet to the XRPL EVM using MetaMask or other compatible tools.
-   - Choose **Devnet** or **Testnet** details below.
+   - Choose **Mainnet** or **Testnet** details below.
 
 {% tabs %}
 {% tab label="Mainnet" %}
@@ -36,15 +36,6 @@ Before interacting with a smart contract, ensure you have the following set up:
 - **Chain ID**: `1449000`
 - **Currency Symbol**: `XRP`
 - **Block Explorer URL**: [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)
-{% /tab %}
-{% tab label="Devnet" %}
-**XRPL EVM Devnet Network Details**
-
-- **Network Name**: XRPL EVM Devnet
-- **RPC URL**: `https://rpc.devnet.xrplevm.org`
-- **Chain ID**: `1440002`
-- **Currency Symbol**: `XRP`
-- **Block Explorer URL**: [https://explorer.devnet.xrplevm.org](https://explorer.devnet.xrplevm.org)
 {% /tab %}
 {% /tabs %}
 
@@ -69,7 +60,7 @@ Remix provides a simple way to interact with deployed contracts.
 
    - Open [Remix IDE](https://remix.ethereum.org/).
    - Under the environment settings, select **Injected Web3** to connect MetaMask.
-   - Make sure MetaMask is configured for either **XRPL EVM Devnet** or **Testnet**, depending on which network you’re using.
+   - Make sure MetaMask is configured for either **XRPL EVM Mainnet** or **Testnet**, depending on which network you’re using.
 
 2. **Load the Contract**
 
@@ -122,18 +113,6 @@ const Web3 = require("web3");
 const web3 = new Web3("https://rpc.testnet.xrplevm.org");
 
 // Chain ID = 1449000 (if needed in transaction config)
-```
-
-{% /tab %}
-{% tab label="Devnet" %}
-
-```javascript
-const Web3 = require("web3");
-
-// XRPL EVM Devnet RPC
-const web3 = new Web3("https://rpc.devnet.xrplevm.org");
-
-// Chain ID = 1440002 (if needed in transaction config)
 ```
 
 {% /tab %}
@@ -207,21 +186,6 @@ const provider = new ethers.providers.JsonRpcProvider(
 const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
 // Chain ID = 1449000 (if needed in transaction config)
-```
-
-{% /tab %}
-{% tab label="Devnet" %}
-
-```javascript
-const { ethers } = require("ethers");
-
-// XRPL EVM Devnet RPC
-const provider = new ethers.providers.JsonRpcProvider(
-  "https://rpc.devnet.xrplevm.org"
-);
-const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
-
-// Chain ID = 1440002 (if needed in transaction config)
 ```
 
 {% /tab %}
@@ -302,7 +266,7 @@ const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
        ```
 ### 5. Using Foundry’s `cast` CLI
 
-Foundry’s `cast` tool lets you interact with your XRPL EVM contracts directly from the terminal—no JavaScript required. Below is a detailed walkthrough for reading state, sending transactions, decoding logs, estimating gas, and more, on **Devnet**, **Testnet**, or **Mainnet**.
+Foundry’s `cast` tool lets you interact with your XRPL EVM contracts directly from the terminal—no JavaScript required. Below is a detailed walkthrough for reading state, sending transactions, decoding logs, estimating gas, and more, on **Testnet**, or **Mainnet**.
 
 #### 5.1 Prerequisites
 
@@ -324,10 +288,6 @@ Foundry’s `cast` tool lets you interact with your XRPL EVM contracts directly 
 
    ```bash
    PRIVATE_KEY=0xYOUR_PRIVATE_KEY
-
-   # Devnet
-   RPC_URL_DEVNET=https://rpc.devnet.xrplevm.org
-   CHAIN_ID_DEVNET=1440002
 
    # Testnet
    RPC_URL_TESTNET=https://rpc.testnet.xrplevm.org
@@ -371,7 +331,7 @@ cast sig "setMessage(string)"
 
 ```bash
 cast call \
-  --rpc-url $RPC_URL_DEVNET \
+  --rpc-url $RPC_URL_TESTNET \
   --to      $CONTRACT_ADDRESS \
   "message()(string)"
 ```
@@ -420,7 +380,7 @@ cast send \
 
 ```bash
 cast receipt \
-  --rpc-url $RPC_URL_DEVNET \
+  --rpc-url $RPC_URL_TESTNET \
   0xYourTxHash
 ```
 
@@ -481,7 +441,7 @@ echo "Max fee (wei):" $((EST * GP))
 * **Current block**:
 
   ```bash
-  cast block-number --rpc-url $RPC_URL_DEVNET
+  cast block-number --rpc-url $RPC_URL_TESTNET
   ```
 * **Chain ID**:
 
@@ -534,7 +494,6 @@ cast parse-logs --abi $ABI_PATH receipts.json
    * Access the appropriate explorer to view transaction details, logs, and contract interactions:
      * [Mainnet Explorer](https://explorer.xrplevm.org)
      * [Testnet Explorer](https://explorer.testnet.xrplevm.org)
-     * [Devnet Explorer](https://explorer.devnet.xrplevm.org)
      
 
 2. **Check Gas Fees**

@@ -29,6 +29,14 @@
   expanded: false
   items:
     - page: ./use-oracle-data/band-protocol.md
+- group: Use Goldsky Indexer
+  expanded: false
+  items:
+    - page: ./use-goldsky-indexer/goldsky-overview.md
+    - page: ./use-goldsky-indexer/setup-indexer.md
+    - page: ./use-goldsky-indexer/query-events.md
+    - page: ./use-goldsky-indexer/best-practices.md
+    - page: ./use-goldsky-indexer/goldsky-mirrors.md
 - group: Resources
   expanded: false
   items:

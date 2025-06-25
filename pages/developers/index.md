@@ -27,16 +27,16 @@ Below is a quick overview of all the available guides and resources in the devel
 
 ## Interacting with Axelar
 
-1. **[Introduction to Axelar](./interacting-with-axelar/introduction.md)**
+1. **[Introduction to Axelar](./making-a-cross-chain-dapp/introduction.md)**
    Learn how Axelar powers secure cross-chain communication and opens the door to fully composable dApps between XRPL EVM and other ecosystems.
 
-2. **[Send Tokens Across Chains](./interacting-with-axelar/send-tokens.md)**
+2. **[Send Tokens Across Chains](./making-a-cross-chain-dapp/send-tokens.md)**
    Use Axelar's Interchain Token Service (ITS) to bridge tokens to/from XRPL EVM.
 
-3. **[Send Messages Across Chains](./interacting-with-axelar/send-messages.md)**
+3. **[Send Messages Across Chains](./making-a-cross-chain-dapp/send-messages.md)**
    Execute smart contract logic on remote chains using Axelar General Message Passing (GMP).
 
-4. **[Integrate the Squid Widget](./interacting-with-axelar/swap-with-squid-widget.md)**
+4. **[Integrate the Squid Widget](./making-a-cross-chain-dapp/swap-with-squid-widget.md)**
    Add the [Squid Widget](https://docs.squidrouter.com/widget-integration/add-a-widget/widget/getting-started) to enable token swaps from any chain into XRP on XRPL EVM. Perfect for onboarding users directly from Ethereum, Arbitrum, Polygon, etc.
 
 ---
@@ -75,16 +75,16 @@ Below is a quick overview of all the available guides and resources in the devel
 
 ## Use Goldsky Indexers
 
-1. **[Introduction to Goldsky](./use-goldsky/goldsky-overview.md)**
+1. **[Introduction to Goldsky](./use-goldsky-indexer/goldsky-overview.md)**
    Goldsky offers real-time data indexing for XRPL EVM, helping you track contract events, logs, and transactions without running your own infrastructure.
 
-2. **[Set Up Your Indexer](./use-goldsky/setup-indexer.md)**
+2. **[Set Up Your Indexer](./use-goldsky-indexer/setup-indexer.md)**
    Learn how to create and deploy an indexer for your XRPL EVM smart contracts using [Goldsky Studio](https://goldsky.com/).
 
-3. **[Query Indexed Events](./use-goldsky/query-events.md)**
+3. **[Query Indexed Events](./use-goldsky-indexer/query-events.md)**
    Use GraphQL to query your data and integrate insights into your frontend.
 
-4. **[Best Practices](./use-goldsky/best-practices.md)**
+4. **[Best Practices](./use-goldsky-indexer/best-practices.md)**
    Learn how to design indexers that are efficient, reliable, and compatible with frequent contract changes or upgrades.
 
 ---

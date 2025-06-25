@@ -89,6 +89,14 @@ Below is a quick overview of all the available guides and resources in the devel
 
 ---
 
+## Advanced Guides
+
+1. **[Using XRP as a Wrapped ERC-20](./advanced-guides/using-xrp-as-wrapped-erc20.md)**
+   Discover why you *don’t* need to wrap XRP on XRPL EVM, how to work with the 18-decimal native ERC-20 at  
+   `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`, and how to migrate from wXRP to the canonical token.
+
+---
+
 ## Developer Resources
 
 1. **[Block Explorers](./resources/block-explorers.md)**

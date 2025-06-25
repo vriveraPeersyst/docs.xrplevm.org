@@ -21,10 +21,10 @@
     - page: ./interacting-with-cosmos/using-the-api.md
     - page: ./interacting-with-cosmos/address-translation.md
     - page: ./interacting-with-cosmos/using-ibc.md
-# - group: Advanced Guides
-#   expanded: false
-#   items:
-#     - page: ./advanced-guides/using-a-precompile.md
+- group: Advanced Guides
+  expanded: false
+  items:
+    - page: ./advanced-guides/using-xrp-as-wrapped-erc20.md
 - group: Use Oracle Data
   expanded: false
   items:

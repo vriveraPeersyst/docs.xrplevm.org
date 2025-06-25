@@ -40,5 +40,6 @@
 - group: Resources
   expanded: false
   items:
+    - page: ./resources/indexer.md
     - page: ./resources/block-explorers.md
     - page: ./resources/public-apis.md

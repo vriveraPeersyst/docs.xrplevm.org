@@ -18,7 +18,7 @@ Remix is a web-based development environment for smart contracts, perfect for qu
   If you haven't already, install the [MetaMask wallet](https://metamask.io/) extension in your browser.
 
 - **Connect MetaMask to XRPL EVM**  
-  Below are the **Mainnet**, **Testnet** and **Devnet** RPC details. Choose the appropriate tab for the network you want to use.
+  Below are the **Mainnet**, and **Testnet** RPC details. Choose the appropriate tab for the network you want to use.
 
 {% tabs %}
 {% tab label="Mainnet" %}
@@ -42,18 +42,6 @@ Make sure MetaMask is switched to **XRPL EVM** before proceeding.
 - **Block Explorer URL**: `https://explorer.testnet.xrplevm.org`
 
 Make sure MetaMask is switched to **XRPL EVM Testnet** before proceeding.
-{% /tab %}
-
-{% tab label="Devnet" %}
-**XRPL EVM Devnet MetaMask Settings**
-
-- **Network Name**: XRPL EVM Devnet
-- **RPC URL**: `https://rpc.devnet.xrplevm.org`
-- **Chain ID**: `1440002`
-- **Currency Symbol**: `XRP`
-- **Block Explorer URL**: `https://explorer.devnet.xrplevm.org`
-
-Make sure MetaMask is switched to **XRPL EVM Devnet** before proceeding.
 {% /tab %}
 {% /tabs %}
 
@@ -130,7 +118,7 @@ Hardhat is a development framework for Ethereum-compatible smart contracts, idea
 ### 2. Configure the Network
 
 To manage sensitive information like RPC URLs and private keys, use a `.env` file.  
-Below are tabs for **Mainnet**, **Testnet** and **Devnet** network details.
+Below are tabs for **Mainnet** and **Testnet** network details.
 
 #### 2.1 Install dotenv
 
@@ -194,34 +182,6 @@ module.exports = {
 ```
 
 Ensure your chain ID is set to `1449000` (if you use scripts that explicitly reference it).  
- {% /tab %}
-
-{% tab label="Devnet" %}
-Create a file named `.env` with the **XRPL EVM Devnet** details:
-
-```env
-XRPL_EVM_URL=https://rpc.devnet.xrplevm.org
-PRIVATE_KEY=your_devnet_private_key_here
-```
-
-Then in `hardhat.config.js`:
-
-```js
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
-
-module.exports = {
-  solidity: "0.8.24",
-  networks: {
-    xrplEVM: {
-      url: process.env.XRPL_EVM_URL,
-      accounts: [process.env.PRIVATE_KEY],
-    },
-  },
-};
-```
-
-Ensure your chain ID is set to `1440002` (if you use scripts that explicitly reference it).  
  {% /tab %}
 {% /tabs %}
 
@@ -321,7 +281,7 @@ The deployment script handles the asynchronous logic and interacts with the Igni
 ### 7. Verify Deployment
 
 - Check the contract address in the terminal output.
-- View the deployed contract on the **XRPL EVM Explorer** ([Mainnet](https://explorer.xrplevm.org), [Testnet](https://explorer.testnet.xrplevm.org) or [Devnet](https://explorer.devnet.xrplevm.org)) using the contract address.
+- View the deployed contract on the **XRPL EVM Explorer** ([Mainnet](https://explorer.xrplevm.org), [Testnet](https://explorer.testnet.xrplevm.org) using the contract address.
 
 ---
 
@@ -372,7 +332,7 @@ Create a `.env` in your project root:
 ```dotenv
 # .env
 PRIVATE_KEY=your_private_key_here
-RPC_URL=https://rpc.xrplevm.org   # switch to testnet/devnet as needed
+RPC_URL=https://rpc.xrplevm.org
 CHAIN_ID=1440000                          
 ```
 
@@ -514,7 +474,7 @@ You’ll see broadcast logs and the deployed address in the console.
 
 ## Conclusion
 
-Leverage each tool’s strengths to streamline your development workflow: use **Remix** for rapid prototyping and interactive experimentation, **Hardhat** for full-featured testing, scripting, and plugin support, and **Foundry** for lightning-fast compilation, testing, and CLI-driven deployments. Whichever stack you choose, make sure to manage your RPC endpoints and private keys securely (e.g., via environment variables), rigorously test your contracts on Testnet or Devnet before moving to Mainnet, and verify your deployments through the XRPL EVM Explorer. With these toolchains in hand, you’re ready to push the boundaries of what’s possible in decentralized finance, NFTs, gaming, and beyond on the XRPL EVM sidechain.
+Leverage each tool’s strengths to streamline your development workflow: use **Remix** for rapid prototyping and interactive experimentation, **Hardhat** for full-featured testing, scripting, and plugin support, and **Foundry** for lightning-fast compilation, testing, and CLI-driven deployments. Whichever stack you choose, make sure to manage your RPC endpoints and private keys securely (e.g., via environment variables), rigorously test your contracts on Testnet before moving to Mainnet, and verify your deployments through the XRPL EVM Explorer. With these toolchains in hand, you’re ready to push the boundaries of what’s possible in decentralized finance, NFTs, gaming, and beyond on the XRPL EVM sidechain.
 
 
 ---

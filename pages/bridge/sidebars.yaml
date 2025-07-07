@@ -18,4 +18,3 @@
   items:
     - page: deployed-contracts-mainnet.md
     - page: deployed-contracts-testnet.md
-    - page: deployed-contracts-devnet.md

@@ -2,12 +2,16 @@
 
 The `exrpd` binary is the cornerstone of running an XRPL EVM node. It enables your machine to communicate with the XRPL EVM network, synchronize with the blockchain, and—if configured as a validator—actively participate in consensus. This guide walks you through the process of installing and configuring `exrpd` so you can join the network effectively.
 
-Before proceeding, it’s crucial to understand that node versioning plays a vital role in how you synchronize with the blockchain—especially if you're starting from genesis. The XRPL EVM Testnet initially launched using `exrpd` version 6. At block **547,100**, it upgraded to version 7, and later to version 8 at block **1,485,600**. If you intend to sync your node from the very beginning of the chain (i.e., from genesis), you **must** install the same node version used at the network’s genesis—**v6**. Your node will sync until it reaches the block where a version upgrade occurred. At that point, you must manually upgrade your node to the corresponding version (e.g., from v6 to v7 at block 547,100, and then from v7 to v8 at block 1,485,600) to continue syncing without interruption.
+Before proceeding, it’s crucial to understand that node versioning plays a vital role in how you synchronize with the blockchain—especially if you're starting from genesis.
+
+ The XRPL EVM (Mainnet) initially launched using `exrpd` version 7. At block **497,000**, it upgraded to version 8. If you intend to sync your node from the very beginning of the chain (i.e., from genesis), you **must** install the same node version used at the network’s genesis—**v7**. Your node will sync until it reaches the block where a version upgrade occurred. At that point, you must manually upgrade your node to the corresponding version (e.g., from v7 to v8 at block 497,000 to continue syncing without interruption.)
+
+ The XRPL EVM Testnet initially launched using `exrpd` version 6. At block **547,100**, it upgraded to version 7, and later to version 8 at block **1,485,600**. If you intend to sync your node from the very beginning of the chain (i.e., from genesis), you **must** install the same node version used at the network’s genesis—**v6**. Your node will sync until it reaches the block where a version upgrade occurred. At that point, you must manually upgrade your node to the corresponding version (e.g., from v6 to v7 at block 547,100, and then from v7 to v8 at block 1,485,600) to continue syncing without interruption.
 
 Alternatively, if syncing from genesis is not required, you can take a more efficient approach by starting from a **snapshot** or using **state sync**, which allows you to join the network at a later state. In this case, you can install the **latest version** of `exrpd` and bypass the need for version hopping altogether.
 
 {% admonition type="info" name="List of upgrades" %}
-For a detailed list of XRPL EVM network versions—including timestamps, upgrade blocks, and version changes across all supported chains—refer to the official network documentation: [XRPL EVM Networks Overview](https://docs.xrplevm.org/pages/operators/resources/networks).
+For a detailed list of XRPL EVM network versions—including timestamps, upgrade blocks, and version changes across all supported chains—refer to the official network documentation: [XRPL EVM Networks Overview](../resources/networks.md).
 {% /admonition %}
 
 ## Installation Methods
@@ -35,11 +39,11 @@ This method involves downloading precompiled binaries from the repository's late
 
    - **AMD64:**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_amd64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Linux_amd64.tar.gz
      ```
    - **ARM64:**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_arm64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Linux_arm64.tar.gz
      ```
    {% /tab %}
 
@@ -48,11 +52,11 @@ This method involves downloading precompiled binaries from the repository's late
 
    - **Intel (x86_64):**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_amd64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Darwin_amd64.tar.gz
      ```
    - **Apple Silicon (ARM64):**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_arm64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Darwin_arm64.tar.gz
      ```
    {% /tab %}
    
@@ -64,7 +68,7 @@ This method involves downloading precompiled binaries from the repository's late
    - **Download using curl:**  
      Open PowerShell and run:
      ```powershell
-     curl -LO https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Windows_amd64.zip
+     curl -LO https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Windows_amd64.zip
      ```
    {% /tab %}
    {% /tabs %}
@@ -72,7 +76,7 @@ This method involves downloading precompiled binaries from the repository's late
 2. **Extract the Binaries:**  
    Once downloaded, extract the file using the appropriate command for your platform. For example, on Linux:
    ```bash
-   tar -xzf node_7.0.0_Linux_amd64.tar.gz
+   tar -xzf node_8.0.0_Linux_amd64.tar.gz
    ```
    This will extract the files into a directory.
 
@@ -102,7 +106,7 @@ This method involves downloading precompiled binaries from the repository's late
    ```bash
    exrpd version
    ```
-   You should see version information (e.g., `v7.0.0`).
+   You should see version information (e.g., `v8.0.0`).
 
 6. **Configure and Run Your Node (Optional):**  
    Once the binary is installed, follow the [node configuration instructions](./join-the-xrplevm.md)
@@ -200,7 +204,7 @@ A containerized approach ensures a consistent environment and avoids host-depend
 
 ### 1. Interactive setup (one-time)
 
-Launch a shell in the container, mounting your host’s config directory. Inside, run **all** of the “Join the XRPL EVM” commands (chain-ID, keygen, init, genesis download, seed configuration, etc.) as per the Testnet (or Devnet) guide—then exit when done.
+Launch a shell in the container, mounting your host’s config directory. Inside, run **all** of the “Join the XRPL EVM” commands (chain-ID, keygen, init, genesis download, seed configuration, etc.) as per the Mainnet or Testnet guide—then exit when done.
 
 ```bash
 docker run -it --name xrplevm-setup \

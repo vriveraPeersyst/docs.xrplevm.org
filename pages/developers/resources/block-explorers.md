@@ -10,8 +10,8 @@ Block explorers are web-based tools that allow you to search, analyze, and view 
 
 | Name                | URL                                                                                                  | Type   |
 | ------------------- | -----------------------------------------------------------------------------------------------------| ------ |
-| **Peersyst**        | [https://explorer.xrplevm.org](https://explorer.xrplevm.org)                                 | EVM    |
-| **Peersyst**        | [https://governance.xrplevm.org](https://governance.xrplevm.org)                             | Cosmos |
+| **Peersyst**        | [https://explorer.xrplevm.org](https://explorer.xrplevm.org)                                         | EVM    |
+| **Peersyst**        | [https://governance.xrplevm.org](https://governance.xrplevm.org)                                     | Cosmos |
 
 {% /tab %}
 
@@ -34,17 +34,6 @@ Block explorers are web-based tools that allow you to search, analyze, and view 
 | **node9x**          | [https://explorer.node9x.com/XRLP](https://explorer.node9x.com/XRPLEVM)                                      | Cosmos |
 | **NodeStake**       | [https://explorer.nodestake.org/xrp-testnet](https://explorer.nodestake.org/xrp-testnet)                     | Cosmos |
 | **Nodes Hub**       | [https://testnet.explorer.nodeshub.online/xrpl](https://testnet.explorer.nodeshub.online/xrpl)               | Cosmos |
-
-{% /tab %}
-
-{% tab label="Devnet" %}
-
-## Devnet Explorers
-
-| Name                    | URL                                                                            | Type   |
-| -------------------     | ------------------------------------------------------------------------------ | ------ |
-| **EVM Explorer**        | [https://explorer.devnet.xrplevm.org](https://explorer.devnet.xrplevm.org)     | EVM    |
-| **Governance Explorer** | [https://governance.devnet.xrplevm.org](https://governance.devnet.xrplevm.org) | Cosmos |
 
 {% /tab %}
 {% /tabs %}

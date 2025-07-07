@@ -22,12 +22,6 @@ This guide provides step-by-step instructions for verifying a smart contract usi
 5. Search for your deployed contract by **contract address**.
 6. Go to the **Contract** tab and click **Verify & Publish**.
 {% /tab %}
-{% tab label="Devnet" %}
-7. Open the **XRPL EVM Devnet Explorer**:
-   `https://explorer.devnet.xrplevm.org`
-8. Search for your deployed contract by **contract address**.
-9. Go to the **Contract** tab and click **Verify & Publish**.
-{% /tab %}
 {% /tabs %}
 
 ---
@@ -65,7 +59,7 @@ The **XRPL EVM Explorer** supports multiple methods. For the most reliable resul
 
 ## Step 4: Verification with Hardhat
 
-Two approaches—**Standard JSON Input** and the **Hardhat Verify Plugin**—each work on Mainnet, Testnet, and Devnet.
+Two approaches—**Standard JSON Input** and the **Hardhat Verify Plugin**—each work on Mainnet, and Testnet.
 
 ### A) Standard JSON Input
 
@@ -154,39 +148,6 @@ export default {
 ```
 
 {% /tab %}
-{% tab label="Devnet" %}
-
-```ts
-// hardhat.config.ts (Devnet)
-import "@nomicfoundation/hardhat-toolbox";
-import "@nomicfoundation/hardhat-verify";
-import * as dotenv from "dotenv";
-dotenv.config();
-
-export default {
-  solidity: "0.8.24",
-  networks: {
-    xrplEVMDevnet: {
-      url: process.env.XRPL_EVM_DEVNET_URL, // https://rpc.devnet.xrplevm.org
-      chainId: 1440002,
-      accounts: [process.env.PRIVATE_KEY!],
-    },
-  },
-  etherscan: {
-    apiKey: { xrplEVMDevnet: "devnet-key" },
-    customChains: [{
-      network: "xrplEVMDevnet",
-      chainId: 1440002,
-      urls: {
-        apiURL:    "https://explorer.devnet.xrplevm.org/api",
-        browserURL:"https://explorer.devnet.xrplevm.org"
-      }
-    }]
-  }
-}
-```
-
-{% /tab %}
 {% /tabs %}
 
 #### Verify via CLI
@@ -199,9 +160,6 @@ npx hardhat verify --network xrplEVM <ADDRESS> [constructorArg1] …
 
 # Testnet
 npx hardhat verify --network xrplEVMTestnet <ADDRESS> …
-
-# Devnet
-npx hardhat verify --network xrplEVMDevnet <ADDRESS> …
 ```
 
 > If no constructor parameters, omit the args. Use `--force` to reverify.
@@ -235,7 +193,7 @@ Use your `.env` for RPC, key, and chain ID:
 ```dotenv
 # .env
 PRIVATE_KEY=0xYOUR_KEY
-CHAIN_ID=1440000           # 1440000=Mainnet, 1449000=Testnet, 1440002=Devnet
+CHAIN_ID=1440000           # 1440000=Mainnet, 1449000=Testnet
 RPC_URL=https://rpc.xrplevm.org  # switch URL per network
 ```
 
@@ -256,7 +214,7 @@ forge verify-contract \
 ```
 
 * Replace `<DEPLOYED_ADDRESS>` and `HelloWorld` with your contract’s name.
-* For Testnet/Devnet, set `CHAIN_ID` and `RPC_URL` accordingly.
+* For Testnet, set `CHAIN_ID` and `RPC_URL` accordingly.
 
 ---
 
@@ -275,4 +233,4 @@ forge verify-contract \
 2. **Trust:** Builds community confidence.
 3. **Interaction:** Enables Read/Write directly in the explorer UI.
 
-By following these steps—across **Mainnet**, **Testnet**, and **Devnet**, and with **Remix**, **Hardhat**, or **Foundry**—you’ll have a fully verified contract visible and interactable on the XRPL EVM Explorer.
+By following these steps—across **Mainnet** and **Testnet**, and with **Remix**, **Hardhat**, or **Foundry**—you’ll have a fully verified contract visible and interactable on the XRPL EVM Explorer.

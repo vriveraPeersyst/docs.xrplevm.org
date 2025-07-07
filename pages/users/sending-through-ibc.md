@@ -23,7 +23,7 @@ The Peersyst team has established IBC channels that connect the XRPL EVM with ot
 
 {% tabs %}
 
-   {% tab label="Mainnet" %}
+      {% tab label="Mainnet" %}
 
       ### Supported Channels:
 
@@ -31,6 +31,7 @@ The Peersyst team has established IBC channels that connect the XRPL EVM with ot
       - **XRPL EVM ↔ Cosmos Hub**
       - **XRPL EVM ↔ Osmosis**
       - **XRPL EVM ↔ Injective**
+      - **XRPL EVM ↔ Noble**
 
       You can use **Keplr's Advanced IBC Transfer** tool to send tokens across these networks.
 
@@ -72,13 +73,14 @@ The Peersyst team has established IBC channels that connect the XRPL EVM with ot
 
       | Destination     | From XRPL EVM (Source → Dest) | To XRPL EVM (Dest → Source) |
       |-----------------|-------------------------------|-----------------------------|
-      | Cosmos Hub      | `channel-`                   | `channel-`               |
-      | Osmosis         | `channel-`                   | `channel-`             |
-      | Elys Network    | `channel-`                   | `channel-`                |
-      | Injective       | `channel-`                   | `channel-`             |
+      | Cosmos Hub      | `channel-2`                   | `channel-1377`             |
+      | Elys Network    | `channel-1`                   | `channel-27`               |
+      | Injective       | `channel-0`                   | `channel-436`              |
+      | Osmosis         | `channel-3`                   | `channel-104325`           |
+      | Noble           | `channel-4`                   | `channel-152`              |
 
       3. **Paste Destination Address**:  
-         - Ensure it’s a valid **Keplr-compatible address** on the target chain.
+         - Ensure it's a valid **Keplr-compatible address** on the target chain.
 
       4. **Review & Confirm Transfer**:  
          - Check that the **token**, **amount**, **destination address**, and **channel** are correct.

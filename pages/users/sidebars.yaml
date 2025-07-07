@@ -18,7 +18,6 @@
     - page: ./using-the-bridge/transfer-xrp-with-axelar.md
     - page: ./using-the-bridge/transfer-iou-with-axelar.md
     - page: ./using-the-bridge/transfer-erc20-with-axelar.md
-- page: ./using-the-bridge.md
 - page: ./sending-through-ibc.md
 - page: ./faucet.md
 - group: Tools
@@ -47,20 +46,5 @@
         external: true
       - href: https://explorer.testnet.xrplevm.org/apps
         label: dApps Explorer
-        external: true
-   - group: Devnet
-     expanded: false
-     items:
-      - href: https://explorer.devnet.xrplevm.org
-        label: Explorer
-        external: true
-      - href: https://governance.devnet.xrplevm.org
-        label: Governance Explorer
-        external: true
-      - href: https://explorer.devnet.xrplevm.org/apps
-        label: dApps Explorer
-        external: true
-      - href: https://safe.devnet.xrplevm.org
-        label: Gnosis Safe
         external: true
    

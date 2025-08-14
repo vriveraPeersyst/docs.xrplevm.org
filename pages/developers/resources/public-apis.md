@@ -53,7 +53,6 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | ------------------------- | ----------------------------------------------------------------------------------------------|
         | **Peersyst**              | [https://cosmos-grpc.xrplevm.org](https://cosmos-grpc.xrplevm.org)                            |
         | **Grove**                 | [https://xrplevm.rpc.grove.city/v1/0caa84c4](https://xrplevm.rpc.grove.city/v1/0caa84c4)      |
-        | **Kintsugi Nodes**        | [https://grpc-xrp.kintsugi-nodes.com](https://grpc-xrp.kintsugi-nodes.com)                    |
         | **Polkachu**              | [https://xrp-grpc.polkachu.com:30090/](https://xrp-grpc.polkachu.com:30090/)                  |
         | **Cumulo**                | [http://grpc.xrpl.cumulo.org.es](http://grpc.xrpl.cumulo.org.es)                              |
 
@@ -63,7 +62,6 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | ------------------------- | -------------------------------------------------------------------------------- |
         | **Peersyst**              | [https://cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org)                 |
         | **Grove**                 | [https://xrplevm.rpc.grove.city/v1/0caa84c4](https://xrplevm.rpc.grove.city/v1/0caa84c4)      |
-        | **Kintsugi Nodes**        | [https://api-xrp.kintsugi-nodes.com](https://api-xrp.kintsugi-nodes.com)         |
         | **Polkachu**              | [https://xrp-api.polkachu.com/](https://xrp-api.polkachu.com/)                   |
         | **Cumulo**                | [https://api.xrpl.cumulo.org.es/](https://api.xrpl.cumulo.org.es/)               |
         | **Enigma**                | [https://xrp-lcd.enigma-validator.com/](https://xrp-lcd.enigma-validator.com/)   |

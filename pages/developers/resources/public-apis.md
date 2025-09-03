@@ -16,6 +16,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 | Cosmos gRPC       | [https://cosmos-grpc.xrplevm.org](https://cosmos-grpc.xrplevm.org)        |
 | Cosmos API        | [https://cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org)          |
 
+
 {% tabs %}
 
         {% tab label="Ethereum JSON RPC" %}
@@ -56,7 +57,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Peersyst**              | [https://cosmos-grpc.xrplevm.org](https://cosmos-grpc.xrplevm.org)                            |
         | **Polkachu**              | [https://xrp-grpc.polkachu.com:30090/](https://xrp-grpc.polkachu.com:30090/)                  |
         | **Cumulo**                | [http://grpc.xrpl.cumulo.org.es](http://grpc.xrpl.cumulo.org.es)                              |
-        | **Imperator**             | [grpc-xrp.imperator.co:443](grpc-xrp.imperator.co:443)                                        |
+        | **Imperator**             | [http://grpc-xrp.imperator.co:443](http://grpc-xrp.imperator.co:443)                          |
 
         {% /tab %}
         {% tab label="Cosmos API" %}

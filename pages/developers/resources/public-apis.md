@@ -16,6 +16,34 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 | Cosmos gRPC       | [https://cosmos-grpc.xrplevm.org](https://cosmos-grpc.xrplevm.org)        |
 | Cosmos API        | [https://cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org)          |
 
+## Grove as Main Service Provider
+
+[Grove](https://docs.grove.city/grove-api/api-definition/definition) is the **main service provider** for XRPL EVM.  
+They offer highly available, production-ready APIs for developers, wallets, and services looking to connect seamlessly with the XRPL EVM network.
+
+With Grove, you can access:
+
+- **Ethereum JSON-RPC** over HTTPS and WebSockets  
+- **CometBFT (Tendermint) RPC** via REST endpoints  
+- **Cosmos SDK REST APIs** for modules like `bank`, `staking`, etc.  
+- **Batching support** and enhanced error handling for JSON-RPC calls  
+
+Developers can use Grove’s endpoints with their **Portal App ID** and **API Key** for authenticated requests, or rely on their free public endpoints for quick integration and testing.  
+
+👉 Check the full Grove API specification and usage guide here:  
+[https://docs.grove.city/grove-api/api-definition/definition](https://docs.grove.city/grove-api/api-definition/definition)
+
+| Interface                      | Endpoint (template)                                              | Notes                                                                                                                                                                                   |
+| ------------------------------ | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Ethereum JSON RPC (HTTPS)      | `https://xrplevm.rpc.grove.city/v1/<GROVE_PORTAL_APP_ID>`        | Send JSON-RPC 2.0 requests. Include `Authorization: <GROVE_PORTAL_API_KEY>`. ([Grove][1])                                                                                               |
+| Ethereum JSON WS (WSS)         | `wss://xrplevm.rpc.grove.city/v1/<GROVE_PORTAL_APP_ID>`          | Use for `eth_subscribe` (e.g., `newHeads`). Same auth header.                                                        |
+| Tendermint RPC (CometBFT REST) | `https://xrplevm.grove.city/v1/<GROVE_PORTAL_APP_ID>/status`     | Path-style (not port). Append other CometBFT paths as needed (e.g., `/net_info`, `/block?height=...`). ([Grove][1])                                                                     |
+| Cosmos gRPC                    | **Not yet available**                                            | Marked “coming soon” in Grove’s materials. Use REST in the meantime.                                                                                        |
+| Cosmos REST API                | `https://xrplevm.grove.city/v1/<GROVE_PORTAL_APP_ID>/cosmos/...` | Standard Cosmos SDK routes, e.g. `/cosmos/bank/v1beta1/supply`. Include `Authorization` and `Portal-Application-Id: <GROVE_PORTAL_APP_ID>`. ([Grove][1], [Cosmos SDK Documentation][4]) |
+
+[1]: https://grove.city/public-endpoints "Public Endpoints | Free Blockchain RPC APIs"
+[4]: https://docs.cosmos.network/main/build/modules/bank "x/bank | Explore the SDK"
+
 
 {% tabs %}
 

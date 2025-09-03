@@ -24,8 +24,9 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Peersyst**                    | [https://rpc.xrplevm.org](https://rpc.xrplevm.org)                                            |
         | **Grove**                       | [https://xrplevm.rpc.grove.city/v1/0caa84c4](https://xrplevm.rpc.grove.city/v1/0caa84c4)      |
         | **Cumulo**                      | [https://json-rpc.xrpl.cumulo.org.es](https://json-rpc.xrpl.cumulo.org.es)                    |
+        | **Imperator**                   | [https://rpc_evm-xrp.imperator.co/](https://rpc_evm-xrp.imperator.co/)                        |
         | **Enigma**                      | [https://xrp-evm-rpc.enigma-validator.com/](https://xrp-evm-rpc.enigma-validator.com/)        |
-        | **Stakeme**                     | [https://xrpl-evm-rpc.stakeme.pro/](https://xrpl-evm-rpc.stakeme.pro/)        |
+        | **Stakeme**                     | [https://xrpl-evm-rpc.stakeme.pro/](https://xrpl-evm-rpc.stakeme.pro/)                        |
 
 
         {% /tab %}
@@ -34,6 +35,8 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | ------------------- | ------------------------------------------------------------------------------------------------ |
         | **Peersyst**        | [https://ws.xrplevm.org]( https://ws.xrplevm.org)                                                |
         | **Cumulo**          | [https://ws.xrpl.cumulo.org.es](https://ws.xrpl.cumulo.org.es)                                   |
+        | **Imperator**       | [ws://ws_evm-xrp.imperator.co](ws://ws_evm-xrp.imperator.co)                                     |
+        
 
         {% /tab %}
         {% tab label="Tendermint RPC" %}
@@ -42,6 +45,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Peersyst**              | [https://cosmos-rpc.xrplevm.org](https://cosmos-rpc.xrplevm.org)                              |
         | **Polkachu**              | [https://xrp-rpc.polkachu.com/](https://xrp-rpc.polkachu.com/)                                |
         | **Cumulo**                | [https://rpc.xrpl.cumulo.org.es/](https://rpc.xrpl.cumulo.org.es/)                            |
+        | **Imperator**             | [https://rpc-xrp.imperator.co/](https://rpc-xrp.imperator.co/)                                |
         | **Enigma**                | [https://xrp-rpc.enigma-validator.com/](https://xrp-rpc.enigma-validator.com/)                |
         | **Stakeme**               | [https://xrpl-rpc.stakeme.pro/](https://xrpl-rpc.stakeme.pro/)                                |
 
@@ -52,6 +56,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Peersyst**              | [https://cosmos-grpc.xrplevm.org](https://cosmos-grpc.xrplevm.org)                            |
         | **Polkachu**              | [https://xrp-grpc.polkachu.com:30090/](https://xrp-grpc.polkachu.com:30090/)                  |
         | **Cumulo**                | [http://grpc.xrpl.cumulo.org.es](http://grpc.xrpl.cumulo.org.es)                              |
+        | **Imperator**             | [grpc-xrp.imperator.co:443](grpc-xrp.imperator.co:443)                                        |
 
         {% /tab %}
         {% tab label="Cosmos API" %}
@@ -60,6 +65,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Peersyst**              | [https://cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org)                 |
         | **Polkachu**              | [https://xrp-api.polkachu.com/](https://xrp-api.polkachu.com/)                   |
         | **Cumulo**                | [https://api.xrpl.cumulo.org.es/](https://api.xrpl.cumulo.org.es/)               |
+        | **Imperator**             | [https://lcd-xrp.imperator.co/](https://lcd-xrp.imperator.co/)                   |
         | **Enigma**                | [https://xrp-lcd.enigma-validator.com/](https://xrp-lcd.enigma-validator.com/)   |
         | **Stakeme**               | [https://xrpl-rest.stakeme.pro/](https://xrpl-rest.stakeme.pro/)                 |
 
@@ -76,7 +82,6 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | Provider/Validator              | RPC Endpoint URL                                                                              |
         | ------------------------------- | --------------------------------------------------------------------------------------------- |
         | **Peersyst**                    | [https://rpc.testnet.xrplevm.org](https://rpc.testnet.xrplevm.org)                            |
-        | **Grove**                       | [https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4](https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4) |
         | **Cumulo**                      | [https://json-rpc.xrpl.cumulo.com.es](https://json-rpc.xrpl.cumulo.com.es)                    |
         | **ITRocket**                    | [https://xrplevm-testnet-evm.itrocket.net](https://xrplevm-testnet-evm.itrocket.net)          |
         | **Mekong Labs**                 | [https://exrpd-testnet-json-rpc.mekonglabs.tech](https://exrpd-testnet-json-rpc.mekonglabs.tech)|

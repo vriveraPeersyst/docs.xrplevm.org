@@ -16,6 +16,35 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 | Cosmos gRPC       | [https://cosmos-grpc.xrplevm.org](https://cosmos-grpc.xrplevm.org)        |
 | Cosmos API        | [https://cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org)          |
 
+## Grove as Main Service Provider
+
+[Grove](https://docs.grove.city/grove-api/api-definition/definition) is the **main service provider** for XRPL EVM.  
+They offer highly available, production-ready APIs for developers, wallets, and services looking to connect seamlessly with the XRPL EVM network.
+
+With Grove, you can access:
+
+- **Ethereum JSON-RPC** over HTTPS and WebSockets  
+- **CometBFT (Tendermint) RPC** via REST endpoints  
+- **Cosmos SDK REST APIs** for modules like `bank`, `staking`, etc.  
+- **Batching support** and enhanced error handling for JSON-RPC calls  
+
+Developers can use Grove’s endpoints with their **Portal App ID** and **API Key** for authenticated requests, or rely on their free public endpoints for quick integration and testing.  
+
+👉 Check the full Grove API specification and usage guide here:  
+[https://docs.grove.city/grove-api/api-definition/definition](https://docs.grove.city/grove-api/api-definition/definition)
+
+| Interface                      | Endpoint (template)                                              | Notes                                                                                                                                                                                   |
+| ------------------------------ | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Ethereum JSON RPC (HTTPS)      | `https://xrplevm.rpc.grove.city/v1/<GROVE_PORTAL_APP_ID>`        | Send JSON-RPC 2.0 requests. Include `Authorization: <GROVE_PORTAL_API_KEY>`. ([Grove][1])                                                                                               |
+| Ethereum JSON WS (WSS)         | `wss://xrplevm.rpc.grove.city/v1/<GROVE_PORTAL_APP_ID>`          | Use for `eth_subscribe` (e.g., `newHeads`). Same auth header.                                                        |
+| Tendermint RPC (CometBFT REST) | `https://xrplevm.grove.city/v1/<GROVE_PORTAL_APP_ID>/status`     | Path-style (not port). Append other CometBFT paths as needed (e.g., `/net_info`, `/block?height=...`). ([Grove][1])                                                                     |
+| Cosmos gRPC                    | **Not yet available**                                            | Marked “coming soon” in Grove’s materials. Use REST in the meantime.                                                                                        |
+| Cosmos REST API                | `https://xrplevm.grove.city/v1/<GROVE_PORTAL_APP_ID>/cosmos/...` | Standard Cosmos SDK routes, e.g. `/cosmos/bank/v1beta1/supply`. Include `Authorization` and `Portal-Application-Id: <GROVE_PORTAL_APP_ID>`. ([Grove][1], [Cosmos SDK Documentation][4]) |
+
+[1]: https://grove.city/public-endpoints "Public Endpoints | Free Blockchain RPC APIs"
+[4]: https://docs.cosmos.network/main/build/modules/bank "x/bank | Explore the SDK"
+
+
 {% tabs %}
 
         {% tab label="Ethereum JSON RPC" %}
@@ -24,8 +53,9 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Peersyst**                    | [https://rpc.xrplevm.org](https://rpc.xrplevm.org)                                            |
         | **Grove**                       | [https://xrplevm.rpc.grove.city/v1/0caa84c4](https://xrplevm.rpc.grove.city/v1/0caa84c4)      |
         | **Cumulo**                      | [https://json-rpc.xrpl.cumulo.org.es](https://json-rpc.xrpl.cumulo.org.es)                    |
+        | **Imperator**                   | [https://rpc_evm-xrp.imperator.co/](https://rpc_evm-xrp.imperator.co/)                        |
         | **Enigma**                      | [https://xrp-evm-rpc.enigma-validator.com/](https://xrp-evm-rpc.enigma-validator.com/)        |
-        | **Stakeme**                     | [https://xrpl-evm-rpc.stakeme.pro/](https://xrpl-evm-rpc.stakeme.pro/)        |
+        | **Stakeme**                     | [https://xrpl-evm-rpc.stakeme.pro/](https://xrpl-evm-rpc.stakeme.pro/)                        |
 
 
         {% /tab %}
@@ -34,6 +64,8 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | ------------------- | ------------------------------------------------------------------------------------------------ |
         | **Peersyst**        | [https://ws.xrplevm.org]( https://ws.xrplevm.org)                                                |
         | **Cumulo**          | [https://ws.xrpl.cumulo.org.es](https://ws.xrpl.cumulo.org.es)                                   |
+        | **Imperator**       | [ws://ws_evm-xrp.imperator.co](ws://ws_evm-xrp.imperator.co)                                     |
+        
 
         {% /tab %}
         {% tab label="Tendermint RPC" %}
@@ -42,6 +74,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Peersyst**              | [https://cosmos-rpc.xrplevm.org](https://cosmos-rpc.xrplevm.org)                              |
         | **Polkachu**              | [https://xrp-rpc.polkachu.com/](https://xrp-rpc.polkachu.com/)                                |
         | **Cumulo**                | [https://rpc.xrpl.cumulo.org.es/](https://rpc.xrpl.cumulo.org.es/)                            |
+        | **Imperator**             | [https://rpc-xrp.imperator.co/](https://rpc-xrp.imperator.co/)                                |
         | **Enigma**                | [https://xrp-rpc.enigma-validator.com/](https://xrp-rpc.enigma-validator.com/)                |
         | **Stakeme**               | [https://xrpl-rpc.stakeme.pro/](https://xrpl-rpc.stakeme.pro/)                                |
 
@@ -52,6 +85,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Peersyst**              | [https://cosmos-grpc.xrplevm.org](https://cosmos-grpc.xrplevm.org)                            |
         | **Polkachu**              | [https://xrp-grpc.polkachu.com:30090/](https://xrp-grpc.polkachu.com:30090/)                  |
         | **Cumulo**                | [http://grpc.xrpl.cumulo.org.es](http://grpc.xrpl.cumulo.org.es)                              |
+        | **Imperator**             | [http://grpc-xrp.imperator.co:443](http://grpc-xrp.imperator.co:443)                          |
 
         {% /tab %}
         {% tab label="Cosmos API" %}
@@ -60,6 +94,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Peersyst**              | [https://cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org)                 |
         | **Polkachu**              | [https://xrp-api.polkachu.com/](https://xrp-api.polkachu.com/)                   |
         | **Cumulo**                | [https://api.xrpl.cumulo.org.es/](https://api.xrpl.cumulo.org.es/)               |
+        | **Imperator**             | [https://lcd-xrp.imperator.co/](https://lcd-xrp.imperator.co/)                   |
         | **Enigma**                | [https://xrp-lcd.enigma-validator.com/](https://xrp-lcd.enigma-validator.com/)   |
         | **Stakeme**               | [https://xrpl-rest.stakeme.pro/](https://xrpl-rest.stakeme.pro/)                 |
 
@@ -76,7 +111,6 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | Provider/Validator              | RPC Endpoint URL                                                                              |
         | ------------------------------- | --------------------------------------------------------------------------------------------- |
         | **Peersyst**                    | [https://rpc.testnet.xrplevm.org](https://rpc.testnet.xrplevm.org)                            |
-        | **Grove**                       | [https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4](https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4) |
         | **Cumulo**                      | [https://json-rpc.xrpl.cumulo.com.es](https://json-rpc.xrpl.cumulo.com.es)                    |
         | **ITRocket**                    | [https://xrplevm-testnet-evm.itrocket.net](https://xrplevm-testnet-evm.itrocket.net)          |
         | **Mekong Labs**                 | [https://exrpd-testnet-json-rpc.mekonglabs.tech](https://exrpd-testnet-json-rpc.mekonglabs.tech)|

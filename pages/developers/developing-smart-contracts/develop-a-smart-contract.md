@@ -2,6 +2,20 @@
 
 Smart contracts are self-executing programs that run on blockchain networks, enabling trustless and automated interactions. On the **XRPL Ethereum Virtual Machine (EVM) Sidechain**, developers can write, deploy, verify, and interact with Solidity-based smart contracts, leveraging the XRPL’s speed, low transaction costs, and the interoperability of Cosmos IBC and Axelar cross-chain messaging systems. This page introduces the foundational concepts and steps required to start developing smart contracts on the XRPL EVM, aimed at junior developers with a vision for future cross-chain innovation.
 
+{% admonition type="info" name="EVM Compatibility Notice" %}
+The **XRPL EVM** is currently compatible with:
+
+- **EVM Version:** Paris
+- **Solidity Compiler:** `solc` ≤ **0.8.24**
+
+With the upcoming upgrade from **legacy evmOS** to **Cosmos EVM**, compatibility will shift to:
+
+- **EVM Version:** Prague
+- **Solidity Compiler:** `solc` **0.8.30**
+
+Please ensure your contracts are compiled with the correct `solc` version depending on the network upgrade status.
+{% /admonition %}
+
 ---
 
 ## What Are Smart Contracts?

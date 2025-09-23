@@ -4,6 +4,20 @@ Deploying a smart contract on the **XRPL EVM** can be accomplished using many di
 
 This guide will walk you through end-to-end setups for all three methods—covering wallet configuration, network setup, contract authoring, testing, deployment, and on-chain verification—so you can choose the workflow that best fits your project.
 
+{% admonition type="info" name="EVM Compatibility Notice" %}
+The **XRPL EVM** is currently compatible with:
+
+- **EVM Version:** Paris
+- **Solidity Compiler:** `solc` ≤ **0.8.24**
+
+With the upcoming upgrade from **legacy evmOS** to **Cosmos EVM**, compatibility will shift to:
+
+- **EVM Version:** Prague
+- **Solidity Compiler:** `solc` **0.8.30**
+
+Please ensure your contracts are compiled with the correct `solc` version depending on the network upgrade status.
+{% /admonition %}
+
 ---
 
 ## Option 1: Deploy Using Remix IDE
@@ -333,7 +347,7 @@ Create a `.env` in your project root:
 # .env
 PRIVATE_KEY=your_private_key_here
 RPC_URL=https://rpc.xrplevm.org
-CHAIN_ID=1440000                          
+CHAIN_ID=1440000
 ```
 
 > **Tip**: Add `.env` to your `.gitignore` to avoid leaking keys.
@@ -471,10 +485,8 @@ You’ll see broadcast logs and the deployed address in the console.
 2. Paste into the appropriate XRPL EVM Explorer:
 3. Use the Read/Write tabs to call `message()` or `setMessage()`.
 
-
 ## Conclusion
 
 Leverage each tool’s strengths to streamline your development workflow: use **Remix** for rapid prototyping and interactive experimentation, **Hardhat** for full-featured testing, scripting, and plugin support, and **Foundry** for lightning-fast compilation, testing, and CLI-driven deployments. Whichever stack you choose, make sure to manage your RPC endpoints and private keys securely (e.g., via environment variables), rigorously test your contracts on Testnet before moving to Mainnet, and verify your deployments through the XRPL EVM Explorer. With these toolchains in hand, you’re ready to push the boundaries of what’s possible in decentralized finance, NFTs, gaming, and beyond on the XRPL EVM sidechain.
-
 
 ---

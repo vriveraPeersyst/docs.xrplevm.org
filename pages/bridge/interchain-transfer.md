@@ -41,13 +41,14 @@ Sending assets from the XRP Ledger to the XRPL EVM or other chains is straightfo
 
 - `Amount`: Specifies the quantity of the asset to be transferred. The format and value depend on the type of asset being sent (e.g., XRP or IOUs).
 - `Destination`: The address of the Gateway on the XRP Ledger.
+
   - [**Mainnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json)
   - [**Testnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json#L2603)
   - [**Devnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/devnet-amplifier.json#L985)
 
 - `Memos`: Hex-encoded data required for the transfer, including:
   - The _type_ of call to initiate.
-  - The _destination chain_ on the Axelar network.
+  - The _destination chain_ on the Axelar network (`"xrpl-evm"` for both Testnet and Mainnet).
   - The _recipient's address_ on the destination chain.
   - The _gas fee_.
 
@@ -58,6 +59,6 @@ See [Axelar's documentation](https://github.com/axelarnetwork/axelar-contract-de
 To send assets from the XRPL EVM back to the XRPL, you’ll call the [`interchainTransfer`](https://github.com/axelarnetwork/interchain-token-service/blob/9edc4318ac1c17231e65886eea72c0f55469d7e5/contracts/interfaces/IInterchainTokenStandard.sol#L19) method of the **ITS contract** on the XRPL EVM. You must provide:
 
 - `tokenId`: The token’s Axelar ID.
-- `destinationChain`: The Axelar chain ID of the target chain (e.g., `"xrpl"` or `"xrpl-dev"`).
+- `destinationChain`: The Axelar chain ID of the target chain (`"xrpl"` for both Testnet and Mainnet).
 - `destinationAddress`: The address on the XRPL where the assets will be received (an R-address).
 - `amount`: The amount to transfer, as an integer without decimals.

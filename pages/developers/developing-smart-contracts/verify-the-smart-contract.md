@@ -4,6 +4,20 @@ After deploying your smart contract on the **XRPL EVM**, it is essential to veri
 
 This guide provides step-by-step instructions for verifying a smart contract using **Remix IDE**, **Hardhat**, and **Foundry**, with a recommended approach of using **Standard JSON Input** for seamless verification.
 
+{% admonition type="info" name="EVM Compatibility Notice" %}
+The **XRPL EVM** is currently compatible with:
+
+- **EVM Version:** Paris
+- **Solidity Compiler:** `solc` ≤ **0.8.24**
+
+With the upcoming upgrade from **legacy evmOS** to **Cosmos EVM**, compatibility will shift to:
+
+- **EVM Version:** Prague
+- **Solidity Compiler:** `solc` **0.8.30**
+
+Please ensure your contracts are compiled with the correct `solc` version depending on the network upgrade status.
+{% /admonition %}
+
 ---
 
 ## Step 1: Access the XRPL EVM Explorer

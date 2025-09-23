@@ -31,26 +31,26 @@ Before interacting with a smart contract, ensure you have the following set up:
    - Connect your wallet to the XRPL EVM using MetaMask or other compatible tools.
    - Choose **Mainnet** or **Testnet** details below.
 
-{% tabs %}
-{% tab label="Mainnet" %}
-**XRPL EVM Network Details**
+   {% tabs %}
+   {% tab label="Mainnet" %}
+   **XRPL EVM Network Details**
 
-- **Network Name**: XRPL EVM
-- **RPC URL**: `https://rpc.xrplevm.org`
-- **Chain ID**: `1440000`
-- **Currency Symbol**: `XRP`
-- **Block Explorer URL**: [https://explorer.xrplevm.org](https://explorer.xrplevm.org)
-  {% /tab %}
-  {% tab label="Testnet" %}
-  **XRPL EVM Testnet Network Details**
+   - **Network Name**: XRPL EVM
+   - **RPC URL**: `https://rpc.xrplevm.org`
+   - **Chain ID**: `1440000`
+   - **Currency Symbol**: `XRP`
+   - **Block Explorer URL**: [https://explorer.xrplevm.org](https://explorer.xrplevm.org)
+   {% /tab %}
+   {% tab label="Testnet" %}
+   **XRPL EVM Testnet Network Details**
 
-- **Network Name**: XRPL EVM Testnet
-- **RPC URL**: `https://rpc.testnet.xrplevm.org`
-- **Chain ID**: `1449000`
-- **Currency Symbol**: `XRP`
-- **Block Explorer URL**: [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)
-  {% /tab %}
-  {% /tabs %}
+   - **Network Name**: XRPL EVM Testnet
+   - **RPC URL**: `https://rpc.testnet.xrplevm.org`
+   - **Chain ID**: `1449000`
+   - **Currency Symbol**: `XRP`
+   - **Block Explorer URL**: [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)
+   {% /tab %}
+   {% /tabs %}
 
 3. **Smart Contract ABI**
 

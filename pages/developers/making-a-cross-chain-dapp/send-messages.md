@@ -17,7 +17,7 @@ To send a message from the XRP Ledger (XRPL) to the XRPL EVM, a `Payment` transa
   - [**Testnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json#L2603)
 - `Memos`: Hex-encoded data required for the function call, including:
   - The _type_ of call to initiate.
-  - The _destination chain_ on the Axelar network.
+  - The _destination chain_ on the Axelar network (`"xrpl-evm"` for both Testnet and Mainnet).
   - The _contract address_ on the destination chain to which the message is sent.
   - The _payload hash_, which contains the data to be sent to the destination contract. This payload must be ABI-encoded. The [ethers AbiCoder](https://docs.ethers.org/v6/api/abi/abi-coder/#AbiCoder-encode) can be used for encoding the payload.
 

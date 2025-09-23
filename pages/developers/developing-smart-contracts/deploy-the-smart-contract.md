@@ -4,19 +4,7 @@ Deploying a smart contract on the **XRPL EVM** can be accomplished using many di
 
 This guide will walk you through end-to-end setups for all three methods—covering wallet configuration, network setup, contract authoring, testing, deployment, and on-chain verification—so you can choose the workflow that best fits your project.
 
-{% admonition type="info" name="EVM Compatibility Notice" %}
-The **XRPL EVM** is currently compatible with:
-
-- **EVM Version:** Paris
-- **Solidity Compiler:** `solc` ≤ **0.8.24**
-
-With the upcoming upgrade from **legacy evmOS** to **Cosmos EVM**, compatibility will shift to:
-
-- **EVM Version:** Prague
-- **Solidity Compiler:** `solc` **0.8.30**
-
-Please ensure your contracts are compiled with the correct `solc` version depending on the network upgrade status.
-{% /admonition %}
+{% partial file="/snippets/_evm-compatibility-notice.md" /%}
 
 ---
 

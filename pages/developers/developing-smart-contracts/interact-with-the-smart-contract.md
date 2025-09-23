@@ -2,19 +2,7 @@
 
 Interacting with smart contracts on the **XRPL EVM** allows developers and users to execute contract functions, query data, and create seamless integrations with decentralized applications (dApps). This guide outlines how to connect to the XRPL EVM network, call smart contract functions, and manage responses using Foundry’s **cast** CLI, popular libraries like **web3.js** and **ethers.js**, and user-friendly interfaces such as MetaMask and Remix IDE.
 
-{% admonition type="info" name="EVM Compatibility Notice" %}
-The **XRPL EVM** is currently compatible with:
-
-- **EVM Version:** Paris
-- **Solidity Compiler:** `solc` ≤ **0.8.24**
-
-With the upcoming upgrade from **legacy evmOS** to **Cosmos EVM**, compatibility will shift to:
-
-- **EVM Version:** Prague
-- **Solidity Compiler:** `solc` **0.8.30**
-
-Please ensure your contracts are compiled with the correct `solc` version depending on the network upgrade status.
-{% /admonition %}
+{% partial file="/snippets/_evm-compatibility-notice.md" /%}
 
 ---
 

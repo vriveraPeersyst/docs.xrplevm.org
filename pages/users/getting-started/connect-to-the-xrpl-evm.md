@@ -62,7 +62,7 @@ To interact with the XRPL EVM, you need to manually add it as a custom network i
 
    - Select **"XRPL EVM Testnet"** from the network dropdown to start interacting with the network.
 
-   ![Select XRPL EVM Network](../images/AddedXRPLEVMTestnetToMetaMask.png)
+   ![Select XRPL EVM Network](../images/addedXRPLEVMTestnetToMetaMask.png)
 {% /tab %}
 {% /tabs %}
 

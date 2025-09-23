@@ -16,11 +16,11 @@ Here's the list of deployed and verified contracts on the XRPL EVM Sidechain.
 
 ---
 
-Below the table, we also include the on-ledger gateway used on XRPL Mainnet for Axelar cross-chain messaging and asset bridging, both XRPL and XRPL EVM Axelar chain ids and XRP Axelar token id:
+## Axelar Gateway Details
 
-- **XRPL Mainnet Axelar Gateway**: `rfmS3zqrQrka8wVyhXifEeyTwe8AMz2Yhw`
-- **XRPL Mainnet Axelar chain id**: `xrpl`
-- **XRPL EVM Mainnet Axelar chain id**: `xrpl-evm`
-- **XRP Mainnet Axelar Token id**: `0xba5a21ca88ef6bba2bfff5088994f90e1077e2a1cc3dcc38bd261f00fce2824f`
+- **XRPL Mainnet Axelar Gateway Address**: `rfmS3zqrQrka8wVyhXifEeyTwe8AMz2Yhw`
+- **XRPL Mainnet Axelar Chain ID**: `xrpl`
+- **XRPL EVM Mainnet Axelar Chain ID**: `xrpl-evm`
+- **XRP Mainnet Axelar Token ID**: `0xba5a21ca88ef6bba2bfff5088994f90e1077e2a1cc3dcc38bd261f00fce2824f`
 
 For a complete, up-to-date list of all Axelar contract addresses (including those on XRPL, EVM and other chains), see the official [Axelar mainnet deployments config](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json) on GitHub:

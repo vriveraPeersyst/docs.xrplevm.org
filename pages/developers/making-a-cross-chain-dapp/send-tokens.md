@@ -20,7 +20,7 @@ Sending assets from the XRP Ledger to the XRPL EVM or other chains is straightfo
   - [**Testnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json#L2603)
 - `Memos`: Hex-encoded data required for the transfer, including:
   - The _type_ of call to initiate.
-  - The _destination chain_ on the Axelar network (`"xrpl-evm"` for both Testnet and Mainnet).
+  - The _destination chain_ on the Axelar network (`xrpl-evm` for both Testnet and Mainnet).
   - The _recipient's address_ on the destination chain.
   - The _gas fee_.
 
@@ -31,7 +31,7 @@ See [Axelar's documentation](https://github.com/axelarnetwork/axelar-contract-de
 To send assets from the XRPL EVM back to the XRPL, you’ll call the [`interchainTransfer`](https://github.com/axelarnetwork/interchain-token-service/blob/9edc4318ac1c17231e65886eea72c0f55469d7e5/contracts/interfaces/IInterchainTokenStandard.sol#L19) method of the **ITS contract** on the XRPL EVM. You must provide:
 
 - `tokenId`: The token’s Axelar ID.
-- `destinationChain`: The Axelar chain ID of the target chain (`"xrpl"` for both Testnet and Mainnet).
+- `destinationChain`: The Axelar chain ID of the target chain (`xrpl` for both Testnet and Mainnet).
 - `destinationAddress`: The address on the XRPL where the assets will be received (an R-address).
 - `amount`: The amount to transfer, as an integer without decimals.
 
@@ -173,7 +173,7 @@ import { ethers } from "ethers";
 await its.interchainTransfer(
   "0x85f75bb7fd0753565c1d2cb59bd881970b52c6f06f3472769ba7b48621cd9d23", // RLUSD token ID (example)
   "xrpl", // Destination chain ID
-  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address, see
+  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
   "100000000000000000000", // 100 RLUSD in integer form
   "0x", // Metadata (unused)
   {
@@ -188,11 +188,11 @@ await its.interchainTransfer(
 
 ---
 
-Below is a high-level overview of how to convert an **XRPL classic address** (e.g., `r...`) to an **EVM‐style hex address** (`0x...`) and vice versa.
+Below is a high-level overview of how to convert an **XRPL classic address** (e.g., `r...`) to an **EVM‐style hex address** (`0x...`) and vice versa. These transformations are **mathematically reversible**, so you can go back and forth safely as long as you do not lose or alter the 20‐byte hash.
 
 ---
 
-### Converting **rAddress → EVM (20-byte) Hex** (Needed for XRPLEVM to XRPL transfers)
+### Converting rAddress → EVM (20-byte) Hex
 
 1. **Base58 Decode**  
    The classic XRP Ledger address (an "rAddress") is a Base58Check‐style encoding. To decode:
@@ -222,7 +222,7 @@ At this point, `evmAddress` is the EVM‐style address derived from the original
 
 ---
 
-### Converting **EVM (20-byte) Hex → rAddress**
+### Converting EVM (20-byte) Hex → rAddress
 
 1. **Strip `0x`** (if present)  
    If the address starts with `0x`, remove it, leaving just the hex string.
@@ -264,26 +264,6 @@ const accountIDBytes = Buffer.from(noPrefix, "hex");
 // Encode as an XRP classic address
 const rAddress = encodeAccountID(accountIDBytes); // e.g. "rLZ1..."
 ```
-
----
-
-### Summary
-
-- **rAddress → EVM**
-
-  1. Base58 decode the XRPL address → get 20 bytes
-  2. Convert those 20 bytes to hex
-  3. Optionally add `0x` prefix to get a standard EVM‐style address
-
-- **EVM → rAddress**
-  1. Strip `0x` prefix
-  2. Parse hex → 20 bytes
-  3. Prepend the **type prefix** (`0x00`)
-  4. Double‐SHA‐256 → first 4 bytes is checksum
-  5. Concatenate
-  6. Base58‐encode → yield the rAddress
-
-These transformations are **mathematically reversible**, so you can go back and forth safely as long as you do not lose or alter the 20‐byte hash.
 
 ---
 

@@ -2,6 +2,8 @@
 
 Smart contracts are self-executing programs that run on blockchain networks, enabling trustless and automated interactions. On the **XRPL Ethereum Virtual Machine (EVM) Sidechain**, developers can write, deploy, verify, and interact with Solidity-based smart contracts, leveraging the XRPL’s speed, low transaction costs, and the interoperability of Cosmos IBC and Axelar cross-chain messaging systems. This page introduces the foundational concepts and steps required to start developing smart contracts on the XRPL EVM, aimed at junior developers with a vision for future cross-chain innovation.
 
+{% partial file="/snippets/_evm-compatibility-notice.md" /%}
+
 ---
 
 ## What Are Smart Contracts?

@@ -24,11 +24,13 @@ Here's the list of deployed and verified contracts on the XRPL EVM Sidechain Tes
 | InterchainTokenService | [0x3b1ca8B18698409fF95e29c506ad7014980F0193](https://explorer.testnet.xrplevm.org/address/0x3b1ca8B18698409fF95e29c506ad7014980F0193) |
 | InterchainTokenFactory | [0x0E7620b73a53980f2138B43314fa944AE990d387](https://explorer.testnet.xrplevm.org/address/0x0E7620b73a53980f2138B43314fa944AE990d387) |
 
-
 ---
 
-Below the table, we also include the on-ledger gateway used on XRPL Testnet for Axelar cross-chain messaging and asset bridging:
+## Axelar Gateway Details
 
-**XRPL Testnet Axelar Gateway**: `rNrjh1KGZk2jBR3wPfAQnoidtFFYQKbQn2`
+- **XRPL Testnet Axelar Gateway Address**: `rNrjh1KGZk2jBR3wPfAQnoidtFFYQKbQn2`
+- **XRPL Testnet Axelar Chain ID**: `xrpl`
+- **XRPL EVM Testnet Axelar Chain ID**: `xrpl-evm`
+- **XRP Testnet Axelar Token ID**: `0xba5a21ca88ef6bba2bfff5088994f90e1077e2a1cc3dcc38bd261f00fce2824f`
 
-For a complete, up-to-date list of all Axelar contract addresses (including those on XRPL, EVM and other chains), see the official [Axelar testnet  deployments config](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json) on GitHub: 
+For a complete, up-to-date list of all Axelar contract addresses (including those on XRPL, EVM and other chains), see the official [Axelar testnet deployments config](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json) on GitHub:

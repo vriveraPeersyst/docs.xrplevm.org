@@ -2,6 +2,7 @@
 
 Interacting with smart contracts on the **XRPL EVM** allows developers and users to execute contract functions, query data, and create seamless integrations with decentralized applications (dApps). This guide outlines how to connect to the XRPL EVM network, call smart contract functions, and manage responses using Foundry’s **cast** CLI, popular libraries like **web3.js** and **ethers.js**, and user-friendly interfaces such as MetaMask and Remix IDE.
 
+{% partial file="/snippets/_evm-compatibility-notice.md" /%}
 
 ---
 
@@ -18,26 +19,26 @@ Before interacting with a smart contract, ensure you have the following set up:
    - Connect your wallet to the XRPL EVM using MetaMask or other compatible tools.
    - Choose **Mainnet** or **Testnet** details below.
 
-{% tabs %}
-{% tab label="Mainnet" %}
-**XRPL EVM Network Details**
+   {% tabs %}
+   {% tab label="Mainnet" %}
+   **XRPL EVM Network Details**
 
-- **Network Name**: XRPL EVM
-- **RPC URL**: `https://rpc.xrplevm.org`
-- **Chain ID**: `1440000`
-- **Currency Symbol**: `XRP`
-- **Block Explorer URL**: [https://explorer.xrplevm.org](https://explorer.xrplevm.org)
-{% /tab %}
-{% tab label="Testnet" %}
-**XRPL EVM Testnet Network Details**
+   - **Network Name**: XRPL EVM
+   - **RPC URL**: `https://rpc.xrplevm.org`
+   - **Chain ID**: `1440000`
+   - **Currency Symbol**: `XRP`
+   - **Block Explorer URL**: [https://explorer.xrplevm.org](https://explorer.xrplevm.org)
+   {% /tab %}
+   {% tab label="Testnet" %}
+   **XRPL EVM Testnet Network Details**
 
-- **Network Name**: XRPL EVM Testnet
-- **RPC URL**: `https://rpc.testnet.xrplevm.org`
-- **Chain ID**: `1449000`
-- **Currency Symbol**: `XRP`
-- **Block Explorer URL**: [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)
-{% /tab %}
-{% /tabs %}
+   - **Network Name**: XRPL EVM Testnet
+   - **RPC URL**: `https://rpc.testnet.xrplevm.org`
+   - **Chain ID**: `1449000`
+   - **Currency Symbol**: `XRP`
+   - **Block Explorer URL**: [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)
+   {% /tab %}
+   {% /tabs %}
 
 3. **Smart Contract ABI**
 
@@ -166,7 +167,7 @@ const { ethers } = require("ethers");
 
 // XRPL EVM RPC
 const provider = new ethers.providers.JsonRpcProvider(
-  "https://rpc.xrplevm.org"
+  "https://rpc.xrplevm.org",
 );
 const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
@@ -181,7 +182,7 @@ const { ethers } = require("ethers");
 
 // XRPL EVM Testnet RPC
 const provider = new ethers.providers.JsonRpcProvider(
-  "https://rpc.testnet.xrplevm.org"
+  "https://rpc.testnet.xrplevm.org",
 );
 const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
@@ -220,50 +221,51 @@ const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
 #### Querying XRP/USD Price via the Explorer UI
 
-> **Contract (Testnet-only)**
-> **StdReferenceProxy**
+> **Contract (Testnet-only)** > **StdReferenceProxy**
 > Address: `0x8c064bCf7C0DA3B3b090BAbFE8f3323534D84d68`
 
 1. **Open & Connect**
 
-   * Go to the Testnet Explorer:
+   - Go to the Testnet Explorer:
      `https://explorer.testnet.xrplevm.org`
-   * Search for the StdReferenceProxy address above and open its page.
-   * Click **Read/Write Contract** → **Connect** (approve in MetaMask).
+   - Search for the StdReferenceProxy address above and open its page.
+   - Click **Read/Write Contract** → **Connect** (approve in MetaMask).
 
 2. **Locate `getReferenceData`**
 
-   * In the **Read/Write** panel, click **Expand all** or search for `getReferenceData`.
-   * You’ll see inputs for:
+   - In the **Read/Write** panel, click **Expand all** or search for `getReferenceData`.
+   - You’ll see inputs for:
 
-     * **base** (string)
-     * **quote** (string)
+     - **base** (string)
+     - **quote** (string)
 
 3. **Enter “XRP” and “USD”**
 
-   * In **base**, type: `XRP`
-   * In **quote**, type: `USD`
+   - In **base**, type: `XRP`
+   - In **quote**, type: `USD`
 
 4. **Query the Price**
 
-   * Click **Read**.
-   * The explorer will return a struct like:
+   - Click **Read**.
+   - The explorer will return a struct like:
 
      ```json
      {
-       rate: 2459738388129070878,
-       lastUpdatedBase: 1747305613,
-       lastUpdatedQuote: 1747305684
+       "rate": 2459738388129070878,
+       "lastUpdatedBase": 1747305613,
+       "lastUpdatedQuote": 1747305684
      }
      ```
-   * **Interpretation:**
 
-     * `rate` is a ¹⁸-decimal–scaled integer.
-     * To get the human-readable price, divide by 10¹⁸:
+   - **Interpretation:**
+
+     - `rate` is a ¹⁸-decimal–scaled integer.
+     - To get the human-readable price, divide by 10¹⁸:
 
        ```
        2.459738388129070878 USD per XRP
        ```
+
 ### 5. Using Foundry’s `cast` CLI
 
 Foundry’s `cast` tool lets you interact with your XRPL EVM contracts directly from the terminal—no JavaScript required. Below is a detailed walkthrough for reading state, sending transactions, decoding logs, estimating gas, and more, on **Testnet**, or **Mainnet**.
@@ -423,12 +425,13 @@ echo "Max fee (wei):" $((EST * GP))
 
 #### 5.7 Encoding & Decoding Data
 
-* **Get calldata**:
+- **Get calldata**:
 
   ```bash
   cast calldata "setMessage(string)" "Raw test"
   ```
-* **Decode return data**:
+
+- **Decode return data**:
 
   ```bash
   cast decode "message()(string)" 0xYourHexData
@@ -438,17 +441,19 @@ echo "Max fee (wei):" $((EST * GP))
 
 #### 5.8 Chain & Account Utilities
 
-* **Current block**:
+- **Current block**:
 
   ```bash
   cast block-number --rpc-url $RPC_URL_TESTNET
   ```
-* **Chain ID**:
+
+- **Chain ID**:
 
   ```bash
   cast chain-id --rpc-url $RPC_URL_MAINNET
   ```
-* **Balance**:
+
+- **Balance**:
 
   ```bash
   cast balance --rpc-url $RPC_URL_TESTNET 0xYourWalletAddress
@@ -491,18 +496,17 @@ cast parse-logs --abi $ABI_PATH receipts.json
 
 1. **Use the XRPL EVM Explorer**
 
-   * Access the appropriate explorer to view transaction details, logs, and contract interactions:
-     * [Mainnet Explorer](https://explorer.xrplevm.org)
-     * [Testnet Explorer](https://explorer.testnet.xrplevm.org)
-     
+   - Access the appropriate explorer to view transaction details, logs, and contract interactions:
+     - [Mainnet Explorer](https://explorer.xrplevm.org)
+     - [Testnet Explorer](https://explorer.testnet.xrplevm.org)
 
 2. **Check Gas Fees**
 
-   * Ensure sufficient `XRP` balance in your wallet to cover gas fees for transactions.
+   - Ensure sufficient `XRP` balance in your wallet to cover gas fees for transactions.
 
 3. **Debug Contract Functions**
 
-   * Use the Remix IDE debugger to trace contract execution and identify issues.
+   - Use the Remix IDE debugger to trace contract execution and identify issues.
 
 ---
 
@@ -510,8 +514,8 @@ cast parse-logs --abi $ABI_PATH receipts.json
 
 The XRPL EVM supports cross-chain functionality via **Axelar General Message Passing (GMP)** and **Cosmos IBC**. These tools allow you to:
 
-* Execute smart contract calls on other EVM or Cosmos chains.
-* Transfer assets seamlessly between chains.
+- Execute smart contract calls on other EVM or Cosmos chains.
+- Transfer assets seamlessly between chains.
 
 ### Example
 
@@ -523,7 +527,7 @@ A decentralized voting dApp deployed on the XRPL EVM can fetch real-time voter s
 
 Now that you’ve learned how to interact with smart contracts, explore the following guides to enhance your development journey:
 
-* **Crosschain transfers with Axelar**: [Send Tokens](../../developers/making-a-cross-chain-dapp/send-tokens.md)
-* **Crosschain messages with Axelar GMP**: [Send Messages](../../developers/making-a-cross-chain-dapp/send-messages.md)
+- **Crosschain transfers with Axelar**: [Send Tokens](../../developers/making-a-cross-chain-dapp/send-tokens.md)
+- **Crosschain messages with Axelar GMP**: [Send Messages](../../developers/making-a-cross-chain-dapp/send-messages.md)
 
 Leverage the XRPL EVM’s low fees, fast transactions, and cross-chain capabilities to build innovative decentralized applications.

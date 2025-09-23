@@ -4,6 +4,8 @@ After deploying your smart contract on the **XRPL EVM**, it is essential to veri
 
 This guide provides step-by-step instructions for verifying a smart contract using **Remix IDE**, **Hardhat**, and **Foundry**, with a recommended approach of using **Standard JSON Input** for seamless verification.
 
+{% partial file="/snippets/_evm-compatibility-notice.md" /%}
+
 ---
 
 ## Step 1: Access the XRPL EVM Explorer

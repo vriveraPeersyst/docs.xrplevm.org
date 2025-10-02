@@ -2,7 +2,10 @@
 
 Interacting with smart contracts on the **XRPL EVM** allows developers and users to execute contract functions, query data, and create seamless integrations with decentralized applications (dApps). This guide outlines how to connect to the XRPL EVM network, call smart contract functions, and manage responses using Foundry’s **cast** CLI, popular libraries like **web3.js** and **ethers.js**, and user-friendly interfaces such as MetaMask and Remix IDE.
 
-{% partial file="/snippets/_evm-compatibility-notice.md" /%}
+{% partial file="/snippets/_evm-comNow that you've learned how to interact with smart contracts, explore the following guides to build advanced cross-chain applications:
+
+- **Crosschain transfers with Axelar**: [Send Tokens](./advanced-guides/cross-chain-transactions/send-tokens.md)
+- **Crosschain messages with Axelar GMP**: [Send Messages](./advanced-guides/cross-chain-transactions/send-messages.md)bility-notice.md" /%}
 
 ---
 

@@ -1,10 +1,10 @@
-# Connect MetaMask to the XRPL EVM
+# Connect MetaMask to the XRPL EVM Sidechain
 
-This guide will walk you through configuring MetaMask to connect to the XRPL EVM.
+This guide will walk you through configuring MetaMask to connect to the XRPL EVM Sidechain.
 
-## Adding XRPL EVM to MetaMask
+## Adding XRPL EVM Sidechain to MetaMask
 
-To interact with the XRPL EVM, you need to manually add it as a custom network in MetaMask.
+To interact with the XRPL EVM Sidechain, you need to manually add it as a custom network in MetaMask.
 
 1. **Open MetaMask:**
 

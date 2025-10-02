@@ -33,4 +33,4 @@ Here's the list of deployed and verified contracts on the XRPL EVM Sidechain Tes
 - **XRPL EVM Testnet Axelar Chain ID**: `xrpl-evm`
 - **XRP Testnet Axelar Token ID**: `0xba5a21ca88ef6bba2bfff5088994f90e1077e2a1cc3dcc38bd261f00fce2824f`
 
-For a complete, up-to-date list of all Axelar contract addresses (including those on XRPL, EVM and other chains), see the official [Axelar testnet deployments config](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json) on GitHub:
+For a complete, up-to-date list of all Axelar contract addresses (including those on XRPL, EVM and other chains), see the official [Axelar testnet deployments config](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json)

@@ -70,8 +70,8 @@ Both addresses correspond to the same account and share the same balance.
 
 To convert between these addresses:
 
-- Use the [Address Translation Tool](../../developers/interacting-with-cosmos/address-translation.md).
-- Alternatively, visit the [Exploreme explorer](https://testnet.xrpl.exploreme.pro/account/0xYourEVMAddress) and view your account details to find the corresponding address.
+- Use the [Address Translation Tool](../../developers/interacting-with-cosmos/advanced-guides/address-translation.md).
+- Alternatively, visit the [Exploreme explorer](https://testnet.xrpl.exploreme.pro/account/0x1234567890abcdef1234567890abcdef12345678) (replace the address with your own).
 
 ![Exploreme explorer](../images/exploreme-explorer.png)
 

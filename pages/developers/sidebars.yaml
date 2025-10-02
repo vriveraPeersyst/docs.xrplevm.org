@@ -1,45 +1,53 @@
 - page: index.md
-- group: Developing Smart Contracts
+- group: Interacting with EVM
   expanded: false
   items:
-    - page: ./developing-smart-contracts/develop-a-smart-contract.md
-    - page: ./developing-smart-contracts/deploy-the-smart-contract.md
-    - page: ./developing-smart-contracts/verify-the-smart-contract.md
-    - page: ./developing-smart-contracts/interact-with-the-smart-contract.md
-    - page: ./developing-smart-contracts/next-steps.md
-- group: Making a Cross-Chain dApp
-  expanded: false
-  items:
-    - page: ./making-a-cross-chain-dapp/introduction.md
-    - page: ./making-a-cross-chain-dapp/send-messages.md
-    - page: ./making-a-cross-chain-dapp/send-tokens.md
-    - page: ./making-a-cross-chain-dapp/faqs.md
+    - page: ./interacting-with-evm/develop-a-smart-contract.md
+    - page: ./interacting-with-evm/deploy-the-smart-contract.md
+    - page: ./interacting-with-evm/verify-the-smart-contract.md
+    - page: ./interacting-with-evm/interact-with-the-smart-contract.md
+    - page: ./interacting-with-evm/next-steps.md
+    - group: Advanced Guides
+      expanded: false
+      items:
+        - page: ./interacting-with-evm/advanced-guides/using-xrp-as-wrapped-erc20.md
+        - group: Cross-Chain Transactions
+          expanded: false
+          items:
+            - page: ./interacting-with-evm/advanced-guides/cross-chain-transactions/introduction.md
+            - page: ./interacting-with-evm/advanced-guides/cross-chain-transactions/send-messages.md
+            - page: ./interacting-with-evm/advanced-guides/cross-chain-transactions/send-tokens.md
+            - page: ./interacting-with-evm/advanced-guides/cross-chain-transactions/swap-with-squid-widget.md
+            - page: ./interacting-with-evm/advanced-guides/cross-chain-transactions/faqs.md
+    - group: Use Oracle Data
+      expanded: false
+      items:
+        - page: ./interacting-with-evm/use-oracle-data/band-protocol.md
+    - group: Use Goldsky Indexer
+      expanded: false
+      items:
+        - page: ./interacting-with-evm/use-goldsky-indexer/goldsky-overview.md
+        - page: ./interacting-with-evm/use-goldsky-indexer/setup-indexer.md
+        - page: ./interacting-with-evm/use-goldsky-indexer/query-events.md
+        - page: ./interacting-with-evm/use-goldsky-indexer/best-practices.md
+        - page: ./interacting-with-evm/use-goldsky-indexer/goldsky-mirrors.md
+        - page: ./interacting-with-evm/use-goldsky-indexer/indexer.md
 - group: Interacting with Cosmos
   expanded: false
   items:
     - page: ./interacting-with-cosmos/introduction.md
-    - page: ./interacting-with-cosmos/using-the-api.md
-    - page: ./interacting-with-cosmos/address-translation.md
     - page: ./interacting-with-cosmos/using-ibc.md
-- group: Advanced Guides
-  expanded: false
-  items:
-    - page: ./advanced-guides/using-xrp-as-wrapped-erc20.md
-- group: Use Oracle Data
-  expanded: false
-  items:
-    - page: ./use-oracle-data/band-protocol.md
-- group: Use Goldsky Indexer
-  expanded: false
-  items:
-    - page: ./use-goldsky-indexer/goldsky-overview.md
-    - page: ./use-goldsky-indexer/setup-indexer.md
-    - page: ./use-goldsky-indexer/query-events.md
-    - page: ./use-goldsky-indexer/best-practices.md
-    - page: ./use-goldsky-indexer/goldsky-mirrors.md
+    - page: ./interacting-with-cosmos/using-the-api.md
+    - group: Advanced Guides
+      expanded: false
+      items:
+        - page: ./interacting-with-cosmos/advanced-guides/address-translation.md
+        - group: Cross-Chain Transactions
+          expanded: false
+          items:
+            - page: ./interacting-with-cosmos/advanced-guides/cross-chain-transactions/swap-with-skip-widget.md
 - group: Resources
   expanded: false
   items:
-    - page: ./resources/indexer.md
     - page: ./resources/block-explorers.md
     - page: ./resources/public-apis.md

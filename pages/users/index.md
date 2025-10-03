@@ -29,23 +29,23 @@ Dive into detailed guides, tutorials, and tools that will empower you to take fu
 
 - [Sending through IBC](./sending-through-ibc.md)  
 
-## 🚰 Get Test XRP
+### 🚰 Get Test XRP
 
 - [Faucet](./faucet.md) 
 
-## Explore the XRPL EVM Ecosystem
+### Explore the XRPL EVM Ecosystem
 
 Discover the growing ecosystem of applications, services, and infrastructure built on the XRPL EVM Sidechain. Explore dApps, wallets, bridges, core builders, validators, oracles, indexers, auditors, and providers.
 
 - [🗺️ Ecosystem Map](https://ecosystem.xrplevm.org)
 
-## Submit Your Project
+### Submit Your Project
 
 Are you building on the XRPL EVM Sidechain? Share your project with the community and get featured in our ecosystem map.
 
 - [📝 Submit Your Project](https://airtable.com/appDFL9N9MDWj0Ywd/shrl5nsqAhtghUN8I)
 
-## Join the Community
+### Join the Community
 
 Connect with other developers, users, and enthusiasts in the XRPL EVM community. Get support, share ideas, and stay updated on the latest developments.
 

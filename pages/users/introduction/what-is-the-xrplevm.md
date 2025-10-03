@@ -73,11 +73,12 @@ This alignment ensures the XRPL ecosystem gains programmability **without fragme
 
 ### 🌐 IBC (Inter-Blockchain Communication)
 
-The XRPL EVM supports [IBC](https://ibc.cosmos.network/), unlocking interoperability with the **Cosmos Hub, Osmosis, Evmos, and hundreds of IBC-enabled chains**. This extends XRPL liquidity into the entire Cosmos multichain environment.
+The XRPL EVM supports [IBC](https://ibc.cosmos.network/), unlocking interoperability with the **Cosmos Hub, Osmosis, Elys, Noble, Injective and potentially hundreds of IBC-enabled chains**. This extends XRPL liquidity into the entire Cosmos multichain environment.
 
 ### Wormhole Integration
 
-Wormhole, one of the leading cross-chain interoperability protocols, is integrating with the XRPL EVM Sidechain.
+[Wormhole](https://wormhole.com/), one of the leading cross-chain interoperability protocols, is integrating with the XRPL EVM Sidechain.
+
 [Ripple Expands Multichain Interoperability Infrastructure with Wormhole Integration](https://wormhole.com/blog/ripple-expands-multichain-interoperability-infrastructure-with-wormhole)
 
 ---

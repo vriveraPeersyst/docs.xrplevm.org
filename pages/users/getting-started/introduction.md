@@ -21,10 +21,19 @@ Every action on the XRPL EVM Sidechain, such as deploying smart contracts or tra
 
 ---
 
-### **Option A: Direct Purchase with Gas.zip**
+### **Option A: Gas Refuel with Gas.zip**
 
-The easiest way to get started is to purchase XRP directly on the XRPL EVM Sidechain using fiat currency.
-→ [Visit Gas.zip](https://www.gas.zip)
+The easiest way to get started is by using **[Gas.zip](https://www.gas.zip)**, a cross-chain **gas refuel service**.
+Gas.zip lets you send small amounts of native tokens (like ETH, BNB, or MATIC) from a supported source chain and receive **XRP directly on the XRPL EVM Sidechain** to cover your transaction fees.
+
+* Supports **300+ destination chains**, including XRPL EVM.
+* Built on **LayerZero cross-chain messaging** for secure settlement.
+* Optimized for low-friction, small transfers (between ~$0.25 and ~$50 per chain).
+
+This is the fastest way to “top up” your wallet with just enough XRP to start interacting with the XRPL EVM Sidechain.
+
+→ [Try Gas.zip](https://www.gas.zip)
+
 
 ---
 
@@ -42,31 +51,57 @@ Use Squid to swap tokens from any connected chain to XRP on the XRPL EVM Sidecha
 
 ---
 
-### **Option D: Bridge from XRPL**
+### **Option D: Bridge / On-Ramp From the XRP Ledger (XRPL)**
 
-If you already have XRP on the XRP Ledger, you can bridge it to the XRPL EVM Sidechain:
+If you already hold XRP on the **XRPL mainnet**, you can bring it over to the XRPL EVM Sidechain using supported wallets and Squid Router. Many XRPL wallets also integrate **fiat on-ramps**, so you can purchase XRP directly before bridging.
 
-1. **OnRamp XRP using the XRPL MetaMask Snap or any other XRPL Wallet**
-   The XRPL MetaMask Snap includes a built-in OnRamp via [transak.com](https://transak.com/)
-   → [Visit the XRPL MetaMask Snap](https://snap.xrplevm.org)
+#### 🔗 Supported XRPL Wallets for Squid Router (XRPL → XRPL EVM)
 
-2. **Bridge XRP from the XRP Ledger to XRPL EVM Sidechain**
-   Use available **Bridge** services to transfer XRP from the XRP Ledger to XRPL EVM Sidechain.
-   → [Read more: Transfer XRP with Bridge Services](../using-the-bridge/transfer-xrp-with-axelar.md)
+| Wallet                 | Notes / Features                           | On-Ramp / Fiat Integration                                          |
+| ---------------------- | ------------------------------------------ | ------------------------------------------------------------------- |
+| **[Xaman](https://xaman.app/)**              | Self-custody wallet built for XRPL & Xahau | Integrated **MoonPay** (buy XRP / RLUSD with card, Apple Pay, etc.) |
+| **[XRPL MetaMask Snap](https://snap.xrplevm.org)** | MetaMask Snap enabling XRPL connectivity   | Built-in **Transak** on-ramp (buy XRP directly)                     |
+| **[Crossmark](https://crossmark.io/)**          | Browser-first, non-custodial XRPL wallet   | No direct fiat on-ramp (signing wallet only)                        |
+| **[Joey](https://joeywallet.xyz/)**               | XRPL wallet focused on onboarding          | Integrated **MoonPay** (fiat → XRP)                                 |
+| **[Bifrost](https://bifrostwallet.com/)**            | Multi-chain wallet with XRPL support       | XRP on-ramp via **Topper by Uphold**                                |
+| **[Girin](https://girin.app/)**              | XRPL wallet in Squid’s supported list      | No on-ramp yet → **OnRamp integration coming soon**                 |
+
+---
+
+#### Steps to Bridge XRP → XRPL EVM
+
+1. **Install / configure your XRPL wallet**
+
+   * Choose one of the supported wallets (Crossmark, Xaman, Joey, Girin, Bifrost, or XRPL MetaMask Snap).
+   * Ensure your XRPL account is activated (requires ~1 XRP base reserve).
+
+2. **(Optional) On-Ramp to XRP**
+
+   * Buy XRP directly within supported wallets:
+
+     * **Xaman** → MoonPay
+     * **Joey** → MoonPay
+     * **Bifrost** → Topper (Uphold)
+     * **XRPL MetaMask Snap** → Transak
+
+3. **Bridge with Squid Router**
+
+   * Open [Squid Router](https://app.squidrouter.com) and select **XRPL → XRPL EVM**.
+   * Connect your XRPL wallet and authorize.
+   * Enter the XRP amount and destination XRPL EVM address.
+   * Sign the transaction and confirm the bridge.
+
+4. **Receive XRP on XRPL EVM Sidechain**
+
+   * Once the bridge completes, the XRP will be available in your XRPL EVM wallet (e.g. MetaMask).
+   * You can now use it for gas, transfers, or smart contracts.
 
 ---
 
 ### **Option E: Cosmos Ecosystem Swap with Skip Go**
 
-Skip Protocol enables swaps from Cosmos-based chains (e.g., Osmosis, Injective) to XRPL EVM Sidechain.
-→ [Try Skip](https://go.skip.build/) 
-
----
-
-### **Option F: Receive XRP from another user**
-
-The simplest way to get started is to ask a friend or teammate to send you some XRP on the XRPL EVM Sidechain.
-Make sure to provide them with your **XRPL EVM Sidechain wallet address** (same as your MetaMask address).
+[Skip Go](https://go.skip.build/) enables swaps from Cosmos-based chains (e.g., Osmosis, Injective, Elys Network, Cosmos Hub, Noble and others.) to XRPL EVM Sidechain using Cosmos IBC
+→ [Try Skip](https://go.skip.build/?src_asset=uatom&src_chain=cosmoshub-4&dest_asset=axrp&dest_chain=xrplevm_1440000-1&amount_in=&amount_out=) 
 
 
 {% /tab %}
@@ -87,17 +122,15 @@ Every action on the XRPL EVM Sidechain, such as deploying smart contracts or tra
 
 ---
 
-### Start Building and Exploring
+### Start Exploring
 
-Once your wallet is set up and funded with XRP, you’re ready to explore the XRPL EVM’s functionalities:
+- **[Install MetaMask](./install-metamask.md)** – Set up an Ethereum-compatible wallet extension.
+- **[Connect MetaMask to the XRPL EVM](./connect-to-the-xrpl-evm.md)** – Add Mainnet or Testnet network details.
+- **[Install Keplr](./install-keplr.md)** – Use a Cosmos‑native wallet and add the XRPL EVM network.
+- **[Transfer XRP through Axelar](../using-the-bridge/transfer-xrp-with-axelar.md)** – Step by step tutorial for sending XRP using squidrouter.
+- **[Transfer XRP through Cosmos IBC ](../sending-through-ibc.md)** – Learn how to use Advanced IBC Transfer and send XRP and other tokens across cosmos connected chains.
 
-- **Deploy Smart Contracts**: Use tools like Remix IDE or Hardhat to deploy Solidity-based smart contracts.  
-  _(Read more: [Deploy a Smart Contract](../../developers/interacting-with-evm/deploy-the-smart-contract.md))_
 
-- **Interact with Smart Contracts**: Use libraries like `ethers.js` or `web3.js` to interact with deployed contracts programmatically.  
-  _(Read more: [Interact with a Smart Contract](../../developers/interacting-with-evm/interact-with-the-smart-contract.md))_
-
-- **Experiment with Cross-Chain Functionality**: Leverage Axelar General Message Passing (GMP) for interoperable applications across multiple chains.
 
 ---
 

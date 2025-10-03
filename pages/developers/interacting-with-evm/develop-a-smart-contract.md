@@ -15,7 +15,9 @@ Check out the following guides to continue your journey:
 
 - [Deploy the Smart Contract](./deploy-the-smart-contract.md)
 - [Verify the Smart Contract](./verify-the-smart-contract.md)
-- [Interact with the Smart Contract](./interact-with-the-smart-contract.md)utomated interactions. On the **XRPL EVM Sidechain**, developers can write, deploy, verify, and interact with Solidity-based smart contracts, leveraging fast finality, low transaction costs, and the complete Ethereum development ecosystem. This page introduces the foundational concepts and steps required to start developing smart contracts on the XRPL EVM Sidechain, aimed at developers looking to build high-performance native dApps.
+- [Interact with the Smart Contract](./interact-with-the-smart-contract.md)
+
+On the **XRPL EVM Sidechain**, developers can write, deploy, verify, and interact with Solidity-based smart contracts, leveraging fast finality, low transaction costs, and the complete Ethereum development ecosystem. This page introduces the foundational concepts and steps required to start developing smart contracts on the XRPL EVM Sidechain, aimed at developers looking to build high-performance native dApps.
 
 {% partial file="/snippets/_evm-compatibility-notice.md" /%}
 
@@ -68,48 +70,6 @@ After deployment, verify your smart contract's source code on the XRPL EVM Explo
 Once deployed and verified, you can interact with your smart contract using libraries like **web3.js** or **ethers.js**. Learn how to:
 
 - Connect to the XRPL EVM Sidechain.
-- Call functions from your deployed contract.
-- Handle responses programmatically or via a frontend. Details are provided in [Interact with the Smart Contract](./interact-with-the-smart-contract.md).
-
----
-
-## Advanced Development: Optional Cross-Chain Features
-
-While the XRPL EVM Sidechain works excellently as a standalone blockchain, you can optionally add cross-chain functionality when your dApp requires it. Available options include:
-
-- **Build Cross-Chain dApps:** Enable communication and asset transfers across blockchains when needed.
-- **Utilize Bridge Protocols:** Connect with other EVM and Cosmos chains using various bridge solutions.
-- **Leverage IBC:** Communicate with other Cosmos SDK chains using Inter-Blockchain Communication.
-
-### Example:
-
-A decentralized exchange (DEX) built natively on the XRPL EVM Sidechain could optionally integrate with cross-chain bridges to access liquidity from Ethereum, Binance Smart Chain, or Cosmos Hub when additional functionality is desired.
-
----
-
-## Development Workflow
-
-### 1. Write the Smart Contract
-
-Start by learning Solidity, the language used to write smart contracts. Use Remix IDE for simple contracts or Hardhat for more complex projects. Ensure your contracts follow best practices for security and efficiency.
-
-### 2. Deploy the Smart Contract
-
-Refer to the [Deploy the Smart Contract](./deploy-the-smart-contract.md) page for a step-by-step guide to deploying your smart contract using Remix or Hardhat. You’ll:
-
-- Set up MetaMask to connect to the XRPL EVM.
-- Compile your contract.
-- Deploy the contract on the XRPL EVM network.
-
-### 3. Verify the Smart Contract
-
-After deployment, verify your smart contract’s source code on the XRPL EVM Explorer. This ensures transparency and allows others to interact with your contract confidently. Follow the guide on [Verify the Smart Contract](./verify-the-smart-contract.md).
-
-### 4. Interact with the Smart Contract
-
-Once deployed and verified, you can interact with your smart contract using libraries like **web3.js** or **ethers.js**. Learn how to:
-
-- Connect to the XRPL EVM.
 - Call functions from your deployed contract.
 - Handle responses programmatically or via a frontend. Details are provided in [Interact with the Smart Contract](./interact-with-the-smart-contract.md).
 

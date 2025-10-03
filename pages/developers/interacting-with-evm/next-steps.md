@@ -29,27 +29,6 @@ Through the previous pages, you’ve learned to:
 
 ---
 
-## Explore Advanced Development Topics
-
-Take your skills to the next level by exploring advanced use cases and emerging technologies:
-
-1. **Cross-Chain Applications**:
-
-   - Learn how to utilize [Axelar General Message Passing (GMP)](../../bridge/general-message-passing.md) and [Cosmos IBC](../interacting-with-cosmos/using-ibc.md) to create interoperable dApps that interact across multiple blockchains.
-
-2. **Token Standards**:
-
-   - Dive into token standards like [ERC-20](https://docs.openzeppelin.com/contracts/4.x/erc20) (fungible tokens) and [ERC-721](https://docs.openzeppelin.com/contracts/4.x/erc721) (non-fungible tokens) to design and implement custom tokens on the XRPL EVM.
-
-3. **DeFi Protocols**:
-
-   - Explore decentralized finance (DeFi) concepts such as lending, staking, and automated market makers (AMMs) to [build](https://soliditylang.org/) innovative financial solutions.
-
-4. **AI-Driven Smart Contracts**:
-   - Integrate AI tools to automate [contract testing](https://ethereum.org/en/developers/docs/smart-contracts/testing/), optimize gas usage, and generate dynamic smart contract logic.
-
----
-
 ## Build a Frontend dApp with XRPL EVM
 
 Here’s a quick-start guide for building a **Next.js (App Router) dApp** with the [**new Reown AppKit**](https://docs.reown.com/appkit/next/core/installation), fully configured for both **XRPL EVM Mainnet** and **Testnet** (plus social/email login, analytics, and more). You’ll be up and running in minutes—no manual chain definitions required, just grab the XRPL EVM networks straight from AppKit’s built-in list.

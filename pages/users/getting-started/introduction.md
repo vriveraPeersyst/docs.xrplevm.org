@@ -1,27 +1,5 @@
 # Introduction
 
-To access the full functionality of the **XRPL EVM Sidechain**, you will ne---
-
-### Start Building and Exploring
-
-Once your wallet is set up and funded with XRP, you're ready to explore the XRPL EVM Sidechain's functionalities:
-
-- **Deploy Smart Contracts**: Use tools like Remix IDE or Hardhat to deploy Solidity-based smart contracts natively on the XRPL EVM Sidechain.  
-  _(Read more: [Deploy a Smart Contract](../../developers/interacting-with-evm/deploy-the-smart-contract.md))_
-
-- **Interact with Smart Contracts**: Use libraries like `ethers.js` or `web3.js` to interact with deployed contracts programmatically.  
-  _(Read more: [Interact with a Smart Contract](../../developers/interacting-with-evm/interact-with-the-smart-contract.md))_
-
-- **Build Native dApps**: Take advantage of fast finality and low costs to create high-performance decentralized applications.
-
-- **Optional Cross-Chain Features**: When needed, explore available bridge services for multi-chain functionality.
-
----
-
-Explore these resources and start building with the XRPL EVM Sidechain. Whether you're a developer coming from Ethereum or new to blockchain development, this documentation will help you make the most of the XRPL EVM Sidechain's features. Let's get started! a balance of **XRP** to cover transaction fees. This section will guide you through the steps to set up your wallet, obtain XRP, and interact with the XRPL EVM Sidechain.
-
----
-
 ## Getting Started with XRPL EVM Sidechain
 
 ### Create a Wallet

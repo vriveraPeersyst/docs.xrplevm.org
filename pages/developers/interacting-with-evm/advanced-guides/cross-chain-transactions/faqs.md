@@ -1,18 +1,18 @@
 # Cross-Chain DApps FAQ
 
-## What is an XRPL Cross-chain app?
+#### What use cases don't work well with cross-chain apps?
 
-An XRPL cross-chain application has an XRPL native component and a smart contract component on the XRPL EVM sidechain. These two components are connected by a bridge, using the Axelar network.
+Cross-chain apps require communication across a bridge network. Applications that require the entire transaction to be atomic or have extremely low latency won't work well with a cross-chain application. Cross-chain applications are also unsuitable if your application requires the computation result in the same block.
 
 ## Why should developers build cross-chain apps?
 
-**For XRPL Developers**: XRPL developers can now add EVM smart contract functionality to their applications, bringing more programmability and flexibility. XRPL apps can access the EVM smart contract functionality, using a cross-chain smart contract call over the Axelar network.
+**For XRPL Developers**: XRPL developers can now add EVM smart contract functionality to their applications, bringing more programmability and flexibility. XRPL apps can access the EVM smart contract functionality, using a cross-chain smart contract call over a bridge network.
 
-**For EVM Developers**: EVM developers can now build applications using some of the XRPL's native primitives, such as payments, escrow, and the DEX. The XRPL also provides security for tokens and accounts on a tried-and-tested chain without risk to core components from smart contracts.
+**For EVM Developers**: EVM developers can now code in their native language of Solidity on top of a globally utilized asset like XRP.
 
-EVM developers don't need their entire application written as smart contracts. They can choose to use robust XRPL crypto primitives to make their application more secure and performant and use the EVM functionality where they need custom business logic.
+EVM developers can bridge from EVM chains directly to the XRPL EVM sidechain, bringing their existing applications and liquidity to leverage XRP as native currency.
 
-EVM developers also get a running start when working with the XRPL, as unlike a brand-new chain, it already has users, tokens, liquidity, tooling, etc.
+EVM developers don't need their entire application written as smart contracts. They can choose to use robust XRPL crypto primitives to make their application more secure and performant and use the XRPL EVM contracts where they need custom business logic.
 
 ## What use cases work best with cross-chain apps?
 
@@ -20,7 +20,7 @@ XRPL applications where the corresponding functionality doesn't exist natively o
 
 Examples include:
 
-- A lending protocol on the EVM sidechain accessed through an XRPL app.
+- A lending protocol on the EVM sidechain accessed through an XRPL app. [See Strobe](https://strobe-protocol.gitbook.io/strobe-protocol/)
 - An options/derivatives protocol on the EVM sidechain accessed through an XRPL app.
 
 ## What use cases don’t work well with cross-chain apps?
@@ -31,17 +31,19 @@ Cross-chain apps require communication across a bridge run with the Axelar netwo
 
 1. A cross-chain app as an XRPL component running on the XRPL (native XRPL app).
 2. An EVM component running on the XRPL EVM sidechain (EVM smart contract).
-3. The two components talk to each other using a cross-chain smart contract call using Axelar GMP.
+3. The two components talk to each other using a cross-chain bridge network for message passing.
 
 Here is an example of a yield farming protocol as a cross-chain application:
 
-A user has an account on the XRPL mainnet. The user deposits into the AMM pool on the mainnet and receives an LP token. The user then sends the LP token over the Axelar network to the EVM sidechain and deposits it into a Vault smart contract on the EVM sidechain. The Vault smart contract sends the LP2 token back through the Axelar bridge to the user to hold on the mainnet until they wish to withdraw from the vault.
+A user has an account on the XRPL mainnet. The user deposits into the AMM pool on the mainnet and receives an LP token. The user then sends the LP token over a bridge network to the XRPL EVM sidechain and deposits it into a Vault smart contract. The Vault smart contract sends the LP2 token back through the bridge to the user to hold on the mainnet until they wish to withdraw from the vault.
 
 ## What is Axelar GMP?
 
-See: [What Is General Message Passing and How Can It Change Web3?](https://www.axelar.network/blog/general-message-passing-and-how-can-it-change-web3)
+Axelar GMP (General Message Passing) is one example of a cross-chain messaging protocol. See: [What Is General Message Passing and How Can It Change Web3?](https://www.axelar.network/blog/general-message-passing-and-how-can-it-change-web3)
 
 ## Can you explain the technical details of how a cross-chain transaction between the XRPL and the XRPL EVM sidechain works, using Axelar GMP functionality?
+
+This is an example using Axelar as the bridge network.
 
 The XRPL EVM Sidechain chain smart contract must implement the `AxelarExecutable` interface for Axelar GMP.
 
@@ -77,7 +79,7 @@ The EVM component should include any new functionality that doesn't exist on the
 
 **Liquidity needs**: Developers need to understand their liquidity needs. Which DEX do they plan to use to execute a trade? The XRPL DEX is an excellent option for native XRPL apps.
 
-**Latency**: Any cross-chain transaction effectively requires a confirmation across three chains: the XRPL, Axelar, and the XRPL EVM sidechain. This confirmation time will introduce some latency for apps. The end-to-end latency for a cross-chain transaction could be more than one minute.
+**Latency**: Any cross-chain transaction requires confirmation across multiple chains, which will introduce some latency for apps. The exact latency depends on the bridge network used. For example, when using Axelar, transactions require confirmation across three chains: the XRPL, Axelar, and the XRPL EVM sidechain. The end-to-end latency for a cross-chain transaction could be more than one minute.
 
 **User experience**: An XRPL cross-chain app will have an XRPL-like user experience. Developers will build this application using XRPL SDKs, and the XRPL application will access EVM functionality in the background. The EVM sidechain acts as a backend computational layer. Developers should consider how they design the application's UX.
 
@@ -85,7 +87,7 @@ The EVM component should include any new functionality that doesn't exist on the
 
 ## What is the end-to-end latency of a cross-chain transaction?
 
-From our current testing, an end-to-end transaction can take more than a minute. This time could be longer in a mainnet environment with many validators needing to reach consensus across all three chains—XRPL, Axelar, and the EVM sidechain.
+The latency depends on the bridge network used. For example, when using Axelar, from our current testing, an end-to-end transaction can take more than a minute. This time could be longer in a mainnet environment with many validators needing to reach consensus across all three chains—XRPL, Axelar, and the EVM sidechain.
 
 ## What is the best way to start building? What tools are available?
 

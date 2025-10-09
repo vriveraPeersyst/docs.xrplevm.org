@@ -1,13 +1,21 @@
 # Send messages from XRPL
 
-In addition to transferring tokens across chains, Axelar enables cross-chain communication through [Axelar's General Message Passing (GMP)](https://docs.axelar.dev/dev/general-message-passing/overview/). GMP enables developers to call any function on any other connected chain. For example, smart contracts on EVM-compatible chains, such as the XRPL EVM, can be triggered directly from the XRP Ledger (XRPL).
+In addition to transferring tokens across chains, cross-chain bridges can enable communication between blockchains through general message passing protocols. These protocols allow developers to call functions on other connected chains. For example, smart contracts on EVM-compatible chains, such as the XRPL EVM, can be triggered directly from the XRP Ledger (XRPL), Ethereum, Polygon and other supported chains.
 
 To send a message from one chain to another, there are some key aspects to consider:
 
 - The destination chain must be an EVM-compatible chain, as executing messages requires a smart contract.
+- The destination contract must be compatible with the bridge protocol being used (specific interface requirements vary by bridge).
+
+## Example: Sending a message using Axelar
+
+[Axelar's General Message Passing (GMP)](https://docs.axelar.dev/dev/general-message-passing/overview/) is one protocol that enables cross-chain message passing. With Axelar GMP, developers can call any function on any other connected chain.
+
+### Requirements for Axelar
+
 - The destination contract address must inherit from [`AxelarExecutable`](https://github.com/axelarnetwork/axelar-gmp-sdk-solidity/blob/main/contracts/executable/AxelarExecutable.sol)
 
-## Sending a message from XRP Ledger to XRPL EVM
+### Sending a message from XRP Ledger to XRPL EVM
 
 To send a message from the XRP Ledger (XRPL) to the XRPL EVM, a `Payment` transaction is used with the following key parameters:
 

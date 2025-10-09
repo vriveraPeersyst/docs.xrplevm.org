@@ -8,7 +8,7 @@ status: not_enabled
 
 # Bridge 🌉
 
-The XRPL EVM Sidechain operates as a **standalone Layer 1 blockchain** with native XRP as the gas token. For applications that require cross-chain functionality, several bridge options are available to connect with other blockchain networks.
+The XRPL EVM Sidechain operates as a **standalone Layer 1 blockchain** with XRP as the gas token. For applications that require cross-chain functionality, several bridge options are available to connect with other blockchain networks.
 
 Bridges are specialized protocols designed to facilitate interoperability between distinct blockchain networks, allowing them to communicate and exchange assets or data when needed. They typically consist of smart contracts and off-chain components that validate and relay information between connected chains.
 

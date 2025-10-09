@@ -1,6 +1,6 @@
 # What is the XRPL EVM?
 
-The **XRPL Ethereum Virtual Machine (EVM) Sidechain** is a **sovereign Layer-1 blockchain** funded by [Ripple](https://ripple.com/) and developed by [Peersyst](https://peersyst.com/). It extends the XRP Ledger ecosystem with **full EVM compatibility** for XRP, enabling developers to deploy Ethereum smart contracts, DeFi protocols, and NFTs while keeping **XRP as the native gas currency**.
+The **XRPL Ethereum Virtual Machine (EVM) Sidechain** is a **sovereign Layer-1 blockchain** developed by [Peersyst](https://peersyst.com/) in partnership with [Ripple](https://ripple.com/). It extends the XRP Ledger ecosystem with **full EVM compatibility** for XRP, enabling developers to deploy Ethereum smart contracts, DeFi protocols, and NFTs on a separate chain while keeping **XRP as the native gas currency**.
 
 Built on the [Cosmos SDK](https://cosmos.network/) and secured by [CometBFT](https://cometbft.com/) (formerly Tendermint Core), the XRPL EVM inherits **deterministic finality, modularity, and high throughput**, while remaining **independent of XRPL consensus**. Interoperability is enabled via the **Axelar Network** and **IBC (Inter-Blockchain Communication)**, ensuring fluid connections across XRPL, Ethereum, and the Cosmos ecosystem.
 

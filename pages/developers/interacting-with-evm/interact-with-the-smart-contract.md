@@ -527,7 +527,7 @@ A decentralized voting dApp deployed on the XRPL EVM can fetch real-time voter s
 
 Now that you’ve learned how to interact with smart contracts, explore the following guides to enhance your development journey:
 
-- **Crosschain transfers with Axelar**: [Send Tokens](../../developers/making-a-cross-chain-dapp/send-tokens.md)
-- **Crosschain messages with Axelar GMP**: [Send Messages](../../developers/making-a-cross-chain-dapp/send-messages.md)
+- **Crosschain transfers with Axelar**: [Send Tokens](../interacting-with-evm/advanced-guides/cross-chain-transactions/send-tokens.md)
+- **Crosschain messages with Axelar GMP**: [Send Messages](../interacting-with-evm/advanced-guides/cross-chain-transactions/send-messages.md)
 
 Leverage the XRPL EVM’s low fees, fast transactions, and cross-chain capabilities to build innovative decentralized applications.

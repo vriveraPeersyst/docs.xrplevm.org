@@ -20,7 +20,7 @@ XRPL applications where the corresponding functionality doesn't exist natively o
 
 Examples include:
 
-- A lending protocol on the EVM sidechain accessed through an XRPL app. [See Strobe](https://strobe-protocol.gitbook.io/strobe-protocol/)
+- A lending protocol on the EVM sidechain accessed through an XRPL app.
 - An options/derivatives protocol on the EVM sidechain accessed through an XRPL app.
 
 ## What use cases don’t work well with cross-chain apps?

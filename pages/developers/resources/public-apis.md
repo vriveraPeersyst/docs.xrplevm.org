@@ -18,7 +18,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 
 ## Grove as Main Service Provider
 
-[Grove](https://buildintheshade.com/docs) is the **main service provider** for XRPL EVM.  
+[Grove](https://grove.city) is the **main service provider** for XRPL EVM via its [Build In The Shade](https://buildintheshade.com/docs) portal.  
 They offer enterprise-grade infrastructure with guaranteed uptime, global edge network, and developer-first tooling for both Mainnet and Testnet.
 
 With Grove, you can access:

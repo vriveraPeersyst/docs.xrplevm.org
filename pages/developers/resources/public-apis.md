@@ -53,7 +53,7 @@ Grove provides public endpoints for quick integration and testing, with support 
 
 ## Pocket Network
 
-[Pocket Network](https://api.pocket.network/docs/xrplevm) provides **enterprise-grade infrastructure** for XRPL EVM with guaranteed uptime, global edge network, and developer-first tooling.
+[Pocket Network](https://api.pocket.network) provides **enterprise-grade infrastructure** for XRPL EVM with guaranteed uptime, global edge network, and developer-first tooling.
 
 With Pocket Network, you can access:
 
@@ -64,10 +64,11 @@ With Pocket Network, you can access:
 
 Pocket Network offers a free public RPC endpoint with fair use limits. No API key required for basic usage.
 
-👉 Check the full Pocket Network API documentation here:  
-[https://api.pocket.network/docs/xrplevm](https://api.pocket.network/docs/xrplevm)
+👉 Check the full Pocket Network API documentation:  
+- **Mainnet**: [https://api.pocket.network/docs/xrplevm](https://api.pocket.network/docs/xrplevm)  
+- **Testnet**: [https://api.pocket.network/docs/xrplevm-testnet](https://api.pocket.network/docs/xrplevm-testnet)
 
-### Network Information
+### Mainnet Network Information
 
 | Property              | Value                                              |
 | --------------------- | -------------------------------------------------- |
@@ -76,6 +77,16 @@ Pocket Network offers a free public RPC endpoint with fair use limits. No API ke
 | **Cosmos Chain ID**   | `xrplevm_1440000-1`                                |
 | **Pocket Service ID** | `xrplevm`                                          |
 | **Block Explorer**    | [XRPL EVM Explorer](https://explorer.xrplevm.org/) |
+
+### Testnet Network Information
+
+| Property              | Value                                                              |
+| --------------------- | ------------------------------------------------------------------ |
+| **Network Name**      | XRPL EVM Testnet                                                   |
+| **Native Token**      | XRP                                                                |
+| **Cosmos Chain ID**   | `xrplevm_1449000-1`                                                |
+| **Pocket Service ID** | `xrplevm-testnet`                                                  |
+| **Block Explorer**    | [XRPL EVM Testnet Explorer](https://explorer.testnet.xrplevm.org/) |
 
 ### Supported APIs
 

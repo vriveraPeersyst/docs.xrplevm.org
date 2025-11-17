@@ -11,6 +11,7 @@
       expanded: false
       items:
         - page: ./interacting-with-evm/advanced-guides/using-xrp-as-wrapped-erc20.md
+        - page: ./interacting-with-evm/advanced-guides/resolve-xrpl-domains.md
         - group: Cross-Chain Transactions
           expanded: false
           items:

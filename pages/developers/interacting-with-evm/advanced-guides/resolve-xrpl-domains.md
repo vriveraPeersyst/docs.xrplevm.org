@@ -8,7 +8,7 @@
 
 ---
 
-## 1 / Why use .xrpl domains?
+## Why use .xrpl domains?
 
 | Traditional flow                      | .xrpl domain flow               |
 | ------------------------------------- | ------------------------------- |
@@ -20,7 +20,7 @@
 
 ---
 
-## 2 / Overview
+## Overview
 
 The **ZNS Registry** is a smart contract that maps .xrpl domain names to Ethereum addresses. It provides:
 
@@ -38,7 +38,7 @@ The **ZNS Registry** is a smart contract that maps .xrpl domain names to Ethereu
 
 ---
 
-## 3 / Quick-start code (TypeScript + Viem)
+## Quick-start code (TypeScript + Viem)
 
 ### Prerequisites
 
@@ -233,7 +233,7 @@ console.log(domain); // alice.xrpl
 
 ---
 
-## 4 / Performance optimization with caching
+## Performance optimization with caching
 
 Since blockchain reads can be slow, implement a simple in-memory cache:
 
@@ -282,7 +282,7 @@ async function resolveXrplDomainCached(name: string): Promise<string | null> {
 
 ---
 
-## 5 / Alternative resolution method
+## Alternative resolution method
 
 The ZNS Registry also provides `registryLookupByName` for direct name-to-owner lookup:
 
@@ -339,7 +339,7 @@ async function resolveDirectly(name: string): Promise<string | null> {
 
 ---
 
-## 6 / Complete implementation with fallbacks
+## Complete implementation with fallbacks
 
 Here's a production-ready implementation combining all strategies:
 
@@ -485,7 +485,7 @@ export async function resolveAddressToXrplName(
 
 ---
 
-## 7 / Integration checklist
+## Integration checklist
 
 - [ ] Install `viem` dependency
 - [ ] Configure XRPL EVM chain in your app
@@ -498,7 +498,7 @@ export async function resolveAddressToXrplName(
 
 ---
 
-## 8 / Common patterns
+## Common patterns
 
 ### Wallet integration
 
@@ -547,7 +547,7 @@ async function resolveBatch(names: string[]): Promise<Map<string, string | null>
 
 ---
 
-## 9 / FAQ
+## FAQ
 
 **Q:** *Do I need to deploy my own registry contract?*
 **A:** No, use the existing ZNS Registry at `0xf180136DdC9e4F8c9b5A9FE59e2b1f07265C5D4D`.
@@ -566,7 +566,7 @@ async function resolveBatch(names: string[]): Promise<Map<string, string | null>
 
 ---
 
-## 10 / Need help?
+## Need help?
 
 **Discord:** [https://discord.gg/xrplevm](https://discord.gg/xrplevm)
 

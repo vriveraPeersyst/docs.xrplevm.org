@@ -10,6 +10,7 @@
     - page: ./getting-started/install-metamask.md
     - page: ./getting-started/connect-to-the-xrpl-evm.md
     - page: ./getting-started/install-keplr.md
+    - page: ./getting-started/transfer-to-xrpl-domain.md
 - group: Using the bridge
   expanded: true
   items:

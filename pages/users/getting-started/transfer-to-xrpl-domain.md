@@ -105,7 +105,7 @@ Yes! The transfer tool accepts both .xrpl domains and regular `0x...` addresses.
 
 ### What if I enter an invalid domain?
 
-If you enter a domain that doesn't exist or hasn't been registered, the tool will show an error message. Double-check the spelling and try again.
+If you enter a domain that doesn't exist or hasn't been registered, the tool will show it doesn't exist and will display a link to buy it on [zns.bio](https://zns.bio/search?tab=smart&domain=yourname&chain=1440000) .
 
 ### Can domains expire?
 

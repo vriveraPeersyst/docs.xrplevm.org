@@ -42,15 +42,6 @@ Grove provides public endpoints for quick integration and testing, with support 
 | **Cosmos Chain ID**            | **`xrplevm_1440000-1`**                                          | Cosmos Chain ID for XRPL EVM Sidechain Mainnet.                                                                            |
 | **Block Explorer**             | **[XRPL EVM Explorer](https://explorer.xrplevm.org/)**           | Official block explorer for XRPL EVM Mainnet.                                                                              |
 
-### Testnet Endpoints
-
-| Interface                      | Endpoint                                                         | Notes                                                                                                                      |
-| ------------------------------ | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Ethereum JSON RPC (HTTPS)      | `https://xrplevm-testnet.buildintheshade.com`                    | Send JSON-RPC 2.0 requests. Standard Ethereum JSON-RPC API for EVM interactions.                                          |
-| Ethereum JSON WS (WSS)         | `wss://xrplevm-testnet.buildintheshade.com`                      | Use for `eth_subscribe` (e.g., `newHeads`). Real-time event subscriptions and monitoring.                                  |
-| **Cosmos Chain ID**            | **`xrplevm_1449000-1`**                                          | Cosmos Chain ID for XRPL EVM Sidechain Testnet.                                                                            |
-| **Block Explorer**             | **[XRPL EVM Testnet Explorer](https://explorer.testnet.xrplevm.org/)** | Official block explorer for XRPL EVM Testnet.                                                                              |
-
 ## Pocket Network
 
 [Pocket Network](https://api.pocket.network) provides **enterprise-grade infrastructure** for XRPL EVM with guaranteed uptime, global edge network, and developer-first tooling.
@@ -159,6 +150,17 @@ Pocket Network provides a free public RPC endpoint with fair use limits. No API 
 {% /tab %}
 
 {% tab label="Testnet" %}
+
+## Grove Testnet Endpoints
+
+| Interface                      | Endpoint                                                         | Notes                                                                                                                      |
+| ------------------------------ | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Ethereum JSON RPC (HTTPS)      | `https://xrplevm-testnet.buildintheshade.com`                    | Send JSON-RPC 2.0 requests. Standard Ethereum JSON-RPC API for EVM interactions.                                          |
+| Ethereum JSON WS (WSS)         | `wss://xrplevm-testnet.buildintheshade.com`                      | Use for `eth_subscribe` (e.g., `newHeads`). Real-time event subscriptions and monitoring.                                  |
+| **Cosmos Chain ID**            | **`xrplevm_1449000-1`**                                          | Cosmos Chain ID for XRPL EVM Sidechain Testnet.                                                                            |
+| **Block Explorer**             | **[XRPL EVM Testnet Explorer](https://explorer.testnet.xrplevm.org/)** | Official block explorer for XRPL EVM Testnet.                                                                              |
+
+## Additional Endpoints
 
     {% tabs %}
 

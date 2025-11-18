@@ -42,55 +42,6 @@ Grove provides public endpoints for quick integration and testing, with support 
 | **Cosmos Chain ID**            | **`xrplevm_1440000-1`**                                          | Cosmos Chain ID for XRPL EVM Sidechain Mainnet.                                                                            |
 | **Block Explorer**             | **[XRPL EVM Explorer](https://explorer.xrplevm.org/)**           | Official block explorer for XRPL EVM Mainnet.                                                                              |
 
-## Pocket Network
-
-[Pocket Network](https://api.pocket.network) provides **enterprise-grade infrastructure** for XRPL EVM with guaranteed uptime, global edge network, and developer-first tooling.
-
-With Pocket Network, you can access:
-
-- **JSON-RPC** for standard Ethereum JSON-RPC API interactions
-- **CometBFT API** for Tendermint consensus layer access
-- **Cosmos SDK API** for Cosmos SDK REST and gRPC endpoints
-- **WebSockets** for real-time event subscriptions and monitoring
-
-Pocket Network offers a free public RPC endpoint with fair use limits. No API key required for basic usage.
-
-👉 Check the full Pocket Network API documentation:  
-- **Mainnet**: [https://api.pocket.network/docs/xrplevm](https://api.pocket.network/docs/xrplevm)  
-- **Testnet**: [https://api.pocket.network/docs/xrplevm-testnet](https://api.pocket.network/docs/xrplevm-testnet)
-
-### Mainnet Network Information
-
-| Property              | Value                                              |
-| --------------------- | -------------------------------------------------- |
-| **Network Name**      | XRPL EVM Sidechain                                 |
-| **Native Token**      | XRP                                                |
-| **Cosmos Chain ID**   | `xrplevm_1440000-1`                                |
-| **Pocket Service ID** | `xrplevm`                                          |
-| **Block Explorer**    | [XRPL EVM Explorer](https://explorer.xrplevm.org/) |
-
-### Testnet Network Information
-
-| Property              | Value                                                              |
-| --------------------- | ------------------------------------------------------------------ |
-| **Network Name**      | XRPL EVM Testnet                                                   |
-| **Native Token**      | XRP                                                                |
-| **Cosmos Chain ID**   | `xrplevm_1449000-1`                                                |
-| **Pocket Service ID** | `xrplevm-testnet`                                                  |
-| **Block Explorer**    | [XRPL EVM Testnet Explorer](https://explorer.testnet.xrplevm.org/) |
-
-### Supported APIs
-
-| API                | Documentation                                                           |
-| ------------------ | ----------------------------------------------------------------------- |
-| **JSON-RPC**       | [JSON-RPC Supported Methods](https://api.pocket.network/docs/api-definition/definition#json-rpc-supported-methods) |
-| **CometBFT API**   | [Cosmos & CometBFT](https://api.pocket.network/docs/api-definition/definition#cosmos--cometbft)           |
-| **Cosmos SDK API** | [Cosmos & CometBFT](https://api.pocket.network/docs/api-definition/definition#cosmos--cometbft)           |
-| **WebSockets**     | [WebSockets](https://api.pocket.network/docs/api-definition/definition#websockets)                 |
-
-### Public Endpoint
-
-Pocket Network provides a free public RPC endpoint with fair use limits. No API key required for basic usage. For production applications, consider using authenticated endpoints with higher rate limits.
 ## Additional Endpoints
 {% tabs %}
 
@@ -98,6 +49,7 @@ Pocket Network provides a free public RPC endpoint with fair use limits. No API 
         | Provider/Validator              | RPC Endpoint URL                                                                              |
         | ------------------------------- | --------------------------------------------------------------------------------------------- |
         | **Peersyst**                    | [https://rpc.xrplevm.org](https://rpc.xrplevm.org)                                            |
+        | **Pocket Network**              | [https://api.pocket.network/docs/xrplevm](https://api.pocket.network/docs/xrplevm)            |
         | **Cumulo**                      | [https://json-rpc.xrpl.cumulo.org.es](https://json-rpc.xrpl.cumulo.org.es)                    |
         | **Imperator**                   | [https://rpc_evm-xrp.imperator.co/](https://rpc_evm-xrp.imperator.co/)                        |
         | **Enigma**                      | [https://xrp-evm-rpc.enigma-validator.com/](https://xrp-evm-rpc.enigma-validator.com/)        |
@@ -109,6 +61,7 @@ Pocket Network provides a free public RPC endpoint with fair use limits. No API 
         | Provider/Validator  | WSS Endpoint URL                                                                                 |
         | ------------------- | ------------------------------------------------------------------------------------------------ |
         | **Peersyst**        | [https://ws.xrplevm.org]( https://ws.xrplevm.org)                                                |
+        | **Pocket Network**  | [https://api.pocket.network/docs/xrplevm](https://api.pocket.network/docs/xrplevm)               |
         | **Cumulo**          | [https://ws.xrpl.cumulo.org.es](https://ws.xrpl.cumulo.org.es)                                   |
         | **Imperator**       | [ws://ws_evm-xrp.imperator.co](ws://ws_evm-xrp.imperator.co)                                     |
 
@@ -118,6 +71,7 @@ Pocket Network provides a free public RPC endpoint with fair use limits. No API 
         | Provider/Validator   | EVM RPC Endpoint URL                                                                               |
         | ------------------------- | ----------------------------------------------------------------------------------------------|
         | **Peersyst**              | [https://cosmos-rpc.xrplevm.org](https://cosmos-rpc.xrplevm.org)                              |
+        | **Pocket Network**        | [https://api.pocket.network/docs/xrplevm](https://api.pocket.network/docs/xrplevm)            |
         | **Polkachu**              | [https://xrp-rpc.polkachu.com/](https://xrp-rpc.polkachu.com/)                                |
         | **Cumulo**                | [https://rpc.xrpl.cumulo.org.es/](https://rpc.xrpl.cumulo.org.es/)                            |
         | **Imperator**             | [https://rpc-xrp.imperator.co/](https://rpc-xrp.imperator.co/)                                |
@@ -129,6 +83,7 @@ Pocket Network provides a free public RPC endpoint with fair use limits. No API 
         | Provider/Validator        | gRPC Endpoint URL                                                                             |
         | ------------------------- | ----------------------------------------------------------------------------------------------|
         | **Peersyst**              | [https://cosmos-grpc.xrplevm.org](https://cosmos-grpc.xrplevm.org)                            |
+        | **Pocket Network**        | [https://api.pocket.network/docs/xrplevm](https://api.pocket.network/docs/xrplevm)            |
         | **Polkachu**              | [https://xrp-grpc.polkachu.com:30090/](https://xrp-grpc.polkachu.com:30090/)                  |
         | **Cumulo**                | [http://grpc.xrpl.cumulo.org.es](http://grpc.xrpl.cumulo.org.es)                              |
         | **Imperator**             | [http://grpc-xrp.imperator.co:443](http://grpc-xrp.imperator.co:443)                          |
@@ -138,6 +93,7 @@ Pocket Network provides a free public RPC endpoint with fair use limits. No API 
         | Provider/Validator        | API Endpoint URL                                                                 |
         | ------------------------- | -------------------------------------------------------------------------------- |
         | **Peersyst**              | [https://cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org)                 |
+        | **Pocket Network**        | [https://api.pocket.network/docs/xrplevm](https://api.pocket.network/docs/xrplevm) |
         | **Polkachu**              | [https://xrp-api.polkachu.com/](https://xrp-api.polkachu.com/)                   |
         | **Cumulo**                | [https://api.xrpl.cumulo.org.es/](https://api.xrpl.cumulo.org.es/)               |
         | **Imperator**             | [https://lcd-xrp.imperator.co/](https://lcd-xrp.imperator.co/)                   |
@@ -168,6 +124,7 @@ Pocket Network provides a free public RPC endpoint with fair use limits. No API 
         | Provider/Validator              | RPC Endpoint URL                                                                              |
         | ------------------------------- | --------------------------------------------------------------------------------------------- |
         | **Peersyst**                    | [https://rpc.testnet.xrplevm.org](https://rpc.testnet.xrplevm.org)                            |
+        | **Pocket Network**              | [https://api.pocket.network/docs/xrplevm-testnet](https://api.pocket.network/docs/xrplevm-testnet) |
         | **Cumulo**                      | [https://json-rpc.xrpl.cumulo.com.es](https://json-rpc.xrpl.cumulo.com.es)                    |
         | **ITRocket**                    | [https://xrplevm-testnet-evm.itrocket.net](https://xrplevm-testnet-evm.itrocket.net)          |
         | **Mekong Labs**                 | [https://exrpd-testnet-json-rpc.mekonglabs.tech](https://exrpd-testnet-json-rpc.mekonglabs.tech)|
@@ -189,6 +146,7 @@ Pocket Network provides a free public RPC endpoint with fair use limits. No API 
         | Provider/Validator  | WSS Endpoint URL                                                                                 |
         | ------------------- | ------------------------------------------------------------------------------------------------ |
         | **Peersyst**        | [https://ws.testnet.xrplevm.org]( https://ws.testnet.xrplevm.org)                               |
+        | **Pocket Network**  | [https://api.pocket.network/docs/xrplevm-testnet](https://api.pocket.network/docs/xrplevm-testnet) |
         | **MictoNode**       | [wss://xrpl-testnet-evmrpc-wss.mictonode.com](wss://xrpl-testnet-evmrpc-wss.mictonode.com) |
         | **Cumulo**          | [https://ws.xrpl.cumulo.com.es](https://ws.xrpl.cumulo.com.es)                                 |
         {% /tab %}
@@ -197,6 +155,7 @@ Pocket Network provides a free public RPC endpoint with fair use limits. No API 
         | Provider/Validator   | EVM RPC Endpoint URL                                                                                       |
         | ------------------------- | -----------------------------------------------------------------------------------------------------------|
         | **Peersyst**              | [http://cosmos.testnet.xrplevm.org:26657](http://cosmos.testnet.xrplevm.org:26657)                         |
+        | **Pocket Network**        | [https://api.pocket.network/docs/xrplevm-testnet](https://api.pocket.network/docs/xrplevm-testnet)         |
         | **Polkachu**              | [https://xrp-testnet-rpc.polkachu.com/](https://xrp-testnet-rpc.polkachu.com/)                |
         | **Cumulo**                | [https://rpc.xrpl.cumulo.com.es](https://rpc.xrpl.cumulo.com.es)                              |
         | **Enigma**                | [https://xrp-rpc.enigma-validator.com/](https://xrp-rpc.enigma-validator.com/)                |
@@ -227,6 +186,7 @@ Pocket Network provides a free public RPC endpoint with fair use limits. No API 
         | Provider/Validator        | gRPC Endpoint URL                                                                          |
         | ------------------------- | ----------------------------------------------------------------------------------------   |
         | **Peersyst**              | [http://cosmos.testnet.xrplevm.org:9090](http://cosmos.testnet.xrplevm.org:9090)           |
+        | **Pocket Network**        | [https://api.pocket.network/docs/xrplevm-testnet](https://api.pocket.network/docs/xrplevm-testnet) |
         | **Kintsugi Nodes**        | `grpc-xrp.kintsugi-nodes.com`                                                              |
         | **Polkachu**              | [https://polkachu.com/testnet_public_grpc](https://polkachu.com/testnet_public_grpc)       |
         | **Cumulo**                | `grpc.xrpl.cumulo.com.es`                                                                  |
@@ -245,6 +205,7 @@ Pocket Network provides a free public RPC endpoint with fair use limits. No API 
         | Provider/Validator        | API Endpoint URL                                                                 |
         | ------------------------- | ------------------------------------------------------------------------------- |
         | **Peersyst**              | [http://cosmos.testnet.xrplevm.org:1317](http://cosmos.testnet.xrplevm.org:1317)   |
+        | **Pocket Network**        | [https://api.pocket.network/docs/xrplevm-testnet](https://api.pocket.network/docs/xrplevm-testnet) |
         | **Kintsugi Nodes**        | [https://api-xrp.kintsugi-nodes.com](https://api-xrp.kintsugi-nodes.com)         |
         | **Polkachu**              | [https://xrp-testnet-api.polkachu.com/](https://xrp-testnet-api.polkachu.com/)   |
         | **Cumulo**                | [https://api.xrpl.cumulo.com.es](https://api.xrpl.cumulo.com.es)                |

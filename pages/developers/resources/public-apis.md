@@ -100,7 +100,7 @@ Pocket Network offers a free public RPC endpoint with fair use limits. No API ke
 ### Public Endpoint
 
 Pocket Network provides a free public RPC endpoint with fair use limits. No API key required for basic usage. For production applications, consider using authenticated endpoints with higher rate limits.
-
+## Additional Endpoints
 {% tabs %}
 
         {% tab label="Ethereum JSON RPC" %}

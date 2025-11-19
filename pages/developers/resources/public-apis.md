@@ -18,8 +18,8 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 
 ## Grove as Main Service Provider
 
-[Grove](https://docs.grove.city/grove-api/api-definition/definition) is the **main service provider** for XRPL EVM.  
-They offer highly available, production-ready APIs for developers, wallets, and services looking to connect seamlessly with the XRPL EVM network.
+[Grove](https://grove.city) is the **main service provider** for XRPL EVM via its [Build In The Shade](https://buildintheshade.com/docs) portal.  
+They offer enterprise-grade infrastructure with guaranteed uptime, global edge network, and developer-first tooling for both Mainnet and Testnet.
 
 With Grove, you can access:
 
@@ -28,30 +28,28 @@ With Grove, you can access:
 - **Cosmos SDK REST APIs** for modules like `bank`, `staking`, etc.  
 - **Batching support** and enhanced error handling for JSON-RPC calls  
 
-Developers can use Grove’s endpoints with their **Portal App ID** and **API Key** for authenticated requests, or rely on their free public endpoints for quick integration and testing.  
+Grove provides public endpoints for quick integration and testing, with support for authenticated requests for production use.
 
-👉 Check the full Grove API specification and usage guide here:  
-[https://docs.grove.city/grove-api/api-definition/definition](https://docs.grove.city/grove-api/api-definition/definition)
+👉 Check the full Grove documentation and endpoints here:  
+[https://buildintheshade.com/docs](https://buildintheshade.com/docs)
 
-| Interface                      | Endpoint (template)                                              | Notes                                                                                                                                                                                   |
-| ------------------------------ | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Ethereum JSON RPC (HTTPS)      | `https://xrplevm.rpc.grove.city/v1/<GROVE_PORTAL_APP_ID>`        | Send JSON-RPC 2.0 requests. Include `Authorization: <GROVE_PORTAL_API_KEY>`. ([Grove][1])                                                                                               |
-| Ethereum JSON WS (WSS)         | `wss://xrplevm.rpc.grove.city/v1/<GROVE_PORTAL_APP_ID>`          | Use for `eth_subscribe` (e.g., `newHeads`). Same auth header.                                                        |
-| Tendermint RPC (CometBFT REST) | `https://xrplevm.grove.city/v1/<GROVE_PORTAL_APP_ID>/status`     | Path-style (not port). Append other CometBFT paths as needed (e.g., `/net_info`, `/block?height=...`). ([Grove][1])                                                                     |
-| Cosmos gRPC                    | **Not yet available**                                            | Marked “coming soon” in Grove’s materials. Use REST in the meantime.                                                                                        |
-| Cosmos REST API                | `https://xrplevm.grove.city/v1/<GROVE_PORTAL_APP_ID>/cosmos/...` | Standard Cosmos SDK routes, e.g. `/cosmos/bank/v1beta1/supply`. Include `Authorization` and `Portal-Application-Id: <GROVE_PORTAL_APP_ID>`. ([Grove][1], [Cosmos SDK Documentation][4]) |
+### Mainnet Endpoints
 
-[1]: https://grove.city/public-endpoints "Public Endpoints | Free Blockchain RPC APIs"
-[4]: https://docs.cosmos.network/main/build/modules/bank "x/bank | Explore the SDK"
+| Interface                      | Endpoint                                                         | Notes                                                                                                                      |
+| ------------------------------ | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Ethereum JSON RPC (HTTPS)      | `https://xrplevm.buildintheshade.com`                            | Send JSON-RPC 2.0 requests. Standard Ethereum JSON-RPC API for EVM interactions.                                          |
+| Ethereum JSON WS (WSS)         | `wss://xrplevm.buildintheshade.com`                              | Use for `eth_subscribe` (e.g., `newHeads`). Real-time event subscriptions and monitoring.                                  |
+| **Cosmos Chain ID**            | **`xrplevm_1440000-1`**                                          | Cosmos Chain ID for XRPL EVM Sidechain Mainnet.                                                                            |
+| **Block Explorer**             | **[XRPL EVM Explorer](https://explorer.xrplevm.org/)**           | Official block explorer for XRPL EVM Mainnet.                                                                              |
 
-
+## Additional Endpoints
 {% tabs %}
 
         {% tab label="Ethereum JSON RPC" %}
         | Provider/Validator              | RPC Endpoint URL                                                                              |
         | ------------------------------- | --------------------------------------------------------------------------------------------- |
         | **Peersyst**                    | [https://rpc.xrplevm.org](https://rpc.xrplevm.org)                                            |
-        | **Grove**                       | [https://xrplevm.rpc.grove.city/v1/0caa84c4](https://xrplevm.rpc.grove.city/v1/0caa84c4)      |
+        | **Pocket Network**              | [https://api.pocket.network/docs/xrplevm](https://api.pocket.network/docs/xrplevm)            |
         | **Cumulo**                      | [https://json-rpc.xrpl.cumulo.org.es](https://json-rpc.xrpl.cumulo.org.es)                    |
         | **Imperator**                   | [https://rpc_evm-xrp.imperator.co/](https://rpc_evm-xrp.imperator.co/)                        |
         | **Enigma**                      | [https://xrp-evm-rpc.enigma-validator.com/](https://xrp-evm-rpc.enigma-validator.com/)        |
@@ -63,15 +61,17 @@ Developers can use Grove’s endpoints with their **Portal App ID** and **API Ke
         | Provider/Validator  | WSS Endpoint URL                                                                                 |
         | ------------------- | ------------------------------------------------------------------------------------------------ |
         | **Peersyst**        | [https://ws.xrplevm.org]( https://ws.xrplevm.org)                                                |
+        | **Pocket Network**  | [https://api.pocket.network/docs/xrplevm](https://api.pocket.network/docs/xrplevm)               |
         | **Cumulo**          | [https://ws.xrpl.cumulo.org.es](https://ws.xrpl.cumulo.org.es)                                   |
         | **Imperator**       | [ws://ws_evm-xrp.imperator.co](ws://ws_evm-xrp.imperator.co)                                     |
-        
+
 
         {% /tab %}
         {% tab label="Tendermint RPC" %}
         | Provider/Validator   | EVM RPC Endpoint URL                                                                               |
         | ------------------------- | ----------------------------------------------------------------------------------------------|
         | **Peersyst**              | [https://cosmos-rpc.xrplevm.org](https://cosmos-rpc.xrplevm.org)                              |
+        | **Pocket Network**        | [https://api.pocket.network/docs/xrplevm](https://api.pocket.network/docs/xrplevm)            |
         | **Polkachu**              | [https://xrp-rpc.polkachu.com/](https://xrp-rpc.polkachu.com/)                                |
         | **Cumulo**                | [https://rpc.xrpl.cumulo.org.es/](https://rpc.xrpl.cumulo.org.es/)                            |
         | **Imperator**             | [https://rpc-xrp.imperator.co/](https://rpc-xrp.imperator.co/)                                |
@@ -83,6 +83,7 @@ Developers can use Grove’s endpoints with their **Portal App ID** and **API Ke
         | Provider/Validator        | gRPC Endpoint URL                                                                             |
         | ------------------------- | ----------------------------------------------------------------------------------------------|
         | **Peersyst**              | [https://cosmos-grpc.xrplevm.org](https://cosmos-grpc.xrplevm.org)                            |
+        | **Pocket Network**        | [https://api.pocket.network/docs/xrplevm](https://api.pocket.network/docs/xrplevm)            |
         | **Polkachu**              | [https://xrp-grpc.polkachu.com:30090/](https://xrp-grpc.polkachu.com:30090/)                  |
         | **Cumulo**                | [http://grpc.xrpl.cumulo.org.es](http://grpc.xrpl.cumulo.org.es)                              |
         | **Imperator**             | [http://grpc-xrp.imperator.co:443](http://grpc-xrp.imperator.co:443)                          |
@@ -92,6 +93,7 @@ Developers can use Grove’s endpoints with their **Portal App ID** and **API Ke
         | Provider/Validator        | API Endpoint URL                                                                 |
         | ------------------------- | -------------------------------------------------------------------------------- |
         | **Peersyst**              | [https://cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org)                 |
+        | **Pocket Network**        | [https://api.pocket.network/docs/xrplevm](https://api.pocket.network/docs/xrplevm) |
         | **Polkachu**              | [https://xrp-api.polkachu.com/](https://xrp-api.polkachu.com/)                   |
         | **Cumulo**                | [https://api.xrpl.cumulo.org.es/](https://api.xrpl.cumulo.org.es/)               |
         | **Imperator**             | [https://lcd-xrp.imperator.co/](https://lcd-xrp.imperator.co/)                   |
@@ -105,12 +107,24 @@ Developers can use Grove’s endpoints with their **Portal App ID** and **API Ke
 
 {% tab label="Testnet" %}
 
+## Grove Testnet Endpoints
+
+| Interface                      | Endpoint                                                         | Notes                                                                                                                      |
+| ------------------------------ | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Ethereum JSON RPC (HTTPS)      | `https://xrplevm-testnet.buildintheshade.com`                    | Send JSON-RPC 2.0 requests. Standard Ethereum JSON-RPC API for EVM interactions.                                          |
+| Ethereum JSON WS (WSS)         | `wss://xrplevm-testnet.buildintheshade.com`                      | Use for `eth_subscribe` (e.g., `newHeads`). Real-time event subscriptions and monitoring.                                  |
+| **Cosmos Chain ID**            | **`xrplevm_1449000-1`**                                          | Cosmos Chain ID for XRPL EVM Sidechain Testnet.                                                                            |
+| **Block Explorer**             | **[XRPL EVM Testnet Explorer](https://explorer.testnet.xrplevm.org/)** | Official block explorer for XRPL EVM Testnet.                                                                              |
+
+## Additional Endpoints
+
     {% tabs %}
 
         {% tab label="Ethereum JSON RPC" %}
         | Provider/Validator              | RPC Endpoint URL                                                                              |
         | ------------------------------- | --------------------------------------------------------------------------------------------- |
         | **Peersyst**                    | [https://rpc.testnet.xrplevm.org](https://rpc.testnet.xrplevm.org)                            |
+        | **Pocket Network**              | [https://api.pocket.network/docs/xrplevm-testnet](https://api.pocket.network/docs/xrplevm-testnet) |
         | **Cumulo**                      | [https://json-rpc.xrpl.cumulo.com.es](https://json-rpc.xrpl.cumulo.com.es)                    |
         | **ITRocket**                    | [https://xrplevm-testnet-evm.itrocket.net](https://xrplevm-testnet-evm.itrocket.net)          |
         | **Mekong Labs**                 | [https://exrpd-testnet-json-rpc.mekonglabs.tech](https://exrpd-testnet-json-rpc.mekonglabs.tech)|
@@ -132,6 +146,7 @@ Developers can use Grove’s endpoints with their **Portal App ID** and **API Ke
         | Provider/Validator  | WSS Endpoint URL                                                                                 |
         | ------------------- | ------------------------------------------------------------------------------------------------ |
         | **Peersyst**        | [https://ws.testnet.xrplevm.org]( https://ws.testnet.xrplevm.org)                               |
+        | **Pocket Network**  | [https://api.pocket.network/docs/xrplevm-testnet](https://api.pocket.network/docs/xrplevm-testnet) |
         | **MictoNode**       | [wss://xrpl-testnet-evmrpc-wss.mictonode.com](wss://xrpl-testnet-evmrpc-wss.mictonode.com) |
         | **Cumulo**          | [https://ws.xrpl.cumulo.com.es](https://ws.xrpl.cumulo.com.es)                                 |
         {% /tab %}
@@ -140,6 +155,7 @@ Developers can use Grove’s endpoints with their **Portal App ID** and **API Ke
         | Provider/Validator   | EVM RPC Endpoint URL                                                                                       |
         | ------------------------- | -----------------------------------------------------------------------------------------------------------|
         | **Peersyst**              | [http://cosmos.testnet.xrplevm.org:26657](http://cosmos.testnet.xrplevm.org:26657)                         |
+        | **Pocket Network**        | [https://api.pocket.network/docs/xrplevm-testnet](https://api.pocket.network/docs/xrplevm-testnet)         |
         | **Polkachu**              | [https://xrp-testnet-rpc.polkachu.com/](https://xrp-testnet-rpc.polkachu.com/)                |
         | **Cumulo**                | [https://rpc.xrpl.cumulo.com.es](https://rpc.xrpl.cumulo.com.es)                              |
         | **Enigma**                | [https://xrp-rpc.enigma-validator.com/](https://xrp-rpc.enigma-validator.com/)                |
@@ -170,6 +186,7 @@ Developers can use Grove’s endpoints with their **Portal App ID** and **API Ke
         | Provider/Validator        | gRPC Endpoint URL                                                                          |
         | ------------------------- | ----------------------------------------------------------------------------------------   |
         | **Peersyst**              | [http://cosmos.testnet.xrplevm.org:9090](http://cosmos.testnet.xrplevm.org:9090)           |
+        | **Pocket Network**        | [https://api.pocket.network/docs/xrplevm-testnet](https://api.pocket.network/docs/xrplevm-testnet) |
         | **Kintsugi Nodes**        | `grpc-xrp.kintsugi-nodes.com`                                                              |
         | **Polkachu**              | [https://polkachu.com/testnet_public_grpc](https://polkachu.com/testnet_public_grpc)       |
         | **Cumulo**                | `grpc.xrpl.cumulo.com.es`                                                                  |
@@ -188,6 +205,7 @@ Developers can use Grove’s endpoints with their **Portal App ID** and **API Ke
         | Provider/Validator        | API Endpoint URL                                                                 |
         | ------------------------- | ------------------------------------------------------------------------------- |
         | **Peersyst**              | [http://cosmos.testnet.xrplevm.org:1317](http://cosmos.testnet.xrplevm.org:1317)   |
+        | **Pocket Network**        | [https://api.pocket.network/docs/xrplevm-testnet](https://api.pocket.network/docs/xrplevm-testnet) |
         | **Kintsugi Nodes**        | [https://api-xrp.kintsugi-nodes.com](https://api-xrp.kintsugi-nodes.com)         |
         | **Polkachu**              | [https://xrp-testnet-api.polkachu.com/](https://xrp-testnet-api.polkachu.com/)   |
         | **Cumulo**                | [https://api.xrpl.cumulo.com.es](https://api.xrpl.cumulo.com.es)                |
@@ -230,7 +248,7 @@ Developers can use Grove’s endpoints with their **Portal App ID** and **API Ke
         {% tab label="Documentation / Guide" %}
         | Provider/Validator        | Docs / Guide URL                                                                 |
         | ------------------------- | ------------------------------------------------------------------------------- |
-        | **Grove**                 | [RPC Docs](https://docs.grove.city/xrpl-api/specs/core-api)                      |
+        | **Grove**                 | [XRPL-EVM Documentation](https://buildintheshade.com/docs)                       |
         | **Polkachu**              | [Installation Guide](https://polkachu.com/testnets/xrp/installation)              |
         | **Cumulo**                | [Node Guide](https://cumulo.pro/services/xrplevm/)                              |
         | **Enigma**                | [Main site](https://enigma-validator.com/stake-with-us/xrp-testnet#services) |

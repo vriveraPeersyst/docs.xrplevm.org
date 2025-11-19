@@ -46,6 +46,14 @@ Integrate Band Protocol's oracle contracts to fetch real-time price data on-chai
 - **[Using XRP as Wrapped ERC-20](./interacting-with-evm/advanced-guides/using-xrp-as-wrapped-erc20.md)**
   Discover why you don't need to wrap XRP on XRPL EVM and how to work with the native 18-decimal ERC-20 at `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`.
 
+#### Domain Resolution
+- **[Resolving .xrpl Domains with ZNS](./interacting-with-evm/advanced-guides/resolve-xrpl-domains.md)**
+  Integrate human-readable .xrpl domain names into your dApp or wallet. Learn how to resolve domains to addresses, perform reverse lookups, and implement efficient caching strategies using the ZNS Registry.
+
+#### Wallet Integration
+- **[Integrating Reown Social Login](./interacting-with-evm/advanced-guides/reown-dapp-example.md)**
+  Add social login functionality to your dApp using Reown AppKit (formerly WalletConnect). Enable users to connect with Google, GitHub, Discord, and other social providers for a seamless onboarding experience.
+
 #### Cross-Chain Transactions
 Build applications that span multiple blockchains using Axelar's powerful cross-chain infrastructure:
 

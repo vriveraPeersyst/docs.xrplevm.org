@@ -17,7 +17,8 @@ Dive into detailed guides, tutorials, and tools that will empower you to take fu
 - [Introduction](./getting-started/introduction.md)  
 - [Start with EVM Wallet: MetaMask](./getting-started/install-metamask.md)  
 - [Start with Cosmos Wallet: Keplr](./getting-started/install-keplr.md)  
-- [Connect to the XRPL EVM Sidechain](./getting-started/connect-to-the-xrpl-evm.md)  
+- [Connect to the XRPL EVM Sidechain](./getting-started/connect-to-the-xrpl-evm.md)
+- [Transfer to .xrpl Domain](./getting-started/transfer-to-xrpl-domain.md)  
 
 ## 🌉 Using the Axelar Bridge
 

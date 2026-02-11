@@ -8,7 +8,7 @@ Before proceeding, it’s crucial to understand that node versioning plays a vit
 
  The XRPL EVM Testnet initially launched using `exrpd` version 6. At block **547,100**, it upgraded to version 7, then to version 8 at block **1,485,600** and later to v9.0.0 at block **3827000**. If you intend to sync your node from the very beginning of the chain (i.e., from genesis), you **must** install the same node version used at the network’s genesis—**v6**. Your node will sync until it reaches the block where a version upgrade occurred. At that point, you must manually upgrade your node to the corresponding version (e.g., from v6 to v7 at block 547,100, from v7 to v8 at block 1,485,600 and from v8 to v9 at block 3827000) to continue syncing without interruption.
 
-Alternatively, if syncing from genesis is not required, you can take a more efficient approach by starting from a **snapshot** or using **state sync**, which allows you to join the network at a later state. In this case, you can install the [**latest version**](../resources/networks.md) of `exrpd` and bypass the need for version hopping altogether.
+Alternatively, if syncing from genesis is not required, you can take a more efficient approach by starting from [**sync from snapshot**](https://docs.xrplevm.org/pages/operators/advanced/sync-options#sync-from-snapshot) or using [**sync from state sync**](https://docs.xrplevm.org/pages/operators/advanced/sync-options#state-sync), which allows you to join the network at a later state. In this case, you can install the [**latest version**](../resources/networks.md) of `exrpd` and bypass the need for version hopping altogether.
 
 {% admonition type="info" name="List of upgrades" %}
 For a detailed list of XRPL EVM network versions—including timestamps, upgrade blocks, and version changes across all supported chains—refer to the official network documentation: [XRPL EVM Networks Overview](../resources/networks.md).
@@ -39,11 +39,11 @@ This method involves downloading precompiled binaries from the repository's late
 
    - **AMD64:**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v8.0.2/node_8.0.2_Linux_amd64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_amd64.tar.gz
      ```
    - **ARM64:**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v8.0.2/node_8.0.2_Linux_arm64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_arm64.tar.gz
      ```
    {% /tab %}
 
@@ -52,11 +52,11 @@ This method involves downloading precompiled binaries from the repository's late
 
    - **Intel (x86_64):**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v8.0.2/node_8.0.2_Darwin_amd64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_amd64.tar.gz
      ```
    - **Apple Silicon (ARM64):**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v8.0.2/node_8.0.2_Darwin_arm64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_arm64.tar.gz
      ```
    {% /tab %}
    
@@ -68,7 +68,7 @@ This method involves downloading precompiled binaries from the repository's late
    - **Download using curl:**  
      Open PowerShell and run:
      ```powershell
-     curl -LO https://github.com/xrplevm/node/releases/download/v8.0.2/node_8.0.2_Windows_amd64.zip
+     curl -LO https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Windows_amd64.zip
      ```
    {% /tab %}
    {% /tabs %}
@@ -76,7 +76,7 @@ This method involves downloading precompiled binaries from the repository's late
 2. **Extract the Binaries:**  
    Once downloaded, extract the file using the appropriate command for your platform. For example, on Linux:
    ```bash
-   tar -xzf node_8.0.0_Linux_amd64.tar.gz
+   tar -xzf node_7.0.0_Linux_amd64.tar.gz
    ```
    This will extract the files into a directory.
 
@@ -106,17 +106,13 @@ This method involves downloading precompiled binaries from the repository's late
    ```bash
    exrpd version
    ```
-   You should see version information (e.g., `v8.0.2`).
+   You should see version information (e.g., `v7.0.0`).
 
 6. **Configure and Run Your Node (Optional):**  
    Once the binary is installed, follow the [node configuration instructions](./join-the-xrplevm.md)
 
 
 Using this method, you can quickly set up your node by downloading the latest release from the [repository](https://github.com/xrplevm/node/releases).
-
----
-
-Below is the updated documentation for Methods 2 and 3, now including machine-specific tabs and additional details for Docker regarding optional API/RPC port exposure. For more details on configuration options, please refer to the [Node Configuration Options](../resources/configuration-reference.md) documentation.
 
 ---
 
@@ -186,21 +182,15 @@ go version
    The compiled binaries will be available in the `build` directory.
 
 ---
-Here’s the updated **Method 3: Using Docker** guide—tested on Linux, macOS & Windows—with **v8.0.2** and the correct `--entrypoint` override so that `exrpd start` actually runs:
 
----
 ## Method 3: Using Docker
 
-A containerized approach ensures a consistent environment and avoids host-dependency issues. With version **v8.0.2**, you only need **two** Docker commands:
-
----
+A containerized approach ensures a consistent environment and avoids host-dependency issues. With version **v7.0.0**, you only need **two** Docker commands:
 
 ### Prerequisites
 
 * Docker 19+ installed on your host.
 * Run as root (or via sudo) so that `/root/.exrpd` is writable.
-
----
 
 ### 1. Interactive setup (one-time)
 
@@ -209,7 +199,7 @@ Launch a shell in the container, mounting your host’s config directory. Inside
 ```bash
 docker run -it --name xrplevm-setup \
   -v /root/.exrpd:/root/.exrpd \
-  peersyst/exrp:8.0.2 \
+  peersyst/exrp:7.0.0 \
   /bin/sh
 ```
 
@@ -227,7 +217,7 @@ docker run -d \
   --name xrplevm-node \
   -v /root/.exrpd:/root/.exrpd \
   --entrypoint exrpd \
-  peersyst/exrp:v8.0.2 \
+  peersyst/exrp:v7.0.0 \
   start
 ```
 
@@ -309,7 +299,7 @@ docker-compose up -d xrplevm-node
 
 That’s it—your node will now run v8.0.2 and continue syncing from height 547100 onward.
 
-Do the same with v9.0.0 and future versions when they launch.
+Do the same with future versions when they launch.
 
 If you don't want to sync from genesis you can also install the v8.0.2 directly and [**sync from snapshot**](https://docs.xrplevm.org/pages/operators/advanced/sync-options#sync-from-snapshot) or [**sync from state sync**](https://docs.xrplevm.org/pages/operators/advanced/sync-options#state-sync).
 

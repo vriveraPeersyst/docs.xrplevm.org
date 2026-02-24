@@ -5,7 +5,7 @@ The XRPL EVM ecosystem consists of multiple networks, each serving different sta
 | Name    | Chain ID         | Current Version | Genesis                                                                                            | Peers                                                                                         |
 | ------- | ---------------- | --------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | Mainnet | `xrplevm_1440000-1` | v8.0.2          | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) | [Peers](https://raw.githubusercontent.com/xrplevm/networks/main/mainnet/peers.txt)            |
-| Testnet | `xrplevm_1449000-1` | v9.0.0          | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) | [Peers](https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt)            |
+| Testnet | `xrplevm_1449000-1` | v10.0.1          | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) | [Peers](https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt)            |
 | Devnet | `xrplevm_1449900-1` | v9.0.3          | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/devnet/genesis.json) | [Peers](https://raw.githubusercontent.com/xrplevm/networks/main/devnet/peers.txt)            |
 
 
@@ -32,6 +32,7 @@ Below is a table indicating all the hard fork upgrades for each network:
 | v7           | 547100       | 2025-03-25   | [v7.0.0](https://github.com/xrplevm/node/releases/tag/v7.0.0) | [peersyst/exrp:v7.0.0](https://hub.docker.com/layers/peersyst/exrp/v7.0.0/images/sha256-9d8c9f96e27c648216fddbc4bb67c10529aa5ea03d303cf56060e453c02a4ca9) |
 | v8           | 1485600       | 2025-05-26   | [v8.0.0](https://github.com/xrplevm/node/releases/tag/v8.0.0) | [peersyst/exrp:v8.0.0](https://hub.docker.com/layers/peersyst/exrp/v8.0.0/images/sha256-2fba5b2bef8a203b3226ff88d5c5018a67370d2e4a6838d25809424223f7f3a8) |
 | v9           | 3827000       | 2025-10-29   | [v9.0.0](https://github.com/xrplevm/node/releases/tag/v9.0.0) | [peersyst/exrp:v9.0.0](https://hub.docker.com/layers/peersyst/exrp/v9.0.0/images/sha256:9444e5cee345716ffa783fea084e2d9b6cec43a6800cbcf7507e566b7f5e8d86) |
+| v10           | 3827000       | 2025-10-29   | [v10.0.1](https://github.com/xrplevm/node/releases/tag/v10.0.1) | [peersyst/exrp:v10.0.1](https://hub.docker.com/layers/peersyst/exrp/v10.0.1/images/sha256:9444e5cee345716ffa783fea084e2d9b6cec43a6800cbcf7507e566b7f5e8d86) |
 
 {% /tab %}
 

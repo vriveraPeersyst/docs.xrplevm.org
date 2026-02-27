@@ -70,7 +70,6 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 {% /tab %}
 
 {% tab label="Testnet" %}
-                                             |
 
 ## Additional Endpoints
 

@@ -105,8 +105,8 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         {% tab label="Cosmos gRPC" %}
         | Provider/Validator        | gRPC Endpoint URL                                                                           |
         | ------------------------- | ----------------------------------------------- |
-        | **Peersyst**              | `cosmos-grpc.testnet.xrplevm.org:443`           |
-        | **Cumulo**                | `grpc.xrpl.cumulo.com.es`                       |
+        | **Peersyst**              | cosmos-grpc.testnet.xrplevm.org:443           |
+        | **Cumulo**                | grpc.xrpl.cumulo.com.es                       |
 
         {% /tab %}
 

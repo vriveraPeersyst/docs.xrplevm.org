@@ -21,6 +21,8 @@ Below is a table indicating all the hard fork upgrades for each network:
 | ------------ | ------------ | ------------ | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Genesis      | 0            | 2025-04-25   | [v7.0.0](https://github.com/xrplevm/node/releases/tag/v7.0.0) | [peersyst/exrp:v7.0.0](https://hub.docker.com/layers/peersyst/exrp/v7.0.0/images/sha256-dd77f81a2f8e349349fcd1266c465c77e580681764f0abbdd052bd4f4360c24e) |
 | v8           | 497000       | 2025-05-28   | [v8.0.2](https://github.com/xrplevm/node/releases/tag/v8.0.2) | [peersyst/exrp:v8.0.2](https://hub.docker.com/layers/peersyst/exrp/v8.0.2/images/sha256-2fba5b2bef8a203b3226ff88d5c5018a67370d2e4a6838d25809424223f7f3a8) |
+| v9           | 4688681       | 2026-02-26   | [v9.0.3](https://github.com/xrplevm/node/releases/tag/v9.0.3) | [peersyst/exrp:v9.0.3](https://hub.docker.com/layers/peersyst/exrp/v9.0.3/images/sha256-2fba5b2bef8a203b3226ff88d5c5018a67370d2e4a6838d25809424223f7f3a8) |
+
 
 {% /tab %}
 

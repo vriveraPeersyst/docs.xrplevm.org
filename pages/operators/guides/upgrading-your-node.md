@@ -1,147 +1,212 @@
 # Upgrading your node
 
-Blockchain upgrades are a complex process that requires all network participants to agree on a specific time to execute a specific change in the protocol. Cosmos based networks, like the XRPL EVM Sidechain, solve this complexity with a set of fixed operations that need to happen when upgrading the chain:
+Upgrades are coordinated at a specific block height. Nodes running old binaries halt at that height and must be upgraded before they can continue.
 
-1. A governance proposal containing a chain upgrade transaction is created. This transaction contains specific details of the upgrade such as which block will the upgrade be executed, the version number and some metadata.
-2. Once the proposal is created it is voted as another regular governance proposal.
-3. If the proposal collects enough votes to be approved, the chain upgrade is planned at the block specified.
-4. When the block of the upgrade is minted, all the nodes, that are running the old version will halt, showing an error in the logs notifying the operator to upgrade it to the new binary.
-5. After more than 2/3 of the total validators upgrade their nodes, the chain starts creating new blocks. And the upgrade has finished successfully.
+For validators, the primary risk during upgrades is **double-signing**. This happens when more than one active validator signer uses the same validator key at the same time (or with inconsistent signer state), which can lead to slashing/jailing.
+
+This guide is a security-first runbook for all run stacks:
+
+- `systemctl`
+- `cosmovisor`
+- `docker`
+- raw binary upgrades
+- source-built upgrades
 
 {% admonition type="info" name="List of upgrades" %}
-In the [Networks](../resources/networks.md) page, you can find all the hard fork upgrades for each network
+Upgrade heights and target versions for Mainnet/Testnet/Devnet are listed in [Networks](../resources/networks.md).
 {% /admonition %}
 
-## Automated upgrades
+## Critical validator safety rules
 
-Manual actions required by node operators during the chain upgrades can be automated using Cosmovisor. This client automatically detects new binaries for newer versions available and downloads them. Once a new chain upgrade is triggered, the cosmovisor restarts the node with the new binary, reducing the downtime of your node.
+Follow these rules for every validator upgrade:
 
-{% admonition type="info" name="Important" %}
-The following instructions are adapted from the official Cosmovisor documentation. If you want more in-depth information or advanced usage, consult that resource.
+1. **One signer only**: keep a single active validator signer for `priv_validator_key.json`.
+2. **Stop before replace**: fully stop old process/container/service before changing binaries.
+3. **Preserve signer state**: never delete or roll back `priv_validator_state.json`.
+4. **Never clone signing state to a second active host**.
+5. **Verify single active instance** before restart.
+
+{% admonition type="warning" name="Double-sign risk" %}
+Do not start a second node (VM, container, backup host, or old binary) with the same validator key while your primary validator is still running. This is the most common path to double-signing.
 {% /admonition %}
 
-### Install Cosmovisor
+## Secure upgrade flow (mandatory order)
 
-You can download Cosmovisor from the [GitHub releases](https://github.com/cosmos/cosmos-sdk/releases/tag/cosmovisor%2Fv1.5.0).
+Use this exact sequence for validators, regardless of stack.
 
-To install the latest version of cosmovisor, run the following command:
+### 1) Confirm target upgrade
+
+- Read target height/version from [Networks](../resources/networks.md).
+- Download the target release artifact from [XRPL EVM node releases](https://github.com/xrplevm/node/releases).
+
+### 2) Pre-upgrade checks
+
+```bash
+exrpd status
+```
+
+Record current height and ensure your node is healthy before starting.
+
+### 3) Stop signer process completely
+
+Stop your runtime stack and confirm the process is gone.
+
+```bash
+pgrep -fa exrpd
+```
+
+Expected: no active validator signer `exrpd` process.
+
+### 4) Backup validator-critical files
+
+```bash
+mkdir -p ~/exrpd-upgrade-backup
+cp ~/.exrpd/config/priv_validator_key.json ~/exrpd-upgrade-backup/
+cp ~/.exrpd/data/priv_validator_state.json ~/exrpd-upgrade-backup/
+cp ~/.exrpd/config/node_key.json ~/exrpd-upgrade-backup/
+```
+
+Do not edit these files manually.
+
+### 5) Upgrade binary (raw or source)
+
+#### Raw binary upgrade
+
+```bash
+cd /tmp
+wget https://github.com/xrplevm/node/releases/download/<target-tag>/node_<target-version>_Linux_amd64.tar.gz
+tar -xzf node_<target-version>_Linux_amd64.tar.gz
+sudo mv bin/exrpd /usr/local/bin/exrpd
+sudo chmod +x /usr/local/bin/exrpd
+exrpd version
+```
+
+#### Upgrade from source
+
+```bash
+cd /tmp
+rm -rf node
+git clone https://github.com/xrplevm/node.git
+cd node
+git checkout <target-tag>
+make build
+sudo mv build/exrpd /usr/local/bin/exrpd
+sudo chmod +x /usr/local/bin/exrpd
+exrpd version
+```
+
+If you build from source, check required Go version first:
+
+```bash
+REQUIRED_GO=$(curl -fsSL https://raw.githubusercontent.com/xrplevm/node/main/go.mod | awk '/^go /{print $2; exit}')
+echo "Required Go: ${REQUIRED_GO}"
+go version
+```
+
+### 6) Start exactly one signer
+
+Start your runtime stack (only one instance) and follow logs.
+
+### 7) Post-upgrade validation
+
+```bash
+exrpd status
+curl -s localhost:26657/status | jq .result.sync_info
+```
+
+Confirm blocks are advancing and no upgrade halt error remains.
+
+## Stack-specific upgrade commands
+
+### `systemctl`
+
+```bash
+sudo systemctl stop exrpd
+pgrep -fa exrpd
+
+# replace /usr/local/bin/exrpd with target binary
+
+sudo systemctl start exrpd
+sudo journalctl -u exrpd -f
+```
+
+### `cosmovisor`
+
+Place the new binary in the upgrade folder matching the on-chain upgrade name:
+
+```bash
+mkdir -p ~/.exrpd/cosmovisor/upgrades/<upgrade-name>/bin
+cp /usr/local/bin/exrpd ~/.exrpd/cosmovisor/upgrades/<upgrade-name>/bin/exrpd
+chmod +x ~/.exrpd/cosmovisor/upgrades/<upgrade-name>/bin/exrpd
+```
+
+Then run:
+
+```bash
+sudo systemctl restart cosmovisor-exrpd
+sudo journalctl -u cosmovisor-exrpd -f
+```
+
+{% admonition type="warning" name="Cosmovisor path" %}
+Use `~/.exrpd/...` (not `~/.exprd/...`).
+{% /admonition %}
+
+### `docker`
+
+```bash
+docker pull peersyst/exrp:<target-tag>
+docker stop xrplevm-node
+docker rm xrplevm-node
+
+docker run -d \
+  --name xrplevm-node \
+  --restart unless-stopped \
+  -v /root/.exrpd:/root/.exrpd \
+  --entrypoint exrpd \
+  peersyst/exrp:<target-tag> \
+  start
+
+docker logs -f xrplevm-node
+```
+
+Do not keep an old validator container running in parallel.
+
+## Automated upgrades with Cosmovisor
+
+Cosmovisor can reduce manual intervention during upgrades. It can also increase operational risk if misconfigured, so validator operators should test in non-production first.
+
+Install:
 
 ```bash
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
-```
-
-To install a specific version, you can specify the version:
-
-```bash
-go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
-```
-
-Run cosmovisor version to check the cosmovisor version.
-
-```bash
 cosmovisor version
 ```
 
-### Directory Structure
-
-Cosmovisor requires a specific directory layout to manage your XRPL EVM sidechain binaries. The recommended structure is:
-
-```
-~/.exrpd/
-└── cosmovisor
-    ├── current -> genesis (symlink)
-    ├── genesis
-    │   └── bin
-    │       └── exrpd (the current binary)
-    └── upgrades
-        └── <upgrade-name>
-            └── bin
-                └── exrpd (new binary for the upgrade)
-```
-
-- `genesis/bin/exrpd` is your current XRPL EVM sidechain binary (the one you’re running).
-- `upgrades/<upgrade-name>/bin/exrpd` is where you place the upgraded binary once an on-chain upgrade is approved.
-
-### Configuration
-
-Cosmovisor uses environment variables to locate directories and manage behavior. The most important variables are:
-
-- `DAEMON_NAME`  
-  The name of the binary that Cosmovisor will run (e.g., `exrpd`).
-
-- `DAEMON_HOME`  
-  The path to the home directory for your chain (e.g., `~/.exrpd`).
-
-- `DAEMON_DATA_BACKUP_DIR`  
-  (Optional) A directory where Cosmovisor will store backups of data.
-
-- `UNSAFE_SKIP_BACKUP`  
-  Set to `true` or `false` depending on whether you want Cosmovisor to skip making data backups.
-
-- `DAEMON_RESTART_AFTER_UPGRADE`  
-  If `true`, Cosmovisor will automatically restart the node after the upgrade.
-
-- `DAEMON_ALLOW_DOWNLOAD_BINARIES`  
-  If `true`, Cosmovisor will attempt to download and install the binary itself based on the instructions in the info attribute in the data/upgrade-info.json file.
-
-A typical environment configuration might look like this:
+Recommended environment variables:
 
 ```bash
 export DAEMON_NAME=exrpd
 export DAEMON_HOME=$HOME/.exrpd
 export DAEMON_RESTART_AFTER_UPGRADE=true
 export UNSAFE_SKIP_BACKUP=false
-export DAEMON_ALLOW_DOWNLOAD_BINARIES=true
+export DAEMON_ALLOW_DOWNLOAD_BINARIES=false
 ```
 
-### Running the Node with Cosmovisor
-
-You can start the node with Cosmovisor directly from the command line:
-
-```bash
-cosmovisor start
-```
-
-This command uses `$DAEMON_NAME` (in this case, `exrpd`) and `$DAEMON_HOME` to locate your sidechain binary and configuration.
-
-### Performing Upgrades
-
-When an upgrade is triggered on-chain (via governance or other mechanisms), you need to:
-
-1. Download or build the **new** XRPL EVM sidechain binary.
-2. Create a subdirectory in `~/.exrpd/cosmovisor/upgrades/` corresponding to the upgrade name.
-3. Place the new binary inside a `bin/` folder within that subdirectory.
-4. Cosmovisor will detect the upgrade at the appointed block height and automatically switch to the new binary.
-
-#### Example Upgrade Directory
-
-If the upgrade name is `v7`, the new binary should be placed at:
-
-```
-~/.exprd/cosmovisor/upgrades/v7/bin/exrpd
-```
-
-Make sure to give execute permissions to the new binary:
-
-```bash
-chmod +x ~/.exrpd/cosmovisor/upgrades/v7/bin/exrpd
-```
-
-### Automated downloads
-
-Generally, cosmovisor requires that the system administrator place all relevant binaries on disk before the upgrade happens. However, for people who don't need such control and want an automated setup (maybe they are syncing a non-validating fullnode and want to do little maintenance), there is another option.
-
-{% admonition type="warning" name="Security note" %}
-We don't recommend using auto-download because it doesn't verify in advance if a binary is available. If there will be any issue with downloading a binary, the cosmovisor will stop and won't restart an App (which could lead to a chain halt).
+{% admonition type="warning" name="Auto-download caution" %}
+For validators, prefer `DAEMON_ALLOW_DOWNLOAD_BINARIES=false` and stage binaries manually. Auto-download introduces an external dependency at upgrade time.
 {% /admonition %}
 
-If `DAEMON_ALLOW_DOWNLOAD_BINARIES` is set to `true`, and no local binary can be found when an upgrade is triggered, cosmovisor will attempt to download and install the binary itself based on the instructions in the info attribute in the data/upgrade-info.json file. The files is constructed by the x/upgrade module and contains data from the upgrade Plan object.
+## Incident prevention checklist
+
+Before starting after upgrade, confirm:
+
+- old process is fully stopped
+- no second host/container is signing with same key
+- `priv_validator_state.json` is intact and not rolled back
+- target binary version is installed
+- logs show normal block progression
 
 ## Additional Resources
 
 - [Cosmovisor Docs (Cosmos SDK)](https://docs.cosmos.network/main/build/tooling/cosmovisor)
 - [XRPL EVM Sidechain Repository](https://github.com/xrplevm/node)
-
----
-
-**That’s it!** With Cosmovisor set up, your XRPL EVM sidechain node will automatically update to new binaries when an on-chain upgrade proposal is executed, reducing manual intervention and downtime.

@@ -6,7 +6,9 @@ The XRPL EVM sidechain supports various synchronization methods for setting up a
 
 Syncing from genesis initializes your `exrpd` node from the very beginning of the XRPL EVM blockchain's history. This method is comprehensive but time-intensive, as it downloads and verifies all blocks and transactions since the chain's inception.
 
-1. **Install `exprd`**: Ensure that the first version of the `exrpd` binary is installed and configured on your system. Refer to the [Networks page](../resources/networks.md) for downloading the first version of the binary for each network and to the [Installation Guide](../getting-started/installing-the-node.md) for detailed setup steps.
+For the full procedure (including Mainnet/Testnet/Devnet version paths and upgrade handling), follow [Sync from Genesis](../getting-started/sync-from-genesis.md).
+
+1. **Install `exrpd`**: Ensure that the first version of the `exrpd` binary is installed and configured on your system. Refer to the [Networks page](../resources/networks.md) for downloading the first version of the binary for each network and to the [Installation Guide](../getting-started/installing-the-node.md) for detailed setup steps.
 
 2. **Start the Node**:
 
@@ -16,6 +18,10 @@ exrpd start
 
 3. **Monitor Progress**:
    Wait for the node to sync until it reaches the block of the next version. Then, upgrade to the newer version and repeat this process until the node is fully in sync with the network. For detailed upgrade instructions, refer to the [Upgrading your node](../guides/upgrading-your-node.md) page.
+
+{% admonition type="warning" name="Validator signer safety" %}
+If this node is a validator signer, keep a **single active validator signer** only. Never run two active instances with the same `~/.exrpd/config/priv_validator_key.json`, and never roll back `~/.exrpd/data/priv_validator_state.json`.
+{% /admonition %}
 
 ## Sync from Snapshot
 

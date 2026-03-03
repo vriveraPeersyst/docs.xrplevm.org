@@ -1,305 +1,246 @@
 # Installing the Node
 
-The `exrpd` binary is the cornerstone of running an XRPL EVM node. It enables your machine to communicate with the XRPL EVM network, synchronize with the blockchain, and—if configured as a validator—actively participate in consensus. This guide walks you through the process of installing and configuring `exrpd` so you can join the network effectively.
+This guide focuses on the fastest and easiest operator path: install the latest `exrpd`, then bootstrap from a snapshot.
 
-Before proceeding, it’s crucial to understand that node versioning plays a vital role in how you synchronize with the blockchain—especially if you're starting from genesis.
+It covers **Mainnet**, **Testnet**, and **Devnet**, and includes the following run stacks:
 
- The XRPL EVM (Mainnet) initially launched using `exrpd` version 7. At block **497,000**, it upgraded to version 8.0.2. If you intend to sync your node from the very beginning of the chain (i.e., from genesis), you **must** install the same node version used at the network’s genesis—**v7**. Your node will sync until it reaches the block where a version upgrade occurred. At that point, you must manually upgrade your node to the corresponding version (e.g., from v7 to v8.0.2 at block 497,000 to continue syncing without interruption.)
+- `systemctl`
+- `docker`
+- `cosmovisor`
+- installation with raw binaries
+- installation from source
 
- The XRPL EVM Testnet initially launched using `exrpd` version 6. At block **547,100**, it upgraded to version 7, then to version 8 at block **1,485,600** and later to v9.0.0 at block **3,827,000**. If you intend to sync your node from the very beginning of the chain (i.e., from genesis), you **must** install the same node version used at the network’s genesis—**v6**. Your node will sync until it reaches the block where a version upgrade occurred. At that point, you must manually upgrade your node to the corresponding version (e.g., from v6 to v7 at block 547,100, from v7 to v8 at block 1,485,600 and from v8 to v9 at block 3,827,000) to continue syncing without interruption.
+If you specifically need full historical replay from block 0, use [Sync from Genesis](./sync-from-genesis.md).
 
-Alternatively, if syncing from genesis is not required, you can take a more efficient approach by starting from [**sync from snapshot**](https://docs.xrplevm.org/pages/operators/advanced/sync-options#sync-from-snapshot) or using [**sync from state sync**](https://docs.xrplevm.org/pages/operators/advanced/sync-options#state-sync), which allows you to join the network at a later state. In this case, you can install the [**latest version**](../resources/networks.md) of `exrpd` and bypass the need for version hopping altogether.
+## Network reference
 
-{% admonition type="info" name="List of upgrades" %}
-For a detailed list of XRPL EVM network versions—including timestamps, upgrade blocks, and version changes across all supported chains—refer to the official network documentation: [XRPL EVM Networks Overview](../resources/networks.md).
+| Network | Chain ID | Current Version | Genesis |
+| ------- | -------- | --------------- | ------- |
+| Mainnet | `xrplevm_1440000-1` | `v10.0.2` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) |
+| Testnet | `xrplevm_1449000-1` | `v10.0.1` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) |
+| Devnet | `xrplevm_1449900-1` | `v9.0.3` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/devnet/genesis.json) |
+
+## Recommended flow (snapshot-first)
+
+1. Install `exrpd` (raw binary or from source).
+2. Initialize and configure your node for the target network.
+3. Restore snapshot data (when available).
+4. Run the node with `systemctl`, `cosmovisor`, or `docker`.
+
+{% admonition type="info" name="Snapshot availability" %}
+Public snapshot providers are currently listed for Mainnet and Testnet in [Snapshots](../resources/snapshots.md). If a Devnet snapshot is not published, use [State Sync](../advanced/sync-options.md#state-sync) or [Sync from Genesis](./sync-from-genesis.md).
 {% /admonition %}
 
-## Installation Methods
+## 1) Install `exrpd`
 
-There are multiple ways to install the `exrpd` binary on your system. Choose the method that best suits your requirements and expertise.
+### Method A: Raw binary (recommended for most operators)
 
----
+```bash
+cd /tmp
+LATEST_TAG=$(curl -s https://api.github.com/repos/xrplevm/node/releases/latest | grep '"tag_name"' | head -1 | cut -d '"' -f4)
+wget "https://github.com/xrplevm/node/releases/download/${LATEST_TAG}/node_${LATEST_TAG#v}_Linux_amd64.tar.gz"
+tar -xzf "node_${LATEST_TAG#v}_Linux_amd64.tar.gz"
+sudo mv bin/exrpd /usr/local/bin/exrpd
+sudo chmod +x /usr/local/bin/exrpd
+exrpd version
+```
 
-## Method 1: Downloading Raw Binaries
+### Method B: Build from source
 
-This method involves downloading precompiled binaries from the repository's latest release and running them on your system. It’s quick to set up and requires minimal prerequisites.
-
-### Pre-requisites
-
-- **None:** Just ensure your system meets the hardware requirements.
-
-### Steps
-
-1. **Download the Latest Binaries:**  
-   Visit the [official repository's releases page](https://github.com/xrplevm/node/releases) and download the binary that corresponds to your operating system and architecture. You can use `wget` (or `curl` for Windows) to download the file directly from the command line.
-
-   {% tabs %}
-   {% tab label="Linux" %}
-   **For Linux Users:**
-
-   - **AMD64:**  
-     ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_amd64.tar.gz
-     ```
-   - **ARM64:**  
-     ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_arm64.tar.gz
-     ```
-   {% /tab %}
-
-   {% tab label="macOS" %}
-   **For macOS Users:**
-
-   - **Intel (x86_64):**  
-     ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_amd64.tar.gz
-     ```
-   - **Apple Silicon (ARM64):**  
-     ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_arm64.tar.gz
-     ```
-   {% /tab %}
-   
-   {% tab label="Windows" %}
-   **For Windows Users:**
-
-   Windows doesn't include `wget` by default. Instead, you can use `curl` (available in Windows 10 and later) to download the file:
-   
-   - **Download using curl:**  
-     Open PowerShell and run:
-     ```powershell
-     curl -LO https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Windows_amd64.zip
-     ```
-   {% /tab %}
-   {% /tabs %}
-
-2. **Extract the Binaries:**  
-   Once downloaded, extract the file using the appropriate command for your platform. For example, on Linux:
-   ```bash
-   tar -xzf node_7.0.0_Linux_amd64.tar.gz
-   ```
-   This will extract the files into a directory.
-
-3. **Move the Binaries:**  
-   Move the extracted files (especially the `exrpd` binary) to your preferred directory. For instance, to place it in `/usr/local/bin` (which is typically in your PATH), run:
-   ```bash
-   sudo mv /root/bin/exrpd /usr/local/bin/
-   ```
-
-4. **Make the Binary Executable:**  
-   Ensure the binary has executable permissions:
-   ```bash
-   chmod +x /usr/local/bin/exrpd
-   ```
-      - The **exrpd binary** is now located in `/usr/local/bin/exrpd` (if you followed the installation steps).
-   - When you run `exrpd` from the terminal, your system finds it in `/usr/local/bin`.
-
-   You can verify its location by running:
-   ```bash
-   which exrpd
-   ```
-
-   Additionally, once you start your node, configuration files (if created) will be placed in your home directory under `~/.exrpd`.
-
-5. **Verify the Installation:**  
-   Check that the binary is accessible and working by running:
-   ```bash
-   exrpd version
-   ```
-   You should see version information (e.g., `v7.0.0`).
-
-6. **Configure and Run Your Node (Optional):**  
-   Once the binary is installed, follow the [node configuration instructions](./join-the-xrplevm.md)
-
-
-Using this method, you can quickly set up your node by downloading the latest release from the [repository](https://github.com/xrplevm/node/releases).
-
----
-
-## Method 2: Building from Source
-
-This method involves cloning the source code repository and building the binaries from source. It is ideal for developers who want to customize the node.
-
-### Pre-requisites
-
-- `go v1.23.4`, `make` and `gcc` installed.
-
-#### Install Dependencies for Building from Source
-
-{% tabs %}
-{% tab label="Linux" %}
-Install **make** and **gcc**:
 ```bash
 sudo apt-get update
-sudo apt-get install build-essential
+sudo apt-get install -y build-essential git jq curl wget
+
+git clone https://github.com/xrplevm/node.git
+cd node
+make build
+sudo mv build/exrpd /usr/local/bin/exrpd
+sudo chmod +x /usr/local/bin/exrpd
+exrpd version
 ```
-Install **Go v1.23.4**:
+
+### Check Go version against upstream `go.mod`
+
+If you build from source, ensure your local Go version matches what the node currently requires:
+
 ```bash
-sudo rm -rf /usr/local/go
-wget https://go.dev/dl/go1.23.4.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.23.4.linux-amd64.tar.gz
-echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
-source ~/.profile
+REQUIRED_GO=$(curl -fsSL https://raw.githubusercontent.com/xrplevm/node/main/go.mod | awk '/^go /{print $2; exit}')
+echo "Required Go: ${REQUIRED_GO}"
 go version
 ```
-{% /tab %}
-{% tab label="macOS" %}
-Install Xcode Command Line Tools (includes **make** and **gcc**):
+
+If your installed Go version is older than `REQUIRED_GO`, upgrade Go before compiling.
+
+## 2) Initialize and configure for your network
+
+{% tabs %}
+
+{% tab label="Mainnet" %}
 ```bash
-xcode-select --install
-```
-Install **Go v1.23.4** using Homebrew:
-```bash
-brew uninstall go
-brew install go@1.23.4
-```
-Ensure the correct Go binary is in your PATH:
-```bash
-export PATH="/usr/local/opt/go@1.23.4/bin:$PATH"
-go version
+exrpd config set client chain-id xrplevm_1440000-1
+exrpd init <moniker> --chain-id xrplevm_1440000-1
+wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json
+PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/mainnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
+sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
 ```
 {% /tab %}
-{% tab label="Windows" %}
-**Note:** Building from source on Windows directly can be challenging due to the lack of native support for `make` and `gcc`. It is recommended to use [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install) and then follow the Linux instructions.
+
+{% tab label="Testnet" %}
+```bash
+exrpd config set client chain-id xrplevm_1449000-1
+exrpd init <moniker> --chain-id xrplevm_1449000-1
+wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json
+PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
+sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
+```
 {% /tab %}
+
+{% tab label="Devnet" %}
+```bash
+exrpd config set client chain-id xrplevm_1449900-1
+exrpd init <moniker> --chain-id xrplevm_1449900-1
+wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/devnet/genesis.json
+PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/devnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
+sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
+```
+{% /tab %}
+
 {% /tabs %}
 
-### Steps to Build the Node
+## 3) Restore snapshot data
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/xrplevm/node.git
-   ```
-2. **Navigate to the project directory:**
-   ```bash
-   cd node
-   ```
-3. **Build the project:**
-   ```bash
-   make build
-   ```
-4. **Locate the Binaries:**  
-   The compiled binaries will be available in the `build` directory.
+{% tabs %}
 
----
-
-## Method 3: Using Docker
-
-A containerized approach ensures a consistent environment and avoids host-dependency issues. With version **v7.0.0**, you only need **two** Docker commands:
-
-### Prerequisites
-
-* Docker 19+ installed on your host.
-* Run as root (or via sudo) so that `/root/.exrpd` is writable.
-
-### 1. Interactive setup (one-time)
-
-Launch a shell in the container, mounting your host’s config directory. Inside, run **all** of the “Join the XRPL EVM” commands (chain-ID, keygen, init, genesis download, seed configuration, etc.) as per the Mainnet or Testnet guide—then exit when done.
+{% tab label="Mainnet" %}
+Use any provider from [Snapshots](../resources/snapshots.md) and extract into `~/.exrpd`:
 
 ```bash
-docker run -it --name xrplevm-setup \
-  -v /root/.exrpd:/root/.exrpd \
-  peersyst/exrp:7.0.0 \
-  /bin/sh
+cd ~/.exrpd
+wget -O exrpd.tar.lz4 https://evm-sidechain-snapshots-mainnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4
+tar -xI lz4 -f exrpd.tar.lz4
+```
+{% /tab %}
+
+{% tab label="Testnet" %}
+Use any provider from [Snapshots](../resources/snapshots.md) and extract into `~/.exrpd`:
+
+```bash
+cd ~/.exrpd
+wget -O exrpd.tar.lz4 https://evm-sidechain-snapshots-testnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4
+tar -xI lz4 -f exrpd.tar.lz4
+```
+{% /tab %}
+
+{% tab label="Devnet" %}
+If no public Devnet snapshot is available, use [State Sync](../advanced/sync-options.md#state-sync) or [Sync from Genesis](./sync-from-genesis.md).
+{% /tab %}
+
+{% /tabs %}
+
+## 4) Run the node
+
+### Option A: `systemctl` (recommended)
+
+Create `/etc/systemd/system/exrpd.service`:
+
+```ini
+[Unit]
+Description=XRPL EVM Node (exrpd)
+After=network-online.target
+
+[Service]
+User=root
+ExecStart=/usr/local/bin/exrpd start
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
 ```
 
-*(Inside that shell, complete the join-the-xrplevm steps from the docs, then `exit`.)*
+Start it:
 
----
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable exrpd
+sudo systemctl start exrpd
+sudo journalctl -u exrpd -f
+```
 
-### 2. Detached, auto-restarting run
+### Option B: `cosmovisor` + `systemctl`
 
-Now start your fully-configured node in the background. The `--entrypoint` override ensures that `exrpd start` actually runs:
+Install and prepare layout:
+
+```bash
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
+mkdir -p ~/.exrpd/cosmovisor/genesis/bin
+cp /usr/local/bin/exrpd ~/.exrpd/cosmovisor/genesis/bin/exrpd
+chmod +x ~/.exrpd/cosmovisor/genesis/bin/exrpd
+ln -sfn ~/.exrpd/cosmovisor/genesis ~/.exrpd/cosmovisor/current
+```
+
+Create `/etc/systemd/system/cosmovisor-exrpd.service`:
+
+```ini
+[Unit]
+Description=XRPL EVM Node (Cosmovisor)
+After=network-online.target
+
+[Service]
+User=root
+Environment="DAEMON_NAME=exrpd"
+Environment="DAEMON_HOME=/root/.exrpd"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="UNSAFE_SKIP_BACKUP=true"
+ExecStart=/root/go/bin/cosmovisor run start
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Start it:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable cosmovisor-exrpd
+sudo systemctl start cosmovisor-exrpd
+sudo journalctl -u cosmovisor-exrpd -f
+```
+
+For upgrade operations and safer backup settings, follow [Upgrading your node](../guides/upgrading-your-node.md).
+
+### Option C: `docker`
 
 ```bash
 docker run -d \
-  --restart unless-stopped \
   --name xrplevm-node \
+  --restart unless-stopped \
   -v /root/.exrpd:/root/.exrpd \
   --entrypoint exrpd \
-  peersyst/exrp:v7.0.0 \
+  peersyst/exrp:latest \
   start
-```
 
----
-
-### Verification
-
-```bash
-docker ps | grep xrplevm-node
 docker logs -f xrplevm-node
 ```
 
-You should see your node’s Tendermint/exrpd startup logs and syncing progress.
-
-### Upgrade the node
-
-To upgrade your running XRPL EVM node from v7.0.0 to v8.0.2 in Docker, you just need to pull the new image, stop & remove the old container, and re-run it with the same volume mount. Here’s a concise step‐by‐step:
-
-1. **Pull the v8.0.2 image**
-
-   ```bash
-   docker pull peersyst/exrp:v8.0.2
-   ```
-
-2. **Stop and remove your old container**
-
-   ```bash
-   docker stop xrplevm-node
-   docker rm xrplevm-node
-   ```
-
-3. **Run the container with the new tag**
-
-   ```bash
-   docker run -d \
-     --restart unless-stopped \
-     --name xrplevm-node \
-     -v /root/.exrpd:/root/.exrpd \
-     --entrypoint exrpd \
-     peersyst/exrp:v8.0.2 \
-     start
-   ```
-
-   * You’re re-using the same `/root/.exrpd` data directory, so your ledger state stays intact.
-   * The `--entrypoint exrpd … start` invocation is exactly the same as before, just pointing to the new image.
-
-4. **Verify it’s running and has upgraded**
-
-   ```bash
-   docker logs -f --tail 50 xrplevm-node
-   ```
-
-   You should no longer see the `UPGRADE "v8.0.2" NEEDED at height` error and your node will proceed to sync/replay under the new binary.
-
----
-
-### If you’re using Docker Compose
-
-If you prefer `docker-compose.yml`, just change the image tag and do a `docker-compose up -d`:
-
-```yaml
-version: '3.8'
-services:
-  xrplevm-node:
-    image: peersyst/exrp:v8.0.2
-    container_name: xrplevm-node
-    entrypoint: ["exrpd", "start"]
-    restart: unless-stopped
-    volumes:
-      - /root/.exrpd:/root/.exrpd
-```
-
-Then:
+## Validation
 
 ```bash
-docker-compose pull xrplevm-node
-docker-compose up -d xrplevm-node
+exrpd status
+curl -s localhost:26657/status | jq .result.sync_info
 ```
 
-That’s it—your node will now run v8.0.2 and continue syncing from height 547100 onward.
+{% admonition type="warning" name="Validator signer safety" %}
+If this node is a validator signer, keep a **single active validator signer** only. Never run two active instances with the same `~/.exrpd/config/priv_validator_key.json`, and never roll back `~/.exrpd/data/priv_validator_state.json`.
+{% /admonition %}
 
-Do the same with future versions when they launch.
+## Next steps
 
-If you don't want to sync from genesis you can also install the v8.0.2 directly and [**sync from snapshot**](https://docs.xrplevm.org/pages/operators/advanced/sync-options#sync-from-snapshot) or [**sync from state sync**](https://docs.xrplevm.org/pages/operators/advanced/sync-options#state-sync).
+- [Join the XRPL EVM](./join-the-xrplevm.md)
+- [Sync from Genesis](./sync-from-genesis.md)
+- [Sync options](../advanced/sync-options.md)
 

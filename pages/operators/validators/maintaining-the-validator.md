@@ -1,6 +1,10 @@
 # Maintaining your validator
 
-The following page explains how to maintain your validator. This includes some useful commands that validators can use for editing the validator, ensure it is running properly and doing maintenance tasks.key
+The following page explains how to maintain your validator. This includes useful commands for editing validator metadata, confirming validator health, and performing maintenance safely.
+
+{% admonition type="warning" name="Double-sign prevention" %}
+Keep a **single active validator signer** only. Never run two active instances with the same `~/.exrpd/config/priv_validator_key.json`, and never roll back `~/.exrpd/data/priv_validator_state.json`.
+{% /admonition %}
 
 ## Edit Validator Description
 
@@ -62,10 +66,24 @@ Your validator is active if the following command returns anything:
 exrpd query tendermint-validator-set | grep "$(exrpd tendermint show-address)"
 ```
 
-You should now see your validator in one of the Exrp explorers. You are looking for the `bech32` encoded `address` in the `~/.exprd/config/priv_validator.json` file. <!-- SPELLING_IGNORE: exrp -->
+You should now see your validator in one of the Exrp explorers. You are looking for the `bech32` encoded `address` in the `~/.exrpd/config/priv_validator_key.json` file. <!-- SPELLING_IGNORE: exrp -->
 
 **Note** To be in the validator set, you must have more total voting power than the 100th validator.
 
 ## Halting Your Validator
 
 When attempting to perform routine maintenance or planning for an upcoming coordinated upgrade, it can be useful to have your validator systematically and gracefully halt. Set the `halt-height` to the height at which you want your node to shut down, or pass the `--halt-height` flag to `exrpd`. The node shuts down with a 0 exit code at that given height after committing the block.
+
+## Secure maintenance checklist (validators)
+
+Use this checklist before restarting a validator:
+
+1. Stop the node process (`systemctl`, `cosmovisor`, or `docker`) and confirm no active validator signer `exrpd` process remains.
+2. Confirm no second host/container is running as an active validator signer with the same validator key.
+3. Back up signer files:
+  - `~/.exrpd/config/priv_validator_key.json`
+  - `~/.exrpd/data/priv_validator_state.json`
+4. Perform maintenance or upgrade.
+5. Start exactly one signer instance and monitor logs.
+
+For full upgrade runbook steps, see [Upgrading your node](../guides/upgrading-your-node.md).

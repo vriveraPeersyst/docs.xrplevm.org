@@ -7,32 +7,21 @@ Snapshots provide a quick way to bootstrap your node’s state by downloading a 
 {% tabs %}
 
 {% tab label="Mainnet" %}
-
-| Provider | URL                                                                                                                             |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| **Peersyst**              | [Download](https://evm-sidechain-snapshots-mainnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4)                   |
-
----
+| Provider        | URL                                                                                                                    |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| **Peersyst**    | [Download Mainnet](https://evm-sidechain-snapshots-mainnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4)                   |
+| **Polkachu**    | [Download Mainnet](https://polkachu.com/tendermint_snapshots/xrp)                                                      |
+| **Cumulo**      | [Download Mainnet](https://cumulo.pro/services/xrplevm_mainnet/snapshot)                                               |
+| **ITRocket**    | [Download Mainnet](https://itrocket.net/services/mainnet/xrplevm/)                                                     |
 {% /tab %}
 
 {% tab label="Testnet" %}
-
-| Provider | URL                                                                                                                             |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| **Peersyst**              | [Download](https://evm-sidechain-snapshots-testnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4)                   |
-| **Kintsugi Nodes**        | [Download](http://kintsugi-nodes.com/ripple/snapshot)                                                          |
-| **Polkachu**              | [Download](https://polkachu.com/testnets/xrp/snapshots)                                                        |
-| **Cumulo**                | [Download](https://cumulo.pro/services/xrplevm/)                                                               |
-| **DeFatRat (TechHubs)**   | [Download](https://xrpl-testnet-snapshots.techhubs.asia/)                                                      |
-| **Enigma**                | [Download](https://services.enigma-validator.com/xrp/xrp_365040.tar.lz4)                                       |
-| **ITRocket**              | [Download](https://itrocket.net/services/testnet/xrplevm/)                                                     |
-| **LuckyStar**             | [Download](https://luckystar-1.gitbook.io/luckystar.asia/testnet/cosmos-eco/xrpl/snapshot)                     |
-| **MictoNode**             | [Download](https://services.mictonode.com/xrpl-evm/snapshot)                                                   |
-| **UTSA (lesnik)**         | [Download](https://utsa.gitbook.io/services/testnet/xrpl-evm/snapshots)                                        |
-| **Node9x**                | [Download](https://service.node9x.com/testnet/xrpl-evm/service-and-snapshot)                                   |
-| **Endorphine Stake**      | [Download](https://services.endorphinestake.com/testnets/XRPL)                                                 |
-
----
+| Provider        | URL                                                                                                                    |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| **Peersyst**    | [Download Testnet](https://evm-sidechain-snapshots-testnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4)                   |
+| **Polkachu**    | [Download Testnet](https://polkachu.com/testnets/xrp/snapshots)                                                        |
+| **Cumulo**      | [Download Testnet](https://cumulo.pro/services/xrplevm/)                                                               |
+| **ITRocket**    | [Download Testnet](https://itrocket.net/services/testnet/xrplevm/)                                                     |
 {% /tab %}
 {% /tabs %}
 

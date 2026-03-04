@@ -27,17 +27,23 @@ Follow these rules for every validator upgrade:
 5. **Verify single active instance** before restart.
 
 {% admonition type="warning" name="Double-sign risk" %}
-Do not start a second node (VM, container, backup host, or old binary) with the same validator key while your primary validator is still running. This is the most common path to double-signing.
+Do not start a second node (VM, container, backup host, or old binary) with the same validator key while your primary validator is still running. This is the most common path to double-signing and can tombstone your validator, meaning that validator key can never become an active validator again.
 {% /admonition %}
 
 ## Secure upgrade flow (mandatory order)
 
 Use this exact sequence for validators, regardless of stack.
 
+Use your actual node home path in commands below:
+
+- If you run as root defaults: `~/.exrpd`
+- If you followed hardened `systemd`/`cosmovisor` setup: `/var/lib/exrpd/.exrpd`
+
 ### 1) Confirm target upgrade
 
 - Read target height/version from [Networks](../resources/networks.md).
 - Download the target release artifact from [XRPL EVM node releases](https://github.com/xrplevm/node/releases).
+- Use the **on-chain upgrade name** from `upgrade-info.json` for Cosmovisor folder naming. Do not assume upgrade proposal name equals release tag (for example, proposal name `v10.0.0` may require binary `v10.0.1` or `v10.0.2`).
 
 ### 2) Pre-upgrade checks
 
@@ -60,10 +66,11 @@ Expected: no active validator signer `exrpd` process.
 ### 4) Backup validator-critical files
 
 ```bash
+NODE_HOME=${NODE_HOME:-~/.exrpd}
 mkdir -p ~/exrpd-upgrade-backup
-cp ~/.exrpd/config/priv_validator_key.json ~/exrpd-upgrade-backup/
-cp ~/.exrpd/data/priv_validator_state.json ~/exrpd-upgrade-backup/
-cp ~/.exrpd/config/node_key.json ~/exrpd-upgrade-backup/
+cp "$NODE_HOME"/config/priv_validator_key.json ~/exrpd-upgrade-backup/
+cp "$NODE_HOME"/data/priv_validator_state.json ~/exrpd-upgrade-backup/
+cp "$NODE_HOME"/config/node_key.json ~/exrpd-upgrade-backup/
 ```
 
 Do not edit these files manually.
@@ -74,8 +81,9 @@ Do not edit these files manually.
 
 ```bash
 cd /tmp
-wget https://github.com/xrplevm/node/releases/download/<target-tag>/node_<target-version>_Linux_amd64.tar.gz
-tar -xzf node_<target-version>_Linux_amd64.tar.gz
+TARGET_TAG=<target-tag>
+wget "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/node_${TARGET_TAG#v}_Linux_amd64.tar.gz"
+tar -xzf "node_${TARGET_TAG#v}_Linux_amd64.tar.gz"
 sudo mv bin/exrpd /usr/local/bin/exrpd
 sudo chmod +x /usr/local/bin/exrpd
 exrpd version
@@ -102,6 +110,29 @@ REQUIRED_GO=$(curl -fsSL https://raw.githubusercontent.com/xrplevm/node/main/go.
 echo "Required Go: ${REQUIRED_GO}"
 go version
 ```
+
+### 5.1) Apply mandatory EVM chain-id config (v10+)
+
+After installing the target binary and **before starting the node**, ensure `evm-chain-id` is present under `[evm]` in `app.toml`:
+
+- Mainnet (`xrplevm_1440000-1`): `evm-chain-id = "1440000"`
+- Testnet (`xrplevm_1449000-1`): `evm-chain-id = "1449000"`
+
+File location depends on your home path:
+
+- `~/.exrpd/config/app.toml`
+- or `/var/lib/exrpd/.exrpd/config/app.toml`
+
+Example check:
+
+```bash
+NODE_HOME=${NODE_HOME:-~/.exrpd}
+awk '/^\[evm\]/{f=1;next} /^\[/{f=0} f && /^evm-chain-id/{print;found=1} END{if(!found) print "MISSING"}' "$NODE_HOME"/config/app.toml
+```
+
+{% admonition type="warning" name="Consensus safety" %}
+If `evm-chain-id` is missing or wrong for your network, your node can fail to participate correctly in consensus after upgrade height.
+{% /admonition %}
 
 ### 6) Start exactly one signer
 
@@ -135,10 +166,21 @@ sudo journalctl -u exrpd -f
 Place the new binary in the upgrade folder matching the on-chain upgrade name:
 
 ```bash
-mkdir -p ~/.exrpd/cosmovisor/upgrades/<upgrade-name>/bin
-cp /usr/local/bin/exrpd ~/.exrpd/cosmovisor/upgrades/<upgrade-name>/bin/exrpd
-chmod +x ~/.exrpd/cosmovisor/upgrades/<upgrade-name>/bin/exrpd
+DAEMON_HOME=${DAEMON_HOME:-~/.exrpd}
+mkdir -p "$DAEMON_HOME"/cosmovisor/upgrades/<upgrade-name>/bin
+cp /usr/local/bin/exrpd "$DAEMON_HOME"/cosmovisor/upgrades/<upgrade-name>/bin/exrpd
+chmod +x "$DAEMON_HOME"/cosmovisor/upgrades/<upgrade-name>/bin/exrpd
 ```
+
+If `upgrade-info.json` is present, you can derive the folder name directly:
+
+```bash
+DAEMON_HOME=${DAEMON_HOME:-~/.exrpd}
+UPGRADE_NAME=$(jq -r '.name // empty' "$DAEMON_HOME"/data/upgrade-info.json 2>/dev/null || true)
+echo "$UPGRADE_NAME"
+```
+
+`UPGRADE_NAME` is the folder to use under `cosmovisor/upgrades/`, even when the required release binary version differs from that name.
 
 Then run:
 
@@ -171,6 +213,69 @@ docker logs -f xrplevm-node
 
 Do not keep an old validator container running in parallel.
 
+## Hotfix recovery runbook (only for impacted existing nodes)
+
+Use this section only when governance/core team announces an incident hotfix and your node/validator was already running and impacted.
+
+If you are a fresh node setup, skip this section and follow the normal install flow for your network's current version.
+
+1. Stop all signer instances that could use the same validator key, then verify no signer is running:
+
+```bash
+sudo systemctl stop exrpd 2>/dev/null || true
+sudo systemctl stop cosmovisor-exrpd 2>/dev/null || true
+docker stop xrplevm-node 2>/dev/null || true
+pgrep -fa exrpd
+```
+
+Expected: no active validator signer process.
+
+2. Install the announced hotfix binary (do not start yet).
+3. Backup signer state:
+
+```bash
+cp ~/.exrpd/data/priv_validator_state.json ~/.exrpd/priv_validator_state.json
+```
+
+4. Restore state:
+  - Recommended: restore from a compatible snapshot provider (for example PolkaChu, Cumulo, or XRPL EVM snapshot S3).
+  - Alternative (resource-heavy): `exrpd rollback`
+5. Apply required config changes announced with the hotfix.
+
+If governance requires an EVM chain-id update, set it in `app.toml` under `[evm]`:
+
+```toml
+[evm]
+evm-chain-id = "<network-evm-chain-id>"
+```
+
+6. Restore signer state file and permissions:
+
+```bash
+cp ~/.exrpd/priv_validator_state.json ~/.exrpd/data/priv_validator_state.json
+chmod 600 ~/.exrpd/data/priv_validator_state.json
+```
+
+7. Before start, confirm only one host/container will be allowed to sign with this validator key.
+
+8. Start exactly one runtime stack:
+
+```bash
+exrpd start
+```
+
+{% admonition type="warning" name="Critical double-sign protection" %}
+Never run two active instances with the same `priv_validator_key.json` at the same time (primary + backup, old + new binary, systemd + docker, etc.). During hotfixes, this is the highest-risk mistake and can lead to slashing/jailing and tombstoning (permanent validator removal for that key).
+{% /admonition %}
+
+{% admonition type="info" name="Current known example" %}
+During the Testnet v10 incident, affected nodes moved from `v10.0.0` to `v10.0.1` and required `evm-chain-id = "1449000"`.
+{% /admonition %}
+
+{% admonition type="info" name="Snapshot restore during incident" %}
+If restoring from a pre-upgrade snapshot with Cosmovisor, stage the required binary in the upgrade folder from `upgrade-info.json` before service start.
+{% /admonition %}
+
 ## Automated upgrades with Cosmovisor
 
 Cosmovisor can reduce manual intervention during upgrades. It can also increase operational risk if misconfigured, so validator operators should test in non-production first.
@@ -178,8 +283,10 @@ Cosmovisor can reduce manual intervention during upgrades. It can also increase 
 Install:
 
 ```bash
-go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
-cosmovisor version
+sudo apt-get update
+sudo apt-get install -y golang-go
+sudo env GOBIN=/usr/local/bin go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
+/usr/local/bin/cosmovisor --help >/dev/null
 ```
 
 Recommended environment variables:

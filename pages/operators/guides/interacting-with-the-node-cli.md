@@ -26,7 +26,7 @@ Use the `config` command to manage node configuration. This is helpful for setti
 
 | Subcommand | Description                                                                                              |
 | ---------- | -------------------------------------------------------------------------------------------------------- |
-| `diff`     | Outputs all config values that differ from the default `app.toml` configuration.                         |
+| `diff`     | Outputs config values that differ from defaults for a given target version and `app.toml` path.          |
 | `get`      | Displays the current value of a specific configuration parameter.                                        |
 | `home`     | Prints the folder used as the binary home directory. _(When using `confix` standalone, no home is set.)_ |
 | `migrate`  | Migrates a Cosmos SDK app configuration file to a specified version.                                     |
@@ -37,7 +37,7 @@ Use the `config` command to manage node configuration. This is helpful for setti
 
 - **Check all deviations from default config:**
   ```
-  exrpd config diff
+  exrpd config diff <target-version> ~/.exrpd/config/app.toml
   ```
 - **Get a specific config value:**
   ```
@@ -49,7 +49,7 @@ Use the `config` command to manage node configuration. This is helpful for setti
   ```
 - **Display current config file contents:**
   ```
-  exrpd config view
+  exrpd config view app
   ```
 
 ## Key Management
@@ -69,6 +69,7 @@ Managing your node’s keys is essential. If you plan to operate a production no
 | `export`                | Export a private key (either encrypted or unencrypted, depending on flags used).     |
 | `import`                | Import a previously exported private key into the local keybase.                     |
 | `list`                  | List all locally stored keys.                                                        |
+| `list-key-types`        | List supported key algorithms available for key creation.                            |
 | `migrate`               | Migrate keys from Amino to Proto serialization format.                               |
 | `mnemonic`              | Generate or compute the BIP39 mnemonic from supplied entropy.                        |
 | `parse`                 | Convert an address between hex and Bech32 encoding.                                  |
@@ -86,6 +87,10 @@ Managing your node’s keys is essential. If you plan to operate a production no
 - **List existing keys:**
   ```
   exrpd keys list
+  ```
+- **List supported key types:**
+  ```
+  exrpd keys list-key-types
   ```
 - **Export a key:**
   ```
@@ -216,7 +221,35 @@ Prints the `exrpd` application’s binary version information. This can be helpf
 exrpd version
 ```
 
+## Other Top-Level Commands
+
+In addition to `config`, `keys`, `query`, and `tx`, the current `exrpd` binary also includes:
+
+- `comet`
+- `debug`
+- `export`
+- `genesis`
+- `index-eth-tx`
+- `init`
+- `prune`
+- `rollback`
+- `snapshots`
+- `start`
+- `status`
+
 ## Quick Reference: Common Node CLI Tasks
+
+Use the correct chain ID for your target network from [Networks](../resources/networks.md) and replace `<chain-id>` in examples below.
+
+{% admonition type="info" name="Execution prerequisites" %}
+Many commands in this section are state-changing transactions and require:
+
+- a funded wallet,
+- a valid `--from` key in your keyring,
+- and a reachable RPC endpoint.
+
+Use `--help` first if you are unsure about required flags.
+{% /admonition %}
 
 This section provides a practical cheat sheet for everyday tasks when working with the `exrpd` CLI. Whether you're managing wallets, staking tokens, operating a validator, or participating in governance, these ready-to-use commands help you move fast and confidently.
 
@@ -279,37 +312,37 @@ exrpd keys import $WALLET wallet.backup
 **Withdraw All Rewards**
 
 ```bash
-exrpd tx distribution withdraw-all-rewards --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5
+exrpd tx distribution withdraw-all-rewards --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5
 ```
 
 **Withdraw Rewards + Commission**
 
 ```bash
-exrpd tx distribution withdraw-rewards $VALOPER_ADDRESS --from $WALLET --commission --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5 -y
+exrpd tx distribution withdraw-rewards $VALOPER_ADDRESS --from $WALLET --commission --chain-id <chain-id> --gas auto --gas-adjustment 1.5 -y
 ```
 
 **Delegate to Yourself**
 
 ```bash
-exrpd tx staking delegate $(exrpd keys show $WALLET --bech val -a) 1000000uxrp --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5 -y
+exrpd tx staking delegate $(exrpd keys show $WALLET --bech val -a) 1000000uxrp --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 -y
 ```
 
 **Delegate to Another Validator**
 
 ```bash
-exrpd tx staking delegate <TO_VALOPER_ADDRESS> 1000000uxrp --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5 -y
+exrpd tx staking delegate <TO_VALOPER_ADDRESS> 1000000uxrp --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 -y
 ```
 
 **Redelegate Stake**
 
 ```bash
-exrpd tx staking redelegate $VALOPER_ADDRESS <TO_VALOPER_ADDRESS> 1000000uxrp --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5 -y
+exrpd tx staking redelegate $VALOPER_ADDRESS <TO_VALOPER_ADDRESS> 1000000uxrp --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 -y
 ```
 
 **Unbond Tokens**
 
 ```bash
-exrpd tx staking unbond $(exrpd keys show $WALLET --bech val -a) 1000000uxrp --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5 -y
+exrpd tx staking unbond $(exrpd keys show $WALLET --bech val -a) 1000000uxrp --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 -y
 ```
 
 **Transfer Funds**
@@ -336,7 +369,7 @@ exrpd tx staking create-validator \
 --moniker "$MONIKER" \
 --identity "" \
 --details "I love blockchain ❤️" \
---chain-id exrp_1440002-1 \
+--chain-id <chain-id> \
 --gas auto --gas-adjustment 1.5 \
 -y
 ```
@@ -350,7 +383,7 @@ exrpd tx staking edit-validator \
 --identity "" \
 --details "I love blockchain ❤️" \
 --from $WALLET \
---chain-id exrp_1440002-1 \
+--chain-id <chain-id> \
 --gas auto --gas-adjustment 1.5 \
 -y
 ```
@@ -382,7 +415,7 @@ exrpd query slashing params
 **Unjail Validator**
 
 ```bash
-exrpd tx slashing unjail --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5 -y
+exrpd tx slashing unjail --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 -y
 ```
 
 **List Active Validators**
@@ -429,7 +462,7 @@ exrpd query gov proposal 1
 **Vote on a Proposal**
 
 ```bash
-exrpd tx gov vote 1 yes --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5
+exrpd tx gov vote 1 yes --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5
 ```
 
 

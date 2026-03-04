@@ -32,10 +32,14 @@ Syncing from a snapshot significantly reduces setup time by initializing your no
 2. **Download and decompress the snapshot**:
 
 ```bash
-wget <snapshot_url> -O ~/.exrpd
 cd ~/.exrpd
+wget -O exrpd.tar.lz4 <snapshot_url>
 tar -xI lz4 -f exrpd.tar.lz4
 ```
+
+{% admonition type="warning" name="Validator signer safety" %}
+Do not restore snapshots over an active validator signer home. Snapshot restore is for non-signing nodes or fresh replacement nodes only.
+{% /admonition %}
 
 3. **Start the Node**:
 
@@ -79,4 +83,5 @@ State Sync is an efficient and fast way to bootstrap a new node. It works by rep
      ```
 
 4. **Verify Synchronization**:
-   - Once state sync completes, the node will begin processing blocks normally. If state sync fails with an error such as `state sync aborted`, try restarting `exrpd` or running `exrpd unsafe-reset-all` (ensure you back up any configuration or history before using this command).
+   - Once state sync completes, the node will begin processing blocks normally. If state sync fails with an error such as `state sync aborted`, first restart `exrpd` and verify your `statesync` settings and trusted RPC endpoints.
+   - For non-signing nodes only, you may reset data and retry state sync. Do not run reset commands on active validator signer nodes that hold production `priv_validator_key.json`.

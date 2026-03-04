@@ -15,7 +15,7 @@ This page provides a reference for configuring the XRPL EVM sidechain nodes usin
 
 # The version of the CometBFT binary that created or
 # last modified the config file. Do not modify this.
-version = "0.38.15"
+version = "0.38.19"
 
 #######################################################################
 ###                   Main Base Config Options                      ###
@@ -395,6 +395,9 @@ chunk_request_timeout = "10s"
 # The number of concurrent chunk fetchers to run (default: 1).
 chunk_fetchers = "4"
 
+# Maximum number of chunks allowed in a snapshot (default: 100000).
+max_snapshot_chunks = 100000
+
 #######################################################
 ###       Block Sync Configuration Options          ###
 #######################################################
@@ -507,6 +510,17 @@ namespace = "cometbft"
 
 ## `app.toml`
 
+{% admonition type="warning" name="Default template vs network-required values" %}
+The values shown below are reference defaults from a generated `app.toml` template. They are not guaranteed to match your target network.
+
+For production use, set `[evm].evm-chain-id` to the correct network value before starting:
+
+- Mainnet: `1440000`
+- Testnet: `1449000`
+
+See [Networks](./networks.md) for current network targets and versions.
+{% /admonition %}
+
 ```toml
 # This is a TOML config file.
 # For more information, see https://github.com/toml-lang/toml
@@ -576,7 +590,7 @@ index-events = []
 # IavlCacheSize set the size of the iavl tree cache (in number of nodes).
 iavl-cache-size = 781250
 
-# IAVLDisableFastNode enables or disables the fast node feature of IAVL.
+# IAVLDisableFastNode enables or disables the fast node feature of IAVL. 
 # Default is false.
 iavl-disable-fastnode = false
 
@@ -667,7 +681,7 @@ enabled-unsafe-cors = false
 [grpc]
 
 # Enable defines if the gRPC server should be enabled.
-enable = false
+enable = true
 
 # Address defines the gRPC server address to bind to.
 address = "localhost:9090"
@@ -680,6 +694,13 @@ max-recv-msg-size = "10485760"
 # The default value is math.MaxInt32.
 max-send-msg-size = "2147483647"
 
+# Historical gRPC addresses with block ranges for historical query routing.
+# This should be a JSON string mapping gRPC addresses to block ranges.
+# Format: '{"address1": [start_block, end_block], "address2": [start_block, end_block]}'
+# Example: '{"0.0.0.0:26113": [0, 1000], "0.0.0.0:26114": [1001, 2000]}'
+# Leave empty to disable historical gRPC routing.
+historical-grpc-address-block-range = "{}"
+
 ###############################################################################
 ###                        gRPC Web Configuration                           ###
 ###############################################################################
@@ -689,7 +710,7 @@ max-send-msg-size = "2147483647"
 # GRPCWebEnable defines if the gRPC-web should be enabled.
 # NOTE: gRPC must also be enabled, otherwise, this configuration is a no-op.
 # NOTE: gRPC-Web uses the same address as the API server.
-enable = false
+enable = true
 
 ###############################################################################
 ###                        State Sync Configuration                         ###
@@ -759,6 +780,42 @@ tracer = ""
 # MaxTxGasWanted defines the gas wanted for each eth tx returned in ante handler in check tx mode.
 max-tx-gas-wanted = 0
 
+# EnablePreimageRecording enables tracking of SHA3 preimages in the VM
+cache-preimage = false
+
+# EVMChainID is the EIP-155 compatible replay protection chain ID. This is separate from the Cosmos chain ID.
+evm-chain-id = 9999
+
+# MinTip defines the minimum priority fee for the mempool.
+min-tip = 0
+
+# GethMetricsAddress defines the addr to bind the geth metrics server to. Default 127.0.0.1:8100.
+geth-metrics-address = "127.0.0.1:8100"
+
+# Mempool configuration for EVM transactions
+[evm.mempool]
+
+# PriceLimit is the minimum gas price to enforce for acceptance into the pool (in wei)
+price-limit = 1
+
+# PriceBump is the minimum price bump percentage to replace an already existing transaction (nonce)
+price-bump = 10
+
+# AccountSlots is the number of executable transaction slots guaranteed per account
+account-slots = 16
+
+# GlobalSlots is the maximum number of executable transaction slots for all accounts
+global-slots = 5120
+
+# AccountQueue is the maximum number of non-executable transaction slots permitted per account
+account-queue = 64
+
+# GlobalQueue is the maximum number of non-executable transaction slots for all accounts
+global-queue = 1024
+
+# Lifetime is the maximum amount of time non-executable transaction are queued
+lifetime = "3h0m0s"
+
 ###############################################################################
 ###                           JSON RPC Configuration                        ###
 ###############################################################################
@@ -773,6 +830,10 @@ address = "127.0.0.1:8545"
 
 # Address defines the EVM WebSocket server address to bind to.
 ws-address = "127.0.0.1:8546"
+
+# WSOrigins defines the allowed origins for WebSocket connections.
+# Example: ["localhost", "127.0.0.1", "myapp.example.com"]
+ws-origins = ["127.0.0.1", "localhost"]
 
 # API defines a list of JSON-RPC namespaces that should be enabled
 # Example: "eth,txpool,personal,net,debug,web3"
@@ -823,8 +884,14 @@ enable-indexer = false
 # Prometheus metrics path: /debug/metrics/prometheus
 metrics-address = "127.0.0.1:6065"
 
-# Upgrade height for fix of revert gas refund logic when transaction reverted.
-fix-revert-gas-refund-height = 0
+# Maximum number of requests in a batch.
+batch-request-limit = 1000
+
+# Maximum number of bytes returned from a batched call.
+batch-response-max-size = 25000000
+
+# Enabled profiling in the debug namespace
+enable-profiling = false
 
 ###############################################################################
 ###                             TLS Configuration                           ###
@@ -837,88 +904,6 @@ certificate-path = ""
 
 # Key path defines the key.pem file path for the TLS configuration.
 key-path = ""
-
-###############################################################################
-###                           Rosetta Configuration                         ###
-###############################################################################
-
-[rosetta]
-
-# Enable defines if the Rosetta API server should be enabled.
-enable = false
-
-# Address defines the Rosetta API server to listen on.
-address = ":8080"
-
-# Network defines the name of the blockchain that will be returned by Rosetta.
-blockchain = "exrp"
-
-# Network defines the name of the network that will be returned by Rosetta.
-network = "exrp"
-
-# TendermintRPC defines the endpoint to connect to CometBFT RPC,
-# specifying 'tcp://' before is not required, usually it's at port 26657
-tendermint-rpc = "localhost:26657"
-
-# GRPCEndpoint defines the cosmos application gRPC endpoint
-# usually it is located at 9090 port
-grpc-endpoint = "localhost:9090"
-
-# Retries defines the number of retries when connecting to the node before failing.
-retries = 5
-
-# Offline defines if Rosetta server should run in offline mode.
-offline = false
-
-# EnableFeeSuggestion indicates to use fee suggestion when 'construction/metadata' is called without gas limit and price.
-enable-fee-suggestion = false
-
-# GasToSuggest defines gas limit when calculating the fee
-gas-to-suggest = 300000
-
-# DenomToSuggest defines the defult denom for fee suggestion.
-# Price must be in minimum-gas-prices.
-denom-to-suggest = "axrp"
-
-# GasPrices defines the gas prices for fee suggestion
-gas-prices = "4000000.000000000000000000axrp"
-
-###############################################################################
-###                         VersionDB Configuration                         ###
-###############################################################################
-
-[versiondb]
-
-# Enable defines if the versiondb should be enabled.
-enable = false
-
-###############################################################################
-###                             MemIAVL Configuration                       ###
-###############################################################################
-
-[memiavl]
-
-# Enable defines if the memiavl should be enabled.
-enable = false
-
-# ZeroCopy defines if the memiavl should return slices pointing to mmap-ed buffers directly (zero-copy),
-# the zero-copied slices must not be retained beyond current block's execution.
-# the sdk address cache will be disabled if zero-copy is enabled.
-zero-copy = false
-
-# AsyncCommitBuffer defines the size of asynchronous commit queue, this greatly improve block catching-up
-# performance, -1 means synchronous commit.
-async-commit-buffer = 0
-
-# SnapshotKeepRecent defines what many old snapshots (excluding the latest one) to keep after new snapshots are
-# taken, defaults to 1 to make sure ibc relayers work.
-snapshot-keep-recent = 1
-
-# SnapshotInterval defines the block interval the memiavl snapshot is taken, default to 1000.
-snapshot-interval = 1000
-
-# CacheSize defines the size of the cache for each memiavl store, default to 1000.
-cache-size = 1000
 ```
 
 ## `client.toml`
@@ -933,12 +918,19 @@ cache-size = 1000
 
 # The network chain ID
 chain-id = ""
+
 # The keyring's backend, where the keys are stored (os|file|kwallet|pass|test|memory)
 keyring-backend = "os"
+
+# Default key name, if set, defines the default key to use for signing transaction when the --from flag is not specified
+keyring-default-keyname = ""
+
 # CLI output format (text|json)
 output = "text"
+
 # <host>:<port> to CometBFT RPC interface for this chain
 node = "tcp://localhost:26657"
+
 # Transaction broadcasting mode (sync|async)
 broadcast-mode = "sync"
 ```

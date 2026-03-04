@@ -43,6 +43,12 @@ Adjust other recommended settings:
 - **API Access**: Disable all except Tendermint RPC (restrict to localhost)
 - **Peer Exchange**: Keep default unless specific network config is required
 
+{% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
+Before starting the Mainnet node, set `evm-chain-id = "1440000"` under `[evm]` in `app.toml`.
+
+File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
+{% /admonition %}
+
 For more details, refer to the [node configuration documentation](https://docs.xrplevm.org/pages/operators/advanced/node-configuration-options) as well as the [node configuration reference](https://docs.xrplevm.org/pages/operators/resources/configuration-reference).
 
 ### 4. Create a New Key
@@ -83,7 +89,7 @@ wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/n
 Add seeds to the node configuration that will allow connecting to the rest of the node. Modify the file `~/.exrpd/config/config.toml` to include the following seed node:
 
 ```sh
-PEERS=`curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/mainnet/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -`
+PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/mainnet/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$PEERS\"/" ~/.exrpd/config/config.toml
 cat ~/.exrpd/config/config.toml | grep seeds
 ```
@@ -125,6 +131,12 @@ Adjust other recommended settings:
 - **API Access**: Disable all except Tendermint RPC (restrict to localhost)
 - **Peer Exchange**: Keep default unless specific network config is required
 
+{% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
+Before starting the Testnet node, set `evm-chain-id = "1449000"` under `[evm]` in `app.toml`.
+
+File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
+{% /admonition %}
+
 For more details, refer to the [node configuration documentation](https://docs.xrplevm.org/pages/operators/advanced/node-configuration-options) as well as the [node configuration reference](https://docs.xrplevm.org/pages/operators/resources/configuration-reference).
 
 ### 4. Create a New Key
@@ -165,7 +177,7 @@ wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/n
 Add seeds to the node configuration that will allow connecting to the rest of the node. Modify the file `~/.exrpd/config/config.toml` to include the following seed node:
 
 ```sh
-PEERS=`curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -`
+PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$PEERS\"/" ~/.exrpd/config/config.toml
 cat ~/.exrpd/config/config.toml | grep seeds
 ```
@@ -247,7 +259,7 @@ wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/n
 Add seeds to the node configuration that will allow connecting to the rest of the node. Modify the file `~/.exrpd/config/config.toml` to include the following seed node:
 
 ```sh
-PEERS=`curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/devnet/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -`
+PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/devnet/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$PEERS\"/" ~/.exrpd/config/config.toml
 cat ~/.exrpd/config/config.toml | grep seeds
 ```
@@ -261,8 +273,8 @@ Once your configuration is complete, start the node using your preferred process
 
 ```sh
 # Example using systemd:
-systemctl enable exrpd
-systemctl start exrpd
+sudo systemctl enable exrpd
+sudo systemctl start exrpd
 
 # Or, using Docker:
 docker start xrplevm-node

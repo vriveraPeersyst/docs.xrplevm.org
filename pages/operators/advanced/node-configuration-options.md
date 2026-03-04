@@ -2,6 +2,18 @@
 
 This documentation outlines the various configuration options for nodes in the XRPL EVM sidechain project. Configuring a node correctly is essential for ensuring its intended role within the network. Below, we categorize configuration options into historical data storage, API exposure, and peer exchange configurations.
 
+## Quick reference: which file controls what
+
+Use this quick map before editing settings:
+
+| Setting | File |
+| ------- | ---- |
+| Tendermint/CometBFT RPC (`[rpc].laddr`, port `26657`) | `config.toml` |
+| P2P peer exchange (`[p2p]`) | `config.toml` |
+| Pruning (`pruning`) | `app.toml` |
+| Cosmos API / gRPC (`[api]`, `[grpc]`) | `app.toml` |
+| Ethereum JSON-RPC / WS (`[json-rpc]`) | `app.toml` |
+
 ---
 
 ## Historical Data based configuration

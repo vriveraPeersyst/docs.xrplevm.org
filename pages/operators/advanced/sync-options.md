@@ -6,7 +6,9 @@ The XRPL EVM sidechain supports various synchronization methods for setting up a
 
 Syncing from genesis initializes your `exrpd` node from the very beginning of the XRPL EVM blockchain's history. This method is comprehensive but time-intensive, as it downloads and verifies all blocks and transactions since the chain's inception.
 
-1. **Install `exprd`**: Ensure that the first version of the `exrpd` binary is installed and configured on your system. Refer to the [Networks page](../resources/networks.md) for downloading the first version of the binary for each network and to the [Installation Guide](../getting-started/installing-the-node.md) for detailed setup steps.
+For the full procedure (including Mainnet/Testnet/Devnet version paths and upgrade handling), follow [Sync from Genesis](../getting-started/sync-from-genesis.md).
+
+1. **Install `exrpd`**: Ensure that the first version of the `exrpd` binary is installed and configured on your system. Refer to the [Networks page](../resources/networks.md) for downloading the first version of the binary for each network and to the [Installation Guide](../getting-started/installing-the-node.md) for detailed setup steps.
 
 2. **Start the Node**:
 
@@ -17,6 +19,10 @@ exrpd start
 3. **Monitor Progress**:
    Wait for the node to sync until it reaches the block of the next version. Then, upgrade to the newer version and repeat this process until the node is fully in sync with the network. For detailed upgrade instructions, refer to the [Upgrading your node](../guides/upgrading-your-node.md) page.
 
+{% admonition type="warning" name="Validator signer safety" %}
+If this node is a validator signer, keep a **single active validator signer** only. Never run two active instances with the same `~/.exrpd/config/priv_validator_key.json`, and never roll back `~/.exrpd/data/priv_validator_state.json`.
+{% /admonition %}
+
 ## Sync from Snapshot
 
 Syncing from a snapshot significantly reduces setup time by initializing your node using a pre-generated state file. The snapshot is downloaded and then decompressed to the ~/.exrpd/data directory, preparing the node for quick synchronization with the network.
@@ -26,10 +32,14 @@ Syncing from a snapshot significantly reduces setup time by initializing your no
 2. **Download and decompress the snapshot**:
 
 ```bash
-wget <snapshot_url> -O ~/.exrpd
 cd ~/.exrpd
+wget -O exrpd.tar.lz4 <snapshot_url>
 tar -xI lz4 -f exrpd.tar.lz4
 ```
+
+{% admonition type="warning" name="Validator signer safety" %}
+Do not restore snapshots over an active validator signer home. Snapshot restore is for non-signing nodes or fresh replacement nodes only.
+{% /admonition %}
 
 3. **Start the Node**:
 
@@ -73,4 +83,5 @@ State Sync is an efficient and fast way to bootstrap a new node. It works by rep
      ```
 
 4. **Verify Synchronization**:
-   - Once state sync completes, the node will begin processing blocks normally. If state sync fails with an error such as `state sync aborted`, try restarting `exrpd` or running `exrpd unsafe-reset-all` (ensure you back up any configuration or history before using this command).
+   - Once state sync completes, the node will begin processing blocks normally. If state sync fails with an error such as `state sync aborted`, first restart `exrpd` and verify your `statesync` settings and trusted RPC endpoints.
+   - For non-signing nodes only, you may reset data and retry state sync. Do not run reset commands on active validator signer nodes that hold production `priv_validator_key.json`.

@@ -26,3 +26,50 @@ Snapshots provide a quick way to bootstrap your node’s state by downloading a 
 {% /tabs %}
 
 **Note:** Always verify the authenticity and integrity of snapshots before using them. Keep in mind that third-party providers may have different update schedules, data policies, and retention periods. Refer to the provider’s documentation for instructions on how to use these snapshots and any associated terms of service.
+
+## Restore examples
+
+Use the command set that matches the provider archive format.
+
+### Peersyst (`.tar.lz4`)
+
+```bash
+cd ~/.exrpd
+wget -O snapshot.tar.lz4 <snapshot_url>
+tar -xI lz4 -f snapshot.tar.lz4
+```
+
+### Cumulo (`.tar.zst`)
+
+```bash
+sudo apt update && sudo apt install -y aria2 zstd curl
+
+SERVICE=exrpd.service
+STATE=~/.exrpd/data/priv_validator_state.json
+BACKUP=/tmp/priv_validator_state.json
+
+sudo systemctl stop $SERVICE
+
+if [ -f "$STATE" ]; then
+	cp "$STATE" "$BACKUP"
+fi
+
+rm -rf ~/.exrpd/data && mkdir -p ~/.exrpd/data
+cd ~/.exrpd
+aria2c -x 16 -s 16 -k 1M --file-allocation=none -o snapshot.tar.zst "https://xrpl.cumulo.com.es/snapshots/latest_xrpl_snapshot.tar.zst"
+zstd -t snapshot.tar.zst
+tar --use-compress-program=zstd -xf snapshot.tar.zst -C ~/.exrpd/data
+rm -f snapshot.tar.zst
+
+if [ -f "$BACKUP" ]; then
+	mv "$BACKUP" "$STATE"
+fi
+
+sudo systemctl start $SERVICE
+```
+
+{% admonition type="warning" name="Validator signer safety" %}
+Restore `priv_validator_state.json` after extraction when replacing data, and keep only one active validator signer for the same `priv_validator_key.json`.
+{% /admonition %}
+
+If integrity check fails (`zstd -t` or tar extraction errors such as `Unexpected EOF`), delete the archive and download it again before extracting.

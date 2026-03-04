@@ -9,7 +9,7 @@ Validators in the XRPL EVM sidechain rely on two distinct types of keys, each se
 ### Node Key
 
 - **Purpose**: Used for consensus and block signing.
-- **Location**: Stored in `config/priv_val_key.json`.
+- **Location**: Stored in `config/priv_validator_key.json`.
 - **Importance**: The node key is critical for validator operations. If compromised, it could allow malicious actors to manipulate block signing, impacting the chain's integrity.
 
 ### Operator Key

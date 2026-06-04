@@ -2,6 +2,8 @@ reunite:
   ignoreMarkdocErrors: true
   ignoreLinkChecker: true
 apis: {}
+seo:
+  siteUrl: https://docs.xrplevm.org/
 ignore:
   - _*
 redirects:
